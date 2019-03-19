@@ -29,9 +29,10 @@ public class GestionRed {
         red.setPuertasDeEnlace(puertasDeEnlaceDeLaRed);
     }
     
-    public ArrayList<PuertaDeEnlace> verPuertasDeEnlace(){
+   // public ArrayList<PuertaDeEnlace> verPuertasDeEnlace(){
         
-    }
+    //}
+
     
     
 }
