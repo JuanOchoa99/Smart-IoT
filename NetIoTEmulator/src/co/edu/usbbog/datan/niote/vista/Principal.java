@@ -5,10 +5,21 @@
  */
 package co.edu.usbbog.datan.niote.vista;
 
+import co.edu.usbbog.datan.niote.controlador.hilos.NodoHilo;
+
 /**
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
 public class Principal {
     
+     public static void main(String[] args) {
+         
+        Thread hilo = new NodoHilo("Nodo 1");
+        Thread hilo2 = new NodoHilo("Nodo 2");
+        
+        hilo.start();
+        hilo2.start();
+        
+    }
 }

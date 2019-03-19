@@ -30,6 +30,8 @@ public class Nodo {
         this.sensores = new ArrayList<>();
     }
 
+
+
     public String getId() {
         return id;
     }

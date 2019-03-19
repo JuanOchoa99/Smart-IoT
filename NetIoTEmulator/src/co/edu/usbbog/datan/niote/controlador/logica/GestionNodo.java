@@ -5,12 +5,14 @@
  */
 package co.edu.usbbog.datan.niote.controlador.logica;
 
+import co.edu.usbbog.datan.niote.modelo.Nodo;
+
 /**
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
-public class GetionActuadores {
+public class GestionNodo {
     
-    
+    //Thread hilo = new Nodo ("Nodo 1","Nodo 1",1,"1000");
     
 }
