@@ -9,8 +9,10 @@ package co.edu.usbbog.datan.niote.controlador.logica;
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
-public class GetionActuadores {
+public class GestionActuadores {
     
-    
+    public GestionActuadores(String id, String descripcion, boolean estado, String tipo){
+        
+    }
     
 }
