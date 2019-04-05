@@ -4,13 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/vista/Principal.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/modelo/Sensor.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/modelo/Actuador.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/modelo/Red.java</file>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/controlador/logica/GestionRed.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/modelo/Nodo.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/modelo/PuertaDeEnlace.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/controlador/logica/GestionNodo.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/controlador/hilos/NodoHilo.java</file>
         </group>
     </open-files>
 </project-private>

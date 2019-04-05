@@ -42,6 +42,7 @@ public class Principal {
          int menu=1;
          int opcion;
          int idPuertaDeEnlace=0, idNodo=0, idSensor=0, idActuador=0;
+         String idGateway;
          while(menu==1){
          System.out.println("Menu: \n"
                  + "1. Ver gateway \n"
@@ -96,7 +97,70 @@ public class Principal {
                       idPuertaDeEnlace ++; 
                       
                       break;
+                      
+                 case 6:
+                     
+                      System.out.println("Digite descripcion");
+                      String descripcionNodo =  sn.next();
+                      
+                      System.out.println("Digite estado (true/false)"); 
+                      boolean estadoNodo = sn.nextBoolean();
+                      
+                      System.out.println("Digiste direccion logica");
+                      String protocoloComunicacion = sn.next();
+                      
+                      System.out.println("Digiste id del gateway");
+                       idGateway = sn.next();
+                      
+                      gr.agregarNodo(""+idNodo, ""+descripcionNodo,estadoNodo,""+protocoloComunicacion,""+idGateway);
+                      idNodo++;
+                     break;
+                 case 7:
+                      
+                     
+                      System.out.println("Digite descripcion");
+                      String descripcionSensor =  sn.next();
+                      
+                      System.out.println("Digite estado (true/false)"); 
+                      boolean estadoSensor = sn.nextBoolean();
+                      
+                      System.out.println("Digiste tipo");
+                      String tipoSensor = sn.next();
+                      
+                      System.out.println("Digiste id del gateway");
+                      idGateway = sn.next();
+                      
+                      System.out.println("Digiste id del nodo");
+                      String idNodoSensor = sn.next();
+                      
+                      gr.agregarSensor(""+idSensor,""+descripcionSensor,estadoSensor,""+tipoSensor,""+idGateway,""+idNodoSensor);
+                      idSensor++;
+                     break;
+                      
 
+                     
+                 case 8:
+                      
+                      System.out.println("Digite descripcion");
+                      String descripcionActuador =  sn.next();
+                      
+                      System.out.println("Digite estado (true/false)"); 
+                      boolean estadoActuador = sn.nextBoolean();
+                      
+                      System.out.println("Digiste tipo");
+                      String tipoActuador = sn.next();
+                      
+                      System.out.println("Digiste id del gateway");
+                      idGateway = sn.next();
+                      
+                      System.out.println("Digiste id del nodo");
+                      String idNodoActuador = sn.next();
+                      
+                      gr.agregarActuador(""+idActuador,""+descripcionActuador,estadoActuador,""+tipoActuador,""+idGateway,""+idNodoActuador);
+                      idActuador++;
+                     break;
+                     
+                     
                  default:
                      menu=0;
                      break;

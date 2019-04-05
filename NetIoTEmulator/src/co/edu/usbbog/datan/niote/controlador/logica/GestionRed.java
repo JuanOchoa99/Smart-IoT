@@ -83,7 +83,6 @@ public class GestionRed {
 
         for (PuertaDeEnlace i : puertasDeEnlaceDeLaRed) {
             if (i.getId().equals(gatewayId)) {
-                System.out.println("hola");
                 red.getPuertasDeEnlace().remove(i);
                 List<Nodo> nodos = new ArrayList<Nodo>();
                 Nodo nodo = new Nodo(id, descripcion, estado, protocoloComunicacion);
