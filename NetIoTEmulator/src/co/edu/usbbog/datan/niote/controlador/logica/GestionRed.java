@@ -20,12 +20,29 @@ import java.util.List;
 public class GestionRed {
 
     private Red red;
+    
+    //relaciones
+    private GestionNodo gestionNodo;
+    private GestionActuadores gestionActuadores;
+    private GestionSensores gestionSensores;
+    private GestionPuertaDeEnlace gestionPuertaDeEnlace;
+    
 
     public GestionRed(String id, String nombre, String descripcion) {
         this.red = new Red(id, nombre, descripcion);
         this.red.setPuertasDeEnlace(new ArrayList<PuertaDeEnlace>());
 
     }
+
+    public Red getRed() {
+        return red;
+    }
+
+    public void setRed(Red red) {
+        this.red = red;
+    }
+    
+    
 
     public void agregarPuertasDeEnlace(String id, String descripcion, boolean estado, String direccionLogica, String puertoDeServicio, String protocoloComunicacionExterno) {
         PuertaDeEnlace puertaDeEnlace = new PuertaDeEnlace(id, descripcion, estado, direccionLogica, puertoDeServicio, protocoloComunicacionExterno);
@@ -157,5 +174,7 @@ public class GestionRed {
 
         }
     }
+
+    
 
 }

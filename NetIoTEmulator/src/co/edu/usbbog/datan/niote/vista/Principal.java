@@ -5,17 +5,32 @@
  */
 package co.edu.usbbog.datan.niote.vista;
 
+import co.edu.usbbog.datan.niote.controlador.logica.GestionRed;
+import co.edu.usbbog.datan.niote.controlador.logica.ValidacionesSistema;
+
 /**
  *
  * @author 305
  */
 public class Principal extends javax.swing.JFrame {
+    
+    //relacion Logica
+    private GestionRed gestionRed;
+    private ValidacionesSistema validacionesSistema;
+    
+    //relaciones vista
+    private Terminal terminal;
+    
+    
 
     /**
      * Creates new form Principal
      */
     public Principal() {
-        initComponents();
+        this.validacionesSistema = new ValidacionesSistema();
+        this.terminal = new Terminal(this);
+        this.setVisible(false);
+        //initComponents();
     }
 
     /**
@@ -78,6 +93,23 @@ public class Principal extends javax.swing.JFrame {
         });
     }
 
+    public GestionRed getGestionRed() {
+        return gestionRed;
+    }
+
+    public Terminal getTerminal() {
+        return terminal;
+    }
+    
+    public ValidacionesSistema getValidacionesSistema() {
+        return validacionesSistema;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+    public void iniciarRed(String id, String nombre, String descripcion){
+        this.gestionRed= new GestionRed(id, nombre, descripcion);
+    }
+
+   
 }

@@ -13,20 +13,76 @@ import java.util.Scanner;
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
 public class Terminal {
+    //Atributos
+    Scanner sn = new Scanner(System.in);
+    
+    //relacion
+    private Principal principal;
+
+    public Terminal(Principal principal) {
+        this.principal = principal;
+        menuInicial();
+    }
+    
+    public void menuInicial(){
+        if(principal.getValidacionesSistema().estaInstaladoMosquitto()){
+            System.out.println("***Bienvenido a Net IoT Emulator***");
+            System.out.println("0. para salir");
+            System.out.println("1. para iniciar red");
+            int opc = sn.nextInt();
+            switch(opc){
+                case 0:
+                    System.out.println("Vuelva Pronto");
+                    System.exit(0);
+                    break;
+                case 1:
+                    System.out.println("ingrese ID unico de la red");
+                    String id=sn.next();
+                    System.out.println("ingrese nombre de la red");
+                    String nombre=sn.next();
+                    System.out.println("ingrese la descripcion de la red");
+                    String descripcion=sn.next();                    
+                    this.principal.iniciarRed(id, nombre, descripcion);
+                    menuPrincipal();
+                    break;
+            }
+            
+        }else{
+            System.out.println("***Net IoT Emulator necesita el Broker de Mosquitto-MQTT para funcionar");
+            System.out.println("Verifique que Mosquitto-MQTT esta instalado");
+            System.out.println("Verifique que Mosquitto-MQTT esta corriendo en el puerto 1883");
+            System.exit(0);
+        }   
+    }
+    
+    
+    private void menuPrincipal() {
+        int opc = -1;
+        do{
+            System.out.println("Net IoT Emulator");
+            System.out.println("Red: "+this.principal.getGestionRed().getRed().getId()
+            +" - "+ this.principal.getGestionRed().getRed().getNombre()
+            +" - "+ this.principal.getGestionRed().getRed().getDescripcion());
+            System.out.println("0. para salir");
+            System.out.println("1. para reiniciar red");
+            System.out.println("2. para configurar la red");
+            
+            opc=1;
+        }while(opc!=1);
+        menuInicial();
+        
+    }
 
     public void inicio() {
-        Scanner sn = new Scanner(System.in);
-        Scanner datosPE = new Scanner(System.in);
 
-        GestionRed gr = new GestionRed("1", "dsds", "hola");
 
-        gr.agregarPuertasDeEnlace("1001", "nueva gateway", true, "dos", "1000", "MW");
+        this.principal.getGestionRed().agregarPuertasDeEnlace("1001", "nueva gateway", true, "dos", "1000", "MW");
 
-        gr.agregarNodo("n-1", "nodo prueba", true, "blouetooth", "1001");
+        this.principal.getGestionRed().agregarNodo("n-1", "nodo prueba", true, "blouetooth", "1001");
 
-        gr.agregarActuador("a-1", "actuador prueba", true, "tipo1", "n-1", "1001");
+        this.principal.getGestionRed().agregarActuador("a-1", "actuador prueba", true, "tipo1", "n-1", "1001");
 
-        gr.agregarSensor("s-1", "sensor prueba", true, "tipo 1", "n-1", "1001");
+        this.principal.getGestionRed().agregarSensor("s-1", "sensor prueba", true, "tipo 1", "n-1", "1001");
 
         int menu = 1;
         int opcion;
@@ -48,21 +104,21 @@ public class Terminal {
 
                 case 1:
 
-                    gr.verPuertasDeEnlace();
+                    this.principal.getGestionRed().verPuertasDeEnlace();
                     break;
 
                 case 2:
 
-                    gr.verNodos();
+                    this.principal.getGestionRed().verNodos();
                     break;
 
                 case 3:
 
-                    gr.verSensor();
+                    this.principal.getGestionRed().verSensor();
                     break;
                 case 4:
 
-                    gr.verActuador();
+                    this.principal.getGestionRed().verActuador();
                     break;
                 case 5:
 
@@ -81,7 +137,7 @@ public class Terminal {
                     System.out.println("Digite protocolo de comunicacion externo");
                     String protocoloDeComunicacionExterno = sn.next();
 
-                    gr.agregarPuertasDeEnlace("" + idPuertaDeEnlace, "" + descripcion, estado, "" + direccionLogica, "" + puertoDeServicio, "" + protocoloDeComunicacionExterno);
+                    this.principal.getGestionRed().agregarPuertasDeEnlace("" + idPuertaDeEnlace, "" + descripcion, estado, "" + direccionLogica, "" + puertoDeServicio, "" + protocoloDeComunicacionExterno);
                     idPuertaDeEnlace++;
 
                     break;
@@ -100,7 +156,7 @@ public class Terminal {
                     System.out.println("Digiste id del gateway");
                     idGateway = sn.next();
 
-                    gr.agregarNodo("" + idNodo, "" + descripcionNodo, estadoNodo, "" + protocoloComunicacion, "" + idGateway);
+                    this.principal.getGestionRed().agregarNodo("" + idNodo, "" + descripcionNodo, estadoNodo, "" + protocoloComunicacion, "" + idGateway);
                     idNodo++;
                     break;
                 case 7:
@@ -120,7 +176,7 @@ public class Terminal {
                     System.out.println("Digiste id del nodo");
                     String idNodoSensor = sn.next();
 
-                    gr.agregarSensor("" + idSensor, "" + descripcionSensor, estadoSensor, "" + tipoSensor, "" + idGateway, "" + idNodoSensor);
+                    this.principal.getGestionRed().agregarSensor("" + idSensor, "" + descripcionSensor, estadoSensor, "" + tipoSensor, "" + idGateway, "" + idNodoSensor);
                     idSensor++;
                     break;
 
@@ -141,7 +197,7 @@ public class Terminal {
                     System.out.println("Digiste id del nodo");
                     String idNodoActuador = sn.next();
 
-                    gr.agregarActuador("" + idActuador, "" + descripcionActuador, estadoActuador, "" + tipoActuador, "" + idGateway, "" + idNodoActuador);
+                    this.principal.getGestionRed().agregarActuador("" + idActuador, "" + descripcionActuador, estadoActuador, "" + tipoActuador, "" + idGateway, "" + idNodoActuador);
                     idActuador++;
                     break;
 
@@ -153,4 +209,5 @@ public class Terminal {
         }
 
     }
+
 }
