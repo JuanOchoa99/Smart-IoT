@@ -50,7 +50,7 @@ public class Terminal {
         }else{
             System.out.println("***Net IoT Emulator necesita el Broker de Mosquitto-MQTT y los puerto 9998 y 9999 para funcionar");
             System.out.println("Verifique que Mosquitto-MQTT y TCP/IP esten instalados y configurados");
-            System.out.println("Verifique que Mosquitto-MQTT esta corriendo en el puerto 1883");
+            System.out.println("Verifique que Mosquitto-MQTT esta corriendo en el puerto 1883 y agregado al firewall");
             System.out.println("Verifique que los puertos 9998 y 9999 estan disponible y agregados al firewall");
             System.exit(0);
         }   
