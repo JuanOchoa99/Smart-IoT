@@ -5,170 +5,79 @@
  */
 package co.edu.usbbog.datan.niote.vista;
 
-import co.edu.usbbog.datan.niote.controlador.hilos.NodoHilo;
-import co.edu.usbbog.datan.niote.controlador.logica.GestionRed;
-import java.util.Scanner;
-
 /**
  *
- * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
+ * @author 305
  */
-public class Principal {
-    
-     public static void main(String[] args) {
-         /**
-          *  Thread hilo = new NodoHilo("Nodo 1");
-        Thread hilo2 = new NodoHilo("Nodo 2");
-        gr.agregarPuertasDeEnlace("1001", "nueva gateway", true, "dos", "1000", "MW");
-         gr.verPuertasDeEnlace();
-        hilo.start();
-        hilo2.start();
-          */
-         
-         Scanner sn = new Scanner(System.in);
-         Scanner datosPE = new Scanner(System.in);
-       
-         GestionRed gr = new GestionRed("1", "dsds", "hola");
-         
-         gr.agregarPuertasDeEnlace("1001", "nueva gateway", true, "dos", "1000", "MW");
-         
-         gr.agregarNodo("n-1","nodo prueba", true, "blouetooth","1001");
-         
-         gr.agregarActuador("a-1", "actuador prueba", true, "tipo1", "n-1", "1001");
-         
-         gr.agregarSensor("s-1", "sensor prueba", true, "tipo 1", "n-1", "1001");
-        
-        
-         int menu=1;
-         int opcion;
-         int idPuertaDeEnlace=0, idNodo=0, idSensor=0, idActuador=0;
-         String idGateway;
-         while(menu==1){
-         System.out.println("Menu: \n"
-                 + "1. Ver gateway \n"
-                 + "2. Ver nodos \n"
-                 + "3. Ver Sensores \n"
-                 + "4. Ver actuadores \n"
-                 + "5. Crear gateway \n"
-                 + "6. Crear nodo \n"
-                 + "7. Crear sensor \n"
-                 + "8. Crear Actuador \n");
-         
-         opcion = sn.nextInt();
-             switch (opcion) {
+public class Principal extends javax.swing.JFrame {
 
-                 case 1:
-                     
-                     gr.verPuertasDeEnlace();
-                     break;
-                     
-                 case 2:
-                     
-                     gr.verNodos();
-                     break;
-                     
-                 case 3:
-                     
-                     gr.verSensor();
-                     break;
-                 case 4:
-                     
-                     gr.verActuador();
-                     break;
-                 case 5:
-                     
-                      
-                      System.out.println("Digite descripcion");
-                      String descripcion =  sn.next();
-                      
-                      System.out.println("Digite estado (true/false)"); 
-                      boolean estado = sn.nextBoolean();
-                      
-                      System.out.println("Digiste direccion logica");
-                      String direccionLogica = sn.next();
-                      
-                      System.out.println("Digite Puerto de Servicio");
-                      String puertoDeServicio = sn.next();
-                      
-                      System.out.println("Digite protocolo de comunicacion externo");
-                      String protocoloDeComunicacionExterno = sn.next() ;
-                     
-                      gr.agregarPuertasDeEnlace(""+idPuertaDeEnlace, ""+descripcion, estado, ""+direccionLogica, ""+puertoDeServicio, ""+protocoloDeComunicacionExterno);
-                      idPuertaDeEnlace ++; 
-                      
-                      break;
-                      
-                 case 6:
-                     
-                      System.out.println("Digite descripcion");
-                      String descripcionNodo =  sn.next();
-                      
-                      System.out.println("Digite estado (true/false)"); 
-                      boolean estadoNodo = sn.nextBoolean();
-                      
-                      System.out.println("Digiste direccion logica");
-                      String protocoloComunicacion = sn.next();
-                      
-                      System.out.println("Digiste id del gateway");
-                       idGateway = sn.next();
-                      
-                      gr.agregarNodo(""+idNodo, ""+descripcionNodo,estadoNodo,""+protocoloComunicacion,""+idGateway);
-                      idNodo++;
-                     break;
-                 case 7:
-                      
-                     
-                      System.out.println("Digite descripcion");
-                      String descripcionSensor =  sn.next();
-                      
-                      System.out.println("Digite estado (true/false)"); 
-                      boolean estadoSensor = sn.nextBoolean();
-                      
-                      System.out.println("Digiste tipo");
-                      String tipoSensor = sn.next();
-                      
-                      System.out.println("Digiste id del gateway");
-                      idGateway = sn.next();
-                      
-                      System.out.println("Digiste id del nodo");
-                      String idNodoSensor = sn.next();
-                      
-                      gr.agregarSensor(""+idSensor,""+descripcionSensor,estadoSensor,""+tipoSensor,""+idGateway,""+idNodoSensor);
-                      idSensor++;
-                     break;
-                      
-
-                     
-                 case 8:
-                      
-                      System.out.println("Digite descripcion");
-                      String descripcionActuador =  sn.next();
-                      
-                      System.out.println("Digite estado (true/false)"); 
-                      boolean estadoActuador = sn.nextBoolean();
-                      
-                      System.out.println("Digiste tipo");
-                      String tipoActuador = sn.next();
-                      
-                      System.out.println("Digiste id del gateway");
-                      idGateway = sn.next();
-                      
-                      System.out.println("Digiste id del nodo");
-                      String idNodoActuador = sn.next();
-                      
-                      gr.agregarActuador(""+idActuador,""+descripcionActuador,estadoActuador,""+tipoActuador,""+idGateway,""+idNodoActuador);
-                      idActuador++;
-                     break;
-                     
-                     
-                 default:
-                     menu=0;
-                     break;
-
-             }
-         
-     }
-         
-         
+    /**
+     * Creates new form Principal
+     */
+    public Principal() {
+        initComponents();
     }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Principal().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // End of variables declaration//GEN-END:variables
 }
