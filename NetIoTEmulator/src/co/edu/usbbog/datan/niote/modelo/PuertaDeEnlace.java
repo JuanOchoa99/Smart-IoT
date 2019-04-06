@@ -18,7 +18,7 @@ public class PuertaDeEnlace {
     private String direccionLogica;
     private String puertoDeServicio;
     private String protocoloComunicacionExterno;
-     private List<Mensaje> mensajes;    
+    private List<Mensaje> mensajes;    
     private List<Nodo> nodos;
     private List<PuertaDeEnlace> salidas;
 
