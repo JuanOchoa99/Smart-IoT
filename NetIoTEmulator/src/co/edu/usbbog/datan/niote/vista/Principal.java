@@ -5,6 +5,7 @@
  */
 package co.edu.usbbog.datan.niote.vista;
 
+import co.edu.usbbog.datan.niote.controlador.logica.Emulador;
 import co.edu.usbbog.datan.niote.controlador.logica.GestionRed;
 import co.edu.usbbog.datan.niote.controlador.logica.ValidacionesSistema;
 
@@ -13,15 +14,14 @@ import co.edu.usbbog.datan.niote.controlador.logica.ValidacionesSistema;
  * @author 305
  */
 public class Principal extends javax.swing.JFrame {
-    
+
     //relacion Logica
     private GestionRed gestionRed;
     private ValidacionesSistema validacionesSistema;
-    
+    private Emulador emulador;
+
     //relaciones vista
     private Terminal terminal;
-    
-    
 
     /**
      * Creates new form Principal
@@ -61,7 +61,7 @@ public class Principal extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       Principal principal = new Principal();
+        Principal principal = new Principal();
     }
 
     public GestionRed getGestionRed() {
@@ -71,30 +71,34 @@ public class Principal extends javax.swing.JFrame {
     public Terminal getTerminal() {
         return terminal;
     }
-    
+
     public ValidacionesSistema getValidacionesSistema() {
         return validacionesSistema;
     }
 
+    public Emulador getEmulador() {
+        return emulador;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    protected boolean iniciarRed(String id, String nombre, String descripcion){
-        this.gestionRed= new GestionRed(id, nombre, descripcion);
-        if(this.gestionRed!=null){
+    protected boolean crearRed(String id, String nombre, String descripcion) {
+        this.gestionRed = new GestionRed(id, nombre, descripcion);
+        if (this.gestionRed != null) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
     protected boolean cargarRed(String ruta, String nombreArchivo) {
-        //logica por impleentar 
-        if(this.gestionRed!=null){
+        this.gestionRed = new GestionRed(ruta, nombreArchivo);
+        if (this.gestionRed != null) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-   
 }

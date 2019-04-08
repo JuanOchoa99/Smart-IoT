@@ -19,7 +19,7 @@ public class Terminal {
      */
     Scanner sn = new Scanner(System.in);
 
-    //relacion
+    //relaciones
     /**
      *
      */
@@ -44,7 +44,7 @@ public class Terminal {
             System.out.println("------------------Menu Inicial------------------");
             System.out.println("------------------------------------------------");
             System.out.println("0. para salir");
-            System.out.println("1. para iniciar red");
+            System.out.println("1. para crear red");
             System.out.println("2. cargar una configuracion previa de red e iniciar");
             int opc = sn.nextInt();
             switch (opc) {
@@ -53,25 +53,14 @@ public class Terminal {
                     System.exit(0);
                     break;
                 case 1:
-                    System.out.println("ingrese ID unico de la red");
-                    String id = sn.next();
-                    System.out.println("ingrese nombre de la red");
-                    String nombre = sn.next();
-                    System.out.println("ingrese la descripcion de la red");
-                    String descripcion = sn.next();
-                    if (this.principal.iniciarRed(id, nombre, descripcion)) {
+                    if (crearRed()) {
                         menuPrincipal();
                     } else {
                         menuInicial();
                     }
                     break;
                 case 2:
-                    System.out.println("ingrese la ruta absoluta donde se encuentra el archivo de configuracion");
-                    String ruta = sn.next();
-                    System.out.println("ingrese nombre del archivo de configuracion (.niote)");
-                    String nombreArchivo = sn.next();
-                    this.principal.cargarRed(ruta, nombreArchivo);
-                    if (this.principal.cargarRed(ruta, nombreArchivo)) {
+                    if (cargarRed()) {
                         menuPrincipal();
                     } else {
                         menuInicial();
@@ -88,6 +77,40 @@ public class Terminal {
             System.out.println("Verifique que Mosquitto-MQTT esta corriendo en el puerto 1883 y agregado al firewall");
             System.out.println("Verifique que los puertos 9998 y 9999 estan disponible y agregados al firewall");
             System.exit(0);
+        }
+    }
+
+    /**
+     *
+     * @return
+     */
+    private boolean crearRed() {
+        System.out.println("ingrese ID unico de la red");
+        String id = sn.next();
+        System.out.println("ingrese nombre de la red");
+        String nombre = sn.next();
+        System.out.println("ingrese la descripcion de la red");
+        String descripcion = sn.next();
+        if (this.principal.crearRed(id, nombre, descripcion)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     *
+     * @return
+     */
+    private boolean cargarRed() {
+        System.out.println("ingrese la ruta absoluta donde se encuentra el archivo de configuracion");
+        String ruta = sn.next();
+        System.out.println("ingrese nombre del archivo de configuracion (.niote)");
+        String nombreArchivo = sn.next();
+        if (this.principal.cargarRed(ruta, nombreArchivo)) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -182,6 +205,9 @@ public class Terminal {
         } while (opc != 0);
     }
 
+    /**
+     *
+     */
     private void menuConfiguracionPuertasDeEnlace() {
         int opc = -1;
         do {
@@ -199,32 +225,25 @@ public class Terminal {
             System.out.println("4. para modificar Puerta de Enlace por ID");
             System.out.println("5. para eliminar Puerta de Enlace por ID");
             opc = sn.nextInt();
-            String id;
-            String descripcion;
-            boolean estado;
-            String direccionLogica;
-            String puertoDeServicio;
-            String protocoloComunicacionExterno;
+
             switch (opc) {
                 case 0:
-                    System.out.println("Cerrando Control de Actuadores...");
+                    System.out.println("Cerrando Configuracion Puerta de Enlace...");
                     break;
                 case 1:
                     verPuertasDeEnlace();
                     break;
                 case 2:
-                    System.out.println("Digite ID de la Puerta de enlace");
-                    id = sn.next();
-                    verPuertaDeEnlacePorID(id);
+                    verPuertaDeEnlacePorID();
                     break;
                 case 3:
-                    //
+                    crearPuertaDeEnlace();
                     break;
                 case 4:
-                    //
+                    modificarPuertaDeEnlacePorID();
                     break;
                 case 5:
-                    //
+                    eliminarPuertaDeEnlacePorID();
                     break;
                 default:
                     System.out.println("opcion no valida");
@@ -233,26 +252,456 @@ public class Terminal {
         } while (opc != 0);
     }
 
-    private void menuConfiguracionNodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void menuConfiguracionSensores() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void menuConfiguracionActuadores() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void menuConstruirRed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void guardarRed() {
+    /**
+     *
+     */
+    private void verPuertasDeEnlace() {
+        //
         System.out.println("Falta constrir...");
     }
 
+    /**
+     *
+     */
+    private void verPuertaDeEnlacePorID() {
+        System.out.println("Digite ID de la Puerta de enlace");
+        String id = sn.next();
+        System.out.println("Falta constrir...");
+        //
+    }
+
+    /**
+     *
+     */
+    private void crearPuertaDeEnlace() {
+        String id;
+        String descripcion;
+        boolean estado;
+        String direccionLogica;
+        String puertoDeServicio;
+        String protocoloComunicacionExterno;
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void modificarPuertaDeEnlacePorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void eliminarPuertaDeEnlacePorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void menuConfiguracionNodos() {
+        int opc = -1;
+        do {
+            System.out.println("Net IoT Emulator");
+            System.out.println("Red: " + this.principal.getGestionRed().getRed().getId()
+                    + " - " + this.principal.getGestionRed().getRed().getNombre()
+                    + " - " + this.principal.getGestionRed().getRed().getDescripcion());
+            System.out.println("------------------------------------------------");
+            System.out.println("--------------Configuracion  Nodos--------------");
+            System.out.println("------------------------------------------------");
+            System.out.println("0. para volver al menu anterior");
+            System.out.println("1. para ver todos los Nodos");
+            System.out.println("2. para ver Nodo por ID");
+            System.out.println("3. para crear Nodo");
+            System.out.println("4. para modificar Nodo por ID");
+            System.out.println("5. para eliminar Nodo por ID");
+            opc = sn.nextInt();
+            switch (opc) {
+                case 0:
+                    System.out.println("Cerrando Configuracion Nodos...");
+                    break;
+                case 1:
+                    verNodos();
+                    break;
+                case 2:
+                    verNodoPorID();
+                    break;
+                case 3:
+                    crearNodo();
+                    break;
+                case 4:
+                    modificarNodoPorID();
+                    break;
+                case 5:
+                    eliminarNodoPorID();
+                    break;
+                default:
+                    System.out.println("opcion no valida");
+                    break;
+            }
+        } while (opc != 0);
+    }
+
+    /**
+     *
+     */
+    private void verNodos() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void verNodoPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void crearNodo() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void modificarNodoPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void eliminarNodoPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void menuConfiguracionSensores() {
+        int opc = -1;
+        do {
+            System.out.println("Net IoT Emulator");
+            System.out.println("Red: " + this.principal.getGestionRed().getRed().getId()
+                    + " - " + this.principal.getGestionRed().getRed().getNombre()
+                    + " - " + this.principal.getGestionRed().getRed().getDescripcion());
+            System.out.println("------------------------------------------------");
+            System.out.println("-------------Configuracion Sensores-------------");
+            System.out.println("------------------------------------------------");
+            System.out.println("0. para volver al menu anterior");
+            System.out.println("1. para ver todos los Sensores");
+            System.out.println("2. para ver Sensor por ID");
+            System.out.println("3. para crear Sensor");
+            System.out.println("4. para modificar Sensor por ID");
+            System.out.println("5. para eliminar Sensor por ID");
+            opc = sn.nextInt();
+            switch (opc) {
+                case 0:
+                    System.out.println("Cerrando Configuracion Sensores...");
+                    break;
+                case 1:
+                    verSensores();
+                    break;
+                case 2:
+                    verSensorPorID();
+                    break;
+                case 3:
+                    crearSensor();
+                    break;
+                case 4:
+                    modificarSensorPorID();
+                    break;
+                case 5:
+                    eliminarSensorPorID();
+                    break;
+                default:
+                    System.out.println("opcion no valida");
+                    break;
+            }
+        } while (opc != 0);
+    }
+
+    /**
+     *
+     */
+    private void verSensores() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void verSensorPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void crearSensor() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void modificarSensorPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void eliminarSensorPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void menuConfiguracionActuadores() {
+        int opc = -1;
+        do {
+            System.out.println("Net IoT Emulator");
+            System.out.println("Red: " + this.principal.getGestionRed().getRed().getId()
+                    + " - " + this.principal.getGestionRed().getRed().getNombre()
+                    + " - " + this.principal.getGestionRed().getRed().getDescripcion());
+            System.out.println("------------------------------------------------");
+            System.out.println("------------Configuracion Actuadores------------");
+            System.out.println("------------------------------------------------");
+            System.out.println("0. para volver al menu anterior");
+            System.out.println("1. para ver todos los Actuadores");
+            System.out.println("2. para ver Actuador por ID");
+            System.out.println("3. para crear Actuador");
+            System.out.println("4. para modificar Actuador por ID");
+            System.out.println("5. para eliminar Actuador por ID");
+            opc = sn.nextInt();
+            switch (opc) {
+                case 0:
+                    System.out.println("Cerrando Configuracion Actuadores...");
+                    break;
+                case 1:
+                    verActuadores();
+                    break;
+                case 2:
+                    verActuadorPorID();
+                    break;
+                case 3:
+                    crearActuador();
+                    break;
+                case 4:
+                    modificarActuadorPorID();
+                    break;
+                case 5:
+                    eliminarActuadorPorID();
+                    break;
+                default:
+                    System.out.println("opcion no valida");
+                    break;
+            }
+        } while (opc != 0);
+    }
+
+    /**
+     *
+     */
+    private void verActuadores() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void verActuadorPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void crearActuador() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void modificarActuadorPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void eliminarActuadorPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void menuConstruirRed() {
+        int opc = -1;
+        do {
+            System.out.println("Net IoT Emulator");
+            System.out.println("Red: " + this.principal.getGestionRed().getRed().getId()
+                    + " - " + this.principal.getGestionRed().getRed().getNombre()
+                    + " - " + this.principal.getGestionRed().getRed().getDescripcion());
+            System.out.println("------------------------------------------------");
+            System.out.println("------------------Contruir Red------------------");
+            System.out.println("------------------------------------------------");
+            System.out.println("0. para volver al menu anterior");
+            System.out.println("1. para ver red");
+            System.out.println("2. para agregar Puerta de Enlace a la Red");
+            System.out.println("3. para remover Puerta de Enlace de la Red");
+            System.out.println("4. para agregar Nodo a la Red");
+            System.out.println("5. para remover Nodo de la Red");
+            System.out.println("6. para agregar Sensor a la Red");
+            System.out.println("7. para remover Sensor de la Red");
+            System.out.println("8. para agregar Actuador a la Red");
+            System.out.println("9. para remover Actuador de la Red");
+            opc = sn.nextInt();
+            switch (opc) {
+                case 0:
+                    System.out.println("Cerrando Contruir Red...");
+                    break;
+                case 1:
+                    verConstruccionDeRed();
+                    break;
+                case 2:
+                    agregarPuertaDeEnlaceALaRed();
+                    break;
+                case 3:
+                    removerPuertaDeEnlaceDeLaRed();
+                    break;
+                case 4:
+                    agregarNodoALaRed();
+                    break;
+                case 5:
+                    removerNodoDeLaRed();
+                    break;
+                case 6:
+                    agregarSensorALaRed();
+                    break;
+                case 7:
+                    removerSensorDeLaRed();
+                    break;
+                case 8:
+                    agregarActuadorALaRed();
+                    break;
+                case 9:
+                    removerActuadorDeLaRed();
+                    break;
+                default:
+                    System.out.println("opcion no valida");
+                    break;
+            }
+        } while (opc != 0);
+    }
+
+    /**
+     *
+     */
+    private void verConstruccionDeRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void agregarPuertaDeEnlaceALaRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void removerPuertaDeEnlaceDeLaRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void agregarNodoALaRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void removerNodoDeLaRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void agregarSensorALaRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void removerSensorDeLaRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void agregarActuadorALaRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void removerActuadorDeLaRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void guardarRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
     private void menuControl() {
         int opc = -1;
         do {
@@ -308,6 +757,41 @@ public class Terminal {
         } while (opc != 0);
     }
 
+    /**
+     *
+     */
+    private void verEstadoDeLaRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void verEjecucionDeLaRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void iniciarRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void detenerRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
     private void menuControlPuertasDeEnlace() {
         int opc = -1;
         do {
@@ -324,7 +808,6 @@ public class Terminal {
             System.out.println("3. para iniciar Puerta de Enlace por ID");
             System.out.println("4. para detener Puerta de Enlace por ID");
             opc = sn.nextInt();
-            String id = "";
             switch (opc) {
                 case 0:
                     System.out.println("Cerrando Control de Puertas de Enlace...");
@@ -333,19 +816,13 @@ public class Terminal {
                     verPuertasDeEnlaceDeLaRed();
                     break;
                 case 2:
-                    System.out.println("Digite ID de la Puerta de enlace");
-                    id = sn.next();
-                    verPuertaDeEnlacePorID(id);
+                    verPuertaDeEnlaceDeLaRedPorID();
                     break;
                 case 3:
-                    System.out.println("Digite ID de la Puerta de enlace");
-                    id = sn.next();
-                    iniciarPuertaDeEnlacePorID(id);
+                    iniciarPuertaDeEnlaceDeLaRedPorID();
                     break;
                 case 4:
-                    System.out.println("Digite ID de la Puerta de enlace");
-                    id = sn.next();
-                    detenerPuertaDeEnlacePorID(id);
+                    detenerPuertaDeEnlaceDeLaRedPorID();
                     break;
                 default:
                     System.out.println("opcion no valida");
@@ -354,6 +831,41 @@ public class Terminal {
         } while (opc != 0);
     }
 
+    /**
+     *
+     */
+    private void verPuertasDeEnlaceDeLaRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void verPuertaDeEnlaceDeLaRedPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void iniciarPuertaDeEnlaceDeLaRedPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void detenerPuertaDeEnlaceDeLaRedPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
     private void menuControlNodos() {
         int opc = -1;
         do {
@@ -370,7 +882,6 @@ public class Terminal {
             System.out.println("3. para iniciar Nodo por ID");
             System.out.println("4. para detener Nodo por ID");
             opc = sn.nextInt();
-            String id = "";
             switch (opc) {
                 case 0:
                     System.out.println("Cerrando Control de Nodos...");
@@ -379,19 +890,13 @@ public class Terminal {
                     verNodosDeLaRed();
                     break;
                 case 2:
-                    System.out.println("Digite ID de la Puerta de enlace");
-                    id = sn.next();
-                    verNodoPorID(id);
+                    verNodoDeLaRedPorID();
                     break;
                 case 3:
-                    System.out.println("Digite ID de la Puerta de enlace");
-                    id = sn.next();
-                    iniciarNodoPorID(id);
+                    iniciarNodoDeLaRedPorID();
                     break;
                 case 4:
-                    System.out.println("Digite ID de la Puerta de enlace");
-                    id = sn.next();
-                    detenerNodoPorID(id);
+                    detenerNodoDeLaRedPorID();
                     break;
                 default:
                     System.out.println("opcion no valida");
@@ -400,6 +905,41 @@ public class Terminal {
         } while (opc != 0);
     }
 
+    /**
+     *
+     */
+    private void verNodosDeLaRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void verNodoDeLaRedPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void iniciarNodoDeLaRedPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void detenerNodoDeLaRedPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
     private void menuControlSensores() {
         int opc = -1;
         do {
@@ -416,7 +956,6 @@ public class Terminal {
             System.out.println("3. para iniciar Sensor por ID");
             System.out.println("4. para detener Sensor por ID");
             opc = sn.nextInt();
-            String id = "";
             switch (opc) {
                 case 0:
                     System.out.println("Cerrando Control de  Sensores...");
@@ -425,19 +964,13 @@ public class Terminal {
                     verSensoresDeLaRed();
                     break;
                 case 2:
-                    System.out.println("Digite ID de la Puerta de enlace");
-                    id = sn.next();
-                    verSensorPorID(id);
+                    verSensorDeLaRedPorID();
                     break;
                 case 3:
-                    System.out.println("Digite ID de la Puerta de enlace");
-                    id = sn.next();
-                    iniciarSensorPorID(id);
+                    iniciarSensorDeLaRedPorID();
                     break;
                 case 4:
-                    System.out.println("Digite ID de la Puerta de enlace");
-                    id = sn.next();
-                    detenerSensorPorID(id);
+                    detenerSensorDeLaRedPorID();
                     break;
                 default:
                     System.out.println("opcion no valida");
@@ -446,6 +979,41 @@ public class Terminal {
         } while (opc != 0);
     }
 
+    /**
+     *
+     */
+    private void verSensoresDeLaRed() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void verSensorDeLaRedPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void iniciarSensorDeLaRedPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
+    private void detenerSensorDeLaRedPorID() {
+        //
+        System.out.println("Falta constrir...");
+    }
+
+    /**
+     *
+     */
     private void menuControlActuadores() {
         int opc = -1;
         do {
@@ -462,7 +1030,6 @@ public class Terminal {
             System.out.println("3. para iniciar Actuador por ID");
             System.out.println("4. para detener Actuador por ID");
             opc = sn.nextInt();
-            String id = "";
             switch (opc) {
                 case 0:
                     System.out.println("Cerrando Control de Actuadores...");
@@ -471,19 +1038,13 @@ public class Terminal {
                     verActuadoresDeLaRed();
                     break;
                 case 2:
-                    System.out.println("Digite ID de la Puerta de enlace");
-                    id = sn.next();
-                    verActuadorPorID(id);
+                    verActuadorDeLaRedPorID();
                     break;
                 case 3:
-                    System.out.println("Digite ID de la Puerta de enlace");
-                    id = sn.next();
-                    iniciarActuadorPorID(id);
+                    iniciarActuadorDeLaRedPorID();
                     break;
                 case 4:
-                    System.out.println("Digite ID de la Puerta de enlace");
-                    id = sn.next();
-                    detenerActuadorPorID(id);
+                    detenerActuadorDeLaRedPorID();
                     break;
                 default:
                     System.out.println("opcion no valida");
@@ -492,86 +1053,39 @@ public class Terminal {
         } while (opc != 0);
     }
 
-    private void verEstadoDeLaRed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void verEjecucionDeLaRed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void iniciarRed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void detenerRed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void verPuertasDeEnlaceDeLaRed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void verPuertaDeEnlacePorID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void iniciarPuertaDeEnlacePorID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void detenerPuertaDeEnlacePorID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void verNodosDeLaRed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void verNodoPorID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void iniciarNodoPorID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void detenerNodoPorID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void verSensoresDeLaRed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void verSensorPorID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void iniciarSensorPorID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void detenerSensorPorID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    /**
+     *
+     */
     private void verActuadoresDeLaRed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //
+        System.out.println("Falta constrir...");
     }
 
-    private void verActuadorPorID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     *
+     */
+    private void verActuadorDeLaRedPorID() {
+        //
+        System.out.println("Falta constrir...");
     }
 
-    private void iniciarActuadorPorID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     *
+     */
+    private void iniciarActuadorDeLaRedPorID() {
+        //
+        System.out.println("Falta constrir...");
     }
 
-    private void detenerActuadorPorID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     *
+     */
+    private void detenerActuadorDeLaRedPorID() {
+        //
+        System.out.println("Falta constrir...");
     }
 
+    //reorganizar
     public void inicio() {
 
         this.principal.getGestionRed().agregarPuertasDeEnlace("1001", "nueva gateway", true, "dos", "1000", "MW");
@@ -706,10 +1220,6 @@ public class Terminal {
             }
         }
 
-    }
-
-    private void verPuertasDeEnlace() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

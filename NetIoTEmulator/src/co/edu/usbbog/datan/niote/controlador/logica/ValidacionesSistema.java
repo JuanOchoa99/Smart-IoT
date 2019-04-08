@@ -11,19 +11,30 @@ package co.edu.usbbog.datan.niote.controlador.logica;
  */
 public class ValidacionesSistema {
 
+    /**
+     *
+     * @return
+     */
     public boolean estaConfiguradoElSistema() {
-        if(configuracionMQTT());
-        if(configuracionTCPIP());
+        if (configuracionMQTT());
+        if (configuracionTCPIP());
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     private boolean configuracionMQTT() {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     private boolean configuracionTCPIP() {
         return true;
     }
-    
-    
+
 }

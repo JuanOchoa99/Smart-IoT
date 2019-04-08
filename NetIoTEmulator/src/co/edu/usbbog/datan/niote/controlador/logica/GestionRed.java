@@ -5,6 +5,7 @@
  */
 package co.edu.usbbog.datan.niote.controlador.logica;
 
+import co.edu.usbbog.datan.niote.controlador.persistencia.ArchivoDeConfiguracionDeRed;
 import co.edu.usbbog.datan.niote.modelo.Actuador;
 import co.edu.usbbog.datan.niote.modelo.Nodo;
 import co.edu.usbbog.datan.niote.modelo.PuertaDeEnlace;
@@ -20,18 +21,23 @@ import java.util.List;
 public class GestionRed {
 
     private Red red;
-    
+    private ArchivoDeConfiguracionDeRed archivoDeConfiguracionDeRed;
+
     //relaciones
     private GestionNodo gestionNodo;
     private GestionActuadores gestionActuadores;
     private GestionSensores gestionSensores;
     private GestionPuertaDeEnlace gestionPuertaDeEnlace;
-    
 
     public GestionRed(String id, String nombre, String descripcion) {
+        this.archivoDeConfiguracionDeRed = new ArchivoDeConfiguracionDeRed();
         this.red = new Red(id, nombre, descripcion);
-        this.red.setPuertasDeEnlace(new ArrayList<PuertaDeEnlace>());
 
+    }
+
+    public GestionRed(String ruta, String nombreArchivo) {
+        this.archivoDeConfiguracionDeRed = new ArchivoDeConfiguracionDeRed(ruta, nombreArchivo);
+        this.red = this.archivoDeConfiguracionDeRed.cargarRed();
     }
 
     public Red getRed() {
@@ -41,8 +47,22 @@ public class GestionRed {
     public void setRed(Red red) {
         this.red = red;
     }
-    
-    
+
+    public GestionNodo getGestionNodo() {
+        return gestionNodo;
+    }
+
+    public GestionActuadores getGestionActuadores() {
+        return gestionActuadores;
+    }
+
+    public GestionSensores getGestionSensores() {
+        return gestionSensores;
+    }
+
+    public GestionPuertaDeEnlace getGestionPuertaDeEnlace() {
+        return gestionPuertaDeEnlace;
+    }
 
     public void agregarPuertasDeEnlace(String id, String descripcion, boolean estado, String direccionLogica, String puertoDeServicio, String protocoloComunicacionExterno) {
         PuertaDeEnlace puertaDeEnlace = new PuertaDeEnlace(id, descripcion, estado, direccionLogica, puertoDeServicio, protocoloComunicacionExterno);
@@ -62,7 +82,6 @@ public class GestionRed {
         }
     }
 
-    
     public void verNodos() {
 
         List<PuertaDeEnlace> puertasDeEnlaceDeLaRed = red.getPuertasDeEnlace();
@@ -70,14 +89,13 @@ public class GestionRed {
         for (PuertaDeEnlace i : puertasDeEnlaceDeLaRed) {
             List<Nodo> nodos = i.getNodos();
             for (Nodo nodo : nodos) {
-               System.out.println(nodo.toString()); 
+                System.out.println(nodo.toString());
             }
-            
 
         }
     }
-    
-     public void verActuador() {
+
+    public void verActuador() {
 
         List<PuertaDeEnlace> puertasDeEnlaceDeLaRed = red.getPuertasDeEnlace();
 
@@ -86,14 +104,14 @@ public class GestionRed {
             for (Nodo nodo : nodos) {
                 List<Actuador> actuadores = nodo.getActuadores();
                 for (Actuador actuadore : actuadores) {
-                    System.out.println(actuadore.toString()); 
+                    System.out.println(actuadore.toString());
                 }
-               
+
             }
-            
 
         }
     }
+
     public void agregarNodo(String id, String descripcion, boolean estado, String protocoloComunicacion, String gatewayId) {
 
         List<PuertaDeEnlace> puertasDeEnlaceDeLaRed = red.getPuertasDeEnlace();
@@ -123,7 +141,7 @@ public class GestionRed {
                 for (Nodo nodo : nodos) {
                     if (nodo.getId().equals(nodoId)) {
                         puertaDeEnlace.getNodos().remove(nodo);
-                        List<Actuador> actuadores = new ArrayList<>();                        
+                        List<Actuador> actuadores = new ArrayList<>();
                         Actuador actuador = new Actuador(id, descripcion, estado, tipo);
                         actuadores.add(actuador);
                         nodo.setActuadores(actuadores);
@@ -135,6 +153,7 @@ public class GestionRed {
 
         }
     }
+
     public void agregarSensor(String id, String descripcion, boolean estado, String tipo, String nodoId, String gatewayId) {
 
         List<PuertaDeEnlace> puertasDeEnlaceDeLaRed = red.getPuertasDeEnlace();
@@ -145,7 +164,7 @@ public class GestionRed {
                 for (Nodo nodo : nodos) {
                     if (nodo.getId().equals(nodoId)) {
                         puertaDeEnlace.getNodos().remove(nodo);
-                        List<Sensor> sensores = new ArrayList<>();                        
+                        List<Sensor> sensores = new ArrayList<>();
                         Sensor sensor = new Sensor(id, descripcion, estado, tipo);
                         sensores.add(sensor);
                         nodo.setSensores(sensores);
@@ -157,7 +176,8 @@ public class GestionRed {
 
         }
     }
-         public void verSensor() {
+
+    public void verSensor() {
 
         List<PuertaDeEnlace> puertasDeEnlaceDeLaRed = red.getPuertasDeEnlace();
 
@@ -166,15 +186,12 @@ public class GestionRed {
             for (Nodo nodo : nodos) {
                 List<Sensor> sensores = nodo.getSensores();
                 for (Sensor sensore : sensores) {
-                    System.out.println(sensore.toString()); 
+                    System.out.println(sensore.toString());
                 }
-               
+
             }
-            
 
         }
     }
-
-    
 
 }
