@@ -72,4 +72,33 @@ public class GestionActuadores {
         }
     }
     */
+    
+    public String verActuadores() {
+        return "Falta constrir...";
+    }
+
+    public String verActuadorPorID(String id) {
+        return "Falta constrir...";
+    }
+
+    public String crearActuador(String id, String descripcion, boolean estado, String tipo) {
+        return "Falta constrir...";
+    }
+
+    public boolean existeActuadorPorID(String id) {
+        return true;
+    }
+
+    public Actuador buscarActuadorPorID(String id) {
+        return null;
+    }
+
+    public String modificarActuadorPorID(String id, String descripcion, String tipo) {
+
+        return "Falta constrir...";
+    }
+
+    public String eliminarActuadorPorID(String id) {
+        return "Falta constrir...";
+    }
 }

@@ -6,13 +6,7 @@
 package co.edu.usbbog.datan.niote.controlador.logica;
 
 import co.edu.usbbog.datan.niote.controlador.persistencia.ArchivoDeConfiguracionDeRed;
-import co.edu.usbbog.datan.niote.modelo.Actuador;
-import co.edu.usbbog.datan.niote.modelo.Nodo;
-import co.edu.usbbog.datan.niote.modelo.PuertaDeEnlace;
 import co.edu.usbbog.datan.niote.modelo.Red;
-import co.edu.usbbog.datan.niote.modelo.Sensor;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *

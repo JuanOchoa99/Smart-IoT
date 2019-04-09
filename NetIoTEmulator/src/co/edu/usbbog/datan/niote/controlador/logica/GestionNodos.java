@@ -142,4 +142,31 @@ public class GestionNodos {
     }
 
      */
+    public String verNodos() {
+        return "Falta constrir...";
+    }
+
+    public String verNodoPorID(String id) {
+        return "Falta constrir...";
+    }
+
+    public String crearNodo(String id, String descripcion, boolean estado, String protocoloComunicacion) {
+        return "Falta constrir...";
+    }
+
+    public boolean existeNodoPorID(String id) {
+        return true;
+    }
+
+    public Nodo buscarNodoPorID(String id) {
+        return null;
+    }
+
+    public String modificarNodoPorID(String id, String descripcion, String protocoloComunicacion) {
+        return "Falta constrir...";
+    }
+
+    public String eliminarNodoPorID(String id) {
+        return "Falta constrir...";
+    }
 }

@@ -73,5 +73,32 @@ public class GestionSensores {
         }
     }
     */
+    public String verSensores() {
+        return "Falta constrir...";
+    }
 
+    public String verSensorPorID(String id) {
+        return "Falta constrir...";
+    }
+
+    public String crearSensor(String id, String descripcion, boolean estado, String tipo) {
+        return "Falta constrir...";
+    }
+
+    public boolean existeSensorPorID(String id) {
+        return true;
+    }
+
+    public Sensor buscarSensorPorID(String id) {
+        return null;
+    }
+
+    public String modificarSensorPorID(String id, String descripcion, String tipo) {
+
+        return "Falta constrir...";
+    }
+
+    public String eliminarSensorPorID(String id) {
+        return "Falta constrir...";
+    }
 }

@@ -366,40 +366,57 @@ public class Terminal {
      *
      */
     private void verNodos() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println(this.principal.getGestionRed().getGestionNodo().verNodos());
     }
 
     /**
      *
      */
     private void verNodoPorID() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID del Nodo");
+        String id = sn.next();
+        System.out.println(this.principal.getGestionRed().getGestionNodo().verNodoPorID(id));
     }
 
     /**
      *
      */
     private void crearNodo() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID del Nodo");
+        String id= sn.next();        
+        System.out.println("Digite descripcion del Nodo");
+        String descripcion= sn.next();
+        boolean estado= false;
+        System.out.println("Digite protocolo de Comunicacion del Nodo");
+        String protocoloComunicacion= sn.next();
+        System.out.println(this.principal.getGestionRed().getGestionNodo().crearNodo(id,descripcion,estado,protocoloComunicacion));
     }
 
     /**
      *
      */
     private void modificarNodoPorID() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID del Nodo");
+        String id = sn.next();
+        if (this.principal.getGestionRed().getGestionNodo().existeNodoPorID(id)) {
+            System.out.println("Digite la nueva descripcion del Nodo");
+            String descripcion = sn.next();
+            boolean estado = false;
+            System.out.println("Digite el nuevo protocolo de Comunicacion del Nodo");
+            String protocoloComunicacion = sn.next();
+            System.out.println(this.principal.getGestionRed().getGestionNodo().modificarNodoPorID(id, descripcion, protocoloComunicacion));
+        } else {
+            System.out.println("No existe el nodo con ID: " + id);
+        }
     }
 
     /**
      *
      */
     private void eliminarNodoPorID() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID del Nodo");
+        String id = sn.next();
+        System.out.println(this.principal.getGestionRed().getGestionNodo().eliminarNodoPorID(id));
     }
 
     /**
@@ -452,40 +469,57 @@ public class Terminal {
      *
      */
     private void verSensores() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println(this.principal.getGestionRed().getGestionSensores().verSensores());
     }
 
     /**
      *
      */
     private void verSensorPorID() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID del Sensor");
+        String id = sn.next();
+        System.out.println(this.principal.getGestionRed().getGestionSensores().verSensorPorID(id));
     }
 
     /**
      *
      */
     private void crearSensor() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID del Sensor");
+        String id= sn.next();        
+        System.out.println("Digite descripcion del Sensor");
+        String descripcion= sn.next();
+        boolean estado= false;
+        System.out.println("Digite tipo del Sensor");
+        String tipo= sn.next();
+        System.out.println(this.principal.getGestionRed().getGestionSensores().crearSensor(id, descripcion, estado, tipo));
     }
 
     /**
      *
      */
     private void modificarSensorPorID() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID del Sensor");
+        String id = sn.next();
+        if (this.principal.getGestionRed().getGestionSensores().existeSensorPorID(id)) {
+            System.out.println("Digite la nueva descripcion del Sensor");
+            String descripcion = sn.next();
+            boolean estado = false;
+            System.out.println("Digite el nuevo tipo del Sensor");
+            String tipo = sn.next();
+            System.out.println(this.principal.getGestionRed().getGestionSensores().modificarSensorPorID(id, descripcion, tipo));
+        } else {
+            System.out.println("No existe el Sensor con ID: " + id);
+        }
     }
 
     /**
      *
      */
     private void eliminarSensorPorID() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID del Sensor");
+        String id = sn.next();
+        System.out.println(this.principal.getGestionRed().getGestionSensores().eliminarSensorPorID(id));
     }
 
     /**
@@ -538,40 +572,57 @@ public class Terminal {
      *
      */
     private void verActuadores() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println(this.principal.getGestionRed().getGestionActuadores().verActuadores());
     }
 
     /**
      *
      */
     private void verActuadorPorID() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID del Actuador");
+        String id = sn.next();
+        System.out.println(this.principal.getGestionRed().getGestionActuadores().verActuadorPorID(id));
     }
 
     /**
      *
      */
     private void crearActuador() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID del Actuador");
+        String id= sn.next();        
+        System.out.println("Digite descripcion del Actuador");
+        String descripcion= sn.next();
+        boolean estado= false;
+        System.out.println("Digite tipo del Actuador");
+        String tipo= sn.next();
+        System.out.println(this.principal.getGestionRed().getGestionActuadores().crearActuador(id, descripcion, estado, tipo));
     }
 
     /**
      *
      */
     private void modificarActuadorPorID() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID del Actuador");
+        String id = sn.next();
+        if (this.principal.getGestionRed().getGestionActuadores().existeActuadorPorID(id)) {
+            System.out.println("Digite la nueva descripcion del Actuador");
+            String descripcion = sn.next();
+            boolean estado = false;
+            System.out.println("Digite el nuevo tipo del Actuador");
+            String tipo = sn.next();
+            System.out.println(this.principal.getGestionRed().getGestionActuadores().modificarActuadorPorID(id, descripcion, tipo));
+        } else {
+            System.out.println("No existe el Actuador con ID: " + id);
+        }
     }
 
     /**
      *
      */
     private void eliminarActuadorPorID() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID del Sensor");
+        String id = sn.next();
+        System.out.println(this.principal.getGestionRed().getGestionActuadores().eliminarActuadorPorID(id));
     }
 
     /**
