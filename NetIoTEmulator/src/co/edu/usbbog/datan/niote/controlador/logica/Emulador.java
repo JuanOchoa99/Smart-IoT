@@ -10,5 +10,5 @@ package co.edu.usbbog.datan.niote.controlador.logica;
  * @author aasanchez
  */
 public class Emulador {
-    
+
 }

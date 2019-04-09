@@ -11,6 +11,9 @@ package co.edu.usbbog.datan.niote.controlador.logica;
  */
 public class ValidacionesSistema {
 
+    public ValidacionesSistema() {
+    }
+
     /**
      *
      * @return
@@ -18,6 +21,7 @@ public class ValidacionesSistema {
     public boolean estaConfiguradoElSistema() {
         if (configuracionMQTT());
         if (configuracionTCPIP());
+        System.out.println("Falta constrir...");
         return true;
     }
 
@@ -26,6 +30,7 @@ public class ValidacionesSistema {
      * @return
      */
     private boolean configuracionMQTT() {
+        System.out.println("Falta constrir...");
         return true;
     }
 
@@ -34,6 +39,7 @@ public class ValidacionesSistema {
      * @return
      */
     private boolean configuracionTCPIP() {
+        System.out.println("Falta constrir...");
         return true;
     }
 

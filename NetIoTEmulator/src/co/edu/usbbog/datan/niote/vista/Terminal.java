@@ -38,7 +38,7 @@ public class Terminal {
      *
      */
     public void menuInicial() {
-        if (principal.getValidacionesSistema().estaConfiguradoElSistema()) {
+        if (this.principal.getValidacionesSistema().estaConfiguradoElSistema()) {
             System.out.println("***Bienvenido a Net IoT Emulator***");
             System.out.println("------------------------------------------------");
             System.out.println("------------------Menu Inicial------------------");
@@ -256,8 +256,7 @@ public class Terminal {
      *
      */
     private void verPuertasDeEnlace() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().verPuertasDeEnlace());
     }
 
     /**
@@ -266,37 +265,55 @@ public class Terminal {
     private void verPuertaDeEnlacePorID() {
         System.out.println("Digite ID de la Puerta de enlace");
         String id = sn.next();
-        System.out.println("Falta constrir...");
-        //
+        System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().verPuertaDeEnlacePorID(id));
     }
 
     /**
      *
      */
     private void crearPuertaDeEnlace() {
-        String id;
-        String descripcion;
-        boolean estado;
-        String direccionLogica;
-        String puertoDeServicio;
-        String protocoloComunicacionExterno;
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID de la Puerta de enlace");
+        String id= sn.next();
+        System.out.println("Digite descripcion de la Puerta de enlace");
+        String descripcion= sn.next();
+        boolean estado= false;
+        System.out.println("Digite direccion logica de la Puerta de enlace");
+        String direccionLogica= sn.next();
+        System.out.println("Digite puerto de servicio de la Puerta de enlace");
+        String puertoDeServicio= sn.next();
+        System.out.println("Digite protocolo de comunicacion externo de la Puerta de enlace");
+        String protocoloComunicacionExterno= sn.next();
+        System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().crearPuertaDeEnlace(id,descripcion,estado,direccionLogica,puertoDeServicio,protocoloComunicacionExterno));
     }
 
     /**
      *
      */
     private void modificarPuertaDeEnlacePorID() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID de la Puerta de enlace");
+        String id = sn.next();
+        if (this.principal.getGestionRed().getGestionPuertaDeEnlace().existePuertaDeEnlacePorID(id)) {
+            System.out.println("Digite la nueva descripcion de la Puerta de enlace");
+            String descripcion = sn.next();
+            System.out.println("Digite la nueva direccion logica de la Puerta de enlace");
+            String direccionLogica = sn.next();
+            System.out.println("Digite el nuevo puerto de servicio de la Puerta de enlace");
+            String puertoDeServicio = sn.next();
+            System.out.println("Digite el nuevo de comunicacion externo de la Puerta de enlace");
+            String protocoloComunicacionExterno = sn.next();
+            System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().modificarPuertaDeEnlacePorID(id, descripcion, direccionLogica, puertoDeServicio, protocoloComunicacionExterno));
+        } else {
+            System.out.println("No existe la Puerta de Enlace con ID: " + id);
+        }
     }
 
     /**
      *
      */
     private void eliminarPuertaDeEnlacePorID() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Digite ID de la Puerta de enlace");
+        String id = sn.next();
+        System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().eliminarPuertaDeEnlacePorID(id));
     }
 
     /**
@@ -1086,6 +1103,7 @@ public class Terminal {
     }
 
     //reorganizar
+    /*
     public void inicio() {
 
         this.principal.getGestionRed().agregarPuertasDeEnlace("1001", "nueva gateway", true, "dos", "1000", "MW");
@@ -1220,6 +1238,6 @@ public class Terminal {
             }
         }
 
-    }
+    }*/
 
 }

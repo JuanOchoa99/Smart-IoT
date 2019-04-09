@@ -5,6 +5,10 @@
  */
 package co.edu.usbbog.datan.niote.controlador.persistencia;
 
+import co.edu.usbbog.datan.niote.controlador.logica.GestionActuadores;
+import co.edu.usbbog.datan.niote.controlador.logica.GestionNodos;
+import co.edu.usbbog.datan.niote.controlador.logica.GestionPuertasDeEnlace;
+import co.edu.usbbog.datan.niote.controlador.logica.GestionSensores;
 import co.edu.usbbog.datan.niote.modelo.Red;
 
 /**
@@ -41,7 +45,28 @@ public class ArchivoDeConfiguracionDeRed {
     }
 
     public Red cargarRed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Falta constrir...");
+        return null;
+    }
+
+    public GestionNodos cargarNodos() {
+        System.out.println("Falta constrir...");
+        return null;
+    }
+
+    public GestionPuertasDeEnlace cargarPuertasDeEnlace() {
+        System.out.println("Falta constrir...");
+        return null;
+    }
+
+    public GestionActuadores cargarActuadores() {
+        System.out.println("Falta constrir...");
+        return null;
+    }
+
+    public GestionSensores cargarSensores() {
+        System.out.println("Falta constrir...");
+        return null;
     }
 
 }
