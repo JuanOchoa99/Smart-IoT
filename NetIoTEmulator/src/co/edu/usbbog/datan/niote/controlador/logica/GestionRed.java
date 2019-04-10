@@ -6,6 +6,7 @@
 package co.edu.usbbog.datan.niote.controlador.logica;
 
 import co.edu.usbbog.datan.niote.controlador.persistencia.ArchivoDeConfiguracionDeRed;
+import co.edu.usbbog.datan.niote.modelo.PuertaDeEnlace;
 import co.edu.usbbog.datan.niote.modelo.Red;
 
 /**
@@ -64,6 +65,26 @@ public class GestionRed {
 
     public GestionPuertasDeEnlace getGestionPuertaDeEnlace() {
         return gestionPuertasDeEnlace;
+    }
+
+    public boolean verRed() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean agregarPuertaDeEnlaceALaRed(PuertaDeEnlace buscarPuertaDeEnlacePorID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean verPuertasDeEnlaceDeLaRed() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public PuertaDeEnlace buscarPuertaDeEnlaceDeLaRedPorID(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean removerPuertaDeEnlaceDeLaRed(PuertaDeEnlace buscarPuertaDeEnlaceDeLaRedPorID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

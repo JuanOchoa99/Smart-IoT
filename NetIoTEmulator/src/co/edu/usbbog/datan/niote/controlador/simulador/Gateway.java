@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.usbbog.datan.niote.controlador.hilos;
+package co.edu.usbbog.datan.niote.controlador.simulador;
 
 /**
  *
