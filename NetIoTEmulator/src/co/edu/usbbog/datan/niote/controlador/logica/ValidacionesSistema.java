@@ -19,7 +19,6 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
  */
 public class ValidacionesSistema {
 
-
     public ValidacionesSistema() {
     }
 
