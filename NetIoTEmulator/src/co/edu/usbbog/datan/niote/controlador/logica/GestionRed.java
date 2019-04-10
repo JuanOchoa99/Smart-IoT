@@ -71,7 +71,7 @@ public class GestionRed {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public boolean agregarPuertaDeEnlaceALaRed(PuertaDeEnlace buscarPuertaDeEnlacePorID) {
+    public boolean agregarPuertaDeEnlaceALaRed(String idPuertaDeEnlace) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -83,7 +83,63 @@ public class GestionRed {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public boolean removerPuertaDeEnlaceDeLaRed(PuertaDeEnlace buscarPuertaDeEnlaceDeLaRedPorID) {
+    public boolean removerPuertaDeEnlaceDeLaRed(String idPuertaDeEnlace) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean agregarNodoALaRed(String idNodo, String idsPuertasDeEnlace) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String validarPuertasDeEnlace(String idsPuertasDeEnlace) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean verNodosDeLaRed() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object buscarNodoDeLaRedPorID(String idNodo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean removerNodoDeLaRed(String idNodo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean guardarRed(String ruta, String nombreArchivo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean agregarSensorALaRed(String idSensor, String idNodo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean verSensoresDeLaRed() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object buscarSensorDeLaRedPorID(String idSensor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean removerSensorDeLaRed(String idSensor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean verActuadorDeLaRed() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object buscarActuadorDeLaRedPorID(String idActuador) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean removerActuadorDeLaRed(String idActuador) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean agregarActuadorALaRed(String idActuador, String idNodo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

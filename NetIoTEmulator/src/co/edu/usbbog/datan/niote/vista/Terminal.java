@@ -708,14 +708,15 @@ public class Terminal {
      */
     private void agregarPuertaDeEnlaceALaRed() {
         System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().verPuertasDeEnlace());        
-        System.out.println("Digite ID de la Puerta de enlace que sera agregada");
-        String id = sn.next();
-        if (this.principal.getGestionRed().getGestionPuertaDeEnlace().buscarPuertaDeEnlacePorID(id)!=null) {
-            System.out.println(this.principal.getGestionRed().agregarPuertaDeEnlaceALaRed(this.principal.getGestionRed().getGestionPuertaDeEnlace().buscarPuertaDeEnlacePorID(id)));
+        System.out.println("Digite ID de la Puerta de enlace que sera agregada a la red");
+        String idPuertaDeEnlace = sn.next();
+        if (this.principal.getGestionRed().getGestionPuertaDeEnlace().buscarPuertaDeEnlacePorID(idPuertaDeEnlace)!=null) {
+            System.out.println(this.principal.getGestionRed().agregarPuertaDeEnlaceALaRed(idPuertaDeEnlace));
         }else{
             System.out.println("Puerta de enlace no existe");
         }  
         System.out.println(this.principal.getGestionRed().verPuertasDeEnlaceDeLaRed());
+        System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().verPuertasDeEnlace());     
     }
 
     /**
@@ -723,13 +724,14 @@ public class Terminal {
      */
     private void removerPuertaDeEnlaceDeLaRed() {
         System.out.println(this.principal.getGestionRed().verPuertasDeEnlaceDeLaRed());
-        System.out.println("Digite ID de la Puerta de enlace que sera removida");
-        String id = sn.next();
-        if (this.principal.getGestionRed().buscarPuertaDeEnlaceDeLaRedPorID(id)!=null) {
-            System.out.println(this.principal.getGestionRed().removerPuertaDeEnlaceDeLaRed(this.principal.getGestionRed().buscarPuertaDeEnlaceDeLaRedPorID(id)));
+        System.out.println("Digite ID de la Puerta de enlace que sera removida de la red");
+        String idPuertaDeEnlace = sn.next();
+        if (this.principal.getGestionRed().buscarPuertaDeEnlaceDeLaRedPorID(idPuertaDeEnlace)!=null) {
+            System.out.println(this.principal.getGestionRed().removerPuertaDeEnlaceDeLaRed(idPuertaDeEnlace));
         }else{
-            System.out.println("Puerta de enlace no existe");
-        } 
+            System.out.println("Puerta de enlace no existe en la red");
+        }
+        System.out.println(this.principal.getGestionRed().verPuertasDeEnlaceDeLaRed());
         System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().verPuertasDeEnlace());
     }
 
@@ -737,56 +739,131 @@ public class Terminal {
      *
      */
     private void agregarNodoALaRed() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println(this.principal.getGestionRed().getGestionNodo().verNodos());        
+        System.out.println("Digite ID del Nodo que sera agregado a la red");
+        String idNodo = sn.next();
+        if (this.principal.getGestionRed().getGestionNodo().buscarNodoPorID(idNodo)!=null) {
+            System.out.println(this.principal.getGestionRed().verPuertasDeEnlaceDeLaRed());
+            System.out.println("Digite los ID de las Puertas de Enlace a los que se conectara el Nodo que sera agregado a la red");
+            System.out.println("separados por \"-\" [idPuertaDeEnlace-idPuertaDeEnlace-idPuertaDeEnlace]");
+            String idsPuertasDeEnlace = sn.next();
+            idsPuertasDeEnlace = this.principal.getGestionRed().validarPuertasDeEnlace(idsPuertasDeEnlace);
+            if (!idsPuertasDeEnlace.equals("")) {
+                System.out.println("Puertas de enlace validas: "+idsPuertasDeEnlace);
+                System.out.println(this.principal.getGestionRed().agregarNodoALaRed(idNodo, idsPuertasDeEnlace));
+            } else {
+                System.out.println("Ninguna Puerta de Enlace es Valida en la red");
+            }
+        } else {
+            System.out.println("Nodo no existe en la red");
+        }
+        System.out.println(this.principal.getGestionRed().verNodosDeLaRed());
+        System.out.println(this.principal.getGestionRed().getGestionNodo().verNodos());  
     }
 
     /**
      *
      */
     private void removerNodoDeLaRed() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println(this.principal.getGestionRed().verNodosDeLaRed());
+        System.out.println("Digite ID del Nodo que sera removido de la red");
+        String idNodo = sn.next();
+        if (this.principal.getGestionRed().buscarNodoDeLaRedPorID(idNodo)!=null) {
+            System.out.println(this.principal.getGestionRed().removerNodoDeLaRed(idNodo));
+        }else{
+            System.out.println("Nodo no existe en la red");
+        }
+        System.out.println(this.principal.getGestionRed().verNodosDeLaRed());
+        System.out.println(this.principal.getGestionRed().getGestionNodo().verNodos()); 
     }
 
     /**
      *
      */
     private void agregarSensorALaRed() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println(this.principal.getGestionRed().getGestionSensores().verSensores());        
+        System.out.println("Digite ID del Sensor que sera agregado a la red");
+        String idSensor = sn.next();
+        if (this.principal.getGestionRed().getGestionSensores().buscarSensorPorID(idSensor)!=null) {
+            System.out.println(this.principal.getGestionRed().verNodosDeLaRed());
+            System.out.println("Digite el ID del Nodo al que se conectara el Sensor que sera agregado a la red");
+            String idNodo = sn.next();
+            if (this.principal.getGestionRed().buscarNodoDeLaRedPorID(idNodo)!=null) {
+                System.out.println(this.principal.getGestionRed().agregarSensorALaRed(idSensor, idNodo));
+            } else {
+                System.out.println("Nodo no Valido en la red");
+            }
+        } else {
+            System.out.println("Sensor no existe");
+        }
+        System.out.println(this.principal.getGestionRed().verSensoresDeLaRed());
+        System.out.println(this.principal.getGestionRed().getGestionSensores().verSensores()); 
     }
 
     /**
      *
      */
     private void removerSensorDeLaRed() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println(this.principal.getGestionRed().verSensoresDeLaRed());
+        System.out.println("Digite ID del Sensor que sera removido de la red");
+        String idSensor = sn.next();
+        if (this.principal.getGestionRed().buscarSensorDeLaRedPorID(idSensor)!=null) {
+            System.out.println(this.principal.getGestionRed().removerSensorDeLaRed(idSensor));
+        }else{
+            System.out.println("Sensor no existe en la red");
+        }
+        System.out.println(this.principal.getGestionRed().verSensoresDeLaRed());
+        System.out.println(this.principal.getGestionRed().getGestionSensores().verSensores()); 
     }
 
     /**
      *
      */
     private void agregarActuadorALaRed() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println(this.principal.getGestionRed().getGestionActuadores().verActuadores());        
+        System.out.println("Digite ID del Actuador que sera agregado a la red");
+        String idActuador = sn.next();
+        if (this.principal.getGestionRed().getGestionActuadores().buscarActuadorPorID(idActuador)!=null) {
+            System.out.println(this.principal.getGestionRed().verNodosDeLaRed());
+            System.out.println("Digite el ID del Nodo al que se conectara el Actuador que sera agregado a la red");
+            String idNodo = sn.next();
+            if (this.principal.getGestionRed().buscarNodoDeLaRedPorID(idNodo)!=null) {
+                System.out.println(this.principal.getGestionRed().agregarActuadorALaRed(idActuador, idNodo));
+            } else {
+                System.out.println("Nodo no Valido en la red");
+            }
+        } else {
+            System.out.println("Actuador no existe");
+        }
+        System.out.println(this.principal.getGestionRed().verActuadorDeLaRed());
+        System.out.println(this.principal.getGestionRed().getGestionActuadores().verActuadores()); 
     }
 
     /**
      *
      */
     private void removerActuadorDeLaRed() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println(this.principal.getGestionRed().verActuadorDeLaRed());
+        System.out.println("Digite ID del Actuador que sera removido de la red");
+        String idActuador = sn.next();
+        if (this.principal.getGestionRed().buscarActuadorDeLaRedPorID(idActuador)!=null) {
+            System.out.println(this.principal.getGestionRed().removerActuadorDeLaRed(idActuador));
+        }else{
+            System.out.println("Actuador no existe en la red");
+        }
+        System.out.println(this.principal.getGestionRed().verActuadorDeLaRed());
+        System.out.println(this.principal.getGestionRed().getGestionActuadores().verActuadores()); 
     }
 
     /**
      *
      */
     private void guardarRed() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("ingrese la ruta absoluta donde se encuentra el archivo de configuracion");
+        String ruta = sn.next();
+        System.out.println("ingrese nombre del archivo de configuracion (.niote)");
+        String nombreArchivo = sn.next();
+        System.out.println(this.principal.getGestionRed().guardarRed(ruta,nombreArchivo));
     }
 
     /**
