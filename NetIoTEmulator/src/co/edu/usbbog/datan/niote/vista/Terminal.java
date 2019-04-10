@@ -46,6 +46,7 @@ public class Terminal {
             System.out.println("0. para salir");
             System.out.println("1. para crear red");
             System.out.println("2. cargar una configuracion previa de red e iniciar");
+            System.out.println("3. Acerca de...");
             int opc = sn.nextInt();
             switch (opc) {
                 case 0:
@@ -65,6 +66,10 @@ public class Terminal {
                     } else {
                         menuInicial();
                     }
+                    break;
+                case 3:
+                    acerdaDe();
+                    menuInicial();
                     break;
                 default:
                     System.out.println("opcion no valida");
@@ -131,6 +136,7 @@ public class Terminal {
             System.out.println("1. para borrar y reiniciar la red");
             System.out.println("2. para configurar la red");
             System.out.println("3. para controlar la red");
+            System.out.println("4. Acerca de...");
             opc = sn.nextInt();
             switch (opc) {
                 case 0:
@@ -146,6 +152,9 @@ public class Terminal {
                     break;
                 case 3:
                     menuControl();
+                    break;
+                case 4:
+                    acerdaDe();                    
                     break;
                 default:
                     System.out.println("opcion no valida");
@@ -1303,5 +1312,19 @@ public class Terminal {
         }
 
     }*/
+
+    private void acerdaDe() {
+        System.out.println("************** Net IoT Emulator V.alfa.1.1 **************");
+        System.out.println("Proyecto desarrollado en el semillero DatAn");
+        System.out.println("Programa de Ingenieria de Sistemas - Facultad de Ingenieria");
+        System.out.println("Universidad de San Buenaventura - Sede Bogotá");
+        System.out.println("Autores:");
+        System.out.println("**** Andrés Sanchez          (Docente Lider)");
+        System.out.println("**** Juan Ochoa              (Estudiante)");
+        System.out.println("**** Sebastian Villanueva    (Estudiante)");
+        System.out.println("**** Gabriel Peña            (Estudiante)");
+        System.out.println();
+        System.out.println();
+    }
 
 }
