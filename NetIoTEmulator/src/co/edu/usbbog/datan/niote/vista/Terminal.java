@@ -691,24 +691,37 @@ public class Terminal {
      *
      */
     private void verConstruccionDeRed() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println(this.principal.getGestionRed().verRed());
     }
 
     /**
      *
      */
     private void agregarPuertaDeEnlaceALaRed() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().verPuertasDeEnlace());        
+        System.out.println("Digite ID de la Puerta de enlace que sera agregada");
+        String id = sn.next();
+        if (this.principal.getGestionRed().getGestionPuertaDeEnlace().buscarPuertaDeEnlacePorID(id)!=null) {
+            System.out.println(this.principal.getGestionRed().agregarPuertaDeEnlaceALaRed(this.principal.getGestionRed().getGestionPuertaDeEnlace().buscarPuertaDeEnlacePorID(id)));
+        }else{
+            System.out.println("Puerta de enlace no existe");
+        }  
+        System.out.println(this.principal.getGestionRed().verPuertasDeEnlaceDeLaRed());
     }
 
     /**
      *
      */
     private void removerPuertaDeEnlaceDeLaRed() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println(this.principal.getGestionRed().verPuertasDeEnlaceDeLaRed());
+        System.out.println("Digite ID de la Puerta de enlace que sera removida");
+        String id = sn.next();
+        if (this.principal.getGestionRed().buscarPuertaDeEnlaceDeLaRedPorID(id)!=null) {
+            System.out.println(this.principal.getGestionRed().removerPuertaDeEnlaceDeLaRed(this.principal.getGestionRed().buscarPuertaDeEnlaceDeLaRedPorID(id)));
+        }else{
+            System.out.println("Puerta de enlace no existe");
+        } 
+        System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().verPuertasDeEnlace());
     }
 
     /**

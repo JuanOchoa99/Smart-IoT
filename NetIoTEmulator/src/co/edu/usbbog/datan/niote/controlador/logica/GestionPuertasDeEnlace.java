@@ -50,7 +50,7 @@ public class GestionPuertasDeEnlace {
                 }
             }
         } else {
-            salida = "no existe la puerta de enlace \n";
+            salida = "no existe la puerta de enlace";
         }
         return salida;
     }

@@ -20,7 +20,7 @@ public class PuertaDeEnlace {
     private String protocoloComunicacionExterno;
     private List<Mensaje> mensajes;    
     private List<Nodo> nodos;
-    private List<PuertaDeEnlace> salidas;
+
 
     public PuertaDeEnlace(String id, String descripcion, boolean estado, String direccionLogica, String puertoDeServicio, String protocoloComunicacionExterno) {
         this.id = id;
@@ -79,8 +79,6 @@ public class PuertaDeEnlace {
         this.protocoloComunicacionExterno = protocoloComunicacionExterno;
     }
 
-    @Override
-    public String toString() {
         return "PuertaDeEnlace{" + "id=" + id + ", descripcion=" + descripcion + ", estado=" + estado + ", direccionLogica=" + direccionLogica + ", puertoDeServicio=" + puertoDeServicio + ", protocoloComunicacionExterno=" + protocoloComunicacionExterno + '}';
     }
 
@@ -91,4 +89,6 @@ public class PuertaDeEnlace {
     public void setNodos(List<Nodo> nodos) {
         this.nodos = nodos;
     }
+
+    public List<Mensaje> getMensajes() {
 }
