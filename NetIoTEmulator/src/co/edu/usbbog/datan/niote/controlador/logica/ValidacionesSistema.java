@@ -20,7 +20,6 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
  */
 public class ValidacionesSistema {
 
-    Socket socket;
 
     public ValidacionesSistema() {
     }
