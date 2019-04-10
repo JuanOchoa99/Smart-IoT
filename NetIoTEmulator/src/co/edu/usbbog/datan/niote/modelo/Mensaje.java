@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author 305
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
 public class Mensaje {
     private String id;

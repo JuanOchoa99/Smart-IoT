@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author sevin
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
 public class Red {
     private String id;

@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author 305
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
 public class GestionPuertasDeEnlace {
 

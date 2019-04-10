@@ -7,7 +7,7 @@ package co.edu.usbbog.datan.niote.controlador.logica;
 
 /**
  *
- * @author 305
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
 public class ValidacionesSistema {
 

@@ -11,7 +11,7 @@ import co.edu.usbbog.datan.niote.controlador.logica.ValidacionesSistema;
 
 /**
  *
- * @author 305
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
 public class Principal extends javax.swing.JFrame {
 

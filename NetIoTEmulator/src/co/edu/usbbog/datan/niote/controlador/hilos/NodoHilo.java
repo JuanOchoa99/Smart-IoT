@@ -7,7 +7,7 @@ package co.edu.usbbog.datan.niote.controlador.hilos;
 
 /**
  *
- * @author USUARIO
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
 public class NodoHilo extends Thread{
 

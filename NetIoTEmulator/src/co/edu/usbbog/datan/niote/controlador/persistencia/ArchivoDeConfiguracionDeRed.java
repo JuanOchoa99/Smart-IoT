@@ -13,7 +13,7 @@ import co.edu.usbbog.datan.niote.modelo.Red;
 
 /**
  *
- * @author sevin
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
 public class ArchivoDeConfiguracionDeRed {
 
