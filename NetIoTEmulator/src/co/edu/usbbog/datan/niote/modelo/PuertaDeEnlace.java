@@ -5,13 +5,6 @@
  */
 package co.edu.usbbog.datan.niote.modelo;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.List;
 
 /**
@@ -28,14 +21,6 @@ public class PuertaDeEnlace {
     private String protocoloComunicacionExterno;
     private List<Mensaje> mensajes;
     private List<Nodo> nodos;
-<<<<<<< HEAD
-=======
-    private List<PuertaDeEnlace> salidas;
-    ServerSocket serversocket;
-    Socket client;
-    BufferedReader input;
-    PrintWriter output;
->>>>>>> sebastian
 
     public PuertaDeEnlace(String id, String descripcion, boolean estado, String direccionLogica, String puertoDeServicio, String protocoloComunicacionExterno) {
         this.id = id;
