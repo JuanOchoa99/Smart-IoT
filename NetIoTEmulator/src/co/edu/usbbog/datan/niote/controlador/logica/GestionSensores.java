@@ -15,20 +15,39 @@ import java.util.List;
  */
 public class GestionSensores {
 
+    /**
+     * Lista para almacenar cada sensor que se cree
+     */
     private List<Sensor> sensores;
-
+    
+    /**
+     * Constructor para las lista de sensores
+     * @param sensores variable que contiene la lista
+     */
     public GestionSensores(List<Sensor> sensores) {
         this.sensores = sensores;
     }
-
+    
+    /**
+     * Constructor de la clase
+     */
     public GestionSensores() {
         this.sensores = new ArrayList<>();
     }
-
+    
+    /**
+     * Obtener elementos de la lista
+     * @return elementos
+     */
     public List<Sensor> getSensores() {
         return sensores;
     }
-
+    
+    
+    /**
+     * Poner nuevos valores en la lista
+     * @param sensores variable que contiene la lista
+     */
     public void setSensores(List<Sensor> sensores) {
         this.sensores = sensores;
     }
@@ -73,6 +92,11 @@ public class GestionSensores {
         }
     }
     */
+    
+    /**
+     * Metodo para ver todos los sensores creados
+     * @return Todos los sensores que existen
+     */
     public String verSensores() {
         
         String salida="";
@@ -81,7 +105,12 @@ public class GestionSensores {
                 }
         return salida;
     }
-
+    
+    /**
+     * Ver sensor co un id especifico
+     * @param id campo unico con el que se identifica el sensor
+     * @return sensor que coincide con el id
+     */
     public String verSensorPorID(String id) {
         String salida="";
         
@@ -98,7 +127,15 @@ public class GestionSensores {
         
     return salida;
     }
-
+    
+    /**
+     * Metodo para crear un nuevo sensor
+     * @param id campo unico para identificar el sensor
+     * @param descripcion descripcion del sensor
+     * @param estado activo o inactivo
+     * @param tipo tipo de sensor
+     * @return se creo o ya existe
+     */
     public String crearSensor(String id, String descripcion, boolean estado, String tipo) {
         String salida="";
         if(existeSensorPorID(id)){
@@ -110,7 +147,12 @@ public class GestionSensores {
         }
         return salida;
     }
-
+    
+    /**
+     * Metodo para verificar si existe un sensor con id especifico
+     * @param id campo unico con el que se identifica el sensor
+     * @return true = existe, false = no existe
+     */
     public boolean existeSensorPorID(String id) {
         
         for (Sensor sensore : sensores) {
@@ -120,7 +162,12 @@ public class GestionSensores {
                 }
         return false;
     }
-
+    
+    /**
+     * Metodo para buscar un sensor con id especifico
+     * @param id campo unico con el que se identifica el sensor
+     * @return sensor que coincide con el id
+     */
     public Sensor buscarSensorPorID(String id) {
         
         for (Sensor sensore : sensores) {
@@ -130,7 +177,14 @@ public class GestionSensores {
                 }
         return null;
     }
-
+    
+    /**
+     * Metodo para modificar las especificaciones de un senor
+     * @param id campo unico con que el que se identifica el sensor
+     * @param descripcion descripcion del sensor
+     * @param tipo tipo de sensor
+     * @return se modifico o no existe
+     */
     public String modificarSensorPorID(String id, String descripcion, String tipo) {
 
         if(existeSensorPorID(id)){            
@@ -142,7 +196,12 @@ public class GestionSensores {
             return "El sensor con ID " + id + " no existe";   
         }
     }
-
+    
+    /**
+     * Metodo para eliminar un sensor de la lista
+     * @param id campo unico con el que se identifica el sensor
+     * @return se elimino o no existe
+     */
     public String eliminarSensorPorID(String id) {
         
         if(existeSensorPorID(id)){
