@@ -50,7 +50,7 @@ public class GestionPuertasDeEnlace {
                 }
             }
         } else {
-            salida = "no existe la puerta de enlace";
+            salida = "No existe la puerta de enlace";
         }
         return salida;
     }
@@ -76,15 +76,40 @@ public class GestionPuertasDeEnlace {
     }
 
     public boolean existePuertaDeEnlacePorID(String id) {
-        return true;
+        for (PuertaDeEnlace puertaDeEnlace : puertasDeEnlace) {
+            if (puertaDeEnlace.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+        /*if(buscarPuertaDeEnlacePorID(id) == null){
+            return false;
+        }
+        return true;*/
     }
 
     public PuertaDeEnlace buscarPuertaDeEnlacePorID(String id) {
+        for (PuertaDeEnlace puertaDeEnlace : puertasDeEnlace) {
+            if (puertaDeEnlace.getId().equals(id)) {
+                return puertaDeEnlace;
+            }
+        }
         return null;
     }
 
     public String modificarPuertaDeEnlacePorID(String id, String descripcion, String direccionLogica, String puertoDeServicio, String protocoloComunicacionExterno) {
-        return "Falta constrir...";
+        if (buscarPuertaDeEnlacePorID(id) == null) {
+            return "La puerta de enlace no existe";
+        } else {
+            PuertaDeEnlace modificarPuertaDeEnlace = buscarPuertaDeEnlacePorID(id);
+            modificarPuertaDeEnlace.setDescripcion(descripcion);
+            modificarPuertaDeEnlace.setDireccionLogica(direccionLogica);
+            modificarPuertaDeEnlace.setPuertoDeServicio(puertoDeServicio);
+            modificarPuertaDeEnlace.setPuertoDeServicio(puertoDeServicio);
+            modificarPuertaDeEnlace.setProtocoloComunicacionExterno(protocoloComunicacionExterno);
+            return "La puerta de enlace con ID " + id + " se ha modificado";
+        }
+
     }
 
 }

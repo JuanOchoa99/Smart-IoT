@@ -298,7 +298,7 @@ public class Terminal {
     /**
      *
      */
-    private void modificarPuertaDeEnlacePorID() {
+        private void modificarPuertaDeEnlacePorID() {
         System.out.println("Digite ID de la Puerta de enlace");
         String id = sn.next();
         if (this.principal.getGestionRed().getGestionPuertaDeEnlace().existePuertaDeEnlacePorID(id)) {
@@ -629,7 +629,7 @@ public class Terminal {
      *
      */
     private void eliminarActuadorPorID() {
-        System.out.println("Digite ID del Sensor");
+        System.out.println("Digite ID del Actuador");
         String id = sn.next();
         System.out.println(this.principal.getGestionRed().getGestionActuadores().eliminarActuadorPorID(id));
     }

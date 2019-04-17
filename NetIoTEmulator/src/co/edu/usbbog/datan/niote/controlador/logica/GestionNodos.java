@@ -16,6 +16,7 @@ import java.util.List;
 public class GestionNodos {
 
     private List<Nodo> nodos;
+    
 
     public GestionNodos(List<Nodo> nodos) {
         this.nodos = nodos;

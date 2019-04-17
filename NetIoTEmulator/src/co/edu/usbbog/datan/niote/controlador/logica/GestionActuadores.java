@@ -74,31 +74,74 @@ public class GestionActuadores {
     */
     
     public String verActuadores() {
-        return "Falta constrir...";
+       String salida = "";
+        for (Actuador actuador : actuadores) {
+            salida += salida + actuador.toString() + "\n";
+        }
+        return salida;
     }
 
     public String verActuadorPorID(String id) {
-        return "Falta constrir...";
+        String salida = "";
+        if (existeActuadorPorID(id)) {
+            for (Actuador actuador : actuadores) {
+                if (actuador.getId().equals(id)) {
+                    salida = actuador.toString() + "\n";
+                }
+            }
+        } else {
+            salida = "No existe el actuador";
+        }
+        return salida;
     }
 
     public String crearActuador(String id, String descripcion, boolean estado, String tipo) {
-        return "Falta constrir...";
+        Actuador actuador = new Actuador(id, descripcion, estado, tipo);
+        if (existeActuadorPorID(id)) {
+            return "El actuador ya existe";
+        } else {
+            actuadores.add(actuador);
+            return "El actuador con ID: " + id + " se agrego";
+        }
     }
 
     public boolean existeActuadorPorID(String id) {
-        return true;
+        for (Actuador actuador : actuadores) {
+            if (actuador.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Actuador buscarActuadorPorID(String id) {
+        for (Actuador actuador : actuadores) {
+            if (actuador.getId().equals(id)) {
+                return actuador;
+            }
+        }
         return null;
     }
 
     public String modificarActuadorPorID(String id, String descripcion, String tipo) {
 
-        return "Falta constrir...";
+        if (buscarActuadorPorID(id) == null) {
+            return "El actuador no existe";
+        } else {
+            Actuador modificarActuador = buscarActuadorPorID(id);
+            modificarActuador.setDescripcion(descripcion);
+            modificarActuador.setTipo(tipo);
+            return "El actuador con ID " + id + " se ha modificado";
+        }
     }
 
     public String eliminarActuadorPorID(String id) {
-        return "Falta constrir...";
+        if (existeActuadorPorID(id)) {
+            Actuador actuador = buscarActuadorPorID(id);
+            actuadores.remove(actuador);
+            return "El actuador se elimino";
+        } else {
+            return "El actuador con ID: " + id + " no se elimino";
+        }
     }
 }
