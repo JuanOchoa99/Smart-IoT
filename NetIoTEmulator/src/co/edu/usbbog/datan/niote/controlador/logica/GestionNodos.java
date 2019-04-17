@@ -16,6 +16,7 @@ import java.util.List;
 public class GestionNodos {
 
     private List<Nodo> nodos;
+    
 
     public GestionNodos(List<Nodo> nodos) {
         this.nodos = nodos;
@@ -33,20 +34,10 @@ public class GestionNodos {
         this.nodos = nodos;
     }
 
-    /*  
+      
+   
     
-    public void verNodos() {
-
-        List<PuertaDeEnlace> puertasDeEnlaceDeLaRed = red.getPuertasDeEnlace();
-
-        for (PuertaDeEnlace i : puertasDeEnlaceDeLaRed) {
-            List<Nodo> nodos = i.getNodos();
-            for (Nodo nodo : nodos) {
-                System.out.println(nodo.toString());
-            }
-
-        }
-    }
+    /*
     public void agregarNodo(String id, String descripcion, boolean estado, String protocoloComunicacion, String gatewayId) {
 
         List<PuertaDeEnlace> puertasDeEnlaceDeLaRed = red.getPuertasDeEnlace();
@@ -143,30 +134,89 @@ public class GestionNodos {
 
      */
     public String verNodos() {
-        return "Falta constrir...";
+        
+        String salida = "";
+            for (Nodo nodo : nodos) {
+                salida += salida + nodo.toString() + "\n";
+            }
+        return salida;
     }
 
     public String verNodoPorID(String id) {
-        return "Falta constrir...";
+           
+        String salida="";
+        
+        if (existeNodoPorID(id)) {
+            for (Nodo nodo : nodos) {
+              if(nodo.getId().equals(id)){
+               salida = nodo.toString() + "\n";   
+              }
+            }
+       } else {
+            
+            salida = "El nodo con ID " + id + " no existe";
+        }
+        
+        return salida;
     }
 
     public String crearNodo(String id, String descripcion, boolean estado, String protocoloComunicacion) {
-        return "Falta constrir...";
+
+        if (existeNodoPorID(id)) {
+
+            return "El nodo ya existe";
+        } else {
+            Nodo nodo = new Nodo(id, descripcion, estado, protocoloComunicacion);
+            nodos.add(nodo);
+
+            return "El nodo con ID " + id + " se agrego";
+        }
+
     }
 
     public boolean existeNodoPorID(String id) {
-        return true;
+                    
+            for (Nodo nodo : nodos) {
+              if(nodo.getId().equals(id)){
+               return true;   
+              }
+            }
+        
+        return false;
     }
 
     public Nodo buscarNodoPorID(String id) {
+        
+            for (Nodo nodo : nodos) {
+              if(nodo.getId().equals(id)){
+               return nodo;   
+              }
+            }
         return null;
     }
 
     public String modificarNodoPorID(String id, String descripcion, String protocoloComunicacion) {
-        return "Falta constrir...";
+        if(existeNodoPorID(id)){            
+            Nodo nodo = buscarNodoPorID(id);
+            
+            nodo.setDescripcion(descripcion);
+            nodo.setProtocoloComunicacion(protocoloComunicacion);
+            return "El nodo se modifico";
+        }else{
+            return "El nodo con ID " + id + " no existe";   
+        }
     }
 
     public String eliminarNodoPorID(String id) {
-        return "Falta constrir...";
+    
+        if(existeNodoPorID(id)){
+            
+            Nodo nodo = buscarNodoPorID(id);
+            nodos.remove(nodo);
+            return "El nodo se elimino";
+        }else{
+            return "El nodo con ID " + id + " no existe";   
+        }
+        
     }
 }

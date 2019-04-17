@@ -74,31 +74,85 @@ public class GestionSensores {
     }
     */
     public String verSensores() {
-        return "Falta constrir...";
+        
+        String salida="";
+         for (Sensor sensore : sensores) {
+                    salida += salida + sensore.toString();
+                }
+        return salida;
     }
 
     public String verSensorPorID(String id) {
-        return "Falta constrir...";
+        String salida="";
+        
+        if(existeSensorPorID(id)){
+         for (Sensor sensore : sensores) {
+             if(sensore.getId().equals(id)){
+                    salida += salida + sensore.toString();
+                }
+            }
+            }else{
+            
+            salida="El nodo no existe";
+        }
+        
+    return salida;
     }
 
     public String crearSensor(String id, String descripcion, boolean estado, String tipo) {
-        return "Falta constrir...";
+        String salida="";
+        if(existeSensorPorID(id)){
+            salida="El sensor ya existe";
+        }else{
+            Sensor sensor = new Sensor(id, descripcion, estado, tipo);
+            sensores.add(sensor);
+            salida="El sensor con id "+id+" se agrego";
+        }
+        return salida;
     }
 
     public boolean existeSensorPorID(String id) {
-        return true;
+        
+        for (Sensor sensore : sensores) {
+                    if(sensore.getId().equals(id)){
+                        return true;
+                    }
+                }
+        return false;
     }
 
     public Sensor buscarSensorPorID(String id) {
+        
+        for (Sensor sensore : sensores) {
+                    if(sensore.getId().equals(id)){
+                        return sensore;
+                    }
+                }
         return null;
     }
 
     public String modificarSensorPorID(String id, String descripcion, String tipo) {
 
-        return "Falta constrir...";
+        if(existeSensorPorID(id)){            
+            Sensor sensor = buscarSensorPorID(id);
+            sensor.setDescripcion(descripcion);
+            sensor.setTipo(tipo);
+            return "El sensor se modifico";
+        }else{
+            return "El sensor con ID " + id + " no existe";   
+        }
     }
 
     public String eliminarSensorPorID(String id) {
-        return "Falta constrir...";
+        
+        if(existeSensorPorID(id)){
+            
+            Sensor sensor = buscarSensorPorID(id);
+            sensores.remove(sensor);
+            return "El sensor se elimino";
+        }else{
+            return "El sensor con ID " + id + " no existe";   
+        }
+        
     }
 }
