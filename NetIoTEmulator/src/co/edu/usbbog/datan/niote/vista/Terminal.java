@@ -154,7 +154,7 @@ public class Terminal {
                     menuControl();
                     break;
                 case 4:
-                    acerdaDe();                    
+                    acerdaDe();
                     break;
                 default:
                     System.out.println("opcion no valida");
@@ -282,17 +282,17 @@ public class Terminal {
      */
     private void crearPuertaDeEnlace() {
         System.out.println("Digite ID de la Puerta de enlace");
-        String id= sn.next();
+        String id = sn.next();
         System.out.println("Digite descripcion de la Puerta de enlace");
-        String descripcion= sn.next();
-        boolean estado= false;
+        String descripcion = sn.next();
+        boolean estado = false;
         System.out.println("Digite direccion logica de la Puerta de enlace");
-        String direccionLogica= sn.next();
+        String direccionLogica = sn.next();
         System.out.println("Digite puerto de servicio de la Puerta de enlace");
-        String puertoDeServicio= sn.next();
+        String puertoDeServicio = sn.next();
         System.out.println("Digite protocolo de comunicacion externo de la Puerta de enlace");
-        String protocoloComunicacionExterno= sn.next();
-        System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().crearPuertaDeEnlace(id,descripcion,estado,direccionLogica,puertoDeServicio,protocoloComunicacionExterno));
+        String protocoloComunicacionExterno = sn.next();
+        System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().crearPuertaDeEnlace(id, descripcion, estado, direccionLogica, puertoDeServicio, protocoloComunicacionExterno));
     }
 
     /**
@@ -392,13 +392,13 @@ public class Terminal {
      */
     private void crearNodo() {
         System.out.println("Digite ID del Nodo");
-        String id= sn.next();        
+        String id = sn.next();
         System.out.println("Digite descripcion del Nodo");
-        String descripcion= sn.next();
-        boolean estado= false;
+        String descripcion = sn.next();
+        boolean estado = false;
         System.out.println("Digite protocolo de Comunicacion del Nodo");
-        String protocoloComunicacion= sn.next();
-        System.out.println(this.principal.getGestionRed().getGestionNodo().crearNodo(id,descripcion,estado,protocoloComunicacion));
+        String protocoloComunicacion = sn.next();
+        System.out.println(this.principal.getGestionRed().getGestionNodo().crearNodo(id, descripcion, estado, protocoloComunicacion));
     }
 
     /**
@@ -410,7 +410,6 @@ public class Terminal {
         if (this.principal.getGestionRed().getGestionNodo().existeNodoPorID(id)) {
             System.out.println("Digite la nueva descripcion del Nodo");
             String descripcion = sn.next();
-            boolean estado = false;
             System.out.println("Digite el nuevo protocolo de Comunicacion del Nodo");
             String protocoloComunicacion = sn.next();
             System.out.println(this.principal.getGestionRed().getGestionNodo().modificarNodoPorID(id, descripcion, protocoloComunicacion));
@@ -495,12 +494,12 @@ public class Terminal {
      */
     private void crearSensor() {
         System.out.println("Digite ID del Sensor");
-        String id= sn.next();        
+        String id = sn.next();
         System.out.println("Digite descripcion del Sensor");
-        String descripcion= sn.next();
-        boolean estado= false;
+        String descripcion = sn.next();
+        boolean estado = false;
         System.out.println("Digite tipo del Sensor");
-        String tipo= sn.next();
+        String tipo = sn.next();
         System.out.println(this.principal.getGestionRed().getGestionSensores().crearSensor(id, descripcion, estado, tipo));
     }
 
@@ -513,7 +512,6 @@ public class Terminal {
         if (this.principal.getGestionRed().getGestionSensores().existeSensorPorID(id)) {
             System.out.println("Digite la nueva descripcion del Sensor");
             String descripcion = sn.next();
-            boolean estado = false;
             System.out.println("Digite el nuevo tipo del Sensor");
             String tipo = sn.next();
             System.out.println(this.principal.getGestionRed().getGestionSensores().modificarSensorPorID(id, descripcion, tipo));
@@ -598,12 +596,12 @@ public class Terminal {
      */
     private void crearActuador() {
         System.out.println("Digite ID del Actuador");
-        String id= sn.next();        
+        String id = sn.next();
         System.out.println("Digite descripcion del Actuador");
-        String descripcion= sn.next();
-        boolean estado= false;
+        String descripcion = sn.next();
+        boolean estado = false;
         System.out.println("Digite tipo del Actuador");
-        String tipo= sn.next();
+        String tipo = sn.next();
         System.out.println(this.principal.getGestionRed().getGestionActuadores().crearActuador(id, descripcion, estado, tipo));
     }
 
@@ -616,7 +614,6 @@ public class Terminal {
         if (this.principal.getGestionRed().getGestionActuadores().existeActuadorPorID(id)) {
             System.out.println("Digite la nueva descripcion del Actuador");
             String descripcion = sn.next();
-            boolean estado = false;
             System.out.println("Digite el nuevo tipo del Actuador");
             String tipo = sn.next();
             System.out.println(this.principal.getGestionRed().getGestionActuadores().modificarActuadorPorID(id, descripcion, tipo));
@@ -707,16 +704,16 @@ public class Terminal {
      *
      */
     private void agregarPuertaDeEnlaceALaRed() {
-        System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().verPuertasDeEnlace());        
+        System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().verPuertasDeEnlace());
         System.out.println("Digite ID de la Puerta de enlace que sera agregada a la red");
         String idPuertaDeEnlace = sn.next();
-        if (this.principal.getGestionRed().getGestionPuertaDeEnlace().buscarPuertaDeEnlacePorID(idPuertaDeEnlace)!=null) {
+        if (this.principal.getGestionRed().getGestionPuertaDeEnlace().buscarPuertaDeEnlacePorID(idPuertaDeEnlace) != null) {
             System.out.println(this.principal.getGestionRed().agregarPuertaDeEnlaceALaRed(idPuertaDeEnlace));
-        }else{
+        } else {
             System.out.println("Puerta de enlace no existe");
-        }  
+        }
         System.out.println(this.principal.getGestionRed().verPuertasDeEnlaceDeLaRed());
-        System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().verPuertasDeEnlace());     
+        System.out.println(this.principal.getGestionRed().getGestionPuertaDeEnlace().verPuertasDeEnlace());
     }
 
     /**
@@ -726,9 +723,9 @@ public class Terminal {
         System.out.println(this.principal.getGestionRed().verPuertasDeEnlaceDeLaRed());
         System.out.println("Digite ID de la Puerta de enlace que sera removida de la red");
         String idPuertaDeEnlace = sn.next();
-        if (this.principal.getGestionRed().buscarPuertaDeEnlaceDeLaRedPorID(idPuertaDeEnlace)!=null) {
+        if (this.principal.getGestionRed().buscarPuertaDeEnlaceDeLaRedPorID(idPuertaDeEnlace) != null) {
             System.out.println(this.principal.getGestionRed().removerPuertaDeEnlaceDeLaRed(idPuertaDeEnlace));
-        }else{
+        } else {
             System.out.println("Puerta de enlace no existe en la red");
         }
         System.out.println(this.principal.getGestionRed().verPuertasDeEnlaceDeLaRed());
@@ -739,17 +736,17 @@ public class Terminal {
      *
      */
     private void agregarNodoALaRed() {
-        System.out.println(this.principal.getGestionRed().getGestionNodo().verNodos());        
+        System.out.println(this.principal.getGestionRed().getGestionNodo().verNodos());
         System.out.println("Digite ID del Nodo que sera agregado a la red");
         String idNodo = sn.next();
-        if (this.principal.getGestionRed().getGestionNodo().buscarNodoPorID(idNodo)!=null) {
+        if (this.principal.getGestionRed().getGestionNodo().buscarNodoPorID(idNodo) != null) {
             System.out.println(this.principal.getGestionRed().verPuertasDeEnlaceDeLaRed());
             System.out.println("Digite los ID de las Puertas de Enlace a los que se conectara el Nodo que sera agregado a la red");
             System.out.println("separados por \"-\" [idPuertaDeEnlace-idPuertaDeEnlace-idPuertaDeEnlace]");
             String idsPuertasDeEnlace = sn.next();
             idsPuertasDeEnlace = this.principal.getGestionRed().validarPuertasDeEnlace(idsPuertasDeEnlace);
             if (!idsPuertasDeEnlace.equals("")) {
-                System.out.println("Puertas de enlace validas: "+idsPuertasDeEnlace);
+                System.out.println("Puertas de enlace validas: " + idsPuertasDeEnlace);
                 System.out.println(this.principal.getGestionRed().agregarNodoALaRed(idNodo, idsPuertasDeEnlace));
             } else {
                 System.out.println("Ninguna Puerta de Enlace es Valida en la red");
@@ -758,7 +755,7 @@ public class Terminal {
             System.out.println("Nodo no existe en la red");
         }
         System.out.println(this.principal.getGestionRed().verNodosDeLaRed());
-        System.out.println(this.principal.getGestionRed().getGestionNodo().verNodos());  
+        System.out.println(this.principal.getGestionRed().getGestionNodo().verNodos());
     }
 
     /**
@@ -768,27 +765,27 @@ public class Terminal {
         System.out.println(this.principal.getGestionRed().verNodosDeLaRed());
         System.out.println("Digite ID del Nodo que sera removido de la red");
         String idNodo = sn.next();
-        if (this.principal.getGestionRed().buscarNodoDeLaRedPorID(idNodo)!=null) {
+        if (this.principal.getGestionRed().buscarNodoDeLaRedPorID(idNodo) != null) {
             System.out.println(this.principal.getGestionRed().removerNodoDeLaRed(idNodo));
-        }else{
+        } else {
             System.out.println("Nodo no existe en la red");
         }
         System.out.println(this.principal.getGestionRed().verNodosDeLaRed());
-        System.out.println(this.principal.getGestionRed().getGestionNodo().verNodos()); 
+        System.out.println(this.principal.getGestionRed().getGestionNodo().verNodos());
     }
 
     /**
      *
      */
     private void agregarSensorALaRed() {
-        System.out.println(this.principal.getGestionRed().getGestionSensores().verSensores());        
+        System.out.println(this.principal.getGestionRed().getGestionSensores().verSensores());
         System.out.println("Digite ID del Sensor que sera agregado a la red");
         String idSensor = sn.next();
-        if (this.principal.getGestionRed().getGestionSensores().buscarSensorPorID(idSensor)!=null) {
+        if (this.principal.getGestionRed().getGestionSensores().buscarSensorPorID(idSensor) != null) {
             System.out.println(this.principal.getGestionRed().verNodosDeLaRed());
             System.out.println("Digite el ID del Nodo al que se conectara el Sensor que sera agregado a la red");
             String idNodo = sn.next();
-            if (this.principal.getGestionRed().buscarNodoDeLaRedPorID(idNodo)!=null) {
+            if (this.principal.getGestionRed().buscarNodoDeLaRedPorID(idNodo) != null) {
                 System.out.println(this.principal.getGestionRed().agregarSensorALaRed(idSensor, idNodo));
             } else {
                 System.out.println("Nodo no Valido en la red");
@@ -797,7 +794,7 @@ public class Terminal {
             System.out.println("Sensor no existe");
         }
         System.out.println(this.principal.getGestionRed().verSensoresDeLaRed());
-        System.out.println(this.principal.getGestionRed().getGestionSensores().verSensores()); 
+        System.out.println(this.principal.getGestionRed().getGestionSensores().verSensores());
     }
 
     /**
@@ -807,27 +804,27 @@ public class Terminal {
         System.out.println(this.principal.getGestionRed().verSensoresDeLaRed());
         System.out.println("Digite ID del Sensor que sera removido de la red");
         String idSensor = sn.next();
-        if (this.principal.getGestionRed().buscarSensorDeLaRedPorID(idSensor)!=null) {
+        if (this.principal.getGestionRed().buscarSensorDeLaRedPorID(idSensor) != null) {
             System.out.println(this.principal.getGestionRed().removerSensorDeLaRed(idSensor));
-        }else{
+        } else {
             System.out.println("Sensor no existe en la red");
         }
         System.out.println(this.principal.getGestionRed().verSensoresDeLaRed());
-        System.out.println(this.principal.getGestionRed().getGestionSensores().verSensores()); 
+        System.out.println(this.principal.getGestionRed().getGestionSensores().verSensores());
     }
 
     /**
      *
      */
     private void agregarActuadorALaRed() {
-        System.out.println(this.principal.getGestionRed().getGestionActuadores().verActuadores());        
+        System.out.println(this.principal.getGestionRed().getGestionActuadores().verActuadores());
         System.out.println("Digite ID del Actuador que sera agregado a la red");
         String idActuador = sn.next();
-        if (this.principal.getGestionRed().getGestionActuadores().buscarActuadorPorID(idActuador)!=null) {
+        if (this.principal.getGestionRed().getGestionActuadores().buscarActuadorPorID(idActuador) != null) {
             System.out.println(this.principal.getGestionRed().verNodosDeLaRed());
             System.out.println("Digite el ID del Nodo al que se conectara el Actuador que sera agregado a la red");
             String idNodo = sn.next();
-            if (this.principal.getGestionRed().buscarNodoDeLaRedPorID(idNodo)!=null) {
+            if (this.principal.getGestionRed().buscarNodoDeLaRedPorID(idNodo) != null) {
                 System.out.println(this.principal.getGestionRed().agregarActuadorALaRed(idActuador, idNodo));
             } else {
                 System.out.println("Nodo no Valido en la red");
@@ -836,7 +833,7 @@ public class Terminal {
             System.out.println("Actuador no existe");
         }
         System.out.println(this.principal.getGestionRed().verActuadorDeLaRed());
-        System.out.println(this.principal.getGestionRed().getGestionActuadores().verActuadores()); 
+        System.out.println(this.principal.getGestionRed().getGestionActuadores().verActuadores());
     }
 
     /**
@@ -846,13 +843,13 @@ public class Terminal {
         System.out.println(this.principal.getGestionRed().verActuadorDeLaRed());
         System.out.println("Digite ID del Actuador que sera removido de la red");
         String idActuador = sn.next();
-        if (this.principal.getGestionRed().buscarActuadorDeLaRedPorID(idActuador)!=null) {
+        if (this.principal.getGestionRed().buscarActuadorDeLaRedPorID(idActuador) != null) {
             System.out.println(this.principal.getGestionRed().removerActuadorDeLaRed(idActuador));
-        }else{
+        } else {
             System.out.println("Actuador no existe en la red");
         }
         System.out.println(this.principal.getGestionRed().verActuadorDeLaRed());
-        System.out.println(this.principal.getGestionRed().getGestionActuadores().verActuadores()); 
+        System.out.println(this.principal.getGestionRed().getGestionActuadores().verActuadores());
     }
 
     /**
@@ -863,7 +860,7 @@ public class Terminal {
         String ruta = sn.next();
         System.out.println("ingrese nombre del archivo de configuracion (.niote)");
         String nombreArchivo = sn.next();
-        System.out.println(this.principal.getGestionRed().guardarRed(ruta,nombreArchivo));
+        System.out.println(this.principal.getGestionRed().guardarRed(ruta, nombreArchivo));
     }
 
     /**
@@ -1252,144 +1249,9 @@ public class Terminal {
         System.out.println("Falta constrir...");
     }
 
-    //reorganizar
-    /*
-    public void inicio() {
-
-        this.principal.getGestionRed().agregarPuertasDeEnlace("1001", "nueva gateway", true, "dos", "1000", "MW");
-
-        this.principal.getGestionRed().agregarNodo("n-1", "nodo prueba", true, "blouetooth", "1001");
-
-        this.principal.getGestionRed().agregarActuador("a-1", "actuador prueba", true, "tipo1", "n-1", "1001");
-
-        this.principal.getGestionRed().agregarSensor("s-1", "sensor prueba", true, "tipo 1", "n-1", "1001");
-
-        int menu = 1;
-        int opcion;
-        int idPuertaDeEnlace = 0, idNodo = 0, idSensor = 0, idActuador = 0;
-        String idGateway;
-        while (menu == 1) {
-            System.out.println("Menu: \n"
-                    + "1. Ver gateway \n"
-                    + "2. Ver nodos \n"
-                    + "3. Ver Sensores \n"
-                    + "4. Ver actuadores \n"
-                    + "5. Crear gateway \n"
-                    + "6. Crear nodo \n"
-                    + "7. Crear sensor \n"
-                    + "8. Crear Actuador \n");
-
-            opcion = sn.nextInt();
-            switch (opcion) {
-
-                case 1:
-
-                    this.principal.getGestionRed().verPuertasDeEnlace();
-                    break;
-
-                case 2:
-
-                    this.principal.getGestionRed().verNodos();
-                    break;
-
-                case 3:
-
-                    this.principal.getGestionRed().verSensor();
-                    break;
-                case 4:
-
-                    this.principal.getGestionRed().verActuador();
-                    break;
-                case 5:
-
-                    System.out.println("Digite descripcion");
-                    String descripcion = sn.next();
-
-                    System.out.println("Digite estado (true/false)");
-                    boolean estado = sn.nextBoolean();
-
-                    System.out.println("Digiste direccion logica");
-                    String direccionLogica = sn.next();
-
-                    System.out.println("Digite Puerto de Servicio");
-                    String puertoDeServicio = sn.next();
-
-                    System.out.println("Digite protocolo de comunicacion externo");
-                    String protocoloDeComunicacionExterno = sn.next();
-
-                    this.principal.getGestionRed().agregarPuertasDeEnlace("" + idPuertaDeEnlace, "" + descripcion, estado, "" + direccionLogica, "" + puertoDeServicio, "" + protocoloDeComunicacionExterno);
-                    idPuertaDeEnlace++;
-
-                    break;
-
-                case 6:
-
-                    System.out.println("Digite descripcion");
-                    String descripcionNodo = sn.next();
-
-                    System.out.println("Digite estado (true/false)");
-                    boolean estadoNodo = sn.nextBoolean();
-
-                    System.out.println("Digiste direccion logica");
-                    String protocoloComunicacion = sn.next();
-
-                    System.out.println("Digiste id del gateway");
-                    idGateway = sn.next();
-
-                    this.principal.getGestionRed().agregarNodo("" + idNodo, "" + descripcionNodo, estadoNodo, "" + protocoloComunicacion, "" + idGateway);
-                    idNodo++;
-                    break;
-                case 7:
-
-                    System.out.println("Digite descripcion");
-                    String descripcionSensor = sn.next();
-
-                    System.out.println("Digite estado (true/false)");
-                    boolean estadoSensor = sn.nextBoolean();
-
-                    System.out.println("Digiste tipo");
-                    String tipoSensor = sn.next();
-
-                    System.out.println("Digiste id del gateway");
-                    idGateway = sn.next();
-
-                    System.out.println("Digiste id del nodo");
-                    String idNodoSensor = sn.next();
-
-                    this.principal.getGestionRed().agregarSensor("" + idSensor, "" + descripcionSensor, estadoSensor, "" + tipoSensor, "" + idGateway, "" + idNodoSensor);
-                    idSensor++;
-                    break;
-
-                case 8:
-
-                    System.out.println("Digite descripcion");
-                    String descripcionActuador = sn.next();
-
-                    System.out.println("Digite estado (true/false)");
-                    boolean estadoActuador = sn.nextBoolean();
-
-                    System.out.println("Digiste tipo");
-                    String tipoActuador = sn.next();
-
-                    System.out.println("Digiste id del gateway");
-                    idGateway = sn.next();
-
-                    System.out.println("Digiste id del nodo");
-                    String idNodoActuador = sn.next();
-
-                    this.principal.getGestionRed().agregarActuador("" + idActuador, "" + descripcionActuador, estadoActuador, "" + tipoActuador, "" + idGateway, "" + idNodoActuador);
-                    idActuador++;
-                    break;
-
-                default:
-                    menu = 0;
-                    break;
-
-            }
-        }
-
-    }*/
-
+    /**
+     *
+     */
     private void acerdaDe() {
         System.out.println("************** Net IoT Emulator V.alfa.1.1 **************");
         System.out.println("Proyecto desarrollado en el semillero DatAn");

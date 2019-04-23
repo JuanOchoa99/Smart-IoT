@@ -137,16 +137,7 @@ public class GestionPuertasDeEnlace {
      * @return
      */
     public boolean existePuertaDeEnlacePorID(String id) {
-        for (PuertaDeEnlace puertaDeEnlace : puertasDeEnlace) {
-            if (puertaDeEnlace.getId().equals(id)) {
-                return true;
-            }
-        }
-        return false;
-        /*if(buscarPuertaDeEnlacePorID(id) == null){
-            return false;
-        }
-        return true;*/
+        return puertasDeEnlace.stream().anyMatch((puertaDeEnlace) -> (puertaDeEnlace.getId().equals(id)));
     }
 
     /**
