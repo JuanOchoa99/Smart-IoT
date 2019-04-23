@@ -6,6 +6,7 @@
 package co.edu.usbbog.datan.niote.controlador.logica;
 
 import co.edu.usbbog.datan.niote.modelo.Actuador;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
-public class GestionActuadores {
+public class GestionActuadores implements Serializable{
 
     /**
      * Variable para guardar la lista de actuadores

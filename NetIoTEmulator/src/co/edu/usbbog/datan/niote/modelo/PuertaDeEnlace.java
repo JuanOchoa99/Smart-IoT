@@ -5,13 +5,14 @@
  */
 package co.edu.usbbog.datan.niote.modelo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
-public class PuertaDeEnlace {
+public class PuertaDeEnlace implements Serializable{
 
     private String id;
     private String descripcion;
