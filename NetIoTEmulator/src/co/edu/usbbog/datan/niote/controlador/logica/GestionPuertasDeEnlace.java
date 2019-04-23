@@ -6,6 +6,7 @@
 package co.edu.usbbog.datan.niote.controlador.logica;
 
 import co.edu.usbbog.datan.niote.modelo.PuertaDeEnlace;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
-public class GestionPuertasDeEnlace {
+public class GestionPuertasDeEnlace implements Serializable{
 
     /**
      * Variable para guardar la lista de puertas de enlace

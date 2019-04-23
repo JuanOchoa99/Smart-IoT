@@ -5,13 +5,14 @@
  */
 package co.edu.usbbog.datan.niote.modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
-public class Mensaje {
+public class Mensaje implements Serializable{
     private String id;
     private Date fecha;
     private String tipo;
