@@ -22,6 +22,7 @@ public class PuertaDeEnlace {
     private List<Mensaje> mensajes;
     private List<Nodo> nodos;
 
+
     public PuertaDeEnlace(String id, String descripcion, boolean estado, String direccionLogica, String puertoDeServicio, String protocoloComunicacionExterno) {
         this.id = id;
         this.descripcion = descripcion;
