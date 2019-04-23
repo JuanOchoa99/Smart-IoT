@@ -10,6 +10,9 @@
             <file>file:/D:/Users/aasanchez/Documents/NetBeansProjects/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/controlador/persistencia/ArchivoDeConfiguracionDeRed.java</file>
             <file>file:/D:/Users/aasanchez/Documents/NetBeansProjects/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/modelo/PuertaDeEnlace.java</file>
             <file>file:/D:/Users/aasanchez/Documents/NetBeansProjects/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/controlador/logica/GestionRed.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/GitHub/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/controlador/logica/GestionNodos.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/GitHub/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/controlador/logica/GestionPuertasDeEnlace.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/GitHub/Smart-IoT/NetIoTEmulator/src/co/edu/usbbog/datan/niote/controlador/logica/GestionSensores.java</file>
         </group>
     </open-files>
 </project-private>
