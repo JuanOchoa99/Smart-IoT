@@ -151,12 +151,7 @@ public class GestionActuadores {
      * @return retornamos un booleano si existe true, sino false
      */
     public boolean existeActuadorPorID(String id) {
-        for (Actuador actuador : actuadores) {
-            if (actuador.getId().equals(id)) {
-                return true;
-            }
-        }
-        return false;
+        return actuadores.stream().anyMatch((actuador) -> (actuador.getId().equals(id)));
     }
 
     /**
