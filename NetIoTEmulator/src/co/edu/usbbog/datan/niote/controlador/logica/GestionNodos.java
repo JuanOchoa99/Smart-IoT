@@ -14,47 +14,46 @@ import java.util.List;
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
 public class GestionNodos {
-    
+
     /**
-     * Lista para almacenar cada nodo que se cree 
+     * Lista para almacenar cada nodo que se cree
      */
     private List<Nodo> nodos;
-    
+
     /**
      * Constructor para la lista de nodos
+     *
      * @param nodos variable que contiene la lista
      */
     public GestionNodos(List<Nodo> nodos) {
         this.nodos = nodos;
     }
-    
+
     /**
      * Constructor de la clase
      */
     public GestionNodos() {
         this.nodos = new ArrayList<>();
     }
-    
-    
+
     /**
      * Obtener los valores de la lista
-     * @return valores de la lista 
+     *
+     * @return valores de la lista
      */
     public List<Nodo> getNodos() {
         return nodos;
     }
-    
+
     /**
      * Poner nuevos valores en la lista
+     *
      * @param nodos variable que contiene la lista
      */
     public void setNodos(List<Nodo> nodos) {
         this.nodos = nodos;
     }
 
-      
-   
-    
     /*
     public void agregarNodo(String id, String descripcion, boolean estado, String protocoloComunicacion, String gatewayId) {
 
@@ -151,52 +150,53 @@ public class GestionNodos {
     }
 
      */
-    
     /**
      * Metodo para ver todos los nodos existentes
-     * @return Todos los nodos 
+     *
+     * @return Todos los nodos
      */
     public String verNodos() {
-        
+
         String salida = "";
-            for (Nodo nodo : nodos) {
-                salida += salida + nodo.toString() + "\n";
-            }
+        for (Nodo nodo : nodos) {
+            salida += salida + nodo.toString() + "\n";
+        }
         return salida;
     }
-    
+
     /**
      * Metodo para ver un nodo especifico segun su id
+     *
      * @param id campo unico con el que se identifica cada nodo
      * @return Especificaciones del nodo segun el id
      */
     public String verNodoPorID(String id) {
-           
-        String salida="";
-        
+
+        String salida = "";
+
         if (existeNodoPorID(id)) {
             for (Nodo nodo : nodos) {
-              if(nodo.getId().equals(id)){
-               salida = nodo.toString() + "\n";   
-              }
+                if (nodo.getId().equals(id)) {
+                    salida = nodo.toString() + "\n";
+                }
             }
-       } else {
-            
+        } else {
+
             salida = "El nodo con ID " + id + " no existe";
         }
-        
+
         return salida;
     }
-    
+
     /**
      * Metodo para crear un nuevo nodo
+     *
      * @param id campo unico de cada nodo
      * @param descripcion descripcion del nodo
      * @param estado activo o inactivo
      * @param protocoloComunicacion protocolo a traves del que se va a comunicar
      * @return retorna si el nodo se agrego o ya existe
      */
-
     public String crearNodo(String id, String descripcion, boolean estado, String protocoloComunicacion) {
 
         if (existeNodoPorID(id)) {
@@ -210,75 +210,72 @@ public class GestionNodos {
         }
 
     }
-    
+
     /**
      * Metodo para verificar si existe el id
+     *
      * @param id campo unico con el que se identifica cada nodo
      * @return true = si existe, false = no existe
      */
-
     public boolean existeNodoPorID(String id) {
-                    
-            for (Nodo nodo : nodos) {
-              if(nodo.getId().equals(id)){
-               return true;   
-              }
-            }
-        
+        if (nodos.stream().anyMatch((nodo) -> (nodo.getId().equals(id)))) {
+            return true;
+        }
         return false;
     }
 
     /**
      * Metodo para buscar un nodo
+     *
      * @param id campo unico con el que se identifica cada nodo
      * @return El nodo que se busco
      */
     public Nodo buscarNodoPorID(String id) {
-        
-            for (Nodo nodo : nodos) {
-              if(nodo.getId().equals(id)){
-               return nodo;   
-              }
+
+        for (Nodo nodo : nodos) {
+            if (nodo.getId().equals(id)) {
+                return nodo;
             }
+        }
         return null;
     }
-    
+
     /**
      * Metodo para modificar las especificaciones de un nodo
+     *
      * @param id campo unico de cada nodo
      * @param descripcion descripcion del nodo
      * @param protocoloComunicacion protocolo a traves del que se va a comunicar
      * @return Se modifico o no se modifico
      */
-
     public String modificarNodoPorID(String id, String descripcion, String protocoloComunicacion) {
-        if(existeNodoPorID(id)){            
+        if (existeNodoPorID(id)) {
             Nodo nodo = buscarNodoPorID(id);
-            
+
             nodo.setDescripcion(descripcion);
             nodo.setProtocoloComunicacion(protocoloComunicacion);
             return "El nodo se modifico";
-        }else{
-            return "El nodo con ID " + id + " no existe";   
+        } else {
+            return "El nodo con ID " + id + " no existe";
         }
     }
-    
+
     /**
      * Metodo para eliminar un nodo
+     *
      * @param id campo unico con el que se identifica cada nodo
      * @return se elimino o no se elimino
      */
-
     public String eliminarNodoPorID(String id) {
-    
-        if(existeNodoPorID(id)){
-            
+
+        if (existeNodoPorID(id)) {
+
             Nodo nodo = buscarNodoPorID(id);
             nodos.remove(nodo);
             return "El nodo se elimino";
-        }else{
-            return "El nodo con ID " + id + " no existe";   
+        } else {
+            return "El nodo con ID " + id + " no existe";
         }
-        
+
     }
 }

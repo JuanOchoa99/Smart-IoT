@@ -23,15 +23,14 @@ public class GestionRed {
     private GestionNodos gestionNodos;
     private GestionActuadores gestionActuadores;
     private GestionSensores gestionSensores;
-    
 
-    public GestionRed(String id, String nombre, String descripcion) {               
+    public GestionRed(String id, String nombre, String descripcion) {
         this.red = new Red(id, nombre, descripcion);
         this.archivoDeConfiguracionDeRed = new ArchivoDeConfiguracionDeRed();
         this.gestionPuertasDeEnlace = new GestionPuertasDeEnlace();
         this.gestionNodos = new GestionNodos();
         this.gestionActuadores = new GestionActuadores();
-        this.gestionSensores = new GestionSensores();        
+        this.gestionSensores = new GestionSensores();
     }
 
     public GestionRed(String ruta, String nombreArchivo) {
@@ -39,7 +38,7 @@ public class GestionRed {
         this.gestionPuertasDeEnlace = this.archivoDeConfiguracionDeRed.cargarPuertasDeEnlace();
         this.gestionNodos = this.archivoDeConfiguracionDeRed.cargarNodos();
         this.gestionActuadores = this.archivoDeConfiguracionDeRed.cargarActuadores();
-        this.gestionSensores = this.archivoDeConfiguracionDeRed.cargarSensores();        
+        this.gestionSensores = this.archivoDeConfiguracionDeRed.cargarSensores();
         this.red = this.archivoDeConfiguracionDeRed.cargarRed();
     }
 
