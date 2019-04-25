@@ -3,72 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.usbbog.datan.niote.controlador.persistencia;
+package controlador.persistencia;
 
-import co.edu.usbbog.datan.niote.controlador.logica.GestionActuadores;
-import co.edu.usbbog.datan.niote.controlador.logica.GestionNodos;
-import co.edu.usbbog.datan.niote.controlador.logica.GestionPuertasDeEnlace;
-import co.edu.usbbog.datan.niote.controlador.logica.GestionSensores;
-import co.edu.usbbog.datan.niote.modelo.Red;
+import java.io.BufferedWriter;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.Persona;
 
 /**
  *
- * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
+ * @author Yury Muñoz
  */
-public class ArchivoDeConfiguracionDeRed {
+public class ArchivoPersona {
 
-    private String ruta;
-    private String nombreArchivo;
-
-    public ArchivoDeConfiguracionDeRed() {
-    }
-
-    public ArchivoDeConfiguracionDeRed(String ruta, String nombreArchivo) {
-        this.ruta = ruta;
-        this.nombreArchivo = nombreArchivo;
-    }
-
-    public String getRuta() {
-        return ruta;
-    }
-
-    public void setRuta(String ruta) {
-        this.ruta = ruta;
-    }
-
-    public String getNombreArchivo() {
-        return nombreArchivo;
-    }
-
-    public void setNombreArchivo(String nombreArchivo) {
-        this.nombreArchivo = nombreArchivo;
-    }
-
-    public Red cargarRed() {
-        System.out.println("Falta constrir...");
-        return null;
-    }
-
-    public GestionNodos cargarNodos() {
-        System.out.println("Falta constrir...");
-        return null;
-    }
-
-    public GestionPuertasDeEnlace cargarPuertasDeEnlace() {
-        System.out.println("Falta constrir...");
-        return null;
-    }
-
-    public GestionActuadores cargarActuadores() {
-        System.out.println("Falta constrir...");
-        return null;
-    }
-
-    public GestionSensores cargarSensores() {
-        System.out.println("Falta constrir...");
-        return null;
-    }
-    /**
     public static final String NOMBRE = "persona.txt"; // archivo Persona.txt
 
     private FileInputStream flujoEntrada; //imput al 
@@ -146,7 +104,7 @@ public class ArchivoDeConfiguracionDeRed {
             /*while (true) {
                 
                 listaPersona.add((Persona) lector.readObject());
-            }
+            }*/
             
         } catch (FileNotFoundException ex) {
             //Logger.getLogger(ArchivoPersona.class.getName()).log(Level.SEVERE, null, ex);
@@ -168,7 +126,7 @@ public class ArchivoDeConfiguracionDeRed {
             }
             catch (NullPointerException ex) {
                 //Logger.getLogger(ArchivoPersona.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+            }*/   
         
     }
     
@@ -217,7 +175,6 @@ public class ArchivoDeConfiguracionDeRed {
         } else {
             System.out.println("No existe la persona");
         }
-    }*/
-
+    }
 
 }

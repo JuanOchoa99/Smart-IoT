@@ -6,6 +6,7 @@
 package co.edu.usbbog.datan.niote.controlador.logica;
 
 import co.edu.usbbog.datan.niote.modelo.Nodo;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
-public class GestionNodos {
+public class GestionNodos implements Serializable{
 
     /**
      * Lista para almacenar cada nodo que se cree

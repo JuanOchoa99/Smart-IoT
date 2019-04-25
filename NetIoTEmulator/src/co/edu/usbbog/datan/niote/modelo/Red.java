@@ -5,13 +5,14 @@
  */
 package co.edu.usbbog.datan.niote.modelo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
-public class Red {
+public class Red implements Serializable{
     private String id;
     private String nombre;
     private String descripcion;

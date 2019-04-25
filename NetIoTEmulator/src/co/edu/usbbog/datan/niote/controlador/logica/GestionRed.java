@@ -8,12 +8,13 @@ package co.edu.usbbog.datan.niote.controlador.logica;
 import co.edu.usbbog.datan.niote.controlador.persistencia.ArchivoDeConfiguracionDeRed;
 import co.edu.usbbog.datan.niote.modelo.PuertaDeEnlace;
 import co.edu.usbbog.datan.niote.modelo.Red;
+import java.io.Serializable;
 
 /**
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
  */
-public class GestionRed {
+public class GestionRed implements Serializable {
 
     private Red red;
     private ArchivoDeConfiguracionDeRed archivoDeConfiguracionDeRed;
@@ -71,7 +72,14 @@ public class GestionRed {
     }
 
     public boolean agregarPuertaDeEnlaceALaRed(String idPuertaDeEnlace) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PuertaDeEnlace puertaDeEnlace = getGestionPuertaDeEnlace().buscarPuertaDeEnlacePorID(idPuertaDeEnlace);
+        if(puertaDeEnlace!=null){
+            getGestionPuertaDeEnlace().eliminarPuertaDeEnlacePorID(idPuertaDeEnlace);
+            getRed().getPuertasDeEnlace().add(puertaDeEnlace);
+            return true;
+        }else{
+            return false;
+        }      
     }
 
     public boolean verPuertasDeEnlaceDeLaRed() {
