@@ -9,6 +9,7 @@ import co.edu.usbbog.datan.niote.controlador.persistencia.ArchivoDeConfiguracion
 import co.edu.usbbog.datan.niote.modelo.PuertaDeEnlace;
 import co.edu.usbbog.datan.niote.modelo.Red;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -82,16 +83,42 @@ public class GestionRed implements Serializable {
         }      
     }
 
-    public boolean verPuertasDeEnlaceDeLaRed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String verPuertasDeEnlaceDeLaRed() {
+        List<PuertaDeEnlace> puertasDeEnlace = getRed().getPuertasDeEnlace();
+
+        String salida = "";
+        for (PuertaDeEnlace puertaDeEnlace : puertasDeEnlace) {
+            salida += salida + puertaDeEnlace.toString() + "\n";
+        }
+        return salida;
     }
 
     public PuertaDeEnlace buscarPuertaDeEnlaceDeLaRedPorID(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        List<PuertaDeEnlace> puertasDeEnlace = getRed().getPuertasDeEnlace();
+        
+        String salida = "";
+        if (puertasDeEnlace.getId().equals(id))) {
+            for (PuertaDeEnlace puertaDeEnlace : puertasDeEnlace) {
+                if (puertaDeEnlace.getId().equals(id)) {
+                    salida = puertaDeEnlace.toString() + "\n";
+                }
+            }
+        } else {
+            salida = "";
+        }
+        return salida;
     }
 
     public boolean removerPuertaDeEnlaceDeLaRed(String idPuertaDeEnlace) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    PuertaDeEnlace puertaDeEnlace = getGestionPuertaDeEnlace().buscarPuertaDeEnlacePorID(idPuertaDeEnlace);
+        if(puertaDeEnlace!=null){
+            getGestionPuertaDeEnlace().eliminarPuertaDeEnlacePorID(idPuertaDeEnlace);
+            getRed().getPuertasDeEnlace().remove(puertaDeEnlace);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public boolean agregarNodoALaRed(String idNodo, String idsPuertasDeEnlace) {
