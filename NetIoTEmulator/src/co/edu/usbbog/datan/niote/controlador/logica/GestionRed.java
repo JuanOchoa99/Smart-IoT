@@ -74,13 +74,22 @@ public class GestionRed implements Serializable {
 
     public boolean agregarPuertaDeEnlaceALaRed(String idPuertaDeEnlace) {
         PuertaDeEnlace puertaDeEnlace = getGestionPuertaDeEnlace().buscarPuertaDeEnlacePorID(idPuertaDeEnlace);
+        List<PuertaDeEnlace> puertasDeEnlace = getRed().getPuertasDeEnlace();
+        
         if(puertaDeEnlace!=null){
-            getGestionPuertaDeEnlace().eliminarPuertaDeEnlacePorID(idPuertaDeEnlace);
-            getRed().getPuertasDeEnlace().add(puertaDeEnlace);
-            return true;
+           for (PuertaDeEnlace puertaDeEnlaces : puertasDeEnlace) {
+                if (puertaDeEnlaces.getId().equals(idPuertaDeEnlace)) {
+                    return false;
+                }else{
+                    getGestionPuertaDeEnlace().eliminarPuertaDeEnlacePorID(idPuertaDeEnlace);            
+                    getRed().getPuertasDeEnlace().add(puertaDeEnlace);
+                    return true;
+                }
+            }           
         }else{
             return false;
         }      
+        return false;
     }
 
     public String verPuertasDeEnlaceDeLaRed() {
@@ -93,27 +102,26 @@ public class GestionRed implements Serializable {
         return salida;
     }
 
-    public PuertaDeEnlace buscarPuertaDeEnlaceDeLaRedPorID(String id) {
+    public String buscarPuertaDeEnlaceDeLaRedPorID(String id) {
         
         List<PuertaDeEnlace> puertasDeEnlace = getRed().getPuertasDeEnlace();
         
         String salida = "";
-        if (puertasDeEnlace.getId().equals(id))) {
+       
             for (PuertaDeEnlace puertaDeEnlace : puertasDeEnlace) {
                 if (puertaDeEnlace.getId().equals(id)) {
                     salida = puertaDeEnlace.toString() + "\n";
+                    break;
                 }
             }
-        } else {
-            salida = "";
-        }
-        return salida;
+        return null;
     }
 
     public boolean removerPuertaDeEnlaceDeLaRed(String idPuertaDeEnlace) {
     PuertaDeEnlace puertaDeEnlace = getGestionPuertaDeEnlace().buscarPuertaDeEnlacePorID(idPuertaDeEnlace);
+    
         if(puertaDeEnlace!=null){
-            getGestionPuertaDeEnlace().eliminarPuertaDeEnlacePorID(idPuertaDeEnlace);
+            getGestionPuertaDeEnlace().crearPuertaDeEnlace(puertaDeEnlace.getId(),puertaDeEnlace.getDescripcion(), false, puertaDeEnlace.getDireccionLogica(), puertaDeEnlace.getPuertoDeServicio(), puertaDeEnlace.getProtocoloComunicacionExterno());
             getRed().getPuertasDeEnlace().remove(puertaDeEnlace);
             return true;
         }else{
