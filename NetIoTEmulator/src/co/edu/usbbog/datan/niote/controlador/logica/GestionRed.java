@@ -115,7 +115,13 @@ public class GestionRed implements Serializable {
     }
 
     public boolean guardarRed(String ruta, String nombreArchivo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        archivoDeConfiguracionDeRed = new ArchivoDeConfiguracionDeRed(ruta, nombreArchivo,this);
+        if(archivoDeConfiguracionDeRed!=null){
+            return true;
+        }else{
+            return false;
+        }
+        
     }
 
     public boolean agregarSensorALaRed(String idSensor, String idNodo) {

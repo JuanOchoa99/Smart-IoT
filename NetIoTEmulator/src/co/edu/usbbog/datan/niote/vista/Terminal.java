@@ -856,7 +856,7 @@ public class Terminal {
      *
      */
     private void guardarRed() {
-        System.out.println("ingrese la ruta absoluta donde se encuentra el archivo de configuracion");
+        System.out.println("ingrese la ruta absoluta donde se encuentra el archivo de configuracion (C:\\nombrecarpeta\\)");
         String ruta = sn.next();
         System.out.println("ingrese nombre del archivo de configuracion (.niote)");
         String nombreArchivo = sn.next();
