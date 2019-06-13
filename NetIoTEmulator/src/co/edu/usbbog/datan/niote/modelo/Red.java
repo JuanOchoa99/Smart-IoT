@@ -6,6 +6,7 @@
 package co.edu.usbbog.datan.niote.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ public class Red implements Serializable{
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.puertasDeEnlace = new ArrayList<PuertaDeEnlace>();
     }
 
     public String getId() {

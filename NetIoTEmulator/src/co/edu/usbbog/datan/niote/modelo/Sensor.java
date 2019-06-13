@@ -25,7 +25,7 @@ public class Sensor implements Serializable{
         this.descripcion = descripcion;
         this.estado = estado;
         this.tipo = tipo;
-        this.datosGenerados = new ArrayList<>();
+        this.datosGenerados = new ArrayList<Dato>();
     }
 
     public String getId() {

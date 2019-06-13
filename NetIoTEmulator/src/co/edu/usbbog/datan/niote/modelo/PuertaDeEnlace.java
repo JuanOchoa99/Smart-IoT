@@ -6,6 +6,7 @@
 package co.edu.usbbog.datan.niote.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +32,8 @@ public class PuertaDeEnlace implements Serializable{
         this.direccionLogica = direccionLogica;
         this.puertoDeServicio = puertoDeServicio;
         this.protocoloComunicacionExterno = protocoloComunicacionExterno;
+        this.mensajes = new ArrayList<Mensaje>();
+        this.nodos = new ArrayList<Nodo>();
     }
 
     public String getId() {

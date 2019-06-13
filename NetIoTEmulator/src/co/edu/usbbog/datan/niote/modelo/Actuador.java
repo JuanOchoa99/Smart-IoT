@@ -26,8 +26,8 @@ public class Actuador implements Serializable{
         this.descripcion = descripcion;
         this.estado = estado;
         this.tipo = tipo;
-        this.accionesRealizadas = new ArrayList<>();
-        this.accionesEnCola = new ArrayList<>();
+        this.accionesRealizadas = new ArrayList<Orden>();
+        this.accionesEnCola = new ArrayList<Orden>();
     }
 
     public String getId() {

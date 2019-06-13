@@ -27,8 +27,9 @@ public class Nodo implements Serializable {
         this.descripcion = descripcion;
         this.estado = estado;
         this.protocoloComunicacion = protocoloComunicacion;
-        this.actuadores = new ArrayList<>();
-        this.sensores = new ArrayList<>();
+        this.actuadores = new ArrayList<Actuador>();
+        this.sensores = new ArrayList<Sensor>();
+        this.salidas = new ArrayList<PuertaDeEnlace>();
     }
 
 
