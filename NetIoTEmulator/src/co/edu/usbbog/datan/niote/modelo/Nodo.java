@@ -20,7 +20,6 @@ public class Nodo implements Serializable {
     private String protocoloComunicacion;
     private List<Actuador> actuadores;
     private List<Sensor> sensores;
-    private List<PuertaDeEnlace> salidas;
 
     public Nodo(String id, String descripcion, boolean estado, String protocoloComunicacion) {
         this.id = id;
@@ -29,7 +28,6 @@ public class Nodo implements Serializable {
         this.protocoloComunicacion = protocoloComunicacion;
         this.actuadores = new ArrayList<Actuador>();
         this.sensores = new ArrayList<Sensor>();
-        this.salidas = new ArrayList<PuertaDeEnlace>();
     }
 
 
@@ -85,14 +83,6 @@ public class Nodo implements Serializable {
     @Override
     public String toString() {
         return "Nodo{" + "id=" + id + ", descripcion=" + descripcion + ", estado=" + estado + ", protocoloComunicacion=" + protocoloComunicacion + '}';
-    }
-
-    public List<PuertaDeEnlace> getSalidas() {
-        return salidas;
-    }
-
-    public void setSalidas(List<PuertaDeEnlace> salidas) {
-        this.salidas = salidas;
     }
     
 }

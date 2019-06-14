@@ -10,6 +10,7 @@ import co.edu.usbbog.datan.niote.modelo.Nodo;
 import co.edu.usbbog.datan.niote.modelo.PuertaDeEnlace;
 import co.edu.usbbog.datan.niote.modelo.Red;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,9 +28,6 @@ public class GestionRed implements Serializable {
     private GestionActuadores gestionActuadores;
     private GestionSensores gestionSensores;
     
-    //modelos
-    private PuertaDeEnlace puertaDeEnlace;
-
     public GestionRed(String id, String nombre, String descripcion) {
         this.red = new Red(id, nombre, descripcion);
         this.archivoDeConfiguracionDeRed = new ArchivoDeConfiguracionDeRed();
@@ -54,13 +52,6 @@ public class GestionRed implements Serializable {
 
     public void setRed(Red red) {
         this.red = red;
-    }
-    public PuertaDeEnlace getPuertaDeEnlace() {
-        return puertaDeEnlace;
-    }
-
-    public void setPuertaDeEnlace(PuertaDeEnlace puertaDeEnlace) {
-        this.puertaDeEnlace = puertaDeEnlace;
     }
 
     public GestionNodos getGestionNodo() {
@@ -136,45 +127,53 @@ public class GestionRed implements Serializable {
         }
     }
 
-    public boolean agregarNodoALaRed(String idNodo, String idsPuertasDeEnlace) {
-    
+    public boolean agregarNodoALaRed(String idNodo, String idPuertasDeEnlace) {
         Nodo nodo = getGestionNodo().buscarNodoPorID(idNodo);
-        getGestionNodo().eliminarNodoPorID(idNodo);
-                    
-        if(nodo!=null){
-            List<Nodo> nodos = getPuertaDeEnlace().getNodos();
-           for (Nodo n : nodos) {
+        if (nodo != null) {
+            getGestionNodo().eliminarNodoPorID(idNodo);
+            List<Nodo> todosLosNodosDeLaRed = new ArrayList<>();
+            for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
+                todosLosNodosDeLaRed.addAll(puertaDeEnlace.getNodos());
+            }
+            for (Nodo n : todosLosNodosDeLaRed) {
                 if (n.getId().equals(idNodo)) {
-                    
-                   return true;
+                    System.out.println("El nodo ya existe en otra Puerta de Enlace");
+                    return true;
                 }
             }
-           getPuertaDeEnlace().getNodos().add(nodo);
-           return true;
-        }else{
+            for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
+                if (puertaDeEnlace.getId().equals(idPuertasDeEnlace)) {
+                    puertaDeEnlace.getNodos().add(nodo);
+                    return true;
+                }
+            }
             return false;
-        }      
-    
+        } else {
+            return false;
+        }
+
     }
 
-    public String validarPuertasDeEnlace(String idsPuertasDeEnlace) {
-        System.out.println(idsPuertasDeEnlace);
-        String[] puertasAAgregar=idsPuertasDeEnlace.split("\\-");
-        String salida ="";
-        for (int i = 0; i < puertasAAgregar.length; i++) {
-            if (!buscarPuertaDeEnlaceDeLaRedPorID(puertasAAgregar[i]).equals("")) {
-                salida=salida+(puertasAAgregar[i]+"-");
-            }            
+    public String validarPuertasDeEnlace(String idPuertasDeEnlace) {
+        System.out.println(idPuertasDeEnlace);
+        String salida = "";
+
+        if (!buscarPuertaDeEnlaceDeLaRedPorID(idPuertasDeEnlace).equals("")) {
+            salida = idPuertasDeEnlace;
         }
+
         System.out.println(salida);
         return salida;
     }
 
     public String verNodosDeLaRed() {
-           List<Nodo> nodos = getPuertaDeEnlace().getNodos();
+           List<Nodo> todosLosNodosDeLaRed = new ArrayList<>();
+            for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
+                todosLosNodosDeLaRed.addAll(puertaDeEnlace.getNodos());
+            }
 
         String salida = "";
-        for (Nodo nodo : nodos) {
+        for (Nodo nodo : todosLosNodosDeLaRed) {
             salida += salida + nodo.toString() + "\n";
         }
         return salida;
@@ -182,10 +181,13 @@ public class GestionRed implements Serializable {
 
     public Nodo buscarNodoDeLaRedPorID(String idNodo) {
         
-        List<Nodo> nodos= getPuertaDeEnlace().getNodos();
+         List<Nodo> todosLosNodosDeLaRed = new ArrayList<>();
+            for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
+                todosLosNodosDeLaRed.addAll(puertaDeEnlace.getNodos());
+            }
         String salida = "";
         
-            for (Nodo nodo : nodos) {
+            for (Nodo nodo : todosLosNodosDeLaRed) {
                 if (nodo.getId().equals(idNodo)) {
                     return nodo;
                 }
@@ -194,15 +196,8 @@ public class GestionRed implements Serializable {
     }
 
     public boolean removerNodoDeLaRed(String idNodo) {
-        Nodo nodo = buscarNodoDeLaRedPorID(idNodo);
-            
-        if(nodo!=null){
-            getGestionNodo().crearNodo(nodo.getId(), nodo.getDescripcion(), false, nodo.getProtocoloComunicacion());
-            getPuertaDeEnlace().getNodos().remove(nodo);
-            return true;
-        }else{
-            return false;
-        }}
+        return false;
+     }
 
     public boolean guardarRed(String ruta, String nombreArchivo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

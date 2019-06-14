@@ -741,13 +741,12 @@ public class Terminal {
         String idNodo = sn.next();
         if (this.principal.getGestionRed().getGestionNodo().buscarNodoPorID(idNodo) != null) {
             System.out.println(this.principal.getGestionRed().verPuertasDeEnlaceDeLaRed());
-            System.out.println("Digite los ID de las Puertas de Enlace a los que se conectara el Nodo que sera agregado a la red");
-            System.out.println("separados por \"-\" [idPuertaDeEnlace-idPuertaDeEnlace-idPuertaDeEnlace]");
-            String idsPuertasDeEnlace = sn.next();
-            idsPuertasDeEnlace = this.principal.getGestionRed().validarPuertasDeEnlace(idsPuertasDeEnlace);
-            if (!idsPuertasDeEnlace.equals("")) {
-                System.out.println("Puertas de enlace validas: " + idsPuertasDeEnlace);
-                System.out.println(this.principal.getGestionRed().agregarNodoALaRed(idNodo, idsPuertasDeEnlace));
+            System.out.println("Digite el ID de la Puerta de Enlace al que se conectara el Nodo que sera agregado a la red");            System.out.println("separados por \"-\" [idPuertaDeEnlace-idPuertaDeEnlace-idPuertaDeEnlace]");
+            String idPuertasDeEnlace = sn.next();
+            idPuertasDeEnlace = this.principal.getGestionRed().validarPuertasDeEnlace(idPuertasDeEnlace);
+            if (!idPuertasDeEnlace.equals("")) {
+                System.out.println("Puerta de enlace valida: " + idPuertasDeEnlace);
+                System.out.println(this.principal.getGestionRed().agregarNodoALaRed(idNodo, idPuertasDeEnlace));
             } else {
                 System.out.println("Ninguna Puerta de Enlace es Valida en la red");
             }
