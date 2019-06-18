@@ -209,7 +209,6 @@ public class GestionRed implements Serializable {
             for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
                 todosLosNodosDeLaRed.addAll(puertaDeEnlace.getNodos());
             }
-        String salida = "";
         
             for (Nodo nodo : todosLosNodosDeLaRed) {
                 if (nodo.getId().equals(idNodo)) {
@@ -234,29 +233,86 @@ public class GestionRed implements Serializable {
     }
 
     public boolean agregarSensorALaRed(String idSensor, String idNodo) {
-        Sensor sensor = getGestionSensores().buscarSensorPorID(idNodo);
+        Sensor sensor = getGestionSensores().buscarSensorPorID(idSensor);
         if (sensor != null) {
             getGestionSensores().eliminarSensorPorID(idSensor);
             List<Sensor> todosLosSensoresDeLaRed = new ArrayList<>();
-            /*for (Nodo nodo : getRed().getPuertasDeEnlace()) {
-                todosLosSensoresDeLaRed.addAll(nodo.getSensores());
-            }*/
+            List<Nodo> todosLosNodosDeLaRed = new ArrayList<>();
+            for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
+                todosLosNodosDeLaRed.addAll(puertaDeEnlace.getNodos());
+            }
+            for (Nodo n : todosLosNodosDeLaRed) {
+                todosLosSensoresDeLaRed.addAll(n.getSensores());
+            }
+            for (Sensor s : todosLosSensoresDeLaRed) {
+                if (s.getId().equals(idSensor)) {
+                    System.out.println("El Sensor ya existe en otro Nodo");
+                    return true;
+                }
+            }
+            for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
+             for (Nodo n : puertaDeEnlace.getNodos()) {
+                if (n.getId().equals(idNodo)) {
+                    n.getSensores().add(sensor);
+                    return true;
+                }
+            }
+            }
                     
 
         }
-        return true;
+        return false;
     }
 
-    public boolean verSensoresDeLaRed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String verSensoresDeLaRed() {
+    
+        List<Nodo> todosLosNodosDeLaRed = new ArrayList<>();
+        List<Sensor> todosLosSensoresDeLaRed = new ArrayList<>();
+        for(PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()){
+            todosLosNodosDeLaRed.addAll(puertaDeEnlace.getNodos());
+        }
+        for(Nodo nodo : todosLosNodosDeLaRed){
+            todosLosSensoresDeLaRed.addAll(nodo.getSensores());
+        }
+        String salida = "";
+        for(Sensor sensor : todosLosSensoresDeLaRed){
+            salida += salida + sensor.toString() + "\n";
+        }
+        return salida;   
     }
 
-    public Object buscarSensorDeLaRedPorID(String idSensor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Sensor buscarSensorDeLaRedPorID(String idSensor) {
+            List<Sensor> todosLosSensoresDeLaRed = new ArrayList<>();
+            List<Nodo> todosLosNodosDeLaRed = new ArrayList<>();
+            for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
+                todosLosNodosDeLaRed.addAll(puertaDeEnlace.getNodos());
+            }
+            for (Nodo n : todosLosNodosDeLaRed) {
+                todosLosSensoresDeLaRed.addAll(n.getSensores());
+            }
+            for (Sensor s : todosLosSensoresDeLaRed) {
+                if (s.getId().equals(idSensor)) {
+                    return s;
+                }
+            }
+            return null;
     }
 
     public boolean removerSensorDeLaRed(String idSensor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      
+            for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
+             for (Nodo n : puertaDeEnlace.getNodos()) {
+                for(Sensor s : n.getSensores()){
+                   if (s.getId().equals(idSensor)) {
+                    n.getSensores().remove(s);
+                    return true;
+                }else{
+                    return false;
+                   }
+                }
+            }
+            }
+        return true;
     }
     /**
      * Metodo para ver el Actuador en la red
@@ -283,16 +339,41 @@ public class GestionRed implements Serializable {
      * @return 
      */
     public Object buscarActuadorDeLaRedPorID(String idActuador) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        
+        List<Actuador> todosLosActuadoresDeLaRed = new ArrayList<>();
+            List<Nodo> todosLosNodosDeLaRed = new ArrayList<>();
+            for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
+                todosLosNodosDeLaRed.addAll(puertaDeEnlace.getNodos());
+            }
+            for (Nodo n : todosLosNodosDeLaRed) {
+                todosLosActuadoresDeLaRed.addAll(n.getActuadores());
+            }
+            for (Actuador a : todosLosActuadoresDeLaRed) {
+                if (a.getId().equals(idActuador)) {
+                    return a;
+                }
+            }
+            return null;}
     /**
      * Metodo para Remover Actuador de la red
      * @param idActuador
      * @return 
      */
     public boolean removerActuadorDeLaRed(String idActuador) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+      
+            for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
+             for (Nodo n : puertaDeEnlace.getNodos()) {
+                for(Actuador a : n.getActuadores()){
+                   if (a.getId().equals(idActuador)) {
+                    n.getActuadores().remove(a);
+                    return true;
+                }else{
+                    return false;
+                   }
+                }
+            }
+            }
+        return true;}
     /**
      * Metodo para agregar actuador en la red
      * @param idActuador
@@ -300,7 +381,35 @@ public class GestionRed implements Serializable {
      * @return 
      */
     public boolean agregarActuadorALaRed(String idActuador, String idNodo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Actuador actuador = getGestionActuadores().buscarActuadorPorID(idActuador);
+        if (actuador != null) {
+            getGestionSensores().eliminarSensorPorID(idActuador);
+            List<Actuador> todosLosActuadoresDeLaRed = new ArrayList<>();
+            List<Nodo> todosLosNodosDeLaRed = new ArrayList<>();
+            for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
+                todosLosNodosDeLaRed.addAll(puertaDeEnlace.getNodos());
+            }
+            for (Nodo n : todosLosNodosDeLaRed) {
+                todosLosActuadoresDeLaRed.addAll(n.getActuadores());
+            }
+            for (Actuador a : todosLosActuadoresDeLaRed) {
+                if (a.getId().equals(idActuador)) {
+                    System.out.println("El Actuador ya existe en otro Nodo");
+                    return true;
+                }
+            }
+            for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
+             for (Nodo n : puertaDeEnlace.getNodos()) {
+                if (n.getId().equals(idNodo)) {
+                    n.getActuadores().add(actuador);
+                    return true;
+                }
+            }
+            }
+                    
+
+        }
+        return false;
     }
 
 }
