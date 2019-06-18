@@ -224,7 +224,13 @@ public class GestionRed implements Serializable {
      }
 
     public boolean guardarRed(String ruta, String nombreArchivo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        archivoDeConfiguracionDeRed = new ArchivoDeConfiguracionDeRed(ruta, nombreArchivo,this);
+        if(archivoDeConfiguracionDeRed!=null){
+            return true;
+        }else{
+            return false;
+        }
+        
     }
 
     public boolean agregarSensorALaRed(String idSensor, String idNodo) {
@@ -252,19 +258,47 @@ public class GestionRed implements Serializable {
     public boolean removerSensorDeLaRed(String idSensor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    public boolean verActuadorDeLaRed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * Metodo para ver el Actuador en la red
+     * @return 
+     */
+    public String verActuadorDeLaRed() {
+        List<Nodo> todosLosNodosDeLaRed = new ArrayList<>();
+        List<Actuador> todosLosActuadoresDeLaRed = new ArrayList<>();
+        for(PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()){
+            todosLosNodosDeLaRed.addAll(puertaDeEnlace.getNodos());
+        }
+        for(Nodo nodo : todosLosNodosDeLaRed){
+            todosLosActuadoresDeLaRed.addAll(nodo.getActuadores());
+        }
+        String salida = "";
+        for(Actuador actuador : todosLosActuadoresDeLaRed){
+            salida += salida + actuador.toString() + "\n";
+        }
+        return salida;   
     }
-
+    /**
+     * Metodo para buscar actuador en la red
+     * @param idActuador
+     * @return 
+     */
     public Object buscarActuadorDeLaRedPorID(String idActuador) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**
+     * Metodo para Remover Actuador de la red
+     * @param idActuador
+     * @return 
+     */
     public boolean removerActuadorDeLaRed(String idActuador) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**
+     * Metodo para agregar actuador en la red
+     * @param idActuador
+     * @param idNodo
+     * @return 
+     */
     public boolean agregarActuadorALaRed(String idActuador, String idNodo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
