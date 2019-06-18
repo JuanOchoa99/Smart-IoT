@@ -9,6 +9,8 @@ import co.edu.usbbog.datan.niote.controlador.persistencia.ArchivoDeConfiguracion
 import co.edu.usbbog.datan.niote.modelo.PuertaDeEnlace;
 import co.edu.usbbog.datan.niote.modelo.Red;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -139,19 +141,36 @@ public class GestionRed implements Serializable {
     public boolean removerSensorDeLaRed(String idSensor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**
+     * Metodo para ver el Actuador en la red
+     * @return 
+     */
     public boolean verActuadorDeLaRed() {
+        List<Actuador> todosLosActuadoresDeLaRed = new ArrayList<>();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**
+     * Metodo para buscar actuador en la red
+     * @param idActuador
+     * @return 
+     */
     public Object buscarActuadorDeLaRedPorID(String idActuador) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**
+     * Metodo para Remover Actuador de la red
+     * @param idActuador
+     * @return 
+     */
     public boolean removerActuadorDeLaRed(String idActuador) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**
+     * Metodo para agregar actuador en la red
+     * @param idActuador
+     * @param idNodo
+     * @return 
+     */
     public boolean agregarActuadorALaRed(String idActuador, String idNodo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
