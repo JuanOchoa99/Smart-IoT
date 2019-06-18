@@ -11,7 +11,6 @@ import co.edu.usbbog.datan.niote.controlador.logica.GestionPuertasDeEnlace;
 import co.edu.usbbog.datan.niote.controlador.logica.GestionRed;
 import co.edu.usbbog.datan.niote.controlador.logica.GestionSensores;
 import co.edu.usbbog.datan.niote.modelo.Red;
-import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -20,8 +19,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

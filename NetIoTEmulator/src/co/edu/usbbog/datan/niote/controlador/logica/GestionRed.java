@@ -90,7 +90,7 @@ public class GestionRed implements Serializable {
                 if (!nodo.getActuadores().isEmpty()) {
                     salida+="\tSensores:\n";
                 }
-                a: for (Sensor sensor : nodo.getSensores()) {
+                s: for (Sensor sensor : nodo.getSensores()) {
                     salida+="\t\t"+sensor.toString()+":\n";
                 }
             }
