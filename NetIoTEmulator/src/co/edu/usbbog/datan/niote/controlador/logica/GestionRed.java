@@ -6,6 +6,8 @@
 package co.edu.usbbog.datan.niote.controlador.logica;
 
 import co.edu.usbbog.datan.niote.controlador.persistencia.ArchivoDeConfiguracionDeRed;
+import co.edu.usbbog.datan.niote.modelo.Actuador;
+import co.edu.usbbog.datan.niote.modelo.Nodo;
 import co.edu.usbbog.datan.niote.modelo.PuertaDeEnlace;
 import co.edu.usbbog.datan.niote.modelo.Red;
 import java.io.Serializable;
@@ -145,9 +147,20 @@ public class GestionRed implements Serializable {
      * Metodo para ver el Actuador en la red
      * @return 
      */
-    public boolean verActuadorDeLaRed() {
+    public String verActuadorDeLaRed() {
+        List<Nodo> todosLosNodosDeLaRed = new ArrayList<>();
         List<Actuador> todosLosActuadoresDeLaRed = new ArrayList<>();
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()){
+            todosLosNodosDeLaRed.addAll(puertaDeEnlace.getNodos());
+        }
+        for(Nodo nodo : todosLosNodosDeLaRed){
+            todosLosActuadoresDeLaRed.addAll(nodo.getActuadores());
+        }
+        String salida = "";
+        for(Actuador actuador : todosLosActuadoresDeLaRed){
+            salida += salida + actuador.toString() + "\n";
+        }
+        return salida;   
     }
     /**
      * Metodo para buscar actuador en la red
