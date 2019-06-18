@@ -6,9 +6,11 @@
 package co.edu.usbbog.datan.niote.controlador.logica;
 
 import co.edu.usbbog.datan.niote.controlador.persistencia.ArchivoDeConfiguracionDeRed;
+import co.edu.usbbog.datan.niote.modelo.Actuador;
 import co.edu.usbbog.datan.niote.modelo.Nodo;
 import co.edu.usbbog.datan.niote.modelo.PuertaDeEnlace;
 import co.edu.usbbog.datan.niote.modelo.Red;
+import co.edu.usbbog.datan.niote.modelo.Sensor;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,8 +72,30 @@ public class GestionRed implements Serializable {
         return gestionPuertasDeEnlace;
     }
 
-    public boolean verRed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String verRed() {
+        String salida ="";
+        pe: for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
+            salida+=puertaDeEnlace.toString()+"\\>\n";
+            if (!puertaDeEnlace.getNodos().isEmpty()) {
+               salida+="Nodos:\n"; 
+            }
+            n: for (Nodo nodo : puertaDeEnlace.getNodos()) {
+                salida+="\t"+nodo.toString()+":\n";
+                if (!nodo.getActuadores().isEmpty()) {
+                    salida+="\tActuadores:\n";
+                }
+                a: for (Actuador actuador : nodo.getActuadores()) {
+                    salida+="\t\t"+actuador.toString()+":\n";
+                }
+                if (!nodo.getActuadores().isEmpty()) {
+                    salida+="\tSensores:\n";
+                }
+                a: for (Sensor sensor : nodo.getSensores()) {
+                    salida+="\t\t"+sensor.toString()+":\n";
+                }
+            }
+        }        
+        return salida;
     }
 
     public boolean agregarPuertaDeEnlaceALaRed(String idPuertaDeEnlace) {
@@ -204,7 +228,17 @@ public class GestionRed implements Serializable {
     }
 
     public boolean agregarSensorALaRed(String idSensor, String idNodo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Sensor sensor = getGestionSensores().buscarSensorPorID(idNodo);
+        if (sensor != null) {
+            getGestionSensores().eliminarSensorPorID(idSensor);
+            List<Sensor> todosLosSensoresDeLaRed = new ArrayList<>();
+            /*for (Nodo nodo : getRed().getPuertasDeEnlace()) {
+                todosLosSensoresDeLaRed.addAll(nodo.getSensores());
+            }*/
+                    
+
+        }
+        return true;
     }
 
     public boolean verSensoresDeLaRed() {
