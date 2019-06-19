@@ -12,8 +12,6 @@ import co.edu.usbbog.datan.niote.modelo.PuertaDeEnlace;
 import co.edu.usbbog.datan.niote.modelo.Red;
 import co.edu.usbbog.datan.niote.modelo.Sensor;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
