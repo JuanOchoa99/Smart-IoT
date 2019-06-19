@@ -5,10 +5,19 @@
  */
 package co.edu.usbbog.datan.niote.controlador.logica;
 
+import co.edu.usbbog.datan.niote.vista.Principal;
+
 /**
  *
- * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class Emulador {
+    private Principal principal;
+
+    public Emulador(Principal principal) {
+        this.principal = principal;
+    }
+    
+    
 
 }

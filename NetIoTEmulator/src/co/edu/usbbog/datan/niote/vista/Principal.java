@@ -11,7 +11,7 @@ import co.edu.usbbog.datan.niote.controlador.logica.ValidacionesSistema;
 
 /**
  *
- * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class Principal extends javax.swing.JFrame {
 
@@ -29,6 +29,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         this.validacionesSistema = new ValidacionesSistema();
         this.terminal = new Terminal(this);
+        this.emulador = new Emulador(this);
         //initComponents();
     }
 

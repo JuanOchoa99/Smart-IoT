@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class Actuador implements Serializable{
     private String id;

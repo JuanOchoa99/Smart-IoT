@@ -15,7 +15,7 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 /**
  *
- * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class ValidacionesSistema {
 

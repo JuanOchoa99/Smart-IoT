@@ -7,7 +7,7 @@ package co.edu.usbbog.datan.niote.controlador.simulador;
 
 /**
  *
- * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class Gateway {
     

@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *
- * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class Dato implements Serializable{
     private String valor;

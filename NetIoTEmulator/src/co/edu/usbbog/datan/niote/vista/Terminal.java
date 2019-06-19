@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class Terminal {
 
@@ -741,14 +741,13 @@ public class Terminal {
         String idNodo = sn.next();
         if (this.principal.getGestionRed().getGestionNodo().buscarNodoPorID(idNodo) != null) {
             System.out.println(this.principal.getGestionRed().verPuertasDeEnlaceDeLaRed());
-            System.out.println("Digite el ID de la Puerta de Enlace al que se conectara el Nodo que sera agregado a la red");            System.out.println("separados por \"-\" [idPuertaDeEnlace-idPuertaDeEnlace-idPuertaDeEnlace]");
+            System.out.println("Digite el ID de la Puerta de Enlace al que se conectara el Nodo que sera agregado a la red");
             String idPuertasDeEnlace = sn.next();
-            idPuertasDeEnlace = this.principal.getGestionRed().validarPuertasDeEnlace(idPuertasDeEnlace);
-            if (!idPuertasDeEnlace.equals("")) {
+            if (this.principal.getGestionRed().buscarPuertaDeEnlaceDeLaRedPorID(idPuertasDeEnlace)!=null) {
                 System.out.println("Puerta de enlace valida: " + idPuertasDeEnlace);
                 System.out.println(this.principal.getGestionRed().agregarNodoALaRed(idNodo, idPuertasDeEnlace));
             } else {
-                System.out.println("Ninguna Puerta de Enlace es Valida en la red");
+                System.out.println("La Puerta de Enlace es valida en la red");
             }
         } else {
             System.out.println("Nodo no existe en la red");
@@ -867,7 +866,7 @@ public class Terminal {
      */
     private void menuControl() {
         int opc = -1;
-        do {
+        do {            
             System.out.println("Net IoT Emulator");
             System.out.println("Red: " + this.principal.getGestionRed().getRed().getId()
                     + " - " + this.principal.getGestionRed().getRed().getNombre()
@@ -1257,10 +1256,9 @@ public class Terminal {
         System.out.println("Programa de Ingenieria de Sistemas - Facultad de Ingenieria");
         System.out.println("Universidad de San Buenaventura - Sede Bogotá");
         System.out.println("Autores:");
-        System.out.println("**** Andrés Sanchez          (Docente Lider)");
-        System.out.println("**** Juan Ochoa              (Estudiante)");
-        System.out.println("**** Sebastian Villanueva    (Estudiante)");
-        System.out.println("**** Gabriel Peña            (Estudiante)");
+        System.out.println("**** Andrés Armando Sánchez Martín          (Docente Lider) aasanchez@usbbog.edu.co");
+        System.out.println("**** Juan José Ochoa Ortiz                  (Estudiante)    oojuan@academia.usbbog.edu.co");
+        System.out.println("**** Sebastián Enrique Villanueva Navarro   (Estudiante)    vsebastian@academia.usbbog.edu.co");
         System.out.println();
         System.out.println();
     }

@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  *
- * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva, Gabriel Peña.
+ * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class GestionActuadores implements Serializable{
 
@@ -197,17 +197,17 @@ public class GestionActuadores implements Serializable{
     /**
      * Metodo para la eliminación de ua actuador por su id
      *
-     * @param id del actuador que se va a eliminar
+     * @param idActuador del actuador que se va a eliminar
      * @return Si se elimino el actuador se confirma por medio de un string,
      * sino se confirma que no se elimino
      */
-    public String eliminarActuadorPorID(String id) {
-        if (existeActuadorPorID(id)) {
-            Actuador actuador = buscarActuadorPorID(id);
+    public String eliminarActuadorPorID(String idActuador) {
+        if (existeActuadorPorID(idActuador)) {
+            Actuador actuador = buscarActuadorPorID(idActuador);
             actuadores.remove(actuador);
             return "El actuador se elimino";
         } else {
-            return "El actuador con ID: " + id + " no se elimino";
+            return "El actuador con ID: " + idActuador + " no se elimino";
         }
     }
 }
