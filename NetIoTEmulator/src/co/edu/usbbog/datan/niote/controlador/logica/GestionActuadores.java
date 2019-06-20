@@ -52,46 +52,6 @@ public class GestionActuadores implements Serializable{
         this.actuadores = actuadores;
     }
 
-    /*
-    public void verActuador() {
-
-        List<PuertaDeEnlace> puertasDeEnlaceDeLaRed = red.getPuertasDeEnlace();
-
-        for (PuertaDeEnlace puertaDeEnlace : puertasDeEnlaceDeLaRed) {
-            List<Nodo> nodos = puertaDeEnlace.getNodos();
-            for (Nodo nodo : nodos) {
-                List<Actuador> actuadores = nodo.getActuadores();
-                for (Actuador actuadore : actuadores) {
-                    System.out.println(actuadore.toString());
-                }
-
-            }
-
-        }
-    }
-    public void agregarActuador(String id, String descripcion, boolean estado, String tipo, String nodoId, String gatewayId) {
-
-        List<PuertaDeEnlace> puertasDeEnlaceDeLaRed = red.getPuertasDeEnlace();
-
-        for (PuertaDeEnlace puertaDeEnlace : puertasDeEnlaceDeLaRed) {
-            if (puertaDeEnlace.getId().equals(gatewayId)) {
-                List<Nodo> nodos = puertaDeEnlace.getNodos();
-                for (Nodo nodo : nodos) {
-                    if (nodo.getId().equals(nodoId)) {
-                        puertaDeEnlace.getNodos().remove(nodo);
-                        List<Actuador> actuadores = new ArrayList<>();
-                        Actuador actuador = new Actuador(id, descripcion, estado, tipo);
-                        actuadores.add(actuador);
-                        nodo.setActuadores(actuadores);
-                        puertaDeEnlace.getNodos().add(nodo);
-                    }
-
-                }
-            }
-
-        }
-    }
-     */
     /**
      *Metodo para ver todos los actuadores que estan creados
      * @return retorna un string que visualiza los actuadores creados

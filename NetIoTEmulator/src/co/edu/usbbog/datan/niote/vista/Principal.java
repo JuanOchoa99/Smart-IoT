@@ -16,6 +16,9 @@ import co.edu.usbbog.datan.niote.controlador.logica.ValidacionesSistema;
 public class Principal extends javax.swing.JFrame {
 
     //relacion Logica
+    /**
+     * 
+     */
     private GestionRed gestionRed;
     private ValidacionesSistema validacionesSistema;
     private Emulador emulador;

@@ -55,46 +55,6 @@ public class GestionSensores implements Serializable{
         this.sensores = sensores;
     }
 
-    /*
-    public void agregarSensor(String id, String descripcion, boolean estado, String tipo, String nodoId, String gatewayId) {
-
-        List<PuertaDeEnlace> puertasDeEnlaceDeLaRed = red.getPuertasDeEnlace();
-
-        for (PuertaDeEnlace puertaDeEnlace : puertasDeEnlaceDeLaRed) {
-            if (puertaDeEnlace.getId().equals(gatewayId)) {
-                List<Nodo> nodos = puertaDeEnlace.getNodos();
-                for (Nodo nodo : nodos) {
-                    if (nodo.getId().equals(nodoId)) {
-                        puertaDeEnlace.getNodos().remove(nodo);
-                        List<Sensor> sensores = new ArrayList<>();
-                        Sensor sensor = new Sensor(id, descripcion, estado, tipo);
-                        sensores.add(sensor);
-                        nodo.setSensores(sensores);
-                        puertaDeEnlace.getNodos().add(nodo);
-                    }
-
-                }
-            }
-
-        }
-    }
-     public void verSensor() {
-
-        List<PuertaDeEnlace> puertasDeEnlaceDeLaRed = red.getPuertasDeEnlace();
-
-        for (PuertaDeEnlace puertaDeEnlace : puertasDeEnlaceDeLaRed) {
-            List<Nodo> nodos = puertaDeEnlace.getNodos();
-            for (Nodo nodo : nodos) {
-                List<Sensor> sensores = nodo.getSensores();
-                for (Sensor sensore : sensores) {
-                    System.out.println(sensore.toString());
-                }
-
-            }
-
-        }
-    }
-     */
     /**
      * Metodo para ver todos los sensores creados
      *

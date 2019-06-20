@@ -138,11 +138,11 @@ public class GestionRed implements Serializable {
         if (puertaDeEnlace != null) {
             for (Nodo nodo : puertaDeEnlace.getNodos()) {
                 removerNodoDeLaRed(nodo.getId());
-            }            
+            }
             if (getRed().getPuertasDeEnlace().remove(puertaDeEnlace)) {
                 getGestionPuertaDeEnlace().crearPuertaDeEnlace(puertaDeEnlace.getId(), puertaDeEnlace.getDescripcion(), false, puertaDeEnlace.getDireccionLogica(), puertaDeEnlace.getPuertoDeServicio(), puertaDeEnlace.getProtocoloComunicacionExterno());
                 return true;
-            }else{
+            } else {
                 return false;
             }
         } else {
@@ -272,7 +272,7 @@ public class GestionRed implements Serializable {
 
     public boolean removerSensorDeLaRed(String idSensor) {
         Sensor sensor = buscarSensorDeLaRedPorID(idSensor);
-        if (sensor != null) {            
+        if (sensor != null) {
             pe:
             for (int i = 0; i < getRed().getPuertasDeEnlace().size(); i++) {
                 n:
@@ -368,7 +368,7 @@ public class GestionRed implements Serializable {
      */
     public boolean removerActuadorDeLaRed(String idActuador) {
         Actuador actuador = buscarActuadorDeLaRedPorID(idActuador);
-        if (actuador != null) {            
+        if (actuador != null) {
             pe:
             for (int i = 0; i < getRed().getPuertasDeEnlace().size(); i++) {
                 n:
@@ -392,6 +392,5 @@ public class GestionRed implements Serializable {
         } else {
             return false;
         }
-
     }
 }

@@ -35,7 +35,6 @@ public class ValidacionesSistema {
      * @return
      */
     private boolean configuracionMQTT() {
-        /*
         String topic = "prueba/neiote";
         int qos = 2;
         String broker = "tcp://localhost:1883";
@@ -55,9 +54,6 @@ public class ValidacionesSistema {
         } catch (MqttException me) {
             return false;
         }
-        */
-        
-        return true;
     }
 
     /**
