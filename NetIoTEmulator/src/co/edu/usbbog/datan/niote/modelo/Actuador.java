@@ -150,7 +150,7 @@ public class Actuador implements Serializable {
     /**
      * Metodo para obtener la lista de acciones en cola
      *
-     * @return devuelve accionesEnCOla
+     * @return devuelve accionesEnCola
      */
     public List<Orden> getAccionesEnCola() {
         return accionesEnCola;
