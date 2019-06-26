@@ -18,16 +18,41 @@ import java.io.Serializable;
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class GestionRed implements Serializable {
-
+    /**
+    * Variable de tipo Red para guardar la red
+    */
     private Red red;
+    
+    /**
+     * Variable que llama a la clase ArchivoDeConfiguracionDeRed
+     */
     private ArchivoDeConfiguracionDeRed archivoDeConfiguracionDeRed;
 
     //relaciones
+    
+    /**
+     * Variable que llama a la clase GestionPuertasDeEnlace
+     */
     private GestionPuertasDeEnlace gestionPuertasDeEnlace;
+    /**
+     * Variable que llama a la clase GestionNodos
+     */
     private GestionNodos gestionNodos;
+    /**
+     * Variable que llama a la clase GestionActuadores
+     */
     private GestionActuadores gestionActuadores;
+    /**
+     * Variable que llama a la clase GestionSensores
+     */
     private GestionSensores gestionSensores;
-
+    
+    /**
+     * Metodo constructor para crear una nueva red
+     * @param id de la red
+     * @param nombre de la red
+     * @param descripcion de la red
+     */
     public GestionRed(String id, String nombre, String descripcion) {
         this.red = new Red(id, nombre, descripcion);
         this.archivoDeConfiguracionDeRed = new ArchivoDeConfiguracionDeRed();
@@ -36,7 +61,12 @@ public class GestionRed implements Serializable {
         this.gestionActuadores = new GestionActuadores();
         this.gestionSensores = new GestionSensores();
     }
-
+    
+    /**
+     * Metodo constructor para abrir una red guardad en un archivo
+     * @param ruta ruta en la que se encuentra el archivo
+     * @param nombreArchivo nombre del archivo
+     */
     public GestionRed(String ruta, String nombreArchivo) {
         this.archivoDeConfiguracionDeRed = new ArchivoDeConfiguracionDeRed(ruta, nombreArchivo);
         this.gestionPuertasDeEnlace = this.archivoDeConfiguracionDeRed.cargarPuertasDeEnlace();
@@ -45,31 +75,53 @@ public class GestionRed implements Serializable {
         this.gestionSensores = this.archivoDeConfiguracionDeRed.cargarSensores();
         this.red = this.archivoDeConfiguracionDeRed.cargarRed();
     }
-
+    
+    /**
+     * Metodo para obtener los valores dentro de la variable red
+     * @return devuelve la variable red
+     */
     public Red getRed() {
         return red;
     }
-
+    /**
+     * Metodo para almacenar informacion dentro de la variable red
+     * @param red variable de tipo Red
+     */
     public void setRed(Red red) {
         this.red = red;
     }
-
+    /**
+     * Metodo para obtener la informacion dentro de la variable gestionNodos
+     * @return devuelve la variable gestionNodos
+     */
     public GestionNodos getGestionNodo() {
         return gestionNodos;
     }
-
+    /**
+     * Metodo para obtener la informacion dentro de la variable gestionActuadores
+     * @return devuelve la variable gestionActuadores
+     */
     public GestionActuadores getGestionActuadores() {
         return gestionActuadores;
     }
-
+    /**
+     * Metodo para obtener la informacion dentro de la variable gestionSensores
+     * @return devuelve la variable gestionSensores
+     */
     public GestionSensores getGestionSensores() {
         return gestionSensores;
     }
-
+    /**
+     * Metodo para obtener la informacion dentro de la variable gestionPuertasDeEnlace
+     * @return devuelve la variable gestionPuertasDeEnlace
+     */
     public GestionPuertasDeEnlace getGestionPuertaDeEnlace() {
         return gestionPuertasDeEnlace;
     }
-
+    /**
+     * Metodo para ver Todos los objetos que contiene la red
+     * @return devuelve una variable de tipo String con todos los componentes de la red 
+     */
     public String verRed() {
         String salida = "Las puertas de enlace de la red " + getRed().getNombre() + "son:\n";
         pe:
@@ -99,7 +151,12 @@ public class GestionRed implements Serializable {
         }
         return salida;
     }
-
+    
+    /**
+     * Metodo para agregar una puerta de enlace a la red
+     * @param idPuertaDeEnlace id de la puerta de enace que se va a agregar
+     * @return devuelve true=se agrego o false=no se agrego   
+     */
     public boolean agregarPuertaDeEnlaceALaRed(String idPuertaDeEnlace) {
         PuertaDeEnlace puertaDeEnlace = getGestionPuertaDeEnlace().buscarPuertaDeEnlacePorID(idPuertaDeEnlace);
         if (puertaDeEnlace != null) {
@@ -115,7 +172,10 @@ public class GestionRed implements Serializable {
             return false;
         }
     }
-
+    /**
+     * Metodo para ver las puertas de enlace de la red
+     * @return devuelve una variable de tipo String que contiene las puertas de enlace
+     */
     public String verPuertasDeEnlaceDeLaRed() {
         String salida = "la red " + getRed().getNombre() + "tiene:\n";
         for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
@@ -123,7 +183,12 @@ public class GestionRed implements Serializable {
         }
         return salida;
     }
-
+    
+    /**
+     * Metodo para buscar una puerta de enlace dentro de la red
+     * @param idPuertaDeEnlace id de la puerta de enlace que se va a buscar 
+     * @return devuelve la puerta de enlace si existe el id, de lo contrario devuelve null
+     */
     public PuertaDeEnlace buscarPuertaDeEnlaceDeLaRedPorID(String idPuertaDeEnlace) {
         for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
             if (puertaDeEnlace.getId().equals(idPuertaDeEnlace)) {
@@ -132,7 +197,11 @@ public class GestionRed implements Serializable {
         }
         return null;
     }
-
+    /**
+     * Metodo para remover una puerta de enlace de la red
+     * @param idPuertaDeEnlace id de la puerta de enlace que se va a remover
+     * @return devuelve true = se elimino o false = no se elimino
+     */
     public boolean removerPuertaDeEnlaceDeLaRed(String idPuertaDeEnlace) {
         PuertaDeEnlace puertaDeEnlace = buscarPuertaDeEnlaceDeLaRedPorID(idPuertaDeEnlace);
         if (puertaDeEnlace != null) {
@@ -149,7 +218,12 @@ public class GestionRed implements Serializable {
             return false;
         }
     }
-
+    /**
+     * Metodo para agregar un nodo a la red 
+     * @param idNodo id del nodo que se va agregar
+     * @param idPuertaDeEnlace id de la puerta de enlace a la que va a pertenecer
+     * @return devuelve true = se agrego o false = no se agrego
+     */
     public boolean agregarNodoALaRed(String idNodo, String idPuertaDeEnlace) {
         Nodo nodo = getGestionNodo().buscarNodoPorID(idNodo);
         if (nodo != null) {
@@ -170,7 +244,10 @@ public class GestionRed implements Serializable {
             return false;
         }
     }
-
+    /**
+     * Metodo para ver los nodos que pertenecen a la red 
+     * @return devuelve una variable de tipo String con los nodos de la red 
+     */
     public String verNodosDeLaRed() {
         String salida = "";
         pe:
@@ -183,7 +260,11 @@ public class GestionRed implements Serializable {
         }
         return salida;
     }
-
+    /**
+     * Metodo para buscar un nodo de la red mediante su id
+     * @param idNodo id del nodo a buscar
+     * @return devuelve el nodo si se encontro o null si no se encontro
+     */
     public Nodo buscarNodoDeLaRedPorID(String idNodo) {
         for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
             for (Nodo nodo : puertaDeEnlace.getNodos()) {
@@ -194,7 +275,12 @@ public class GestionRed implements Serializable {
         }
         return null;
     }
-
+    
+    /**
+     * Metodo para remover nodo de la red
+     * @param idNodo id del nodo que se va a remover 
+     * @return devuelve true = se removio o false = no se removio
+     */
     public boolean removerNodoDeLaRed(String idNodo) {
         Nodo nodo = buscarNodoDeLaRedPorID(idNodo);
         if (nodo != null) {
@@ -216,7 +302,12 @@ public class GestionRed implements Serializable {
             return false;
         }
     }
-
+    /**
+     * Metodo para agregar sensor a la red
+     * @param idSensor id del sensor que se va a a gregar
+     * @param idNodo id del nodo al que va a pertenecer
+     * @return  devuelve true = se agrego o false = no se agrego 
+     */
     public boolean agregarSensorALaRed(String idSensor, String idNodo) {
         Sensor sensor = getGestionSensores().buscarSensorPorID(idSensor);
         if (sensor != null) {
@@ -239,7 +330,10 @@ public class GestionRed implements Serializable {
             return false;
         }
     }
-
+    /**
+     * Metodo para ver los sensores de la red
+     * @return devuelve variable de tipo String con los sensores de la red
+     */
     public String verSensoresDeLaRed() {
         String salida = "";
         pe:
@@ -256,7 +350,11 @@ public class GestionRed implements Serializable {
         }
         return salida;
     }
-
+    /**
+     * Metodo para buscar un sesnsor mediante su id
+     * @param idSensor id del sensor que se va a buscar 
+     * @return devuelve el sensor si se encontro, de lo contrario devuelve null
+     */
     public Sensor buscarSensorDeLaRedPorID(String idSensor) {
         for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
             for (Nodo nodo : puertaDeEnlace.getNodos()) {
@@ -269,7 +367,11 @@ public class GestionRed implements Serializable {
         }
         return null;
     }
-
+    /**
+     * Metodo para remover un sensor de la red
+     * @param idSensor id del sensor que se va a remover 
+     * @return devuelve true = se removio o false = no se removio
+     */
     public boolean removerSensorDeLaRed(String idSensor) {
         Sensor sensor = buscarSensorDeLaRedPorID(idSensor);
         if (sensor != null) {
@@ -290,11 +392,10 @@ public class GestionRed implements Serializable {
     }
 
     /**
-     * Metodo para agregar actuador en la red
-     *
-     * @param idActuador
-     * @param idNodo
-     * @return
+     * Metodo para agregar un actuador en la red
+     * @param idActuador id del actuador que se va a agregar
+     * @param idNodo id del nodo al que va a pertenecer 
+     * @return devuelve true = se agrego o false = no se agrego
      */
     public boolean agregarActuadorALaRed(String idActuador, String idNodo) {
         Actuador actuador = getGestionActuadores().buscarActuadorPorID(idActuador);
@@ -320,9 +421,8 @@ public class GestionRed implements Serializable {
     }
 
     /**
-     * Metodo para ver los Actuadores en la red
-     *
-     * @return
+     * Metodo para ver los Actuadores de la red
+     * @return variable de tipo String que contiene los actuadores
      */
     public String verActuadorDeLaRed() {
         String salida = "";
@@ -342,10 +442,9 @@ public class GestionRed implements Serializable {
     }
 
     /**
-     * Metodo para buscar actuador en la red
-     *
-     * @param idActuador
-     * @return
+     * Metodo para buscar actuador de la red por id
+     * @param idActuador id del actuador que se va a buscar
+     * @return devuelve el actuador si se encontro, de lo contrario devuelve null
      */
     public Actuador buscarActuadorDeLaRedPorID(String idActuador) {
         for (PuertaDeEnlace puertaDeEnlace : getRed().getPuertasDeEnlace()) {
@@ -362,9 +461,8 @@ public class GestionRed implements Serializable {
 
     /**
      * Metodo para Remover Actuador de la red
-     *
-     * @param idActuador
-     * @return
+     * @param idActuador id del actuador que se va a remover
+     * @return devuelve true = se removio o false = no se removio
      */
     public boolean removerActuadorDeLaRed(String idActuador) {
         Actuador actuador = buscarActuadorDeLaRedPorID(idActuador);
@@ -384,7 +482,12 @@ public class GestionRed implements Serializable {
             return false;
         }
     }
-
+    /**
+     * Metodo para guardar la red como archivo
+     * @param ruta ruta en la que se quiere guardar el archivo
+     * @param nombreArchivo nombre del archivo que se va a crear
+     * @return devuelve true = se guardo o false = no se guardo
+     */
     public boolean guardarRed(String ruta, String nombreArchivo) {
         archivoDeConfiguracionDeRed = new ArchivoDeConfiguracionDeRed(ruta, nombreArchivo, this);
         if (archivoDeConfiguracionDeRed != null) {
