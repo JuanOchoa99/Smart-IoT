@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * 
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
-public class GestionNodos implements Serializable{
+public class GestionNodos implements Serializable {
 
     /**
      * Lista para almacenar cada nodo que se cree
@@ -54,7 +54,7 @@ public class GestionNodos implements Serializable{
     public void setNodos(List<Nodo> nodos) {
         this.nodos = nodos;
     }
-    
+
     /**
      * Metodo para ver todos los nodos existentes
      *

@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
-public class GestionPuertasDeEnlace implements Serializable{
+public class GestionPuertasDeEnlace implements Serializable {
 
     /**
      * Variable para guardar la lista de puertas de enlace
@@ -167,7 +167,8 @@ public class GestionPuertasDeEnlace implements Serializable{
      * @param puertoDeServicio nuevo puerto de servicio de la puerta de enlace
      * @param protocoloComunicacionExterno nuevo protocolo de comunicación de la
      * puerta de enlace que se va a modificar
-     * @return retorna un confirmación de si existe la puerta de enlace, sino confirma que si se modifico la puerta de enlace en un string
+     * @return retorna un confirmación de si existe la puerta de enlace, sino
+     * confirma que si se modifico la puerta de enlace en un string
      */
     public String modificarPuertaDeEnlacePorID(String id, String descripcion, String direccionLogica, String puertoDeServicio, String protocoloComunicacionExterno) {
         if (buscarPuertaDeEnlacePorID(id) == null) {
@@ -183,5 +184,4 @@ public class GestionPuertasDeEnlace implements Serializable{
         }
 
     }
-
 }

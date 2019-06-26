@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
-public class GestionActuadores implements Serializable{
+public class GestionActuadores implements Serializable {
 
     /**
      * Variable para guardar la lista de actuadores
@@ -22,7 +22,8 @@ public class GestionActuadores implements Serializable{
     private List<Actuador> actuadores;
 
     /**
-     *Metodo para modificar la lista de actuadores
+     * Metodo para modificar la lista de actuadores
+     *
      * @param actuadores lista de actuadores que van a modificar
      */
     public GestionActuadores(List<Actuador> actuadores) {
@@ -30,14 +31,15 @@ public class GestionActuadores implements Serializable{
     }
 
     /**
-     *Metodo constructor de la clase GestionActuadores
+     * Metodo constructor de la clase GestionActuadores
      */
     public GestionActuadores() {
         this.actuadores = new ArrayList<>();
     }
 
     /**
-     *Metodo para obtener la lista de actuadores
+     * Metodo para obtener la lista de actuadores
+     *
      * @return toda la lista de actuadores guardados
      */
     public List<Actuador> getActuadores() {
@@ -45,7 +47,8 @@ public class GestionActuadores implements Serializable{
     }
 
     /**
-     *Metodo colocar la datos dentro de la variable actuadores
+     * Metodo colocar la datos dentro de la variable actuadores
+     *
      * @param actuadores lista de actuadores que se tienen
      */
     public void setActuadores(List<Actuador> actuadores) {
@@ -53,7 +56,8 @@ public class GestionActuadores implements Serializable{
     }
 
     /**
-     *Metodo para ver todos los actuadores que estan creados
+     * Metodo para ver todos los actuadores que estan creados
+     *
      * @return retorna un string que visualiza los actuadores creados
      */
     public String verActuadores() {

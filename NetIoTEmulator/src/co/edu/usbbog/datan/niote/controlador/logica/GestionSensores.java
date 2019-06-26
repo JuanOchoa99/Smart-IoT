@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
-public class GestionSensores implements Serializable{
+public class GestionSensores implements Serializable {
 
     /**
      * Lista para almacenar cada sensor que se cree

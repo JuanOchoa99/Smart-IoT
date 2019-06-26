@@ -11,7 +11,7 @@ package co.edu.usbbog.datan.niote.controlador.simulador;
  */
 public class NodoHilo extends Thread{
 
-      String name;
+     String name;
       
     public NodoHilo(String msg) {
     

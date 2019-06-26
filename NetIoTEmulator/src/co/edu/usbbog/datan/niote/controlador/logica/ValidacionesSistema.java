@@ -19,20 +19,26 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
  */
 public class ValidacionesSistema {
 
+    /**
+     * metodo constructor generico 
+     */
     public ValidacionesSistema() {
     }
 
     /**
-     *
-     * @return
+     * metodo que verifica si esta disponible las conexiones para 
+     * Cliente/Servidor y Publicador/Suscriptor 
+     * @return true si esta preparado, flase si no estan las dos conexiones 
      */
     public boolean estaConfiguradoElSistema() {
         return (configuracionMQTT() && configuracionTCPIP());
     }
 
     /**
-     *
-     * @return
+     * validacion de conexion Publicador/Suscriptor mediante Broker MQTT 
+     * instalado local en el puerto 1883
+     * @return true si esta instalado y habilitado el broker, 
+     * false si falla la conexion al broker MQTT
      */
     private boolean configuracionMQTT() {
         String topic = "prueba/neiote";
@@ -45,7 +51,7 @@ public class ValidacionesSistema {
             MqttConnectOptions connOpts = new MqttConnectOptions();
             String content = "Hola";
             connOpts.setCleanSession(true);
-            sampleClient.connect(connOpts);      
+            sampleClient.connect(connOpts);
             MqttMessage message = new MqttMessage(content.getBytes());
             message.setQos(qos);
             sampleClient.publish(topic, message);
@@ -57,8 +63,10 @@ public class ValidacionesSistema {
     }
 
     /**
-     *
-     * @return
+     * validacion de conexion Cliente/Servidor mediante Sockets TCP/IP
+     * instalados en los puertos 9998 y 9999
+     * @return true si estan habilitados los puertos TCP/IP, 
+     * false si falla la conexion a alguno de los puertos TCP/IP
      */
     private boolean configuracionTCPIP() {
         ServerSocket serverSocket;
