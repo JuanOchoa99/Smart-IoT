@@ -9,18 +9,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/** Clase que representa las variables que integran un Actuador
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class Actuador implements Serializable {
 
     /**
-     * variable irrepetible con la que se identificara el actuador
+     * Variable irrepetible con la que se identificara el actuador
      */
     private String id;
     /**
-     * Descripcion del Actuador
+     * Descripción del Actuador
      */
     private String descripcion;
     /**
@@ -41,7 +41,7 @@ public class Actuador implements Serializable {
     private List<Orden> accionesEnCola;
 
     /**
-     * Metodo constructor para dar valor a las variables del Actuador
+     * Método constructor para dar valor a las variables del Actuador
      *
      * @param id
      * @param descripcion
@@ -58,7 +58,7 @@ public class Actuador implements Serializable {
     }
 
     /**
-     * Metodo para obtener el Id del actuador
+     * Método para obtener el Id del actuador
      *
      * @return devuelve el id
      */
@@ -67,7 +67,7 @@ public class Actuador implements Serializable {
     }
 
     /**
-     * Metodo para almacenar un id a un actuador
+     * Método para almacenar un id a un actuador
      *
      * @param id a almacenar
      */
@@ -76,8 +76,7 @@ public class Actuador implements Serializable {
     }
 
     /**
-     * Metodo para obtener la descripcion del actuador
-     *
+     * Método para obtener la descripción del actuador
      * @return
      */
     public String getDescripcion() {
@@ -85,16 +84,15 @@ public class Actuador implements Serializable {
     }
 
     /**
-     * Metodo para alamcenar la descripcion del actuador
-     *
-     * @param descripcion
+     * Método para almacenar la descripción del actuador
+     * @param descripción
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
     /**
-     * Metodo para obtener el Estador del actuador
+     * Método para obtener el Estado del actuador
      *
      * @return devuelve la variable estado
      */
@@ -103,7 +101,7 @@ public class Actuador implements Serializable {
     }
 
     /**
-     * Metodo para almacenar en la variable estado
+     * Método para almacenar en la variable estado
      *
      * @param estado
      */
@@ -112,8 +110,7 @@ public class Actuador implements Serializable {
     }
 
     /**
-     * Metodo para obtener el tipo de actuaor
-     *
+     * Método para obtener el tipo de actuador
      * @return devuelve la variable tipo
      */
     public String getTipo() {
@@ -121,8 +118,7 @@ public class Actuador implements Serializable {
     }
 
     /**
-     * Metodo para almacenar en la variable tipo de actuador
-     *
+     * Método para almacenar en la variable tipo de actuador
      * @param tipo
      */
     public void setTipo(String tipo) {
@@ -130,8 +126,7 @@ public class Actuador implements Serializable {
     }
 
     /**
-     * Metodo para obtener la lista de acciones realizadas
-     *
+     * Método para obtener la lista de acciones realizadas
      * @return devuelve la variable accionesRealizadas
      */
     public List<Orden> getAccionesRealizadas() {
@@ -139,7 +134,7 @@ public class Actuador implements Serializable {
     }
 
     /**
-     * Metodo para agregar valores a la lista de acciones realizadas
+     * Método para agregar valores a la lista de acciones realizadas
      *
      * @param accionesRealizadas
      */
@@ -148,7 +143,7 @@ public class Actuador implements Serializable {
     }
 
     /**
-     * Metodo para obtener la lista de acciones en cola
+     * Método para obtener la lista de acciones en cola
      *
      * @return devuelve accionesEnCola
      */
@@ -157,8 +152,7 @@ public class Actuador implements Serializable {
     }
 
     /**
-     * Metodo para agregar valores a la lista de acciones en cola
-     *
+     * Método para agregar valores a la lista de acciones en cola
      * @param accionesEnCola
      */
     public void setAccionesEnCola(List<Orden> accionesEnCola) {
@@ -166,8 +160,7 @@ public class Actuador implements Serializable {
     }
 
     /**
-     * Metodo para contener los valores del actuador en un String
-     *
+     * Método para contener los valores del actuador en un String
      * @return devuelve el String con las variables del actuador
      */
     @Override

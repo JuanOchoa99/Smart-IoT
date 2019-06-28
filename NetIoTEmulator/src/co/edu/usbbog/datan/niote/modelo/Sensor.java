@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Clase que contiene las variables que integran un Sensor
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class Sensor implements Serializable{
@@ -19,7 +19,7 @@ public class Sensor implements Serializable{
      */   
     private String id;
     /**
-     * Descripcion del sensor
+     * Descripción del sensor
      */
     private String descripcion;
     /**
@@ -36,7 +36,7 @@ public class Sensor implements Serializable{
     private List<Dato> datosGenerados;
     
     /**
-     * Metodo contructor para inicializar las variables 
+     * Método constructor para inicializar las variables 
      * @param id
      * @param descripcion
      * @param estado
@@ -50,77 +50,77 @@ public class Sensor implements Serializable{
         this.datosGenerados = new ArrayList<Dato>();
     }
     /**
-     * Metodo para obtener el id del sensor
+     * Método para obtener el id del sensor
      * @return devuelve la variable id
      */
     public String getId() {
         return id;
     }
     /**
-     * Metodo para insertar id al sensor
+     * Método para insertar id al sensor
      * @param id 
      */
     public void setId(String id) {
         this.id = id;
     }
     /**
-     * Metodo para obtener la descripcion del sensor 
-     * @return devuelve la variable descripcion 
+     * Método para obtener la descripción del sensor 
+     * @return devuelve la variable descripción 
      */
     public String getDescripcion() {
         return descripcion;
     }
     /**
-     * Metodo para insertar descripcion al sensor
+     * Método para insertar descripción al sensor
      * @param descripcion 
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
     /**
-     * Metodo para obtener el estado del sensor
+     * Método para obtener el estado del sensor
      * @return devuelve la variable estado
      */
     public boolean isEstado() {
         return estado;
     }
     /**
-     * Metodo para insertar estado al sensor 
+     * Método para insertar estado al sensor 
      * @param estado 
      */
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
     /**
-     * Metodo para obtener el tipo de sensor
+     * Método para obtener el tipo de sensor
      * @return devuelve la variable tipo
      */
     public String getTipo() {
         return tipo;
     }
     /**
-     * Metodo para insertar el tipo de sensor
+     * Método para insertar el tipo de sensor
      * @param tipo 
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
     /**
-     * Metodo para obtener los datos generados por el sensor
+     * Método para obtener los datos generados por el sensor
      * @return devuelve la lista datosGenerados
      */
     public List<Dato> getDatosGenerados() {
         return datosGenerados;
     }
     /**
-     * Metodo para insertar los datos generados por el sensor
+     * Método para insertar los datos generados por el sensor
      * @param datosGenerados 
      */
     public void setDatosGenerados(List<Dato> datosGenerados) {
         this.datosGenerados = datosGenerados;
     }
     /**
-     * Metodo para conetener en un String las variables 
+     * Método para contener en un String las variables 
      * @return devuelve cadena de caracteres con las variables 
      */
     @Override

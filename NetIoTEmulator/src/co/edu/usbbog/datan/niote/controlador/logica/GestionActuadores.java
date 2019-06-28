@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Clase para crear, eliminar, buscar y ver actuadores
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class GestionActuadores implements Serializable {
@@ -22,7 +22,7 @@ public class GestionActuadores implements Serializable {
     private List<Actuador> actuadores;
 
     /**
-     * Metodo para modificar la lista de actuadores
+     * Método para modificar la lista de actuadores
      *
      * @param actuadores lista de actuadores que van a modificar
      */
@@ -31,14 +31,14 @@ public class GestionActuadores implements Serializable {
     }
 
     /**
-     * Metodo constructor de la clase GestionActuadores
+     * Método constructor de la clase GestionActuadores
      */
     public GestionActuadores() {
         this.actuadores = new ArrayList<>();
     }
 
     /**
-     * Metodo para obtener la lista de actuadores
+     * Método para obtener la lista de actuadores
      *
      * @return toda la lista de actuadores guardados
      */
@@ -47,7 +47,7 @@ public class GestionActuadores implements Serializable {
     }
 
     /**
-     * Metodo colocar la datos dentro de la variable actuadores
+     * Método colocar la datos dentro de la variable actuadores
      *
      * @param actuadores lista de actuadores que se tienen
      */
@@ -56,7 +56,7 @@ public class GestionActuadores implements Serializable {
     }
 
     /**
-     * Metodo para ver todos los actuadores que estan creados
+     * Método para ver todos los actuadores que están creados
      *
      * @return retorna un string que visualiza los actuadores creados
      */
@@ -69,7 +69,7 @@ public class GestionActuadores implements Serializable {
     }
 
     /**
-     * Meotodo para ver un actuador por su id
+     * Método para ver un actuador por su id
      *
      * @param id el id del actuador que se quiere ver
      * @return retornamos un string visualizando el actuador, sino se confirma
@@ -90,14 +90,14 @@ public class GestionActuadores implements Serializable {
     }
 
     /**
-     * Metdod para la creación de un nuevo Actuador
+     * Método para la creación de un nuevo Actuador
      *
-     * @param id codigo de identificación para el actuador
-     * @param descripcion información del actuador
+     * @param id código de identificación para el actuador
+     * @param descripción información del actuador
      * @param estado si el actuador esta activo o desactivado
-     * @param tipo nos especifica que tipo de actuador es
+     * @param tipo nos especifica qué tipo de actuador es
      * @return retorna un string confirmando que el actuador ya existe y por
-     * ende no se puee crear, sino confirma que se creo el Actuador
+     * ende no se puede crear, sino confirma que se creó el Actuador
      */
     public String crearActuador(String id, String descripcion, boolean estado, String tipo) {
         Actuador actuador = new Actuador(id, descripcion, estado, tipo);
@@ -110,7 +110,7 @@ public class GestionActuadores implements Serializable {
     }
 
     /**
-     * Metodo para confirmar si un objeto Actuador existe
+     * Método para confirmar si un objeto Actuador existe
      *
      * @param id buscamos por el id si el objeto Actuador existe
      * @return retornamos un booleano si existe true, sino false
@@ -120,8 +120,7 @@ public class GestionActuadores implements Serializable {
     }
 
     /**
-     * Metodo para buscar un actuador por su id
-     *
+     * Método para buscar un actuador por su id
      * @param id es el id que se va a buscar en nuestra lista de actuadores
      * @return retorna un objeto Actuador, sino encuentra por el id, confirmamos
      * que no existe ese objeto con ese id
@@ -136,10 +135,10 @@ public class GestionActuadores implements Serializable {
     }
 
     /**
-     * Metodo para la modificacion de un actuador por su id
+     * Método para la modificación de un actuador por su id
      *
-     * @param id id del actuador que se va a modificar
-     * @param descripcion la nueva descripcion que ca a tener el actuador a
+     * @param id del actuador que se va a modificar
+     * @param descripción la nueva descripción que ca a tener el actuador a
      * modificar
      * @param tipo el nuevo tipo que va a tener el actuador a modificar
      * @return si el actuador no existe, devolvemos un string confirmando que no
@@ -159,10 +158,10 @@ public class GestionActuadores implements Serializable {
     }
 
     /**
-     * Metodo para la eliminación de ua actuador por su id
+     * Método para la eliminación de un actuador por su id
      *
      * @param idActuador del actuador que se va a eliminar
-     * @return Si se elimino el actuador se confirma por medio de un string,
+     * @return Si se eliminó el actuador se confirma por medio de un string,
      * sino se confirma que no se elimino
      */
     public String eliminarActuadorPorID(String idActuador) {

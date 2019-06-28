@@ -10,16 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Clase que contiene las variables que integran un Nodo
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class Nodo implements Serializable {
     /**
-     * Variable unica para identificar el nodo
+     * Variable única para identificar el nodo
      */
     private String id;
     /**
-     * Variable que contiene la descripcion del nodo
+     * Variable que contiene la descripción del nodo
      */
     private String descripcion;
     /**
@@ -27,7 +27,7 @@ public class Nodo implements Serializable {
      */
     private boolean estado;
     /**
-     * Variable que contiene el protocolo de comunicacion que va a utilizar para la conexion con el gateway 
+     * Variable que contiene el protocolo de comunicación que va a utilizar para la conexión con el gateway 
      */
     private String protocoloComunicacion;
     /**
@@ -56,91 +56,91 @@ public class Nodo implements Serializable {
 
 
     /**
-     * Metodo para obtener el id del nodo
+     * Método para obtener el id del nodo
      * @return devuelve la variable id
      */
     public String getId() {
         return id;
     }
     /**
-     * Metodo para insertar id al nodo
+     * Método para insertar id al nodo
      * @param id 
      */
     public void setId(String id) {
         this.id = id;
     }
     /**
-     * Metodo para obtener la descripcion del nodo
-     * @return devuelve la variable descripcion 
+     * Método para obtener la descripción del nodo
+     * @return devuelve la variable descripción 
      */
     public String getDescripcion() {
         return descripcion;
     }
     /**
-     * Metodo para insertar descripcion al nodo
-     * @param descripcion 
+     * Método para insertar descripción al nodo
+     * @param descripción 
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
     /**
-     * Metodo para obtener el estadodel nodo
+     * Método para obtener el estado del nodo
      * @return devuelve la variable estado
      */
     public boolean isEstado() {
         return estado;
     }
     /**
-     * Metodo para insertar estado al nodo
+     * Método para insertar estado al nodo
      * @param estado 
      */
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
     /**
-     * Metodo para obtener protocolo de comunicacion del nodo
+     * Método para obtener protocolo de comunicación del nodo
      * @return devuelve la variable protocoloComunicacion
      */
     public String getProtocoloComunicacion() {
         return protocoloComunicacion;
     }
     /**
-     * Metodo para insertar protocolo de comunicacion al nodo 
+     * Método para insertar protocolo de comunicación al nodo 
      * @param protocoloComunicacion 
      */
     public void setProtocoloComunicacion(String protocoloComunicacion) {
         this.protocoloComunicacion = protocoloComunicacion;
     }
     /**
-     * Metodo para obtener la lista de actuadores del nodo
+     * Método para obtener la lista de actuadores del nodo
      * @return devuelve la lista actuadores
      */
     public List<Actuador> getActuadores() {
         return actuadores;
     }
     /**
-     * Metodo para insertar valores a la lista de actuadores
+     * Método para insertar valores a la lista de actuadores
      * @param actuadores 
      */
     public void setActuadores(List<Actuador> actuadores) {
         this.actuadores = actuadores;
     }
     /**
-     * Metodo para obtener la lista de sensores del nodo
+     * Método para obtener la lista de sensores del nodo
      * @return devuelve la lista sensores
      */
     public List<Sensor> getSensores() {
         return sensores;
     }
     /**
-     * Metodo para insertar valores a la lista de sensores
+     * Método para insertar valores a la lista de sensores
      * @param sensores 
      */
     public void setSensores(List<Sensor> sensores) {
         this.sensores = sensores;
     } 
     /**
-     * Metodo para contener las variables del nodo en un String
+     * Método para contener las variables del nodo en un String
      * @return cadena de caracteres que contiene las variables del nodo
      */
     @Override

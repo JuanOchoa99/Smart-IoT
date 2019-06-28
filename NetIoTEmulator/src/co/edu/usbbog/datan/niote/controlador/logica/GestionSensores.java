@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Clase para crear, eliminar, buscar y ver sensores
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class GestionSensores implements Serializable {
@@ -22,7 +22,7 @@ public class GestionSensores implements Serializable {
     private List<Sensor> sensores;
 
     /**
-     * Constructor para las lista de sensores
+     * Constructor para la lista de sensores
      *
      * @param sensores variable que contiene la lista
      */
@@ -39,7 +39,6 @@ public class GestionSensores implements Serializable {
 
     /**
      * Obtener elementos de la lista
-     *
      * @return elementos
      */
     public List<Sensor> getSensores() {
@@ -48,7 +47,6 @@ public class GestionSensores implements Serializable {
 
     /**
      * Poner nuevos valores en la lista
-     *
      * @param sensores variable que contiene la lista
      */
     public void setSensores(List<Sensor> sensores) {
@@ -56,8 +54,7 @@ public class GestionSensores implements Serializable {
     }
 
     /**
-     * Metodo para ver todos los sensores creados
-     *
+     * Método para ver todos los sensores creados
      * @return Todos los sensores que existen
      */
     public String verSensores() {
@@ -70,9 +67,8 @@ public class GestionSensores implements Serializable {
     }
 
     /**
-     * Ver sensor co un id especifico
-     *
-     * @param id campo unico con el que se identifica el sensor
+     * Ver sensor con un id especifico
+     * @param id campo único con el que se identifica el sensor
      * @return sensor que coincide con el id
      */
     public String verSensorPorID(String id) {
@@ -93,13 +89,13 @@ public class GestionSensores implements Serializable {
     }
 
     /**
-     * Metodo para crear un nuevo sensor
+     * Método para crear un nuevo sensor
      *
-     * @param id campo unico para identificar el sensor
-     * @param descripcion descripcion del sensor
+     * @param id campo único para identificar el sensor
+     * @param descripcion descripción del sensor
      * @param estado activo o inactivo
      * @param tipo tipo de sensor
-     * @return se creo o ya existe
+     * @return se creó o ya existe
      */
     public String crearSensor(String id, String descripcion, boolean estado, String tipo) {
         String salida = "";
@@ -108,15 +104,14 @@ public class GestionSensores implements Serializable {
         } else {
             Sensor sensor = new Sensor(id, descripcion, estado, tipo);
             sensores.add(sensor);
-            salida = "El sensor con id " + id + " se agrego";
+            salida = "El sensor con id " + id + " se agregó";
         }
         return salida;
     }
 
     /**
-     * Metodo para verificar si existe un sensor con id especifico
-     *
-     * @param id campo unico con el que se identifica el sensor
+     * Método para verificar si existe un sensor con id especifico
+     * @param id campo único con el que se identifica el sensor
      * @return true = existe, false = no existe
      */
     public boolean existeSensorPorID(String id) {
@@ -128,9 +123,8 @@ public class GestionSensores implements Serializable {
     }
 
     /**
-     * Metodo para buscar un sensor con id especifico
-     *
-     * @param id campo unico con el que se identifica el sensor
+     * Método para buscar un sensor con id especifico
+     * @param id campo único con el que se identifica el sensor
      * @return sensor que coincide con el id
      */
     public Sensor buscarSensorPorID(String id) {
@@ -144,12 +138,12 @@ public class GestionSensores implements Serializable {
     }
 
     /**
-     * Metodo para modificar las especificaciones de un senor
+     * Método para modificar las especificaciones de un sensor
      *
-     * @param id campo unico con que el que se identifica el sensor
-     * @param descripcion descripcion del sensor
+     * @param id campo único con que el que se identifica el sensor
+     * @param descripcion descripción del sensor
      * @param tipo tipo de sensor
-     * @return se modifico o no existe
+     * @return se modificó o no existe
      */
     public String modificarSensorPorID(String id, String descripcion, String tipo) {
 
@@ -157,17 +151,16 @@ public class GestionSensores implements Serializable {
             Sensor sensor = buscarSensorPorID(id);
             sensor.setDescripcion(descripcion);
             sensor.setTipo(tipo);
-            return "El sensor se modifico";
+            return "El sensor se modificó";
         } else {
             return "El sensor con ID " + id + " no existe";
         }
     }
 
     /**
-     * Metodo para eliminar un sensor de la lista
-     *
-     * @param id campo unico con el que se identifica el sensor
-     * @return se elimino o no existe
+     * Método para eliminar un sensor de la lista}
+     * @param id campo único con el que se identifica el sensor
+     * @return se eliminó o no existe
      */
     public String eliminarSensorPorID(String id) {
 
@@ -175,7 +168,7 @@ public class GestionSensores implements Serializable {
 
             Sensor sensor = buscarSensorPorID(id);
             sensores.remove(sensor);
-            return "El sensor se elimino";
+            return "El sensor se eliminó";
         } else {
             return "El sensor con ID " + id + " no existe";
         }

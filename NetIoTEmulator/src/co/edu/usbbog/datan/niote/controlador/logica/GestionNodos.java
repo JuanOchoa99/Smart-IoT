@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * Clase para crear, eliminar, buscar y ver nodos
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class GestionNodos implements Serializable {
@@ -56,7 +56,7 @@ public class GestionNodos implements Serializable {
     }
 
     /**
-     * Metodo para ver todos los nodos existentes
+     * Método para ver todos los nodos existentes
      *
      * @return Todos los nodos
      */
@@ -69,7 +69,7 @@ public class GestionNodos implements Serializable {
     }
 
     /**
-     * Metodo para ver un nodo especifico segun su id
+     * Método para ver un nodo especifico según su id
      *
      * @param id campo unico con el que se identifica cada nodo
      * @return Especificaciones del nodo segun el id
@@ -89,7 +89,7 @@ public class GestionNodos implements Serializable {
     }
 
     /**
-     * Metodo para crear un nuevo nodo
+     * Método para crear un nuevo nodo
      *
      * @param id campo unico de cada nodo
      * @param descripcion descripcion del nodo
@@ -109,9 +109,9 @@ public class GestionNodos implements Serializable {
     }
 
     /**
-     * Metodo para verificar si existe el id
+     * Método para verificar si existe el id
      *
-     * @param id campo unico con el que se identifica cada nodo
+     * @param id campo único con el que se identifica cada nodo
      * @return true = si existe, false = no existe
      */
     public boolean existeNodoPorID(String id) {
@@ -119,9 +119,9 @@ public class GestionNodos implements Serializable {
     }
 
     /**
-     * Metodo para buscar un nodo
+     * Método para buscar un nodo
      *
-     * @param id campo unico con el que se identifica cada nodo
+     * @param id campo único con el que se identifica cada nodo
      * @return El nodo que se busco
      */
     public Nodo buscarNodoPorID(String id) {
@@ -134,11 +134,11 @@ public class GestionNodos implements Serializable {
     }
 
     /**
-     * Metodo para modificar las especificaciones de un nodo
+     * Método para modificar las especificaciones de un nodo
      *
-     * @param id campo unico de cada nodo
-     * @param descripcion descripcion del nodo
-     * @param protocoloComunicacion protocolo a traves del que se va a comunicar
+     * @param id campo único de cada nodo
+     * @param descripcion descripción del nodo
+     * @param protocoloComunicacion protocolo a través del que se va a comunicar
      * @return Se modifico o no se modifico
      */
     public String modificarNodoPorID(String id, String descripcion, String protocoloComunicacion) {
@@ -146,17 +146,17 @@ public class GestionNodos implements Serializable {
             Nodo nodo = buscarNodoPorID(id);
             nodo.setDescripcion(descripcion);
             nodo.setProtocoloComunicacion(protocoloComunicacion);
-            return "El nodo se modifico";
+            return "El nodo se modificó";
         } else {
             return "El nodo con ID " + id + " no existe";
         }
     }
 
     /**
-     * Metodo para eliminar un nodo
+     * Método para eliminar un nodo
      *
-     * @param id campo unico con el que se identifica cada nodo
-     * @return se elimino o no se elimino
+     * @param id campo único con el que se identifica cada nodo
+     * @return se eliminó o no se elimino
      */
     public String eliminarNodoPorID(String id) {
         if (existeNodoPorID(id)) {

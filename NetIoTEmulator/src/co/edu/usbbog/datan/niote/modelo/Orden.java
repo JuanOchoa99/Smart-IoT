@@ -9,12 +9,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
+ * Clase que contiene las variables que integran una Orden
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class Orden implements Serializable{
     /**
-     * Variable que contiene la accion que se va a realizar
+     * Variable que contiene la acción que se va a realizar
      */
     private String accion;
     /**
@@ -22,11 +22,11 @@ public class Orden implements Serializable{
      */
     private Date fecha;
     /**
-     * Variable que confirma si se agrego o no la orden
+     * Variable que confirma si se agregó o no la orden
      */
     private boolean confimacion;
     /**
-     * Metodo constructor para inicilizar las variables
+     * Método constructor para inicializar las variables
      * @param accion
      * @param fecha
      * @param confimacion 
@@ -37,49 +37,49 @@ public class Orden implements Serializable{
         this.confimacion = confimacion;
     }
     /**
-     * Metodo para obtener la accion de la orden
-     * @return devuelve a variable accion
+     * Método para obtener la acción de la orden
+     * @return devuelve a variable acción
      */
     public String getAccion() {
         return accion;
     }
     /**
-     * Metodo para insertar la accion a la orden
+     * Método para insertar la acción a la orden
      * @param accion 
      */
     public void setAccion(String accion) {
         this.accion = accion;
     }
     /**
-     * Metodo para obtener la fecha de la orden
+     * Método para obtener la fecha de la orden
      * @return devuelve la variable fecha
      */
     public Date getFecha() {
         return fecha;
     }
     /**
-     * Metodo para insertar fecha de la orden
+     * Método para insertar fecha de la orden
      * @param fecha 
      */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
     /**
-     * Metodo para obtener la confirmacion de la orden 
-     * @return devuelve la variable confirmacion
+     * Método para obtener la confirmación de la orden 
+     * @return devuelve la variable confirmación
      */
     public boolean isConfimacion() {
         return confimacion;
     }
     /**
-     * Metodo para insertar confirmacion a la orden 
+     * Método para insertar confirmación a la orden 
      * @param confimacion 
      */
     public void setConfimacion(boolean confimacion) {
         this.confimacion = confimacion;
     }
     /**
-     * Metodo para contener todas las variables en un String
+     * Método para contener todas las variables en un String
      * @return devuelve una cadena de caracteres con las variables
      */
     @Override
