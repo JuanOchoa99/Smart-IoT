@@ -10,16 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Clase que contiene las variables que integran una Puerta de Enlace
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class PuertaDeEnlace implements Serializable{
     /**
-     * Variable unica con la que se identifica la puerta de enlace
+     * Variable única con la que se identifica la puerta de enlace
      */
     private String id;
     /**
-     * VAriable que contiene la descripcion de la puerta de enlace 
+     * Variable que contiene la descripción de la puerta de enlace 
      */
     private String descripcion;
     /**
@@ -39,7 +39,7 @@ public class PuertaDeEnlace implements Serializable{
      */
     private String protocoloComunicacionExterno;
     /**
-     * Lista que contiene los mensaje de la puerta de enlace 
+     * Lista que contiene los mensajes de la puerta de enlace 
      */
     private List<Mensaje> mensajes;
     /**
@@ -48,7 +48,7 @@ public class PuertaDeEnlace implements Serializable{
     private List<Nodo> nodos;
 
     /**
-     * Metodo constructor para inicializar las variables
+     * Método constructor para inicializar las variables
      * @param id
      * @param descripcion
      * @param estado
@@ -68,119 +68,119 @@ public class PuertaDeEnlace implements Serializable{
     }
     
     /**
-     * Metodo para obtener el id de la puerta de enlace
+     * Método para obtener el id de la puerta de enlace
      * @return devuelve la variable id
      */
     public String getId() {
         return id;
     }
     /**
-     * Metodo para inserta id a la puerta de enlace
+     * Método para inserta id a la puerta de enlace
      * @param id 
      */
     public void setId(String id) {
         this.id = id;
     }
     /**
-     * Metodo para obtener la descripcion de la puerta de enlace
-     * @return devuelve la variable descripcion
+     * Método para obtener la descripción de la puerta de enlace
+     * @return devuelve la variable descripción
      */
     public String getDescripcion() {
         return descripcion;
     }
     /**
-     * Metodo para inserta descripcion a la puerta de enlace
+     * Método para inserta descripción a la puerta de enlace
      * @param descripcion 
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
     /**
-     * Metodo para obtener el estado de la puerta de enlace
+     * Método para obtener el estado de la puerta de enlace
      * @return devuelve la variable estado
      */
     public boolean isEstado() {
         return estado;
     }
     /**
-     * Metodo para insertar estado a la puerta de enlace
+     * Método para insertar estado a la puerta de enlace
      * @param estado 
      */
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
     /**
-     * Metodo para obtener la direccion logica de la puerta de enlace 
+     * Método para obtener la direccion logica de la puerta de enlace 
      * @return devuelve la variable direccionLogica
      */
     public String getDireccionLogica() {
         return direccionLogica;
     }
     /**
-     * Metodo para insertar direccion logica a la puerta de enlace
+     * Método para insertar dirección lógica a la puerta de enlace
      * @param direccionLogica 
      */
     public void setDireccionLogica(String direccionLogica) {
         this.direccionLogica = direccionLogica;
     }
     /**
-     * Metodo para obtener puerto de serviocio de la puerta de enlace
+     * Método para obtener puerto de servicio de la puerta de enlace
      * @return 
      */
     public String getPuertoDeServicio() {
         return puertoDeServicio;
     }
     /**
-     * Metodo para insertar puerto de servicio a la puerta de enlace
+     * Método para insertar puerto de servicio a la puerta de enlace
      * @param puertoDeServicio 
      */
     public void setPuertoDeServicio(String puertoDeServicio) {
         this.puertoDeServicio = puertoDeServicio;
     }
     /**
-     * Metodo para obtener el protocolo de comunicacion de la puerta de enlace
+     * Método para obtener el protocolo de comunicación de la puerta de enlace
      * @return devuelve la variable protocoloComunicacion
      */
     public String getProtocoloComunicacionExterno() {
         return protocoloComunicacionExterno;
     }
     /**
-     * Metodo para insertar protocolo de comunicacion a la puerta de enlace
+     * Método para insertar protocolo de comunicación a la puerta de enlace
      * @param protocoloComunicacionExterno 
      */
     public void setProtocoloComunicacionExterno(String protocoloComunicacionExterno) {
         this.protocoloComunicacionExterno = protocoloComunicacionExterno;
     }
     /**
-     * Metodo para obtener los nodos de la puerta de enlace
+     * Método para obtener los nodos de la puerta de enlace
      * @return devuelve la lista nodos
      */
     public List<Nodo> getNodos() {
         return nodos;
     }
     /**
-     * Metodo para insertar nodos a la puerta de enlace
+     * Método para insertar nodos a la puerta de enlace
      * @param nodos 
      */
     public void setNodos(List<Nodo> nodos) {
         this.nodos = nodos;
     }
     /**
-     * Metodo para obtener los mensajes de la puerta de enlace
+     * Método para obtener los mensajes de la puerta de enlace
      * @return devuelve la lista mensajes
      */
     public List<Mensaje> getMensajes() {
         return mensajes;
     }
     /**
-     * Metodo para insertar mensajes a la puerta de enlace
+     * Método para insertar mensajes a la puerta de enlace
      * @param mensajes 
      */
     public void setMensajes(List<Mensaje> mensajes) {
         this.mensajes = mensajes;
     }
     /**
-     * Metodo para contener las variables en un String
+     * Método para contener las variables en un String
      * @return devuelve cadena de caracteres con las variables
      */
     @Override

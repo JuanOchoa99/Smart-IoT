@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Clase para crear, eliminar, buscar y ver puertas de enlace
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
-public class GestionPuertasDeEnlace implements Serializable{
+public class GestionPuertasDeEnlace implements Serializable {
 
     /**
      * Variable para guardar la lista de puertas de enlace
@@ -22,7 +22,7 @@ public class GestionPuertasDeEnlace implements Serializable{
     private List<PuertaDeEnlace> puertasDeEnlace;
 
     /**
-     * Metodo para gestionar las puertas de enlace dentro de la lista
+     * Método para gestionar las puertas de enlace dentro de la lista
      *
      * @param puertasDeEnlace lista de puertas de enlace
      */
@@ -31,17 +31,16 @@ public class GestionPuertasDeEnlace implements Serializable{
     }
 
     /**
-     * Metodo constructor de la clase GstionPuertasDeEnlace
+     * Método constructor de la clase GestionPuertasDeEnlace
      */
     public GestionPuertasDeEnlace() {
         this.puertasDeEnlace = new ArrayList<>();
     }
 
     /**
-     * Metodo para obtener el los valores dentro de la lista de puertas de
+     * Método para obtener los valores dentro de la lista de puertas de
      * enlace
-     *
-     * @return retorna la informacion almacenada dentro del objeto Puerta de
+     * @return retorna la información almacenada dentro del objeto Puerta de
      * enlace
      */
     public List<PuertaDeEnlace> getPuertasDeEnlace() {
@@ -49,7 +48,7 @@ public class GestionPuertasDeEnlace implements Serializable{
     }
 
     /**
-     * Metodo para colocar infomración dentro del objeto Puertas de enlace
+     * Método para colocar información dentro del objeto Puertas de enlace
      *
      * @param puertasDeEnlace
      */
@@ -58,9 +57,9 @@ public class GestionPuertasDeEnlace implements Serializable{
     }
 
     /**
-     * Metodo para ver todoas las puertas de enlace
+     * Método para ver todas las puertas de enlace
      *
-     * @return retorna un string que me muestra la lista de puertas de enlaceq
+     * @return retorna un string que me muestra la lista de puertas de enlace
      * que hay
      */
     public String verPuertasDeEnlace() {
@@ -72,10 +71,10 @@ public class GestionPuertasDeEnlace implements Serializable{
     }
 
     /**
-     * Metodo para ver la puerta de enlace por un id
+     * Método para ver la puerta de enlace por un id
      *
      * @param id id de la puerta de enlace que se va a consultar
-     * @return retorna un string para vizualizar la información de la puerta de
+     * @return retorna un string para visualizar la información de la puerta de
      * enlace que se quiere consultar
      */
     public String verPuertaDeEnlacePorID(String id) {
@@ -93,13 +92,13 @@ public class GestionPuertasDeEnlace implements Serializable{
     }
 
     /**
-     * Metodo para la creaciónn de una puerta de enlace
+     * Método para la creación de una puerta de enlace
      *
-     * @param id identificacaión para la nueva puerta de enlace
-     * @param descripcion información de la´nueva puerta de enalce
+     * @param id identificación para la nueva puerta de enlace
+     * @param descripcion información de la nueva puerta de enlace
      * @param estado si esta activa o desactivada la pueta de enlace
-     * @param direccionLogica direccino ip del dispositivo
-     * @param puertoDeServicio canal de comunicacion de la pueta de enlace
+     * @param direccionLogica dirección ip del dispositivo
+     * @param puertoDeServicio canal de comunicación de la pueta de enlace
      * @param protocoloComunicacionExterno tipo de protocolo de transferencia de
      * información
      * @return retorna un string que visualizar el objeto
@@ -110,30 +109,30 @@ public class GestionPuertasDeEnlace implements Serializable{
             return "la puerta de enlace ya existe";
         } else {
             puertasDeEnlace.add(puertaDeEnlace);
-            return "la puerta de enlace con ID: " + id + " se agrego";
+            return "la puerta de enlace con ID: " + id + " se agregó";
         }
     }
 
     /**
-     * Metodo para la eliminación de una puerta de enlace
+     * Método para la eliminación de una puerta de enlace
      *
      * @param id id de la puerta de enlace que se va a eliminar
-     * @return retorna un mensaje de confirmacion o que no se pui
+     * @return retorna un mensaje de confirmación o que no se pui
      */
     public String eliminarPuertaDeEnlacePorID(String id) {
         if (existePuertaDeEnlacePorID(id)) {
             PuertaDeEnlace puertaDeEnlace = buscarPuertaDeEnlacePorID(id);
             puertasDeEnlace.remove(puertaDeEnlace);
-            return "la puerta de enlace se elimino";
+            return "la puerta de enlace se eliminó";
         } else {
-            return "la puerta de enlace con ID: " + id + " no se elimino";
+            return "la puerta de enlace con ID: " + id + " no se eliminó";
         }
     }
 
     /**
-     * Metodo para confirmar que existe un puerta de enlace
+     * Método para confirmar que existe una puerta de enlace
      *
-     * @param id id para confirmar si esa puerta de enlace esta dentro de la
+     * @param id id para confirmar si esa puerta de enlace está dentro de la
      * lista de puertas de enlace
      * @return
      */
@@ -142,7 +141,7 @@ public class GestionPuertasDeEnlace implements Serializable{
     }
 
     /**
-     * Metodo para buscar una puerta de enlace por su id
+     * Método para buscar una puerta de enlace por su id
      *
      * @param id id de la puerta de enlace que se va a consultar
      * @return nos regresa un objeto de tipo puerta de enlace
@@ -157,17 +156,18 @@ public class GestionPuertasDeEnlace implements Serializable{
     }
 
     /**
-     * Metodo para modificar una puerta de enlace por su id
+     * Método para modificar una puerta de enlace por su id
      *
      * @param id id de la puerta de enlace a modificar
-     * @param descripcion nueva deacripcion de la puerta de enlace que se va a
+     * @param descripcion nueva descripción de la puerta de enlace que se va a
      * modificar
-     * @param direccionLogica nueva direccion ip de la puerta de enlace que se
+     * @param direccionLogica nueva dirección ip de la puerta de enlace que se
      * va a modificar
      * @param puertoDeServicio nuevo puerto de servicio de la puerta de enlace
      * @param protocoloComunicacionExterno nuevo protocolo de comunicación de la
      * puerta de enlace que se va a modificar
-     * @return retorna un confirmación de si existe la puerta de enlace, sino confirma que si se modifico la puerta de enlace en un string
+     * @return retorna una confirmación de si existe la puerta de enlace, sino
+     * confirma que si se modificó la puerta de enlace en un string
      */
     public String modificarPuertaDeEnlacePorID(String id, String descripcion, String direccionLogica, String puertoDeServicio, String protocoloComunicacionExterno) {
         if (buscarPuertaDeEnlacePorID(id) == null) {
@@ -183,5 +183,4 @@ public class GestionPuertasDeEnlace implements Serializable{
         }
 
     }
-
 }

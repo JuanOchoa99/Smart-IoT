@@ -9,16 +9,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
+ * Clase que define las variables que integran un Mensaje 
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class Mensaje implements Serializable{
     /**
-     * variable unica con la que se va a identificar el mensaje
+     * Variable única con la que se va a identificar el mensaje
      */
     private String id;
     /**
-     * Variable que contiene la fecha en la que se envia el mensaje
+     * Variable que contiene la fecha en la que se envía el mensaje
      */
     private Date fecha;
     /**
@@ -31,7 +31,7 @@ public class Mensaje implements Serializable{
     private String mensaje;
     
     /**
-     * Metodo constructor para inicializar las variables
+     * Método constructor para inicializar las variables
      * @param id
      * @param fecha
      * @param tipo
@@ -44,63 +44,63 @@ public class Mensaje implements Serializable{
         this.mensaje = mensaje;
     }
     /**
-     * Metodo para obtener el id del mensaje
-     * @return  devuelve el id del mensaje
+     * Método para obtener el id del mensaje
+     * @return devuelve el id del mensaje
      */
     public String getId() {
         return id;
     }
     /**
-     * Metodo para insertar id del mesnaje
+     * Método para insertar id del mensaje
      * @param id 
      */
     public void setId(String id) {
         this.id = id;
     }
     /**
-     * Metodo para obtener la fecha del mensaje
+     * Método para obtener la fecha del mensaje
      * @return devuelve la variable fecha
      */
     public Date getFecha() {
         return fecha;
     }
     /**
-     * Metodo para insertar la fecha de un mensaje
+     * Método para insertar la fecha de un mensaje
      * @param fecha 
      */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
     /**
-     * Metodo para obtener el tipo de mensaje
+     * Método para obtener el tipo de mensaje
      * @return devuelve la variable tipo
      */
     public String getTipo() {
         return tipo;
     }
     /**
-     * Metodo para insertar el tipo de mensaje
+     * Método para insertar el tipo de mensaje
      * @param tipo 
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
     /**
-     * Metodo para obtener el mensaje
+     * Método para obtener el mensaje
      * @return devuelve la variable mensaje
      */
     public String getMensaje() {
         return mensaje;
     }
     /**
-     * Metodo para insertar el mensaje
+     * Método para insertar el mensaje
      * @param mensaje 
      */
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
     /**
-     * Metodo para contener las variables del mensaje en un String
+     * Método para contener las variables del mensaje en un String
      * @return devuelve una cadena de caracteres con las variables 
      */
     @Override
@@ -111,3 +111,4 @@ public class Mensaje implements Serializable{
     
     
 }
+

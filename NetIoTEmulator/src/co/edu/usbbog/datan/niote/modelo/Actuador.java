@@ -9,17 +9,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/** Clase que representa las variables que integran un Actuador
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
-public class Actuador implements Serializable{
+public class Actuador implements Serializable {
+
     /**
-     * variable irrepetible con la que se identificara el actuador
+     * Variable irrepetible con la que se identificara el actuador
      */
     private String id;
     /**
-     * Descripcion del Actuador
+     * Descripción del Actuador
      */
     private String descripcion;
     /**
@@ -35,16 +36,17 @@ public class Actuador implements Serializable{
      */
     private List<Orden> accionesRealizadas;
     /**
-     * Lista de acciones por realizar 
+     * Lista de acciones por realizar
      */
     private List<Orden> accionesEnCola;
-    
+
     /**
-     * Metodo constructor para dar valor a las variables del Actuador
-     * @param id 
+     * Método constructor para dar valor a las variables del Actuador
+     *
+     * @param id
      * @param descripcion
      * @param estado
-     * @param tipo 
+     * @param tipo
      */
     public Actuador(String id, String descripcion, boolean estado, String tipo) {
         this.id = id;
@@ -54,99 +56,115 @@ public class Actuador implements Serializable{
         this.accionesRealizadas = new ArrayList<Orden>();
         this.accionesEnCola = new ArrayList<Orden>();
     }
+
     /**
-     * Metodo para obtener el Id del actuador
+     * Método para obtener el Id del actuador
+     *
      * @return devuelve el id
      */
     public String getId() {
         return id;
     }
+
     /**
-     * Metodo para almacenar un id a un actuador
+     * Método para almacenar un id a un actuador
+     *
      * @param id a almacenar
      */
     public void setId(String id) {
         this.id = id;
     }
+
     /**
-     * Metodo para obtener la descripcion del actuador
-     * @return 
+     * Método para obtener la descripción del actuador
+     * @return
      */
     public String getDescripcion() {
         return descripcion;
     }
+
     /**
-     * Metodo para alamcenar la descripcion del actuador
-     * @param descripcion 
+     * Método para almacenar la descripción del actuador
+     * @param descripción
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
     /**
-     * Metodo para obtener el Estador del actuador
+     * Método para obtener el Estado del actuador
+     *
      * @return devuelve la variable estado
      */
     public boolean isEstado() {
         return estado;
     }
+
     /**
-     * Metodo para almacenar en la variable estado
-     * @param estado 
+     * Método para almacenar en la variable estado
+     *
+     * @param estado
      */
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
     /**
-     * Metodo para obtener el tipo de actuaor
+     * Método para obtener el tipo de actuador
      * @return devuelve la variable tipo
      */
     public String getTipo() {
         return tipo;
     }
+
     /**
-     * Metodo para almacenar en la variable tipo de actuador
-     * @param tipo 
+     * Método para almacenar en la variable tipo de actuador
+     * @param tipo
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
     /**
-     * Metodo para obtener la lista de acciones realizadas
+     * Método para obtener la lista de acciones realizadas
      * @return devuelve la variable accionesRealizadas
      */
     public List<Orden> getAccionesRealizadas() {
         return accionesRealizadas;
     }
+
     /**
-     * Metodo para agregar valores a la lista de acciones realizadas
-     * @param accionesRealizadas 
+     * Método para agregar valores a la lista de acciones realizadas
+     *
+     * @param accionesRealizadas
      */
     public void setAccionesRealizadas(List<Orden> accionesRealizadas) {
         this.accionesRealizadas = accionesRealizadas;
     }
+
     /**
-     * Metodo para obtener la lista de acciones en cola
-     * @return devuelve accionesEnCOla
+     * Método para obtener la lista de acciones en cola
+     *
+     * @return devuelve accionesEnCola
      */
     public List<Orden> getAccionesEnCola() {
         return accionesEnCola;
     }
+
     /**
-     * Metodo para agregar valores a la lista de acciones en cola
-     * @param accionesEnCola 
+     * Método para agregar valores a la lista de acciones en cola
+     * @param accionesEnCola
      */
     public void setAccionesEnCola(List<Orden> accionesEnCola) {
         this.accionesEnCola = accionesEnCola;
     }
+
     /**
-     * Metodo para contener los valores del actuador en un String
+     * Método para contener los valores del actuador en un String
      * @return devuelve el String con las variables del actuador
      */
     @Override
     public String toString() {
         return "Actuador{" + "id=" + id + ", descripcion=" + descripcion + ", estado=" + estado + ", tipo=" + tipo + '}';
     }
-    
-    
-    
 }

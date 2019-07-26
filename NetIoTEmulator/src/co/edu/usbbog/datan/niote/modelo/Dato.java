@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
+ * Clase que define las variables que integran un Dato
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class Dato implements Serializable{
@@ -22,7 +22,7 @@ public class Dato implements Serializable{
      */
     private Date fecha; 
     /**
-     * Metodo Constructor para inicializar las variables
+     * Método Constructor para inicializar las variables
      * @param valor
      * @param fecha 
      */
@@ -31,35 +31,35 @@ public class Dato implements Serializable{
         this.fecha = fecha;
     }
     /**
-     * Metodo para obtener el valor del dato
+     * Método para obtener el valor del dato
      * @return devuelve la variable valor
      */
     public String getValor() {
         return valor;
     }
     /**
-     * Metodo para insertar en la variable valor
+     * Método para insertar en la variable valor
      * @param valor 
      */
     public void setValor(String valor) {
         this.valor = valor;
     }
     /**
-     * Metodo para obtener la fecha de un dato
+     * Método para obtener la fecha de un dato
      * @return devuelve la variable fecha
      */
     public Date getFecha() {
         return fecha;
     }
     /**
-     * Metodo para insertar en la variable fecha
+     * Método para insertar en la variable fecha
      * @param fecha 
      */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
     /**
-     * Metodo para contener las variables del dato en un String
+     * Método para contener las variables del dato en un String
      * @return devuelve el dato en una cadena de caracteres
      */
     @Override

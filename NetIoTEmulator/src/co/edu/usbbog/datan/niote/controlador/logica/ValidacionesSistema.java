@@ -14,25 +14,31 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 /**
- *
+ * Clase para verificar si existe el Broker mosquito y configurar los protocolos TCP/IP y MQTT
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class ValidacionesSistema {
 
+    /**
+     * Método constructor genérico 
+     */
     public ValidacionesSistema() {
     }
 
     /**
-     *
-     * @return
+     * Método que verifica si está disponible las conexiones para 
+     * Cliente/Servidor y Publicador/Suscriptor 
+     * @return true si está preparado, false si no están las dos conexiones 
      */
     public boolean estaConfiguradoElSistema() {
         return (configuracionMQTT() && configuracionTCPIP());
     }
 
     /**
-     *
-     * @return
+     * validación de conexión Publicador/Suscriptor mediante Broker MQTT 
+     * instalado local en el puerto 1883
+     * @return true si está instalado y habilitado el broker, 
+     * false si falla la conexión al broker MQTT
      */
     private boolean configuracionMQTT() {
         String topic = "prueba/neiote";
@@ -45,7 +51,7 @@ public class ValidacionesSistema {
             MqttConnectOptions connOpts = new MqttConnectOptions();
             String content = "Hola";
             connOpts.setCleanSession(true);
-            sampleClient.connect(connOpts);      
+            sampleClient.connect(connOpts);
             MqttMessage message = new MqttMessage(content.getBytes());
             message.setQos(qos);
             sampleClient.publish(topic, message);
@@ -57,8 +63,10 @@ public class ValidacionesSistema {
     }
 
     /**
-     *
-     * @return
+     * Validación de conexión Cliente/Servidor mediante Sockets TCP/IP
+     * instalados en los puertos 9998 y 9999
+     * @return true si están habilitados los puertos TCP/IP, 
+     * false si falla la conexión a alguno de los puertos TCP/IP
      */
     private boolean configuracionTCPIP() {
         ServerSocket serverSocket;
