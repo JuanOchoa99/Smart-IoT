@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * Clase para crear, eliminar, buscar y ver sensores
+ *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class GestionSensores implements Serializable {
@@ -39,6 +40,7 @@ public class GestionSensores implements Serializable {
 
     /**
      * Obtener elementos de la lista
+     *
      * @return elementos
      */
     public List<Sensor> getSensores() {
@@ -47,6 +49,7 @@ public class GestionSensores implements Serializable {
 
     /**
      * Poner nuevos valores en la lista
+     *
      * @param sensores variable que contiene la lista
      */
     public void setSensores(List<Sensor> sensores) {
@@ -55,6 +58,7 @@ public class GestionSensores implements Serializable {
 
     /**
      * Método para ver todos los sensores creados
+     *
      * @return Todos los sensores que existen
      */
     public String verSensores() {
@@ -68,6 +72,7 @@ public class GestionSensores implements Serializable {
 
     /**
      * Ver sensor con un id especifico
+     *
      * @param id campo único con el que se identifica el sensor
      * @return sensor que coincide con el id
      */
@@ -95,14 +100,16 @@ public class GestionSensores implements Serializable {
      * @param descripcion descripción del sensor
      * @param estado activo o inactivo
      * @param tipo tipo de sensor
+     * @param magnitud
+     * @param frecuencia
      * @return se creó o ya existe
      */
-    public String crearSensor(String id, String descripcion, boolean estado, String tipo) {
+    public String crearSensor(String id, String descripcion, boolean estado, String tipo, String magnitud, int frecuencia) {
         String salida = "";
         if (existeSensorPorID(id)) {
             salida = "El sensor ya existe";
         } else {
-            Sensor sensor = new Sensor(id, descripcion, estado, tipo);
+            Sensor sensor = new Sensor(id, descripcion, estado, tipo, magnitud, frecuencia);
             sensores.add(sensor);
             salida = "El sensor con id " + id + " se agregó";
         }
@@ -111,6 +118,7 @@ public class GestionSensores implements Serializable {
 
     /**
      * Método para verificar si existe un sensor con id especifico
+     *
      * @param id campo único con el que se identifica el sensor
      * @return true = existe, false = no existe
      */
@@ -124,6 +132,7 @@ public class GestionSensores implements Serializable {
 
     /**
      * Método para buscar un sensor con id especifico
+     *
      * @param id campo único con el que se identifica el sensor
      * @return sensor que coincide con el id
      */
@@ -159,6 +168,7 @@ public class GestionSensores implements Serializable {
 
     /**
      * Método para eliminar un sensor de la lista}
+     *
      * @param id campo único con el que se identifica el sensor
      * @return se eliminó o no existe
      */
@@ -174,4 +184,5 @@ public class GestionSensores implements Serializable {
         }
 
     }
+    
 }

@@ -15,6 +15,7 @@ import java.io.Serializable;
 
 /**
  * Clase para crear y configurar una red y sus componentes
+ *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class GestionRed implements Serializable {
@@ -49,6 +50,7 @@ public class GestionRed implements Serializable {
 
     /**
      * Método constructor para crear una nueva red
+     *
      * @param id de la red
      * @param nombre de la red
      * @param descripcion de la red
@@ -64,6 +66,7 @@ public class GestionRed implements Serializable {
 
     /**
      * Método constructor para abrir una red guardad en un archivo
+     *
      * @param ruta en la que se encuentra el archivo
      * @param nombreArchivo nombre del archivo
      */
@@ -134,6 +137,7 @@ public class GestionRed implements Serializable {
 
     /**
      * Método para ver Todos los objetos que contiene la red
+     *
      * @return devuelve una variable de tipo String con todos los componentes de
      * la red
      */
@@ -244,6 +248,7 @@ public class GestionRed implements Serializable {
 
     /**
      * Método para agregar un nodo a la red
+     *
      * @param idNodo id del nodo que se va a agregar
      * @param idPuertaDeEnlace id de la puerta de enlace a la que va a
      * pertenecer
@@ -272,6 +277,7 @@ public class GestionRed implements Serializable {
 
     /**
      * Método para ver los nodos que pertenecen a la red
+     *
      * @return devuelve una variable de tipo String con los nodos de la red
      */
     public String verNodosDeLaRed() {
@@ -289,6 +295,7 @@ public class GestionRed implements Serializable {
 
     /**
      * Método para buscar un nodo de la red mediante su id
+     *
      * @param idNodo id del nodo a buscar
      * @return devuelve el nodo si se encontró o null si no se encontró
      */
@@ -363,6 +370,7 @@ public class GestionRed implements Serializable {
 
     /**
      * Método para ver los sensores de la red
+     *
      * @return devuelve variable de tipo String con los sensores de la red
      */
     public String verSensoresDeLaRed() {
@@ -384,6 +392,7 @@ public class GestionRed implements Serializable {
 
     /**
      * Método para buscar un sensor mediante su id
+     *
      * @param idSensor id del sensor que se va a buscar
      * @return devuelve el sensor si se encontró, de lo contrario devuelve null
      */
@@ -414,7 +423,7 @@ public class GestionRed implements Serializable {
                 n:
                 for (int j = 0; j < getRed().getPuertasDeEnlace().get(i).getNodos().size(); j++) {
                     if (getRed().getPuertasDeEnlace().get(i).getNodos().get(j).getSensores().remove(sensor)) {
-                        getGestionSensores().crearSensor(sensor.getId(), sensor.getDescripcion(), false, sensor.getTipo());
+                        getGestionSensores().crearSensor(sensor.getId(), sensor.getDescripcion(), false, sensor.getTipo(), sensor.getMagnitud(), sensor.getFrecuencia());
                         return true;
                     }
                 }
@@ -524,6 +533,7 @@ public class GestionRed implements Serializable {
 
     /**
      * Método para guardar la red como archivo
+     *
      * @param ruta en la que se quiere guardar el archivo
      * @param nombreArchivo nombre del archivo que se va a crear
      * @return devuelve true = se guardó o false = no se guardo
@@ -536,4 +546,5 @@ public class GestionRed implements Serializable {
             return false;
         }
     }
+    
 }

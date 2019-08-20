@@ -17,7 +17,7 @@ public class Principal extends javax.swing.JFrame {
 
     //relacion Logica
     /**
-     * 
+     *
      */
     private GestionRed gestionRed;
     private ValidacionesSistema validacionesSistema;
@@ -31,8 +31,9 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         this.validacionesSistema = new ValidacionesSistema();
-        this.terminal = new Terminal(this);
         this.emulador = new Emulador(this);
+        this.terminal = new Terminal(this);
+
         //initComponents();
     }
 

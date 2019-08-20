@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * Clase para crear, eliminar, buscar y ver nodos
+ *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class GestionNodos implements Serializable {
@@ -168,4 +169,5 @@ public class GestionNodos implements Serializable {
         }
 
     }
+    
 }

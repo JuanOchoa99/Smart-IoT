@@ -298,7 +298,7 @@ public class Terminal {
     /**
      *
      */
-        private void modificarPuertaDeEnlacePorID() {
+    private void modificarPuertaDeEnlacePorID() {
         System.out.println("Digite ID de la Puerta de enlace");
         String id = sn.next();
         if (this.principal.getGestionRed().getGestionPuertaDeEnlace().existePuertaDeEnlacePorID(id)) {
@@ -500,7 +500,11 @@ public class Terminal {
         boolean estado = false;
         System.out.println("Digite tipo del Sensor");
         String tipo = sn.next();
-        System.out.println(this.principal.getGestionRed().getGestionSensores().crearSensor(id, descripcion, estado, tipo));
+        System.out.println("Digite la magnitud del valor que genera el Sensor");
+        String magnitud = sn.next();
+        System.out.println("Digite la frecuencia con la que genera dato el Sensor (valor entero)");
+        int frecuencia = (int) sn.nextInt();
+        System.out.println(this.principal.getGestionRed().getGestionSensores().crearSensor(id, descripcion, estado, tipo, magnitud, frecuencia));
     }
 
     /**
@@ -743,7 +747,7 @@ public class Terminal {
             System.out.println(this.principal.getGestionRed().verPuertasDeEnlaceDeLaRed());
             System.out.println("Digite el ID de la Puerta de Enlace al que se conectara el Nodo que sera agregado a la red");
             String idPuertasDeEnlace = sn.next();
-            if (this.principal.getGestionRed().buscarPuertaDeEnlaceDeLaRedPorID(idPuertasDeEnlace)!=null) {
+            if (this.principal.getGestionRed().buscarPuertaDeEnlaceDeLaRedPorID(idPuertasDeEnlace) != null) {
                 System.out.println("Puerta de enlace valida: " + idPuertasDeEnlace);
                 System.out.println(this.principal.getGestionRed().agregarNodoALaRed(idNodo, idPuertasDeEnlace));
             } else {
@@ -866,7 +870,7 @@ public class Terminal {
      */
     private void menuControl() {
         int opc = -1;
-        do {            
+        do {
             System.out.println("Net IoT Emulator");
             System.out.println("Red: " + this.principal.getGestionRed().getRed().getId()
                     + " - " + this.principal.getGestionRed().getRed().getNombre()
@@ -923,32 +927,34 @@ public class Terminal {
      *
      */
     private void verEstadoDeLaRed() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println(principal.getEmulador().isAlive());
     }
 
     /**
      *
      */
     private void verEjecucionDeLaRed() {
-        //
-        System.out.println("Falta constrir...");
+        this.principal.getEmulador().show();
     }
 
     /**
      *
      */
     private void iniciarRed() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Iniciando red...");
+
+        this.principal.getEmulador().start();
+
+        System.out.println("Red iniciada");
     }
 
     /**
      *
      */
     private void detenerRed() {
-        //
-        System.out.println("Falta constrir...");
+        System.out.println("Deteniendo red...");
+        this.principal.getEmulador().stop();
+        System.out.println("Red detenida");
     }
 
     /**

@@ -14,31 +14,35 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 /**
- * Clase para verificar si existe el Broker mosquito y configurar los protocolos TCP/IP y MQTT
+ * Clase para verificar si existe el Broker mosquito y configurar los protocolos
+ * TCP/IP y MQTT
+ *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class ValidacionesSistema {
 
     /**
-     * Método constructor genérico 
+     * Método constructor genérico
      */
     public ValidacionesSistema() {
     }
 
     /**
-     * Método que verifica si está disponible las conexiones para 
-     * Cliente/Servidor y Publicador/Suscriptor 
-     * @return true si está preparado, false si no están las dos conexiones 
+     * Método que verifica si está disponible las conexiones para
+     * Cliente/Servidor y Publicador/Suscriptor
+     *
+     * @return true si está preparado, false si no están las dos conexiones
      */
     public boolean estaConfiguradoElSistema() {
         return (configuracionMQTT() && configuracionTCPIP());
     }
 
     /**
-     * validación de conexión Publicador/Suscriptor mediante Broker MQTT 
+     * validación de conexión Publicador/Suscriptor mediante Broker MQTT
      * instalado local en el puerto 1883
-     * @return true si está instalado y habilitado el broker, 
-     * false si falla la conexión al broker MQTT
+     *
+     * @return true si está instalado y habilitado el broker, false si falla la
+     * conexión al broker MQTT
      */
     private boolean configuracionMQTT() {
         String topic = "prueba/neiote";
@@ -65,8 +69,9 @@ public class ValidacionesSistema {
     /**
      * Validación de conexión Cliente/Servidor mediante Sockets TCP/IP
      * instalados en los puertos 9998 y 9999
-     * @return true si están habilitados los puertos TCP/IP, 
-     * false si falla la conexión a alguno de los puertos TCP/IP
+     *
+     * @return true si están habilitados los puertos TCP/IP, false si falla la
+     * conexión a alguno de los puertos TCP/IP
      */
     private boolean configuracionTCPIP() {
         ServerSocket serverSocket;

@@ -9,7 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Clase que representa las variables que integran un Actuador
+/**
+ * Clase que representa las variables que integran un Actuador
  *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
@@ -57,6 +58,10 @@ public class Actuador implements Serializable {
         this.accionesEnCola = new ArrayList<Orden>();
     }
 
+    Actuador() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * Método para obtener el Id del actuador
      *
@@ -77,6 +82,7 @@ public class Actuador implements Serializable {
 
     /**
      * Método para obtener la descripción del actuador
+     *
      * @return
      */
     public String getDescripcion() {
@@ -85,6 +91,7 @@ public class Actuador implements Serializable {
 
     /**
      * Método para almacenar la descripción del actuador
+     *
      * @param descripción
      */
     public void setDescripcion(String descripcion) {
@@ -111,6 +118,7 @@ public class Actuador implements Serializable {
 
     /**
      * Método para obtener el tipo de actuador
+     *
      * @return devuelve la variable tipo
      */
     public String getTipo() {
@@ -119,6 +127,7 @@ public class Actuador implements Serializable {
 
     /**
      * Método para almacenar en la variable tipo de actuador
+     *
      * @param tipo
      */
     public void setTipo(String tipo) {
@@ -127,6 +136,7 @@ public class Actuador implements Serializable {
 
     /**
      * Método para obtener la lista de acciones realizadas
+     *
      * @return devuelve la variable accionesRealizadas
      */
     public List<Orden> getAccionesRealizadas() {
@@ -153,6 +163,7 @@ public class Actuador implements Serializable {
 
     /**
      * Método para agregar valores a la lista de acciones en cola
+     *
      * @param accionesEnCola
      */
     public void setAccionesEnCola(List<Orden> accionesEnCola) {
@@ -161,10 +172,12 @@ public class Actuador implements Serializable {
 
     /**
      * Método para contener los valores del actuador en un String
+     *
      * @return devuelve el String con las variables del actuador
      */
     @Override
     public String toString() {
         return "Actuador{" + "id=" + id + ", descripcion=" + descripcion + ", estado=" + estado + ", tipo=" + tipo + '}';
     }
+
 }

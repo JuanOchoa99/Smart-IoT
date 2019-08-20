@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * Clase para crear, eliminar, buscar y ver puertas de enlace
+ *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class GestionPuertasDeEnlace implements Serializable {
@@ -38,8 +39,8 @@ public class GestionPuertasDeEnlace implements Serializable {
     }
 
     /**
-     * Método para obtener los valores dentro de la lista de puertas de
-     * enlace
+     * Método para obtener los valores dentro de la lista de puertas de enlace
+     *
      * @return retorna la información almacenada dentro del objeto Puerta de
      * enlace
      */
@@ -183,4 +184,5 @@ public class GestionPuertasDeEnlace implements Serializable {
         }
 
     }
+    
 }

@@ -21,7 +21,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
- * Clase para guardar una red en un archivo, y cargar la red nuevamente junto a sus componentes. 
+ * Clase para guardar una red en un archivo, y cargar la red nuevamente junto a
+ * sus componentes.
+ *
  * @author Andrés Sánchez, Juan Ochoa, Sebastian Villanueva.
  */
 public class ArchivoDeConfiguracionDeRed implements Serializable {
@@ -59,10 +61,9 @@ public class ArchivoDeConfiguracionDeRed implements Serializable {
      */
     private ObjectOutputStream escritor;
     /**
-     * Objeto que se va a leer o escribir en el archivo 
+     * Objeto que se va a leer o escribir en el archivo
      */
     private GestionRed gestionRed;
-    
 
     /**
      * Constructora genérica
@@ -72,8 +73,9 @@ public class ArchivoDeConfiguracionDeRed implements Serializable {
 
     /**
      * Constructor para guardar
+     *
      * @param ruta ruta donde se dejará el archivo
-     * @param nombreArchivo nombre del archivo 
+     * @param nombreArchivo nombre del archivo
      * @param gestionRed objeto que se va a guardar
      */
     public ArchivoDeConfiguracionDeRed(String ruta, String nombreArchivo, GestionRed gestionRed) {
@@ -86,6 +88,7 @@ public class ArchivoDeConfiguracionDeRed implements Serializable {
 
     /**
      * constructora para leer
+     *
      * @param ruta ruta donde está el archivo
      * @param nombreArchivo nombre del archivo con extensión .niote
      */
@@ -96,7 +99,7 @@ public class ArchivoDeConfiguracionDeRed implements Serializable {
     }
 
     /**
-     * Crea y verifica que el archivo exista 
+     * Crea y verifica que el archivo exista
      */
     private void crearArchivo() {
         archivo = new File(this.ruta + this.nombreArchivo);
@@ -111,7 +114,8 @@ public class ArchivoDeConfiguracionDeRed implements Serializable {
     }
 
     /**
-     * Crea y verifica que la ruta exista 
+     * Crea y verifica que la ruta exista
+     *
      * @param ruta
      */
     private void crearCarpeta(String ruta) {
@@ -123,6 +127,7 @@ public class ArchivoDeConfiguracionDeRed implements Serializable {
 
     /**
      * Verifica que el nombre del archivo tenga la extensión .niote
+     *
      * @param nombreArchivo nombre que el usuario da al archivo
      * @return nombre del archivo con la extensión .niote
      */
@@ -142,7 +147,8 @@ public class ArchivoDeConfiguracionDeRed implements Serializable {
 
     /**
      * verifica que la ruta termine en \
-     * @param ruta ruta que da el usuario 
+     *
+     * @param ruta ruta que da el usuario
      * @return ruta con \ al final
      */
     private String darRuta(String ruta) {
@@ -172,6 +178,7 @@ public class ArchivoDeConfiguracionDeRed implements Serializable {
 
     /**
      * Carga los datos del objeto Red que tiene la GestionRed
+     *
      * @return null si no existe, Objeto Red
      */
     public Red cargarRed() {
@@ -180,6 +187,7 @@ public class ArchivoDeConfiguracionDeRed implements Serializable {
 
     /**
      * Carga los datos del objeto GestionNodos que tiene la GestionRed
+     *
      * @return null si no existe, Objeto GestionNodos
      */
     public GestionNodos cargarNodos() {
@@ -188,6 +196,7 @@ public class ArchivoDeConfiguracionDeRed implements Serializable {
 
     /**
      * Carga los datos del objeto GestionPuertasDeEnlace que tiene la GestionRed
+     *
      * @return null si no existe, Objeto GestionPuertasDeEnlace
      */
     public GestionPuertasDeEnlace cargarPuertasDeEnlace() {
@@ -196,6 +205,7 @@ public class ArchivoDeConfiguracionDeRed implements Serializable {
 
     /**
      * Carga los datos del objeto GestionActuadores que tiene la GestionRed
+     *
      * @return null si no existe, Objeto GestionActuadores
      */
     public GestionActuadores cargarActuadores() {
@@ -204,6 +214,7 @@ public class ArchivoDeConfiguracionDeRed implements Serializable {
 
     /**
      * Carga los datos del objeto GestionSensores que tiene la GestionRed
+     *
      * @return null si no existe, Objeto GestionSensores
      */
     public GestionSensores cargarSensores() {
@@ -231,6 +242,7 @@ public class ArchivoDeConfiguracionDeRed implements Serializable {
     /**
      * Método que carga una Gestion red desde un archivo previamente guardado
      * con extensión .niote
+     *
      * @return null, si el archivo no existe o se dañó el archivo, un objeto
      * GestionRed con la configuración previa
      */
