@@ -1,5 +1,5 @@
 -- MySQL Workbench Synchronization
--- Generated: 2019-08-21 10:43
+-- Generated: 2019-08-22 15:29
 -- Model: New Model
 -- Version: 1.0
 -- Project: Name of the project
@@ -8,6 +8,8 @@
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+CREATE SCHEMA IF NOT EXISTS `ingusbbo_piico` DEFAULT CHARACTER SET utf8 ;
 
 CREATE TABLE IF NOT EXISTS `ingusbbo_piico`.`usuario` (
   `username` VARCHAR(45) NOT NULL,
@@ -124,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `ingusbbo_piico`.`mensajes` (
   `id` VARCHAR(45) NOT NULL,
   `fecha` DATETIME NOT NULL,
   `tipo` VARCHAR(45) NOT NULL,
-  `mensajes` LONGTEXT NOT NULL,
+  `mensaje` LONGTEXT NOT NULL,
   `estado` TINYINT(4) NOT NULL,
   `puerta_de_enlace` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
@@ -279,6 +281,22 @@ CREATE TABLE IF NOT EXISTS `ingusbbo_piico`.`usuario_proyecto` (
   CONSTRAINT `fk_usuario_has_proyecto_proyecto`
     FOREIGN KEY (`proyecto_id`)
     REFERENCES `ingusbbo_piico`.`proyecto` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `ingusbbo_piico`.`auth` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user` VARCHAR(80) NOT NULL,
+  `pass` VARCHAR(512) NOT NULL,
+  `topic` VARCHAR(45) NOT NULL,
+  `puerta_de_enlace_id` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_auth_puerta_de_enlace_idx` (`puerta_de_enlace_id` ASC),
+  CONSTRAINT `fk_auth_puerta_de_enlace`
+    FOREIGN KEY (`puerta_de_enlace_id`)
+    REFERENCES `ingusbbo_piico`.`puerta_de_enlace` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
