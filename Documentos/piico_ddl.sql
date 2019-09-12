@@ -1,5 +1,5 @@
 -- MySQL Workbench Synchronization
--- Generated: 2019-08-22 15:29
+-- Generated: 2019-09-12 11:14
 -- Model: New Model
 -- Version: 1.0
 -- Project: Name of the project
@@ -111,11 +111,11 @@ CREATE TABLE IF NOT EXISTS `ingusbbo_piico`.`sensor` (
   `tipo` VARCHAR(80) NOT NULL,
   `magnitud` VARCHAR(50) NOT NULL,
   `frecuencia` INT(11) NOT NULL,
-  `nodo_id` VARCHAR(45) NOT NULL,
+  `nodo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Sensor_nodo_idx` (`nodo_id` ASC),
+  INDEX `fk_Sensor_nodo_idx` (`nodo` ASC),
   CONSTRAINT `fk_Sensor_nodo`
-    FOREIGN KEY (`nodo_id`)
+    FOREIGN KEY (`nodo`)
     REFERENCES `ingusbbo_piico`.`nodo` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -291,11 +291,11 @@ CREATE TABLE IF NOT EXISTS `ingusbbo_piico`.`auth` (
   `user` VARCHAR(80) NOT NULL,
   `pass` VARCHAR(512) NOT NULL,
   `topic` VARCHAR(45) NOT NULL,
-  `puerta_de_enlace_id` VARCHAR(45) NOT NULL,
+  `puerta_de_enlace` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_auth_puerta_de_enlace_idx` (`puerta_de_enlace_id` ASC),
+  INDEX `fk_auth_puerta_de_enlace_idx` (`puerta_de_enlace` ASC),
   CONSTRAINT `fk_auth_puerta_de_enlace`
-    FOREIGN KEY (`puerta_de_enlace_id`)
+    FOREIGN KEY (`puerta_de_enlace`)
     REFERENCES `ingusbbo_piico`.`puerta_de_enlace` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
