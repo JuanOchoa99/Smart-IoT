@@ -6,10 +6,15 @@
 package co.edu.usbbog.datan.piico.piicows.controller.ws;
 
 import co.edu.usbbog.datan.piico.piicows.controller.persistence.ActuadorFacade;
-import co.edu.usbbog.datan.piico.piicows.controller.persistence.DatoFacade;
+import co.edu.usbbog.datan.piico.piicows.controller.persistence.ReportesFacade;
+import co.edu.usbbog.datan.piico.piicows.controller.persistence.RolFacade;
+import co.edu.usbbog.datan.piico.piicows.controller.persistence.UsuarioFacade;
 import co.edu.usbbog.datan.piico.piicows.controller.persistence.SensorFacade;
 import co.edu.usbbog.datan.piico.piicows.model.Actuador;
+import co.edu.usbbog.datan.piico.piicows.model.Reportes;
+import co.edu.usbbog.datan.piico.piicows.model.Rol;
 import co.edu.usbbog.datan.piico.piicows.model.Sensor;
+import co.edu.usbbog.datan.piico.piicows.model.Usuario;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -38,6 +43,9 @@ public class FrontWS {
     @EJB
     ActuadorFacade actuadorFacade;
     SensorFacade sensorFacade;
+    UsuarioFacade usuarioFacade;
+    RolFacade rolFacade;
+    ReportesFacade reportesFacade;
 
     //Actuador
     
@@ -135,7 +143,7 @@ public class FrontWS {
         return "El numero de actuadores ecistentes es: "+actuadorFacade.count();
     }
     
-    //Actuador
+    //Sensor
     
     /**
      * Metodo para insertar un nuevo sensor
@@ -231,6 +239,295 @@ public class FrontWS {
         return "El numero de sensores existentes es: "+sensorFacade.count();
     }
     
+    //Usuario  
+    
+    /**
+     * Metodo para insertar un nuevo Usuario  
+     * @param userName identificador del Usuario  
+     * @return Datos del nuevo Usuario  
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/insertarUsuario")
+    public String insertarUsuario  (@WebParam(name = "userName") String userName) {
+        Usuario   a = new Gson().fromJson(userName, Usuario.class);
+        usuarioFacade.create(a);
+        return new Gson().toJson(a);    
+    }
+    
+    /**
+     * Metodo para editar Usuario  
+     * @param userName identificador del Usuario  
+     * @return Datos modificados del Usuario  
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/modificarUsuario  ")
+    public String modificarUsuario  (@WebParam(name = "userName") String userName) {
+        Usuario   a = new Gson().fromJson(userName, Usuario.class);
+        usuarioFacade.edit(a);
+        return new Gson().toJson(a);
+    }
+    
+    /**
+     * Metodo para eliminar Usuario  
+     * @param userName identificador del Usuario  
+     * @return Si el Usuario   se elimina devuelve "Usuario   eliminado", de lo contrario "No existe el Usuario  "
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/eliminarUsuario")
+    public String eliminarUsuario (@WebParam(name = "userName") String userName) {
+        
+        try{
+        Usuario   a = new Gson().fromJson(userName, Usuario.class);
+        usuarioFacade.remove(a);
+        return "{\"mensaje\": \"Usuario   eliminado\"}";
+        } catch (EJBException e) {
+            return "{\"error\": \"No existe el Usuario  \"}";
+        }
+    }
+    
+    /**
+     * Metodo para mostrar todos los Usuario  es existentes
+     * @return usuarios existentes
+     */
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/buscarTodosLosUsuarios")
+    public String buscarTodosLosUsuarios() {
+        List<Usuario> usuarios = usuarioFacade.findAll();
+        String salida = "[";
+        for (Usuario   a : usuarios) {
+            salida += new Gson().toJson(a)+",";
+        }
+        salida=quitarComa(salida);
+        salida += "]";
+        return salida;
+    }
+    
+    /**
+     * Metodo para buscar Usuario  
+     * @param userName identificador del Usuario  
+     * @return Datos del Usuario  
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/buscarUsuario")
+    public String buscarUsuario  (@WebParam(name = "userName") String userName) {
+        Usuario   a = new Gson().fromJson(userName, Usuario.class);
+        a=usuarioFacade.find(a.getUsername());
+        return new Gson().toJson(a);
+    }
+    
+     /**
+     * Metodo para contar todos los Usuarios existentes
+     * @return Numero deUsuarios existentes
+     */
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/contarTodosLosUsuarios")
+    public String contarTodosLosUsuarios() {
+        return "El numero de Usuario  es ecistentes es: "+usuarioFacade.count();
+    }
+    
+    //Rol  
+    
+    /**
+     * Metodo para insertar un nuevo Rol  
+     * @param id identificador del Rol  
+     * @return Datos del nuevo Rol  
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/insertarRol")
+    public String insertarRol  (@WebParam(name = "id") String id) {
+        Rol   a = new Gson().fromJson(id, Rol.class);
+        rolFacade.create(a);
+        return new Gson().toJson(a);    
+    }
+    
+    /**
+     * Metodo para editar Rol  
+     * @param id identificador del Rol  
+     * @return Datos modificados del Rol  
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/modificarRol  ")
+    public String modificarRol  (@WebParam(name = "id") String id) {
+        Rol   a = new Gson().fromJson(id, Rol.class);
+        rolFacade.edit(a);
+        return new Gson().toJson(a);
+    }
+    
+    /**
+     * Metodo para eliminar Rol  
+     * @param id identificador del Rol  
+     * @return Si el Rol   se elimina devuelve "Rol   eliminado", de lo contrario "No existe el Rol  "
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/eliminarRol")
+    public String eliminarRol (@WebParam(name = "id") String id) {
+        
+        try{
+        Rol   a = new Gson().fromJson(id, Rol.class);
+        rolFacade.remove(a);
+        return "{\"mensaje\": \"Rol   eliminado\"}";
+        } catch (EJBException e) {
+            return "{\"error\": \"No existe el Rol  \"}";
+        }
+    }
+    
+    /**
+     * Metodo para mostrar todos los Roles existentes
+     * @return Rols existentes
+     */
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/buscarTodosLosRoles")
+    public String buscarTodosLosRoles() {
+        List<Rol> Rols = rolFacade.findAll();
+        String salida = "[";
+        for (Rol   a : Rols) {
+            salida += new Gson().toJson(a)+",";
+        }
+        salida=quitarComa(salida);
+        salida += "]";
+        return salida;
+    }
+    
+    /**
+     * Metodo para buscar Rol  
+     * @param nombre identificador del Rol  
+     * @return Datos del Rol  
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/buscarRol ")
+    public String buscarRol  (@WebParam(name = "nombre") String nombre) {
+        Rol   a = new Gson().fromJson(nombre, Rol.class);
+        a=rolFacade.find(a.getNombre());
+        return new Gson().toJson(a);
+    }
+    
+     /**
+     * Metodo para contar todos los Roles existentes
+     * @return Numero deRol  es existentes
+     */
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/contarTodosLosRoles")
+    public String contarTodosLosRoles() {
+        return "El numero de Rol  es ecistentes es: "+rolFacade.count();
+    }
+    
+    
+//Reportes
+    
+    /**
+     * Metodo para insertar un nuevo Reporte
+     * @param id identificador del Reporte
+     * @return Datos del nuevo Reporte
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/insertarReporte")
+    public String insertarReporte(@WebParam(name = "id") String id) {
+        Reportes a = new Gson().fromJson(id, Reportes.class);
+        reportesFacade.create(a);
+        return new Gson().toJson(a);    
+    }
+    
+    /**
+     * Metodo para editar Reporte
+     * @param id identificador del Reporte
+     * @return Datos modificados del Reporte
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/modificarReporte")
+    public String modificarReporte(@WebParam(name = "id") String id) {
+        Reportes a = new Gson().fromJson(id, Reportes.class);
+        reportesFacade.edit(a);
+        return new Gson().toJson(a);
+    }
+    
+    /**
+     * Metodo para eliminar Reporte
+     * @param id identificador del Reporte
+     * @return Si el Reporte se elimina devuelve "Reporte eliminado", de lo contrario "No existe el Reporte"
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/eliminarReporte")
+    public String eliminarReportes(@WebParam(name = "id") String id) {
+        
+        try{
+        Reportes a = new Gson().fromJson(id, Reportes.class);
+        reportesFacade.remove(a);
+        return "{\"mensaje\": \"Reporte eliminado\"}";
+        } catch (EJBException e) {
+            return "{\"error\": \"No existe el Reporte\"}";
+        }
+    }
+    
+    /**
+     * Metodo para mostrar todos los Reportees existentes
+     * @return Reportes existentes
+     */
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/buscarTodosLosReportes")
+    public String buscarTodosLosReportes() {
+        List<Reportes> Reportes = reportesFacade.findAll();
+        String salida = "[";
+        for (Reportes a : Reportes) {
+            salida += new Gson().toJson(a)+",";
+        }
+        salida=quitarComa(salida);
+        salida += "]";
+        return salida;
+    }
+    
+    /**
+     * Metodo para buscar Reporte
+     * @param id identificador del Reporte
+     * @return Datos del Reporte
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/buscarReportes")
+    public String buscarReporte(@WebParam(name = "id") String id) {
+        Reportes a = new Gson().fromJson(id, Reportes.class);
+        a=reportesFacade.find(a.getId());
+        return new Gson().toJson(a);
+    }
+    
+     /**
+     * Metodo para contar todos los Reportees existentes
+     * @return Numero deReportees existentes
+     */
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/contarTodosLosReportes")
+    public String contarTodosLosReportes() {
+        return "El numero de Reportees ecistentes es: "+reportesFacade.count();
+    }
+
     
     @POST  
     @Produces(MediaType.APPLICATION_JSON)
