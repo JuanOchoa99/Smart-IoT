@@ -42,15 +42,20 @@ public class FrontWS {
     
     @EJB
     ActuadorFacade actuadorFacade;
+    @EJB
     SensorFacade sensorFacade;
+    @EJB
     UsuarioFacade usuarioFacade;
+    @EJB
     RolFacade rolFacade;
+    @EJB
     ReportesFacade reportesFacade;
 
     //Actuador
     
     /**
      * Metodo para insertar un nuevo actuador
+     * @param actuador
      * @param id identificador del actuador
      * @return Datos del nuevo actuador
      */
@@ -58,9 +63,11 @@ public class FrontWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/insertarActuador")
-    public String insertarActuador(@WebParam(name = "id") String id) {
-        Actuador a = new Gson().fromJson(id, Actuador.class);
+    public String insertarActuador(@WebParam(name = "actuador") String actuador) {
+        Actuador a = new Gson().fromJson(actuador, Actuador.class);
         actuadorFacade.create(a);
+        a=actuadorFacade.find(a.getId());
+        System.out.println("Hola");
         return new Gson().toJson(a);    
     }
     
@@ -243,6 +250,7 @@ public class FrontWS {
     
     /**
      * Metodo para insertar un nuevo Usuario  
+     * @param usuario
      * @param userName identificador del Usuario  
      * @return Datos del nuevo Usuario  
      */
@@ -250,10 +258,16 @@ public class FrontWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/insertarUsuario")
-    public String insertarUsuario  (@WebParam(name = "userName") String userName) {
-        Usuario   a = new Gson().fromJson(userName, Usuario.class);
-        usuarioFacade.create(a);
-        return new Gson().toJson(a);    
+    public String insertarUsuario  (@WebParam(name = "usuario") String usuario) {
+        try{
+            Usuario u = new Gson().fromJson(usuario, Usuario.class);
+            usuarioFacade.create(u);
+            u = usuarioFacade.find(u.getUsername());
+            return new Gson().toJson(u);
+        } catch (Exception e) {
+            return "{\"respuesta\":\"error al innsertar usuario\"}";
+        }
+
     }
     
     /**

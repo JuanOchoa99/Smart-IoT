@@ -48,7 +48,7 @@ public class Actuador implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(nullable = false, length = 45)
+    @Column(name = "descripcion", nullable = false, length = 45)
     private String descripcion;
     @Basic(optional = false)
     @NotNull
