@@ -5,6 +5,8 @@ Created on 27/02/2020
 '''
 
 import argparse
+from logic.ConfigTools import Station
+
 parser = argparse.ArgumentParser(
     prog='Estacion PIICO USB',
     description='Comandos para el inicio de la estacion.',
@@ -33,18 +35,18 @@ parser.add_argument(
     required=True,
     nargs=2,
     type=float,
-    help='ubicacion gps Lat=xx.xxxxxx & Long=xx.xxxxxx'
+    help='ubicacion gps Lon=xx.xxxxxx & Lat=xx.xxxxxx'
 )
 parser.add_argument(
     '-p','--prot', '--protocols',
     dest='protocols',
     metavar='P',
-    required=True,
-    nargs='+',
+    required=False,
+    nargs='*',
     type=str,
-    choices=['wifi', 'blue', 'xbee'],
+    choices=['all', 'wifi', 'blue', 'xbee'],
     default=['wifi'],
-    help='[wifi blue xbee]'
+    help='[all | wifi blue xbee]'
 )
 parser.add_argument(
     '-s','--sen', '--sensors',
@@ -76,7 +78,7 @@ parser.add_argument(
     nargs='*',
     type=str,
     default=['IP=192.168.1.2'],
-    help='direccion IP del gateway [IP=], direccion Zigbee del gateway [XB=], dirreccion bluetooth del gateway [BT=]'
+    help='direccion IP del gateway [IP=], dirreccion bluetooth del gateway [BT=MAC-NAME-PIN]'
 )
 parser.add_argument(
     '-b','--bk', '--broker',
@@ -85,26 +87,14 @@ parser.add_argument(
     required=False,
     nargs='*',
     type=str,
-    default=['IP=192.168.1.2'],
-    help='direccion IP del broker [IP=], direccion Zigbee del broker [XB=], dirreccion bluetooth del broker [BT=]'
+    default=['192.168.1.2'],
+    help='direccion IP del broker [IP]'
 )
-class Estacion():
-    def __init__(self,IPGateway):
-        self.__IPGateway=IPGateway
-    def getIPGateway(self):
-        return self.__IPGateway
     
 def main():     
     args = parser.parse_args()
-    print(args.name)
-    print(args.ubiety)
-    print(args.protocols)    
-    print(args.sensors)
-    print(args.actuators)
-    print(args.gateway)
-    print(args.broker)
-    estacion=Estacion(str(args.gateway))
-    print('la estacion es: ', estacion.getIPGateway())
+    estacion=Station(args.name, args.ubiety, args.protocols, args.sensors, args.actuators, args.gateway, args.broker)
+    print('la estacion es: ', estacion)
 
 if  __name__ ==  '__main__':
     main()
