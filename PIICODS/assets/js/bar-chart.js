@@ -270,68 +270,30 @@ if ($('#ambarchart1').length) {
             "color": "#fff"
         },
         "dataProvider": [{
-            "country": "USA",
-            "year2004": 3.5,
-            "year2005": 4.2,
-            "color": "#bfbffd",
-            "color2": "#7474F0"
+            "nodo": "Nodo1",
+            "valor": 27,
+            "color": "#FEC514",
         }, {
-            "country": "UK",
-            "year2004": 1.7,
-            "year2005": 3.1,
-            "color": "#bfbffd",
-            "color2": "#7474F0"
+            "nodo": "Nodo2",
+            "valor": 21,
+            "color": "#7F8DA9",
         }, {
-            "country": "Canada",
-            "year2004": 2.8,
-            "year2005": 2.9,
-            "color": "#bfbffd",
-            "color2": "#7474F0"
-        }, {
-            "country": "Japan",
-            "year2004": 2.6,
-            "year2005": 2.3,
-            "color": "#bfbffd",
-            "color2": "#7474F0"
-        }, {
-            "country": "France",
-            "year2004": 1.4,
-            "year2005": 2.1,
-            "color": "#bfbffd",
-            "color2": "#7474F0"
-        }, {
-            "country": "Brazil",
-            "year2004": 2.6,
-            "year2005": 4.9,
-            "color": "#bfbffd",
-            "color2": "#7474F0"
-        }],
-        "valueAxes": [{
-            "unit": "%",
-            "position": "left",
-        }],
+            "nodo": "Nodo3",
+            "valor": 25,
+            "color": "#2599D4",
+        },],
         "startDuration": 1,
         "graphs": [{
-            "balloonText": "GDP grow in [[category]] (2017): <b>[[value]]</b>",
+            "balloonText": "Temperatura actual: <b>[[value]]</b>",
             "fillAlphas": 0.9,
             "fillColorsField": "color",
             "lineAlpha": 0.2,
-            "title": "2017",
+            "title": "Actual",
             "type": "column",
-            "valueField": "year2004"
-        }, {
-            "balloonText": "GDP grow in [[category]] (2018): <b>[[value]]</b>",
-            "fillAlphas": 0.9,
-            "fillColorsField": "color2",
-            "lineAlpha": 0.2,
-            "title": "2018",
-            "type": "column",
-            "clustered": false,
-            "columnWidth": 0.5,
-            "valueField": "year2005"
+            "valueField": "valor"
         }],
         "plotAreaFillAlphas": 0.1,
-        "categoryField": "country",
+        "categoryField": "nodo",
         "categoryAxis": {
             "gridPosition": "start"
         },
@@ -362,38 +324,35 @@ if ($('#ambarchart2').length) {
         },
 
         "dataProvider": [{
-            "year": 2013,
-            "income": 23.5,
-            "expenses": 21.1,
-            "color": "#7474f0"
+            "fecha": "2020/01/10",
+            "valor": 27.5,
+            "expenses": 27.5,
+            "color": "#FEC514"
         }, {
-            "year": 2014,
-            "income": 26.2,
-            "expenses": 30.5,
-            "color": "#7474f0"
+            "fecha": "2020/01/15",
+            "valor": 30.2,
+            "expenses": 30.2,
+            "color": "#7F8DA9"
         }, {
-            "year": 2015,
-            "income": 30.1,
-            "expenses": 34.9,
-            "color": "#7474f0"
+            "fecha": "2020/02/22",
+            "valor": 25,
+            "expenses": 25,
+            "color": "#2599D4"
         }, {
-            "year": 2016,
-            "income": 29.5,
-            "expenses": 31.1,
-            "color": "#7474f0"
+            "fecha": "2020/02/05",
+            "valor": 31.3,
+            "expenses": 31.3,
+            "color": "#FEC514"
         }, {
-            "year": 2017,
-            "income": 30.6,
-            "expenses": 28.2,
-            "dashLengthLine": 5,
-            "color": "#7474f0"
+            "fecha": "2020/02/27",
+            "valor": 26.6,
+            "expenses": 26.6,
+            "color": "#7F8DA9"
         }, {
-            "year": 2018,
-            "income": 34.1,
-            "expenses": 32.9,
-            "dashLengthColumn": 5,
-            "alpha": 0.2,
-            "additional": "(projection)"
+            "fecha": "2020/04/02",
+            "valor": 24,
+            "expenses": 24,
+            "color": "#2599D4"
         }],
         "valueAxes": [{
             "axisAlpha": 0,
@@ -402,16 +361,16 @@ if ($('#ambarchart2').length) {
         "startDuration": 1,
         "graphs": [{
             "alphaField": "alpha",
-            "balloonText": "<span style='font-size:12px;'>[[title]] in [[category]]:<br><span style='font-size:20px;'>[[value]]</span> [[additional]]</span>",
+            "balloonText": "<span style='font-size:12px;'>[[title]] en [[category]]:<br><span style='font-size:20px;'>[[value]]</span> [[additional]]</span>",
             "fillAlphas": 1,
             "fillColorsField": "color",
-            "title": "Income",
+            "title": "Temperatura",
             "type": "column",
-            "valueField": "income",
+            "valueField": "valor",
             "dashLengthField": "dashLengthColumn"
         }, {
             "id": "graph2",
-            "balloonText": "<span style='font-size:12px;'>[[title]] in [[category]]:<br><span style='font-size:20px;'>[[value]]</span> [[additional]]</span>",
+            "balloonText": "",
             "bullet": "round",
             "lineThickness": 3,
             "bulletSize": 7,
@@ -422,11 +381,11 @@ if ($('#ambarchart2').length) {
             "bulletBorderThickness": 3,
             "fillAlphas": 0,
             "lineAlpha": 1,
-            "title": "Expenses",
+            "title": "",
             "valueField": "expenses",
             "dashLengthField": "dashLengthLine"
         }],
-        "categoryField": "year",
+        "categoryField": "fecha",
         "categoryAxis": {
             "gridPosition": "start",
             "axisAlpha": 0,
@@ -444,7 +403,7 @@ if ($('#ambarchart3').length) {
     var chart = AmCharts.makeChart("ambarchart3", {
         "type": "serial",
         "theme": "light",
-        "categoryField": "year",
+        "categoryField": "dia",
         "rotate": true,
         "startDuration": 1,
         "categoryAxis": {
@@ -453,23 +412,23 @@ if ($('#ambarchart3').length) {
         },
         "trendLines": [],
         "graphs": [{
-                "balloonText": "Income:[[value]]",
+                "balloonText": "Temperatura mas alta del dia : [[value]]",
                 "fillAlphas": 0.8,
                 "id": "AmGraph-1",
                 "lineAlpha": 0.2,
-                "title": "Income",
+                "title": "alta",
                 "type": "column",
-                "valueField": "income",
+                "valueField": "alta",
                 "fillColorsField": "color"
             },
             {
-                "balloonText": "Expenses:[[value]]",
+                "balloonText": "Temperatura mas baja el dia : [[value]]",
                 "fillAlphas": 0.8,
                 "id": "AmGraph-2",
                 "lineAlpha": 0.2,
-                "title": "Expenses",
+                "title": "baja",
                 "type": "column",
-                "valueField": "expenses",
+                "valueField": "baja",
                 "fillColorsField": "color2"
             }
         ],
@@ -483,41 +442,40 @@ if ($('#ambarchart3').length) {
         "balloon": {},
         "titles": [],
         "dataProvider": [{
-                "year": 2014,
-                "income": 23.5,
-                "expenses": 18.1,
+                "dia": "Dia 1",
+                "alta": 23.5,
+                "baja": 18.1,
                 "color": "#7474f0",
                 "color2": "#C5C5FD"
             },
             {
-                "year": 2015,
-                "income": 26.2,
-                "expenses": 22.8,
+                "dia": "Dia 2",
+                "alta": 25.2,
+                "baja": 22.5,
                 "color": "#7474f0",
                 "color2": "#C5C5FD"
             },
             {
-                "year": 2016,
-                "income": 30.1,
-                "expenses": 23.9,
+                "dia": "Dia 3",
+                "alta": 23.1,
+                "baja": 23.9,
                 "color": "#7474f0",
                 "color2": "#C5C5FD"
             },
             {
-                "year": 2017,
-                "income": 29.5,
-                "expenses": 25.1,
+                "dia": "Dia 4",
+                "alta": 29.5,
+                "baja": 25.1,
                 "color": "#7474f0",
                 "color2": "#C5C5FD"
             },
             {
-                "year": 2018,
-                "income": 24.6,
-                "expenses": 25,
+                "dia": "Dia 5",
+                "alta": 25,
+                "baja": 24.6,
                 "color": "#7474f0",
                 "color2": "#C5C5FD"
-            }
-        ],
+            }],
         "export": {
             "enabled": false
         }
@@ -532,58 +490,25 @@ if ($('#ambarchart4').length) {
         "theme": "light",
         "marginRight": 70,
         "dataProvider": [{
-            "country": "USA",
-            "visits": 3025,
+            "dia": "Dia 1",
+            "valor": 24,
             "color": "#8918FE"
         }, {
-            "country": "China",
-            "visits": 1882,
+            "dia": "Dia 2",
+            "valor": 23,
             "color": "#7474F0"
         }, {
-            "country": "Japan",
-            "visits": 1809,
+            "dia": "Dia 3",
+            "valor": 25,
             "color": "#C5C5FD"
         }, {
-            "country": "Germany",
-            "visits": 1322,
+            "dia": "Dia 4",
+            "valor": 25,
             "color": "#952FFE"
         }, {
-            "country": "UK",
-            "visits": 1122,
-            "color": "#7474F0"
-        }, {
-            "country": "France",
-            "visits": 1114,
-            "color": "#CBCBFD"
-        }, {
-            "country": "India",
-            "visits": 984,
+            "dia": "Dia 5",
+            "valor": 27,
             "color": "#FD9C21"
-        }, {
-            "country": "Spain",
-            "visits": 711,
-            "color": "#0D8ECF"
-        }, {
-            "country": "Netherlands",
-            "visits": 665,
-            "color": "#0D52D1"
-        }, {
-            "country": "Russia",
-            "visits": 580,
-            "color": "#2A0CD0"
-        }, {
-            "country": "South Korea",
-            "visits": 443,
-            "color": "#8A0CCF"
-        }, {
-            "country": "Canada",
-            "visits": 441,
-            "color": "#9F43FE"
-        }],
-        "valueAxes": [{
-            "axisAlpha": 0,
-            "position": "left",
-            "title": false
         }],
         "startDuration": 1,
         "graphs": [{
@@ -592,14 +517,14 @@ if ($('#ambarchart4').length) {
             "fillAlphas": 0.9,
             "lineAlpha": 0.2,
             "type": "column",
-            "valueField": "visits"
+            "valueField": "valor"
         }],
         "chartCursor": {
             "categoryBalloonEnabled": false,
             "cursorAlpha": 0,
             "zoomable": false
         },
-        "categoryField": "country",
+        "categoryField": "dia",
         "categoryAxis": {
             "gridPosition": "start",
             "labelRotation": 45
@@ -807,4 +732,6 @@ if ($('#socialads').length) {
         ]
     });
 }
+
+
 /*--------------  bar chart 14 highchart END ------------*/
