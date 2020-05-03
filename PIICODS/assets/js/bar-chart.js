@@ -361,10 +361,10 @@ if ($('#ambarchart2').length) {
         "startDuration": 1,
         "graphs": [{
             "alphaField": "alpha",
-            "balloonText": "<span style='font-size:12px;'>[[title]] en [[category]]:<br><span style='font-size:20px;'>[[value]]</span> [[additional]]</span>",
+            "balloonText": "<span style='font-size:12px;'>[[title]]  [[category]]:<br><span style='font-size:20px;'>[[value]]</span> [[additional]]</span>",
             "fillAlphas": 1,
             "fillColorsField": "color",
-            "title": "Temperatura",
+            "title": "",
             "type": "column",
             "valueField": "valor",
             "dashLengthField": "dashLengthColumn"

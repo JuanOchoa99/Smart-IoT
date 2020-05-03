@@ -571,7 +571,10 @@
         padding-left: 0;
     }
     .card-body {
-        padding: 1.25rem;
+        /*padding: 1.25rem;*/
+position:absolute;
+   left: 10%;
+   right: 10%;
     }
     /* hedaer */
     .search-box input {

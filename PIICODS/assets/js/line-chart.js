@@ -1068,53 +1068,53 @@ if ($('#amlinechart5').length) {
     var chart = AmCharts.makeChart("amlinechart5", {
         "type": "serial",
         "theme": "light",
-        "marginRight": 20,
+        "marginRight": 40,
         "marginTop": 17,
         "autoMarginOffset": 20,
         "dataProvider": [{
-            "date": "2012-03-01",
+            "date": "2020-03-01",
             "price": 20
         }, {
-            "date": "2012-03-02",
+            "date": "2020-03-02",
             "price": 75
         }, {
-            "date": "2012-03-03",
+            "date": "2020-03-03",
             "price": 15
         }, {
-            "date": "2012-03-04",
+            "date": "2020-03-04",
             "price": 75
         }, {
-            "date": "2012-03-05",
+            "date": "2020-03-05",
             "price": 158
         }, {
-            "date": "2012-03-06",
+            "date": "2020-03-06",
             "price": 57
         }, {
-            "date": "2012-03-07",
+            "date": "2020-03-07",
             "price": 107
         }, {
-            "date": "2012-03-08",
+            "date": "2020-03-08",
             "price": 89
         }, {
-            "date": "2012-03-09",
+            "date": "2020-03-09",
             "price": 75
         }, {
-            "date": "2012-03-10",
+            "date": "2020-03-10",
             "price": 132
         }, {
-            "date": "2012-03-11",
+            "date": "2020-03-11",
             "price": 158
         }, {
-            "date": "2012-03-12",
+            "date": "2020-03-12",
             "price": 56
         }, {
-            "date": "2012-03-13",
+            "date": "2020-03-13",
             "price": 169
         }, {
-            "date": "2012-03-14",
+            "date": "2020-03-14",
             "price": 24
         }, {
-            "date": "2012-03-15",
+            "date": "2020-03-15",
             "price": 147
         }],
         "valueAxes": [{

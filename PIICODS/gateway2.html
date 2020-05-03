@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>S-PIICO Dashboard</title>
+    <title>Chart - srtdash</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="assets/css/typography.css">
     <link rel="stylesheet" href="assets/css/default-css.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">  
+    <link rel="stylesheet" href="assets/css/responsive.css">
     <!-- modernizr css -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -34,14 +34,13 @@
     </div>
     <!-- preloader area end -->
     <!-- page container area start -->
-        <div class="page-container">
+    <div class="page-container">
         <!-- sidebar menu area start -->
         <div class="sidebar-menu">
             <div class="sidebar-header">
                 <div class="logo">
                     <a href="index3.html"><img src="assets/images/icon/iconoPiico.png" alt="logo"></a>
-                    <h3 class="text-white">PIICO</h3>
-                    <h5 class="text-white">Cloud</h5>
+                    <h3 class="text-white">S-PIICO</h3>
                 </div>
             </div>
             <div class="main-menu">
@@ -49,35 +48,21 @@
                     <nav>
                         <ul class="metismenu" id="menu">
                             <li class="active">
-                                <a href="index3.html" aria-expanded="true"><i
-                                        class="ti-dashboard"></i><span>Dashboard</span></a>
+                                <a href="devices.html" aria-expanded="true"><i class="ti-dashboard"></i><span>Agregar Dispositivos</span></a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i
-                                        class="ti-pie-chart"></i><span>Variables Ambientales</span></a>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Estaciones</span></a>
                                 <ul class="collapse">
-                                    <li><a href="temperatura.html">Temperatura</a></li>
-                                    <li><a href="humedad.html">Humedad</a></li>
-                                    <li><a href="pluviometro.html">Pluviometró</a></li>
-                                    <li><a href="radiacion.html">Radiación</a></li>
-                                    <li><a href="anemometro.html">Anemómetro</a></li>
-                                    <li><a href="direccionDelViento.html">Dirección del Viento</a></li>
+                                    <li><a href="nodo.html">Estación 1</a></li>
+                                    <li><a href="nodo.html">Estación 2</a></li>
+                                    <li><a href="nodo.html">Estación 3</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i
-                                        class="ti-palette"></i><span>Actuadores</span></a>
-                                <ul class="collapse">
-                                    <li><a href="accordion.html">Aspersor de agua</a></li>
-                                </ul>
+                                <a href="gateway.html" aria-expanded="true"><i class="ti-dashboard"></i><span>GateWay</span></a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i
-                                        class="ti-palette"></i><span>Red</span></a>
-                                <ul class="collapse">
-                                    <li><a href="gateway.html">Gateway</a></li>
-                                    <li><a href="brokker.html">Brokker</a></li>
-                                </ul>
+                                <a href="administrator.html" aria-expanded="true"><i class="ti-palette"></i><span>Administrador</span></a>
                             </li>
                         </ul>
                     </nav>
@@ -149,15 +134,15 @@
                         <div class="breadcrumbs-area clearfix">
                             <h4 class="page-title pull-left">Sensores</h4>
                             <ul class="breadcrumbs pull-left">
-                                <li><a href="index.html">Pluviometro</a></li>
+                                <li><a href="index.html">Home</a></li>
+                                <li><span>Pie Chart</span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-6 clearfix">
                         <div class="user-profile pull-right">
-                            <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
-                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Usuario <i
-                                    class="fa fa-angle-down"></i></h4>
+                            <img class="avatar user-thumb" src="assets/images/author/as.png" alt="avatar">
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Andres Sanchez<i class="fa fa-angle-down"></i></h4>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Message</a>
                                 <a class="dropdown-item" href="#">Settings</a>
@@ -169,136 +154,47 @@
             </div>
             <!-- page title area end -->
             <div class="main-content-inner">
-                <!-- bar chart start -->
+                <!-- pie chart start -->
                 <div class="row">
                     <div class="col-lg-6 mt-5">
                         <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title mb-0">Historial</h4>
-                                <select class="custome-select border-0 pr-3">
-                                        <option selected>Nodo 1</option>
-                                        <option value="0">Nodo 2</option>
-                                        <option value="0">Nodo 3</option>
-                                    </select>
-                                <div id="amlinechart5"></div>
-                            </div>
+                            <div id="ampiechart1"></div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 mt-5">
-                        <div class="card"> 
-                            <div class="card-body"> 
-                                    <h4 class="header-title mb-0">Mas altas</h4>
-                                    <select class="custome-select border-0 pr-3">
-                                        <option selected>Nodo 1</option>
-                                        <option value="0">Nodo 2</option>
-                                        <option value="0">Nodo 3</option>
-                                    </select>
-                                    <select class="custome-select border-0 pr-3">
-                                        <option selected>Ultimos 3 meses</option>
-                                        <option value="0">Ultimos 6 meses</option>
-                                        <option value="0">Ultimo año</option>
-                                    </select>
-                                <div id="ambarchart2"></div>
-                            </div>
-                        </div>   
                     </div>
                     <div class="col-lg-6 mt-5">
                         <div class="card">
-                            <div class="card-body">
-                                <div class="d-sm-flex justify-content-between align-items-center">
-                                <h4 class="header-title mb-0">Buscar valor</h4>
-                                </div>
-                                    <select class="custome-select border-0 pr-3">
-                                        <option selected>2020</option>
-                                        <option value="0">2019</option>
-                                    </select>
-                                    <select class="custome-select border-0 pr-3">
-                                        <option selected>Enero</option>
-                                        <option value="0">Febrero</option>
-                                        <option value="0">Marzo</option>
-                                        <option value="0">Abril</option>
-                                        <option value="0">Mayo</option>
-                                        <option value="0">Junio</option>
-                                        <option value="0">Julio</option>
-                                        <option value="0">Agosto</option>
-                                        <option value="0">Septiembre</option>
-                                        <option value="0">Octubre</option>
-                                        <option value="0">Noviembre</option>
-                                        <option value="0">Diciembre</option>
-                                    </select>
-                                        <select class="custome-select border-0 pr-3">
-                                        <option selected>01</option>
-                                        <option value="0">02</option>
-                                        <option value="0">03</option>
-                                        <option value="0">04</option>
-                                        <option value="0">05</option>
-                                        <option value="0">06</option>
-                                        <option value="0">07</option>
-                                        <option value="0">08</option>
-                                        <option value="0">09</option>
-                                        <option value="0">10</option>
-                                        <option value="0">11</option>
-                                        <option value="0">12</option>
-                                        <option value="0">13</option>
-                                        <option value="0">14</option>
-                                        <option value="0">15</option>
-                                        <option value="0">16</option>
-                                        <option value="0">17</option>
-                                        <option value="0">18</option>
-                                        <option value="0">19</option>
-                                        <option value="0">20</option>
-                                        <option value="0">21</option>
-                                        <option value="0">22</option>
-                                        <option value="0">23</option>
-                                        <option value="0">24</option>
-                                        <option value="0">25</option>
-                                        <option value="0">26</option>
-                                        <option value="0">27</option>
-                                        <option value="0">28</option>
-                                        <option value="0">29</option>
-                                        <option value="0">30</option>
-                                        <option value="0">31</option>
-                                    </select>
-                                
-                                <div class="market-status-table mt-4">
-                                    <div class="table-responsive">
-                                        <table class="dbkit-table">
-                                            <tr class="heading-td">
-                                                <td class="nodo">Nodo</td>
-                                                <td class="estado">Estado</td>
-                                                <td class="valor">Valor</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td class="nodo">Nodo 1</td>
-                                                <td class="estado">Inactivo <img src="assets/images/icon/market-value/triangle-down.png" alt="icon"></td>
-                                                <td class="valor">0</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="nodo">Nodo 2</td>
-                                                <td class="estado">Activo <img src="assets/images/icon/market-value/triangle-up.png" alt="icon"></td>
-                                                <td class="valor">100ml</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="nodo">Nodo 3</td>
-                                                <td class="estado">Activo <img src="assets/images/icon/market-value/triangle-up.png" alt="icon"></td>
-                                                <td class="valor">150ml</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+                            <div id="ampiechart2"></div>
                         </div>
                     </div>
-
-                <!-- bar chart end -->
+                    <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div id="ampiechart3"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div id="highpiechart4"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div id="highpiechart5"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div id="highpiechart6"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- pie chart end -->
             </div>
         </div>
         <!-- main content area end -->
         <!-- footer area start-->
         <footer>
             <div class="footer-area">
-                <p>© Copyright 2020. All right reserved. Template by <a href="https://piico.ingusb.com/">PIICO</a>.</p>
+                <p>© Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
             </div>
         </footer>
         <!-- footer area end-->
@@ -491,6 +387,7 @@
     <script src="assets/js/metisMenu.min.js"></script>
     <script src="assets/js/jquery.slimscroll.min.js"></script>
     <script src="assets/js/jquery.slicknav.min.js"></script>
+
     <!-- start chart js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <!-- start highcharts js -->
@@ -503,7 +400,9 @@
     </script>
     <!-- start amchart js -->
     <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/pie.js"></script>
     <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/animate/animate.min.js"></script>
     <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
     <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
     <!-- all line chart activation -->
