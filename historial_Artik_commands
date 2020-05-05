@@ -10,10 +10,10 @@
    38  dnf update
    39  dnf clean metadata
    40  dnf update
-   41  sudo dnf install wireshark-qt
+   41  INSTALAER sudo dnf install wireshark-qt
    42  sudo dnf install wireshark
    43  sudo usermod -a -G wireshark artik
-   44  sudo usermod -a -G wireshark username
+   44  sudo usermod -a -G wireshark usernamesss
    45  sudo usermod -a -G wireshark harold27
    46  cat epan / disectors / *. c | wc -l
    47  3178870
@@ -375,7 +375,7 @@
   403  hostname -I
   404  dnf update
   405  dnf upgrade
-  406  dnf install killerbee
+  406  INSTALAR dnf install killerbee
   407  vmstat 10 48 
   408  ifconfig wlan0 192.168.1.99 up
   409  dnf install python-gtk2 python-cairo python-usb python-crypto python-serial python-dev libgcrypt-dev
