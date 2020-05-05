@@ -150,10 +150,9 @@
                 <div class="row align-items-center">
                     <div class="col-sm-6">
                         <div class="breadcrumbs-area clearfix">
-                            <h4 class="page-title pull-left">Principal</h4>
+                            <h4 class="page-title pull-left">Red</h4>
                             <ul class="breadcrumbs pull-left">
-                                <li><a href="index3.html">Principal</a></li>
-                                <li><span>Dashboard</span></li>
+                                <li><span>Gateway</span></li>
                             </ul>
                         </div>
                     </div>
@@ -174,71 +173,180 @@
             <!-- page title area end -->
             <div class="main-content-inner">
                 <div class="row">
-                    <div class="col-lg-6 col-ml-12">
-                        <div class="row">
-                            <div class="col-12 mt-5">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="header-title">Gateway</h4>
-                                        <p class="text-muted mb-3"></p>
-                                        <form action="#">
-                                            <b class="text-muted mb-3 d-block">Estado</b>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" checked id="customRadio1" name="customRadio" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio1">Activo</label>
-                                            </div>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio2">Inactivo</label>
-                                            </div>   
-                                        </form>
+                    <div class="col-lg-6 mt-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="header-title">Dispositivos conectados</h4>
+                                    <button type="button" class="btn btn-primary mb-3">Refrescar Lista</button>
+                                    <div class="single-table">
+                                        <div class="table-responsive">
+                                            <table class="table text-center">
+                                            <thead class="text-uppercase">
+                                                <tr>
+                                                <th>Dispositivo</th>
+                                                <th>Dirección IP</th>
+                                                <th>Estado</th>
+                                                <th>Categorìa</th>
+                                                <th>Hora ultima conexion</th>  
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <td>Raspberry PI</td>
+                                                <td>192.168.1.6</td>
+                                                <td>Offline</td>
+                                                <td>Nodo</td>
+                                                <td>2008/11/28</td>
+                                                </tr>
+                                                <tr>
+                                                <td>Raspberry PI</td>
+                                                <td>192.168.1.4</td>
+                                                <td>Offline</td>
+                                                <td>Nodo</td>
+                                                <td>2009/10/09</td>  
+                                                </tr>
+                                                <tr>
+                                                <td>Raspberry PI</td>
+                                                <td>192.168.1.3</td>
+                                                <td>Online</td>
+                                                <td>Nodo</td>
+                                                <td>2009/01/12</td> 
+                                                </tr>
+                                            </tbody>
+                                            </table>
                                     </div>
-                                </div>
+                                </div>   
                             </div>
-                            <div class="col-12 mt-5">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="header-title">Nodos</h4>
-                                        <p class="text-muted mb-3"></p>
-                                        <form action="#">
-                                            <b class="text-muted mb-3 d-block">Nodo 1</b>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" checked id="customRadio1" name="customRadio" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio1">Activo</label>
-                                            </div>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio2">Inactivo</label>
-                                            </div>   
-                                        </form>
-                                        <form action="#">
-                                            <b class="text-muted mb-3 d-block">Nodo 2</b>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" checked id="customRadio1" name="customRadio" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio1">Activo</label>
-                                            </div>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio2">Inactivo</label>
-                                            </div>   
-                                        </form>
-                                        <form action="#">
-                                            <b class="text-muted mb-3 d-block">Nodo 3</b>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" checked id="customRadio1" name="customRadio" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio1">Activo</label>
-                                            </div>
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio2">Inactivo</label>
-                                            </div>   
-                                        </form>
-                                    </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">Información del Access Point</h4>
+                                <div class="single-table">
+                                    <div class="table-responsive">
+                                        <table class="table text-center">
+                                        <!-- <thead class="text-uppercase bg-primary">
+                                            <tr class="text-white">
+                                                <-- <th scope="col">ID</th> -->
+                                                <!-- <th scope="col">Name</th>
+                                                <th scope="col">date</th> -->
+                                                <!-- <th scope="col">price</th>
+                                                <th scope="col">action</th> -->
+                                            <!-- </tr> -->
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">SSID:</th>
+                                                <td>PIICO_USB</td>
+                                                <!-- <td>09 / 07 / 2018</td>
+                                                <td>$120</td> -->
+                                                <!--<td><i class="ti-trash"></i></td>-->
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Interfaz:</th>
+                                                <td>wlan0</td>
+                                                <!-- <td>09 / 07 / 2018</td>
+                                                <td>$120</td> -->
+                                                <!--<td><i class="ti-trash"></i></td>-->
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Dirección IPv4:</th>
+                                                <td>192.168.1.1</td>
+                                                <!-- <td>09 / 07 / 2018</td> -->
+                                                <!-- <td>$150</td>
+                                                <td><i class="ti-trash"></i></td> -->
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Máscara de subred:</th>
+                                                <td>255.255.255.0</td>
+                                                <!-- <td>09 / 07 / 2018</td>
+                                                <td>$120</td>
+                                                <td><i class="ti-trash"></i></td> -->
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">Dirección IPv6:</th>
+                                                <td>2a01:e315:56:89</td>
+                                                <!-- <td>09 / 07 / 2018</td>
+                                                <td>$150</td>
+                                                <td><i class="ti-trash"></i></td> -->
+                                                
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Dirección MAC:</th>
+                                                <td>00:06:4d:2d:88:aa</td>
+                                            </tr>    
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-6 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="header-title">Estadísticas de la interfaz</h4>
+                            <div class="single-table">
+                                <div class="table-responsive">
+                                    <table class="table text-center">
+                                        <!-- <thead class="text-uppercase bg-primary">
+                                            <tr class="text-white">
+                                                <-- <th scope="col">ID</th> -->
+                                                <!-- <th scope="col">Name</th>
+                                                <th scope="col">date</th> -->
+                                                <!-- <th scope="col">price</th>
+                                                <th scope="col">action</th> -->
+                                            <!-- </tr> -->
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Paquetes enviados:</th>
+                                                <td>1158963</td>
+                                                <!-- <td>09 / 07 / 2018</td>
+                                                <td>$120</td> -->
+                                                <!--<td><i class="ti-trash"></i></td>-->
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Bytes enviados:</th>
+                                                <td>158635MB</td>
+                                                <!-- <td>09 / 07 / 2018</td> -->
+                                                <!-- <td>$150</td>
+                                                <td><i class="ti-trash"></i></td> -->
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Paquetes recibidos:</th>
+                                                <td>12345678</td>
+                                                <!-- <td>09 / 07 / 2018</td>
+                                                <td>$120</td>
+                                                <td><i class="ti-trash"></i></td> -->
+                                            </tr>
+                                            <tr>
+                                            <th scope="row">Bytes recibidos:</th>
+                                                <td>102589 MB</td>
+                                                <!-- <td>09 / 07 / 2018</td>
+                                                <td>$150</td>
+                                                <td><i class="ti-trash"></i></td> -->
+                                                
+                                            </tr>   
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">Access Point</h4>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label> 
+                            </div> 
+                        </div>    
+                    </div>
             </div>
         </div>
         <!-- main content area end -->
@@ -440,29 +548,12 @@
     <script src="assets/js/jquery.slimscroll.min.js"></script>
     <script src="assets/js/jquery.slicknav.min.js"></script>
 
-    <!-- start chart js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-    <!-- start highcharts js -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <!-- start amcharts -->
-    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
-    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
-    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
-    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-    <!-- all line chart activation -->
-    <script src="assets/js/line-chart.js"></script>
-    <!-- all pie chart -->
-    <script src="assets/js/pie-chart.js"></script>
-    <!-- all bar chart -->
-    <script src="assets/js/bar-chart.js"></script>
-    <!-- all map chart -->
-    <script src="assets/js/maps.js"></script>
-    <!-- Tools -->
-    <script src="assets/js/tools.js"></script>
+    <!-- Start datatable js -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
     <!-- others plugins -->
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/scripts.js"></script>
