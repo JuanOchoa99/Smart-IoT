@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en">  
 
 <head>
     <meta charset="utf-8">
@@ -78,7 +78,12 @@
                                         class="ti-palette"></i><span>Red</span></a>
                                 <ul class="collapse">
                                     <li><a href="gateway.html">Gateway</a></li>
-                                    <li><a href="broker.html">Broker</a></li>
+                                    <li><a href="#">Broker</a>
+                                        <ul class="collapse">
+                                            <li><a href="publicador.html">Publicador</a></li>
+                                            <li><a href="suscriptor.html">Suscriptor</a></li>
+                                        </ul> 
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -174,7 +179,7 @@
             <div class="main-content-inner">
                 <!-- bar chart start -->
                 <div class="row">
-                    <div class="col-lg-6 mt-5">
+                    <div class="col-lg-12 mt-5">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="header-title mb-0">Historial</h4>
@@ -187,21 +192,68 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 mt-5">
-                        <div class="card"> 
-                            <div class="card-body"> 
-                                    <h4 class="header-title mb-0">Mas altas</h4>
-                                    <select class="custome-select border-0 pr-3">
-                                        <option selected>Nodo 1</option>
-                                        <option value="0">Nodo 2</option>
-                                        <option value="0">Nodo 3</option>
-                                    </select>
-                                    <select class="custome-select border-0 pr-3">
-                                        <option selected>Ultimos 3 meses</option>
-                                        <option value="0">Ultimos 6 meses</option>
-                                        <option value="0">Ultimo año</option>
-                                    </select>
-                                <div id="ambarchart2"></div>
+                    <div class="col-lg-12 mt-5">
+                        <div class="card">                             
+                            <div class="card-body">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                            Variable
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Año</a>
+                                            <a class="dropdown-item" href="#">Mes</a>
+                                            <a class="dropdown-item" href="#">Dia</a>
+                                        </div>
+                                <select class="custome-select border-0 pr-3">
+                                        <option selected>2020</option>
+                                </select>
+                                <select class="custome-select border-0 pr-3">
+                                        <option selected>Enero</option>
+                                        <option value="0">Febrero</option>
+                                        <option value="0">Marzo</option>
+                                        <option value="0">Abril</option>
+                                        <option value="0">Mayo</option>
+                                        <option value="0">Junio</option>
+                                        <option value="0">Julio</option>
+                                        <option value="0">Agosto</option>
+                                        <option value="0">Septiembre</option>
+                                        <option value="0">Octubre</option>
+                                        <option value="0">Noviembre</option>
+                                        <option value="0">Diciembre</option>
+                                </select>
+                                <select class="custome-select border-0 pr-3">
+                                        <option selected>1</option>
+                                        <option value="0">2</option>
+                                        <option value="0">3</option>
+                                        <option value="0">4</option>
+                                        <option value="0">5</option>
+                                        <option value="0">6</option>
+                                        <option value="0">7</option>
+                                        <option value="0">8</option>
+                                        <option value="0">9</option>
+                                        <option value="0">10</option>
+                                        <option value="0">11</option>
+                                        <option value="0">12</option>
+                                        <option value="0">13</option>
+                                        <option value="0">14</option>
+                                        <option value="0">15</option>
+                                        <option value="0">16</option>
+                                        <option value="0">17</option>
+                                        <option value="0">18</option>
+                                        <option value="0">19</option>
+                                        <option value="0">20</option>
+                                        <option value="0">21</option>
+                                        <option value="0">22</option>
+                                        <option value="0">23</option>
+                                        <option value="0">24</option>
+                                        <option value="0">25</option>
+                                        <option value="0">26</option>
+                                        <option value="0">27</option>
+                                        <option value="0">28</option>
+                                        <option value="0">29</option>
+                                        <option value="0">30</option>
+                                        <option value="0">31</option>
+                                </select>
+                                <div id="ambarchart1"></div>
                             </div>
                         </div>   
                     </div>

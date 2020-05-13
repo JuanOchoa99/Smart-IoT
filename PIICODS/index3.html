@@ -78,7 +78,12 @@
                                         class="ti-palette"></i><span>Red</span></a>
                                 <ul class="collapse">
                                     <li><a href="gateway.html">Gateway</a></li>
-                                    <li><a href="broker.html">Broker</a></li>
+                                    <li><a href="#">Broker</a>
+                                        <ul class="collapse">
+                                            <li><a href="publicador.html">Publicador</a></li>
+                                            <li><a href="suscriptor.html">Suscriptor</a></li>
+                                        </ul> 
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -174,51 +179,239 @@
             <!-- page title area end -->
             <div class="main-content-inner">
                 <div class="row">
-                    <div class="col-lg-12 mt-5" text-align = "center">
+                    <div class="col-lg-12 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title">Ubicación de las Redes</h4>
-                                <div id="google_map"></div>
+                                <h4 class="header-title">Ubicación de la estación</h4>
+                                <div id="mapamchart5"></div>
                             </div>
                         </div>
-                    </div>                    
-                    <div class="col-lg-4  mt-5">
+                    </div>                 
+                    <div class="col-lg-6 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h2 class="text-info">Temperatura</h2>
-                                <a href="temperatura.html"><img src="assets/images/media/temperatura.PNG" alt="Temperatura"></a>
+                                <h4 class="header-title">Estaciones</h4>
+                                <div class="single-table">
+                                    <div class="table-responsive">
+                                        <table class="table text-center">
+                                            <thead class="text-uppercase">
+                                                <tr class="table-active">
+                                                    <th scope="col">Nodo</th>
+                                                    <th scope="col">Variable</th>
+                                                    <th scope="col">Valor actual</th>
+                                                    <th scope="col">Estado</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="table-primary">
+                                                    <th></th>
+                                                    <td>Temperatura</td>
+                                                    <td>27°</td>
+                                                    <td>On</td>
+                                                </tr>
+                                                <tr class="table-primary">
+                                                    <th></th>
+                                                    <td>Humedad</td>
+                                                    <td>15°</td>
+                                                    <td>On</td>
+                                                </tr>
+                                                <tr class="table-primary">
+                                                    <th><h4 class="header-title">#1</h4></th>
+                                                    <td>Pluviometró</td>
+                                                    <td>100ml</td>
+                                                    <td>On</td>
+                                                </tr>
+                                                <tr class="table-primary">
+                                                    <th></th>
+                                                    <td>Radiación</td>
+                                                    <td>1psi</td>
+                                                    <td>On</td>
+                                                </tr>
+                                                <tr class="table-primary">
+                                                    <th></th>
+                                                    <td>Anemómetro</td>
+                                                    <td>80mph</td>
+                                                    <td>On</td>
+                                                </tr>
+                                                <tr class="table-primary">
+                                                    <th></th>
+                                                    <td>Dirección del viento</td>
+                                                    <td>Norte</td>
+                                                    <td>On</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <th></th>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+
+                                                <tr class="table-success">
+                                                    <th></th>
+                                                    <td>Temperatura</td>
+                                                    <td>27°</td>
+                                                    <td>On</td>
+                                                </tr>
+                                                <tr class="table-success">
+                                                    <th></th>
+                                                    <td>Humedad</td>
+                                                    <td>15°</td>
+                                                    <td>On</td>
+                                                </tr>
+                                                <tr class="table-success">
+                                                    <th><h4 class="header-title">#2</h4></th>
+                                                    <td>Pluviometró</td>
+                                                    <td>100ml</td>
+                                                    <td>On</td>
+                                                </tr>
+                                                <tr class="table-success">
+                                                    <th></th>
+                                                    <td>Radiación</td>
+                                                    <td>1psi</td>
+                                                    <td>Off</td>
+                                                </tr>
+                                                <tr class="table-success">
+                                                    <th></th>
+                                                    <td>Anemómetro</td>
+                                                    <td></td>
+                                                    <td>Off</td>
+                                                </tr>
+                                                <tr class="table-success">
+                                                    <th></th>
+                                                    <td>Dirección del viento</td>
+                                                    <td></td>
+                                                    <td>Off</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th></th>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+
+                                                <tr class="table-danger">
+                                                    <th></th>
+                                                    <td>Temperatura</td>
+                                                    <td></td>
+                                                    <td>Off</td>
+                                                </tr>
+                                                <tr class="table-danger">
+                                                    <th></th>
+                                                    <td>Humedad</td>
+                                                    <td>15°</td>
+                                                    <td>On</td>
+                                                </tr>
+                                                <tr class="table-danger">
+                                                    <th><h4 class="header-title">#3</h4></th>
+                                                    <td>Pluviometró</td>
+                                                    <td>100ml</td>
+                                                    <td>On</td>
+                                                </tr>
+                                                <tr class="table-danger">
+                                                    <th></th>
+                                                    <td>Radiación</td>
+                                                    <td>1psi</td>
+                                                    <td>On</td>
+                                                </tr>
+                                                <tr class="table-danger">
+                                                    <th></th>
+                                                    <td>Anemómetro</td>
+                                                    <td>80mph</td>
+                                                    <td>On</td>
+                                                </tr>
+                                                <tr class="table-danger">
+                                                    <th></th>
+                                                    <td>Dirección del viento</td>
+                                                    <td>Norte</td>
+                                                    <td>On</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4  mt-5">
+                    <div class="col-lg-6 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h2 class="text-info">Humedad</h2>
-                                <a href="humedad.html"><img src="assets/images/media/humedad.PNG" alt="Humedad"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4  mt-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="text-info">Radiación</h2>
-                                <a href="radiacion.html"><img src="assets/images/media/medidor radiacion.png" alt="Radicación"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4  mt-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="text-info">Dirección del viento</h2>
-                                <a href="direccionDelViento.html"><img src="assets/images/media/Brujula.png" alt="direccionDelViento"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4  mt-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="text-info">Velocidad del viento</h2>
-                                <a href="anemometro.html"><img src="assets/images/media/Velocimetro.png" alt="Anemómetro"></a>
+                                <h4 class="header-title">Broker</h4>
+                                <div class="single-table">
+                                    <div class="table-responsive">
+                                        <table class="table text-center">
+                                            <h6 class="header-title">Suscriptores activos</h6>
+                                            <thead class="text-uppercase">
+                                                <tr class="table-active">
+                                                    <th scope="col">Topico</th>
+                                                    <th scope="col">Usuario</th>
+                                                    <th scope="col">Contraseña</th>
+                                                    <th scope="col">Puerto</th>
+                                                    <th scope="col">Host</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="table-primary">
+                                                    <th>PIICO</th>
+                                                    <td>Admin</td>
+                                                    <td>Pjsfdhf67</td>
+                                                    <td>1883</td>
+                                                    <td>192.168.0.22</td>
+                                                </tr>
+                                                <tr class="table-primary">
+                                                    <th>PIICO/SB</th>
+                                                    <td>User</td>
+                                                    <td>Hjhgjhg5</td>
+                                                    <td>1883</td>
+                                                    <td>192.168.0.25</td>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table text-center">
+                                            <h6 class="header-title">Publicadores activos</h6>
+                                            <thead class="text-uppercase">
+                                                <tr class="table-active">
+                                                    <th scope="col">Topico</th>
+                                                    <th scope="col">Usuario</th>
+                                                    <th scope="col">Contraseña</th>
+                                                    <th scope="col">Puerto</th>
+                                                    <th scope="col">Host</th>
+                                                    <th scope="col">QoS</th>
+                                                    <th scope="col">Mensaje</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="table-danger">
+                                                    <th>PIICO</th>
+                                                    <td>Admin</td>
+                                                    <td>Pjsfdhf67</td>
+                                                    <td>1883</td>
+                                                    <td>192.168.0.22</td>
+                                                    <td>1</td>
+                                                    <td>{"actu":"1"}</td>
+                                                </tr>
+                                                <tr class="table-danger">
+                                                    <th>PIICO/SB</th>
+                                                    <td>User</td>
+                                                    <td>Hjhgjhg5</td>
+                                                    <td>1883</td>
+                                                    <td>192.168.0.25</td>
+                                                    <td>0</td>
+                                                    <td>{"actu":"1"}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -417,250 +610,6 @@
             </div>
         </div>
     </div>
-
-    <!-- maps Resources -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbeBYsZSDkbIyfUkoIw1Rt38eRQOQQU0o"></script>
-    <script>
-    function initialize() {
-        var e = {
-                zoom: 15,
-                scrollwheel: !1,
-                center: new google.maps.LatLng(4.752151, -74.029977),
-                styles: [{
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "color": "#1d2c4d"
-                        }]
-                    },
-                    {
-                        "elementType": "labels.text.fill",
-                        "stylers": [{
-                                "color": "#8ec3b9"
-                            },
-                            {
-                                "saturation": -100
-                            },
-                            {
-                                "weight": 2
-                            }
-                        ]
-                    },
-                    {
-                        "elementType": "labels.text.stroke",
-                        "stylers": [{
-                            "color": "#1a3646"
-                        }]
-                    },
-                    {
-                        "featureType": "administrative.country",
-                        "elementType": "geometry.stroke",
-                        "stylers": [{
-                            "color": "#4b6878"
-                        }]
-                    },
-                    {
-                        "featureType": "administrative.country",
-                        "elementType": "labels.text",
-                        "stylers": [{
-                                "saturation": 30
-                            },
-                            {
-                                "lightness": -100
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "administrative.land_parcel",
-                        "elementType": "labels",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    },
-                    {
-                        "featureType": "administrative.land_parcel",
-                        "elementType": "labels.text.fill",
-                        "stylers": [{
-                            "color": "#64779e"
-                        }]
-                    },
-                    {
-                        "featureType": "administrative.province",
-                        "elementType": "geometry.stroke",
-                        "stylers": [{
-                            "color": "#4b6878"
-                        }]
-                    },
-                    {
-                        "featureType": "landscape.man_made",
-                        "elementType": "geometry.stroke",
-                        "stylers": [{
-                            "color": "#334e87"
-                        }]
-                    },
-                    {
-                        "featureType": "landscape.natural",
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "color": "#023e58"
-                        }]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "color": "#283d6a"
-                        }]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "labels.text",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "labels.text.fill",
-                        "stylers": [{
-                            "color": "#6f9ba5"
-                        }]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "labels.text.stroke",
-                        "stylers": [{
-                            "color": "#1d2c4d"
-                        }]
-                    },
-                    {
-                        "featureType": "poi.park",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                            "color": "#023e58"
-                        }]
-                    },
-                    {
-                        "featureType": "poi.park",
-                        "elementType": "labels.text.fill",
-                        "stylers": [{
-                            "color": "#3C7680"
-                        }]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "color": "#304a7d"
-                        }]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "labels.text.fill",
-                        "stylers": [{
-                            "color": "#98a5be"
-                        }]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "labels.text.stroke",
-                        "stylers": [{
-                            "color": "#1d2c4d"
-                        }]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "color": "#2c6675"
-                        }]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "geometry.stroke",
-                        "stylers": [{
-                            "color": "#255763"
-                        }]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "labels.text.fill",
-                        "stylers": [{
-                            "color": "#b0d5ce"
-                        }]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "labels.text.stroke",
-                        "stylers": [{
-                            "color": "#023e58"
-                        }]
-                    },
-                    {
-                        "featureType": "road.local",
-                        "elementType": "labels",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    },
-                    {
-                        "featureType": "transit",
-                        "elementType": "labels.text.fill",
-                        "stylers": [{
-                            "color": "#98a5be"
-                        }]
-                    },
-                    {
-                        "featureType": "transit",
-                        "elementType": "labels.text.stroke",
-                        "stylers": [{
-                            "color": "#1d2c4d"
-                        }]
-                    },
-                    {
-                        "featureType": "transit.line",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                            "color": "#283d6a"
-                        }]
-                    },
-                    {
-                        "featureType": "transit.station",
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "color": "#3a4762"
-                        }]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "color": "#0e1626"
-                        }]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                            "color": "#0e0e26"
-                        }]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "labels.text.fill",
-                        "stylers": [{
-                            "color": "#4e6d70"
-                        }]
-                    }
-                ]
-            },
-
-            l = new google.maps.Map(document.getElementById("google_map"), e);
-        new google.maps.Marker({ position: l.getCenter(), animation: google.maps.Animation.BOUNCE, map: l })
-    }
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-
 
     <!-- offset area end -->
     <!-- jquery latest version -->

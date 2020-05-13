@@ -270,30 +270,90 @@ if ($('#ambarchart1').length) {
             "color": "#fff"
         },
         "dataProvider": [{
-            "nodo": "Nodo1",
-            "valor": 27,
-            "color": "#FEC514",
+            "fecha": "Enero",
+            "nodo1": 26,
+            "nodo2": 29,
+            "nodo3": 22,
+            "color": "#bfbffd",
+            "color2": "#7474F0",
+            "color3": "#952FFE"
         }, {
-            "nodo": "Nodo2",
-            "valor": 21,
-            "color": "#7F8DA9",
+            "fecha": "Febrero",
+            "nodo1": 27,
+            "nodo2": 25,
+            "nodo3": 29,
+            "color": "#bfbffd",
+            "color2": "#7474F0",
+            "color3": "#952FFE"
         }, {
-            "nodo": "Nodo3",
-            "valor": 25,
-            "color": "#2599D4",
-        },],
+            "fecha": "Marzo",
+            "nodo1": 25,
+            "nodo2": 28,
+            "nodo3": 21,
+            "color": "#bfbffd",
+            "color2": "#7474F0",
+            "color3": "#952FFE"
+        }, {
+            "fecha": "Abril",
+            "nodo1": 26,
+            "nodo2": 29,
+            "nodo3": 25,
+            "color": "#bfbffd",
+            "color2": "#7474F0",
+            "color3": "#952FFE"
+        }, {
+            "fecha": "Mayo",
+            "nodo1": 22,
+            "nodo2": 24,
+            "nodo3": 23,
+            "color": "#bfbffd",
+            "color2": "#7474F0",
+            "color3": "#952FFE"
+        }, {
+            "fecha": "Junio",
+            "nodo1": 26,
+            "nodo2": 29,
+            "nodo3": 29,
+            "color": "#bfbffd",
+            "color2": "#7474F0",
+            "color3": "#952FFE"
+        }],
+        "valueAxes": [{
+            "unit": "°",
+            "position": "left",
+        }],
         "startDuration": 1,
         "graphs": [{
-            "balloonText": "Temperatura actual: <b>[[value]]</b>",
+            "balloonText": "Valor del (Nodo 1) en [[category]]: <b>[[value]]</b>",
             "fillAlphas": 0.9,
             "fillColorsField": "color",
             "lineAlpha": 0.2,
-            "title": "Actual",
+            "title": "Nodo 1",
             "type": "column",
-            "valueField": "valor"
+            "valueField": "nodo1"
+        }, {
+            "balloonText": "Valor del (Nodo 2) en [[category]]: <b>[[value]]</b>",
+            "fillAlphas": 0.9,
+            "fillColorsField": "color2",
+            "lineAlpha": 0.2,
+            "title": "Nodo 2",
+            "type": "column",
+            "clustered": false,
+            "columnWidth": 0.5,
+            "valueField": "nodo2"
+        }, {
+            "balloonText": "Valor del (Nodo 3) en [[category]]: <b>[[value]]</b>",
+            "fillAlphas": 0.9,
+            "fillColorsField": "color3",
+            "lineAlpha": 0.2,
+            "title": "Nodo 3",
+            "type": "column",
+            "clustered": false,
+            "columnWidth": 0.2,
+            "valueField": "nodo3"
         }],
         "plotAreaFillAlphas": 0.1,
-        "categoryField": "nodo",
+        "categoryField": "fecha",
         "categoryAxis": {
             "gridPosition": "start"
         },
