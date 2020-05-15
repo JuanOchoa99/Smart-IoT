@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>S-PIICO Dashboard</title>
+    <title>PIICO - Gateway</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="assets/images/icon/icono.ico" />
     <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
@@ -14,10 +14,14 @@
     <link rel="stylesheet" href="assets/css/metisMenu.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/css/slicknav.min.css">
-    <!-- amchart css -->
-    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
-        media="all" />
-    <!-- others css -->
+    <!-- amcharts css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- Start datatable css -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+    <!-- style css -->
     <link rel="stylesheet" href="assets/css/typography.css">
     <link rel="stylesheet" href="assets/css/default-css.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -43,7 +47,7 @@
                 <div class="logo">
                     <a href="index3.html"><img src="assets/images/icon/iconoPiico.png" alt="logo"></a>
                     <h3 class="text-white">PIICO</h3>
-                    <h5 class="text-white">Cloud</h5>
+                    <h5 class="text-white">Gateway</h5>
                 </div>
             </div>
             <div class="main-menu">
@@ -51,40 +55,32 @@
                     <nav>
                         <ul class="metismenu" id="menu">
                             <li class="active">
-                                <a href="index3.html" aria-expanded="true"><i
-                                        class="ti-dashboard"></i><span>Dashboard</span></a>
+                                <a href="devices.html" aria-expanded="true"><i class="ti-dashboard"></i><span>Dispositivos Conectados</span></a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i
-                                        class="ti-pie-chart"></i><span>Variables Ambientales</span></a>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Redes</span></a>
                                 <ul class="collapse">
-                                    <li><a href="temperatura.html">Temperatura</a></li>
-                                    <li><a href="humedad.html">Humedad</a></li>
-                                    <li><a href="pluviometro.html">Pluviometró</a></li>
-                                    <li><a href="radiacion.html">Radiación</a></li>
-                                    <li><a href="anemometro.html">Anemómtro</a></li>
-                                    <li><a href="direccionDelViento.html">Dirección del Viento</a></li>
+                                    <li><a href="wifi.html">WIFI</a></li>
+                                    <li><a href="bluetooth.html">Bluetooth</a></li>
+                                    <li><a href="zigbee.html">Zigbee</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i
-                                        class="ti-palette"></i><span>Actuadores</span></a>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Broker público</span></a>
                                 <ul class="collapse">
-                                    <li><a href="accordion.html">Aspersor de agua</a></li>
+                                    <li><a href="publicador.html">Publicador</a></li>
+                                    <li><a href="suscriptor.html">Suscriptor</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i
-                                        class="ti-palette"></i><span>Red</span></a>
+                                <a href="brokerPriv.html" aria-expanded="true"><i class="ti-dashboard"></i><span>Broker privado</span></a>
                                 <ul class="collapse">
-                                    <li><a href="gateway.html">Gateway</a></li>
-                                    <li><a href="#">Broker</a>
-                                        <ul class="collapse">
-                                            <li><a href="publicador.html">Publicador</a></li>
-                                            <li><a href="suscriptor.html">Suscriptor</a></li>
-                                        </ul> 
-                                    </li>
+                                    <li><a href="publicadorPriv.html">Publicador</a></li>
+                                    <li><a href="suscriptorPriv.html">Suscriptor</a></li>
                                 </ul>
+                            </li>
+                            <li>
+                                <a href="administrator.html" aria-expanded="true"><i class="ti-palette"></i><span>Administrador</span></a>
                             </li>
                         </ul>
                     </nav>
@@ -311,32 +307,21 @@
     <div class="offset-area">
         <div class="offset-close"><i class="ti-close"></i></div>
         <ul class="nav offset-menu-tab">
-            <li><a class="active" data-toggle="tab" href="#activity">Actividades</a></li>
+            <li><a class="active" data-toggle="tab" href="#activity">Actividad</a></li>
             <li><a data-toggle="tab" href="#settings">Configuración</a></li>
         </ul>
         <div class="offset-content tab-content">
             <div id="activity" class="tab-pane fade in show active">
                 <div class="recent-activity">
                     <div class="timeline-task">
-                        <div class="icon bg1">
-                            <i class="fa fa-envelope"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
                         <div class="icon bg2">
                             <i class="fa fa-check"></i>
                         </div>
                         <div class="tm-title">
-                            <h4>Added</h4>
+                            <h4>Ingreso al sistema</h4>
                             <span class="time"><i class="ti-time"></i>7 Minutes Ago</span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet consectetur.
+                        <p>Usuario 1 loguado en el sistema.
                         </p>
                     </div>
                     <div class="timeline-task">
@@ -344,7 +329,7 @@
                             <i class="fa fa-exclamation-triangle"></i>
                         </div>
                         <div class="tm-title">
-                            <h4>You missed you Password!</h4>
+                            <h4>Nodo 3 dejó de recibir datos</h4>
                             <span class="time"><i class="ti-time"></i>09:20 Am</span>
                         </div>
                     </div>
@@ -353,131 +338,79 @@
                             <i class="fa fa-bomb"></i>
                         </div>
                         <div class="tm-title">
-                            <h4>Member waiting for you Attention</h4>
+                            <h4>Red Zigbee habilitada</h4>
                             <span class="time"><i class="ti-time"></i>09:35</span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
+                        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                        </p> -->
                     </div>
                     <div class="timeline-task">
                         <div class="icon bg3">
                             <i class="ti-signal"></i>
                         </div>
                         <div class="tm-title">
-                            <h4>You Added Kaji Patha few minutes ago</h4>
+                            <h4>Red Bluetooth habilitada</h4>
                             <span class="time"><i class="ti-time"></i>01 minutes ago</span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg1">
-                            <i class="fa fa-envelope"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Ratul Hamba sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Hello sir , where are you, i am egerly waiting for you.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg2">
-                            <i class="fa fa-exclamation-triangle"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg2">
-                            <i class="fa fa-exclamation-triangle"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
+                        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                        </p> -->
                     </div>
                     <div class="timeline-task">
                         <div class="icon bg3">
                             <i class="fa fa-bomb"></i>
                         </div>
                         <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
+                            <h4>Brokér público dejó de transmitir</h4>
                             <span class="time"><i class="ti-time"></i>09:35</span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg3">
-                            <i class="ti-signal"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
+                        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                        </p> -->
                     </div>
                 </div>
             </div>
             <div id="settings" class="tab-pane fade">
                 <div class="offset-settings">
-                    <h4>Configuración General</h4>
+                    <h4>General Settings</h4>
                     <div class="settings-list">
                         <div class="s-settings">
                             <div class="s-sw-title">
-                                <h5>Notifications</h5>
+                                <h5>Wifi</h5>
                                 <div class="s-swtich">
                                     <input type="checkbox" id="switch1" />
                                     <label for="switch1">Toggle</label>
                                 </div>
                             </div>
-                            <p>Keep it 'On' When you want to get all the notification.</p>
+                            <!-- <p>Keep it 'On' When you want to get all the notification.</p> -->
                         </div>
                         <div class="s-settings">
                             <div class="s-sw-title">
-                                <h5>Show recent activity</h5>
+                                <h5>Zigbee</h5>
                                 <div class="s-swtich">
                                     <input type="checkbox" id="switch2" />
                                     <label for="switch2">Toggle</label>
                                 </div>
                             </div>
-                            <p>The for attribute is necessary to bind our custom checkbox with the input.</p>
+                            <!-- <p>The for attribute is necessary to bind our custom checkbox with the input.</p> -->
                         </div>
                         <div class="s-settings">
                             <div class="s-sw-title">
-                                <h5>Show your emails</h5>
+                                <h5>Bluetooth</h5>
                                 <div class="s-swtich">
                                     <input type="checkbox" id="switch3" />
                                     <label for="switch3">Toggle</label>
                                 </div>
                             </div>
-                            <p>Show email so that easily find you.</p>
+                            <!-- <p>Show email so that easily find you.</p> -->
                         </div>
                         <div class="s-settings">
                             <div class="s-sw-title">
-                                <h5>Show Task statistics</h5>
+                                <h5>Actividad</h5>
                                 <div class="s-swtich">
                                     <input type="checkbox" id="switch4" />
                                     <label for="switch4">Toggle</label>
                                 </div>
                             </div>
-                            <p>The for attribute is necessary to bind our custom checkbox with the input.</p>
-                        </div>
-                        <div class="s-settings">
-                            <div class="s-sw-title">
-                                <h5>Notifications</h5>
-                                <div class="s-swtich">
-                                    <input type="checkbox" id="switch5" />
-                                    <label for="switch5">Toggle</label>
-                                </div>
-                            </div>
-                            <p>Use checkboxes when looking for yes or no answers.</p>
+                            <!-- <p>The for attribute is necessary to bind our custom checkbox with the input.</p> -->
                         </div>
                     </div>
                 </div>
