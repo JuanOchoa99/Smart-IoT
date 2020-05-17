@@ -1,4 +1,15 @@
 // Avoid `console` errors in browsers that lack a console.
+var gauge = new RadialGauge ({gauge = new RadialGauge ({  
+    renderTo: 'canvas-id': 'lienzo-id' 
+}).dibujar();}). dibujar ();
+
+var gauge = new LinearGauge({
+  renderTo: 'gauge-id',
+  colorNumbers: 'red',
+  width: 100,
+  height: 300
+})
+
 (function() {
     var method;
     var noop = function () {};

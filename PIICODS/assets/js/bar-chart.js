@@ -792,6 +792,8 @@ if ($('#socialads').length) {
         ]
     });
 }
-
+var gauge = new RadialGauge({
+    renderTo: '#temperatura'
+}).draw();
 
 /*--------------  bar chart 14 highchart END ------------*/
