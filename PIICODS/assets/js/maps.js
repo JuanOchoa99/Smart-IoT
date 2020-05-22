@@ -451,9 +451,23 @@ var map = AmCharts.makeChart("mapamchart5", {
             "svgPath": targetSVG,
             "zoomLevel": 5,
             "scale": 0.5,
-            "title": "Bogota",
+            "title": "San Buenaventura Bogotá - Estación 1",
             "latitude": 4.6473,
             "longitude": -74.0962
+        }, {
+            "svgPath": targetSVG,
+            "zoomLevel": 5,
+            "scale": 0.5,
+            "title": "San Buenaventura Medellín - Estación 2",
+            "latitude": 6.2518401,
+            "longitude": -75.563591
+        }, {
+            "svgPath": targetSVG,
+            "zoomLevel": 5,
+            "scale": 0.5,
+            "title": "San Buenaventura Cali - Estación 3",
+            "latitude": 3.42158,
+            "longitude": -76.5205
         }]
     },
     "export": {
