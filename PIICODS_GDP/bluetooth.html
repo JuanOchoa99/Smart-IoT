@@ -85,6 +85,9 @@
                             <li>
                                 <a href="administrator.html" aria-expanded="true"><i class="ti-palette"></i><span>Administrador</span></a>
                             </li>
+                            <li>
+                                <a href="/" aria-expanded="true"><i class="ti-palette"></i><span>Regresar a pagina Principal</span></a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -128,10 +131,11 @@
                 <div class="row align-items-center">
                     <div class="col-sm-6">
                         <div class="breadcrumbs-area clearfix">
-                            <!-- <h4 class="page-title pull-left">Dashboard</h4> -->
+                            <h4 class="page-title pull-left">Redes</h4>
                             <ul class="breadcrumbs pull-left">
-                                <li><a href="index.html">Home</a></li>
-                                <li><span>Red - Bluetooth</span></li>
+                                <li><a href="devices.html">Principal</a></li>
+                                <li><span>Red</span></li>
+                                <li><span>Bluetooth</span></li>
                             </ul>
                         </div>
                     </div>
@@ -153,102 +157,70 @@
             <div class="main-content-inner">
                 <div class="row">
                     <!-- data table start -->
-                    <div class="col-lg-12 mt-5">
+                    <div class=" col-lg-6  mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title">Encender Bluetooth</h4>
-                                <div class="s-swtich">
-                                    <input type="checkbox" id="switch5" />
-                                    <label for="switch5">Toggle</label>
+                                <div class="d-sm-flex flex-wrap justify-content-between mb-4 align-items-center">
+                                    <h4 class="header-title mb-0">Encender Bluetooth</h4>
+                                    <div class="s-swtich">
+                                        <input type="checkbox" id="switch5" />
+                                        <label for="switch5">Toggle</label>
+                                    </div>
+                                </div>
+                                <div class="member-box">
+                                    <div class="s-member">
+                                        <div class="media align-items-center">
+                                            <div class="media-body ml-5">
+                                                <p>Raspberry PI</p>
+                                                    <span>Conectado</span>
+                                                    <span>00:55:8d:4b:89:0l</span>
+                                            </div>
+                                            <div class="tm-social">
+                                                <a href="#"><i class="fa fa-forumbee"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="s-member">
+                                        <div class="media align-items-center">
+                                            <div class="media-body ml-5">
+                                                <p>SanBuena</p>
+                                                    <span>Disponible</span>
+                                                    <span>00:55:8d:4b:89:25</span>
+                                            </div>
+                                            <div class="tm-social">
+                                                <a href="#"><i class="fa fa-forumbee"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="s-member">
+                                        <div class="media align-items-center">
+                                            <div class="media-body ml-5">
+                                                <p>SanbuenaPro</p>
+                                                <span>Disponible</span>
+                                                <span>00:55:8d:4b:89:15</span>
+                                            </div>
+                                            <div class="tm-social">
+                                                <a href="#"><i class="fa fa-forumbee"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="s-member">
+                                        <div class="media align-items-center">
+                                            <div class="media-body ml-5">
+                                                <p>PIICO</p>
+                                                    <span>Disponible</span>
+                                                    <span>00:55:8d:4b:89:10</span>
+                                            </div>
+                                            <div class="tm-social">
+                                                <a href="#"><i class="fa fa-forumbee"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 mt-5">
-
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title">Dispositivos conectados</h4>
-                                <div class="data-tables">
-                                    <button type="button" class="btn btn-primary mb-3">Refrescar lista</button>
-                                    <table id="dataTable" class="text-center">
-                                        <thead class="bg-light text-capitalize">
-                                            <tr>
-                                                <th>Dispositivo</th>
-                                                <th>Dirección MAC</th>
-                                                <th>Estado</th>
-                                                <th>Categorìa</th>
-                                                <th>Hora ultima conexion</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Raspberry PI</td>
-                                                <td>00:56:b8:6d:26</td>
-                                                <td>Offline</td>
-                                                <td>Nodo</td>
-                                                <td>2008/11/28</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>Raspberry PI</td>
-                                                <td>00:99:4b:6a:06</td>
-                                                <td>Offline</td>
-                                                <td>Nodo</td>
-                                                <td>2009/10/09</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>Raspberry PI</td>
-                                                <td>00:4h:8b:hh:86</td>
-                                                <td>Offline</td>
-                                                <td>Nodo</td>
-                                                <td>2009/01/12</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- data table end -->
-                    <!-- Primary table start -->
-                    <div class="col-12 mt-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title">Dispositivos disponibles</h4>
-                                <div class="data-tables datatable-primary">
-                                    <button type="button" class="btn btn-success mb-3">Buscar dispositivos</button>
-                                    <table id="dataTable2" class="text-center">
-                                        <thead class="text-capitalize">
-                                            <tr>
-                                                <th>Dispositivo</th>
-                                                <th>Dirección MAC</th>
-                                                <th>Emparejar</th>
-                                                <th>Categoria</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Mini II Sound Link</td>
-                                                <td>00:55:8d:4b:89:0l</td>
-                                                <td><i class="ti-plus"></i></td>
-                                                <td>Audio</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Moto G plus</td>
-                                                <td>55:89:h6:5g:88</td>
-                                                <td><i class="ti-plus"></i></td>
-                                                <td>desconocido</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 mt-5">
+                    <div class="col-lg-6 mt-5">
                         <div class="card">
                             <div class="card-body">
                                 <h1 class="header-title text-info">Configuración Manual</h1>
@@ -260,15 +232,27 @@
                                         <small id="emailHelp" class="form-text text-muted">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">PIN</label>
+                                        <label for="exampleInputEmail1">Función</label>
                                         <input type="text" class="form-control" id="exampleInputEmail1"
-                                            aria-describedby="emailHelp" placeholder="PIN">
+                                            aria-describedby="emailHelp" placeholder="Función">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Puerto</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="emailHelp" placeholder="Puerto">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Dirección MAC</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="emailHelp" placeholder="Dirección">
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Conectar</button>
                                 </form>
                             </div>
                         </div>
                     </div>
+                    <!-- data table end -->
+                    <!-- Primary table start -->
                 </div>
             </div>
         </div>
