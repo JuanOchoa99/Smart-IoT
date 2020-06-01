@@ -175,18 +175,18 @@
     <div class="main">
         <div class="col-md-6 col-sm-12">
             <div class="login-form">
-                <form>
+                <form action="ingreso.php" method="POST">
                     <div class="form-group">
                         <label>Usuario</label>
-                        <input type="text" class="form-control" placeholder="Usuario">
+                        <input type="text" class="form-control" placeholder="usuario">
                     </div>
                     <div class="form-group">
                         <label>Contreseña</label>
-                        <input type="password" class="form-control" placeholder="Contraseña">
+                        <input type="password" class="form-control" placeholder="pass">
                     </div>
-                    <a type="button" class="btn btn-success" href="../PIICODS/index3.html">Ingresar</a>
-                    <a type="button" class="btn btn-warning text-white" href="registro.php">Registro</a>
+                    <input type="submit" class="btn btn-primary">
                 </form>
+                <a type="button" class="btn btn-warning text-white" href="registro.php">Registro</a>
             </div>
         </div>
     </div>
