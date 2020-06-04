@@ -204,6 +204,44 @@
                     <div class="col-lg-4  mt-5">
                         <div class="card">
                             <div class="card-body">
+                                <h2 class="header-title mb-0">Anemómetro</h2>
+                                	<button onclick="animateGauges()">Animate</button>
+									<canvas data-type="radial-gauge"
+									        data-major-ticks="950, 960, 970, 980, 990, 1000, 1010, 1020, 1030, 1040, 1050"
+									        data-type="radial-gauge"
+									        data-title="Barometer"
+									        data-units="mBar"
+									        data-width="200"
+									        data-height="200"
+									        data-value-int="0"
+									        data-value-dec="0"
+									        data-width="200"
+									        data-height="200"
+									        data-min-value="950"
+									        data-max-value="1050"
+									        data-highlights="false"
+									></canvas>
+
+									<script async src="../gauge.min.js"></script>
+									<script>
+									    var timers = [];
+
+									    function animateGauges() {
+									        document.gauges.forEach(function(gauge) {
+									            timers.push(setInterval(function() {
+									                gauge.value = Math.random() *
+									                    (gauge.options.maxValue - gauge.options.minValue) +
+									                    gauge.options.minValue;
+									            }, gauge.animation.duration + 10));
+									        });
+									    }
+									</script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4  mt-5">
+                        <div class="card">
+                            <div class="card-body">
                                 <h2 class="header-title mb-0">Medidior de Humedad
 
                                 </h2>
