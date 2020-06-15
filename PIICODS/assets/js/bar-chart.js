@@ -319,7 +319,7 @@ if ($('#ambarchart1').length) {
             "color3": "#952FFE"
         }],
         "valueAxes": [{
-            "unit": "°",
+            "unit": "",
             "position": "left",
         }],
         "startDuration": 1,
