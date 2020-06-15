@@ -205,37 +205,28 @@
                         <div class="card">
                             <div class="card-body">
                                 <h2 class="header-title mb-0">Anemómetro</h2>
-                                	<button onclick="animateGauges()">Animate</button>
-									<canvas data-type="radial-gauge"
-									        data-major-ticks="950, 960, 970, 980, 990, 1000, 1010, 1020, 1030, 1040, 1050"
-									        data-type="radial-gauge"
-									        data-title="Barometer"
-									        data-units="mBar"
-									        data-width="200"
-									        data-height="200"
-									        data-value-int="0"
-									        data-value-dec="0"
-									        data-width="200"
-									        data-height="200"
-									        data-min-value="950"
-									        data-max-value="1050"
-									        data-highlights="false"
-									></canvas>
+                                <button onclick="animateGauges()">Animate</button>
+                                <canvas data-type="radial-gauge"
+                                    data-major-ticks="950, 960, 970, 980, 990, 1000, 1010, 1020, 1030, 1040, 1050"
+                                    data-type="radial-gauge" data-title="Barometer" data-units="mBar" data-width="200"
+                                    data-height="200" data-value-int="0" data-value-dec="0" data-width="200"
+                                    data-height="200" data-min-value="950" data-max-value="1050"
+                                    data-highlights="false"></canvas>
 
-									<script async src="../gauge.min.js"></script>
-									<script>
-									    var timers = [];
+                                <script async src="../gauge.min.js"></script>
+                                <script>
+                                    var timers = [];
 
-									    function animateGauges() {
-									        document.gauges.forEach(function(gauge) {
-									            timers.push(setInterval(function() {
-									                gauge.value = Math.random() *
-									                    (gauge.options.maxValue - gauge.options.minValue) +
-									                    gauge.options.minValue;
-									            }, gauge.animation.duration + 10));
-									        });
-									    }
-									</script>
+                                    function animateGauges() {
+                                        document.gauges.forEach(function (gauge) {
+                                            timers.push(setInterval(function () {
+                                                gauge.value = Math.random() *
+                                                    (gauge.options.maxValue - gauge.options.minValue) +
+                                                    gauge.options.minValue;
+                                            }, gauge.animation.duration + 10));
+                                        });
+                                    }
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -253,7 +244,21 @@
                         </div>
                     </div>
                     <div class="col-lg-6 mt-5">
-                        <div id="chart-container"></div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="header-title mb-0">Pluviometro
+                                </h2>
+                                <canvas data-type="linear-gauge" data-width="400" data-height="150" data-min-value="0"
+                                    data-max-value="100" data-major-ticks="0,20,40,60,80,100" data-minor-ticks="10"
+                                    data-stroke-ticks="true" data-color-plate="#fff" data-border-shadow-width="0"
+                                    data-borders="false" data-bar-begin-circle="false" data-tick-side="left"
+                                    data-number-side="left" data-needle-side="left" data-needle-type="line"
+                                    data-needle-width="3" data-color-needle="#222" data-color-needle-end="#222"
+                                    data-animation-duration="1500" data-animation-rule="linear"
+                                    data-animation-target="plate" data-bar-width="5" data-ticks-width="50"
+                                    data-ticks-width-minor="15"></canvas>
+                            </div>
+                        </div>
                     </div>
                     <!-- testimonial area end -->
                 </div>
