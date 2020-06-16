@@ -25,7 +25,7 @@
     <!-- modernizr css -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-
+  
 <body>
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -85,6 +85,10 @@
                                         </ul> 
                                     </li>
                                 </ul>
+                            </li>
+                            <li>
+                                <a href="/" aria-expanded="true"><i class="ti-palette"></i><span>Regresar a pagina
+                                        Principal</span></a>
                             </li>
                         </ul>
                     </nav>
@@ -330,12 +334,12 @@
                                             <tr>
                                                 <td class="nodo">Nodo 2</td>
                                                 <td class="estado">Activo <img src="assets/images/icon/market-value/triangle-up.png" alt="icon"></td>
-                                                <td class="valor">4psi</td>
+                                                <td class="valor">4W/m2</td>
                                             </tr>
                                             <tr>
                                                 <td class="nodo">Nodo 3</td>
                                                 <td class="estado">Activo <img src="assets/images/icon/market-value/triangle-up.png" alt="icon"></td>
-                                                <td class="valor">5psi</td>
+                                                <td class="valor">5W/m2</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -352,7 +356,22 @@
                                         <option value="0">Nodo 2</option>
                                         <option value="0">Nodo 3</option>
                                     </select>
-                                <a href="radiacion.html"><img src="assets/images/media/medidor radiacion.png" alt="Radicación"></a>
+                                    <canvas data-type="radial-gauge"
+                                    data-highlights="[{&quot;from&quot;: 6, &quot;to&quot;: 10, &quot;color&quot;: &quot;rgba(255, 128, 0, .75)&quot;}]"
+                                    data-major-ticks="0, 2, 4, 6, 8, 10"
+                                    data-type="radial-gauge"
+                                    data-title="Radiometro"
+                                    data-units="W/m2"
+                                    data-width="300"
+                                    data-height="300"
+                                    data-value-int="0"
+                                    data-value-dec="0"
+                                    data-width="300"
+                                    data-height="300"
+                                    data-min-value="0.1"
+                                    data-max-value="10"
+                                    data-highlights="false"
+                            ></canvas>
                             </div>
                         </div>
                     </div>
@@ -442,6 +461,8 @@
             </div>
         </div>
     </div>
+
+    <script src="assets/js/gauge.min.js"></script>
     <!-- offset area end -->
     <!-- jquery latest version -->
     <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
