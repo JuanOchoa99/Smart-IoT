@@ -875,7 +875,7 @@ if ($('#amlinechart3').length) {
             "bullet": "round",
             "bulletBorderAlpha": 1,
             "bulletColor": "#FFFFFF",
-            "hideBulletsCount": 50,
+            "hideBulletsCount": 50,  
             "title": "red line",
             "valueField": "visits",
             "useLineColorForBulletBorder": true,
