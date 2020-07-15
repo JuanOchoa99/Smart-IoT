@@ -28,7 +28,7 @@ public class RestControlador {
 		return usuarioService.findAll();
 	}
 	@GetMapping(value = "/{usuario}")
-	public Object Buscar(String usuario){
+	public Object Buscar(@PathVariable("usuario") String usuario){
 		return usuarioService.findById(usuario);
 	}
 	@PostMapping("/registrar")
