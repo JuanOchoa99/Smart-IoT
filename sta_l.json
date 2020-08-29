@@ -1,0 +1,105 @@
+{
+    "node-id": "estación 1",
+    "date": "datetime.datetime(2016, 4, 8, 11, 43, 54, 920632)",​
+    "request":["capturing","listening"],
+    "broker":[
+        {​
+            "broker_address" : "192.1168.4.1",​
+            "port" : "1883",​
+            "qos" : "2",​
+            "user" : "gateway",​
+            "pass" : "123",
+            "publish":[],
+            "subscribe":[]
+        }
+    ],
+    "interfaces":[
+        {
+            "wifi":[
+                {
+                    "hostname":"estacion_2",
+                    "IP_address":"192.168.4.14*",
+                    "state":"enabled"
+                }
+            ]
+               
+        },
+        {
+            "bluetooth":[
+                {
+                    "alias":"Estacion_2",​
+                    "mac":"B8:27:EB:BD:BC:25",
+                    "state":"enabled"
+                }
+            ]
+
+        },
+        {
+            "zigbee":[
+                {
+                "type":"zigbee",​
+                "device-id":"XBEE-2SC-2.4Ghz",
+                "pan-id":"1234",​
+                "mac":"0013A2004108211C",
+                "baud-rate":"9600",
+                "parity":"none",
+                "flow-control":"none",
+                "state":"enabled"
+                }
+            ]
+        }
+    ],
+    "sensors":[
+        {
+            "type":"temperature",
+            "state":"enable",
+            "device":"AM2315-tem",
+            "label":"tem"
+        },
+        {
+            "type":"wind-speed",
+            "state":"enabled",
+            "device":"SEN-08942-ws",
+            "label":"vel"
+        },
+        {
+            "type":"solar-radiation",
+            "state":"disabled",
+            "device":"Davis6450",
+            "label":"rad"   
+        },
+        {
+            "type":"relative-humidity",
+            "state":"enabled",
+            "device":"AM2315-hum",
+            "label":"hum"
+        },
+        {
+            "type":"wind-direction",
+            "state":"enabled",
+            "device":"SEN-08942-wd",
+            "label":"dir"
+        },
+        {
+            "type":"pluviometer",
+            "state":"enabled",
+            "device":"SEN-08942-plu",
+            "label":"plu"           
+        }
+    ],
+    "actuators":[
+        {
+            "type":"sprinkler",
+            "device":"lawn-sprinkler",
+            "state":"enabled",
+            "actuator-id":"asp"
+
+        },
+        {
+            "type":"led",
+            "state":"disabled",
+            "device":"led-rgb",
+            "actuator-id":"led"
+        }
+    ]
+}

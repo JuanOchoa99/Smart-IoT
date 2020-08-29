@@ -1,0 +1,27 @@
+{
+    "node-id": "estación 1",
+    "date": "datetime.datetime(2016, 4, 8, 11, 43, 54, 920632)",​
+    "pass":"sfdgshsfghsveryyfsazz",
+    "request":"act",
+    "actuators":[
+        {
+            "actuator":[
+                {
+                    "actuator-id":"asp",
+                    "order":"on"
+                },
+                {
+                    "actuator-id":"led",
+                    "order":[
+                        {
+                            "red":"true",
+                            "green":"true",
+                            "blue":"false"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+
+}
