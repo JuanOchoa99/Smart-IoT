@@ -1,0 +1,25 @@
+{
+    "interfaces": [
+        {
+            "wifi": [
+                {
+                    "ssid": "PIICO",
+                    "psk": "Password10"
+                }
+            ],
+            "blue": [
+                {
+                    "alias": "Sevin",
+                    "mac": "mau52s84a5d"
+                }
+            ],
+            "xbee": [
+                {
+                    "state": "Activado",
+                    "pan_id": 9182,
+                    "mac": "223i4hjb4nv"
+                }
+            ]   
+        }
+    ]
+}

@@ -12,12 +12,12 @@ import datetime
 
 class Conf_l:
     def __init__(self):
-
+        print("----------------Menu de envio de peticiones por MQTT------------------------------")
         print("Datos de la estación")
         self.nodeId = str(input("Digite id de la estación:"))
         self.samples = int(input("Digite frecuencía por minuto:"))
 
-        print("Datos de la broker")
+        print("--------------------------Datos de la broker-------------------------------")
         self.ip = str(input("Digite dirección del broker: "))
         self.port = int(input("Digite puerto: "))
         self.qos = int(input("Digite QoS: "))
@@ -38,7 +38,7 @@ class Conf_l:
         self.brokerAttributes["pass"]=self.password
         self.jsonBroker = json.dumps(self.brokerAttributes, indent=4,separators=(',',':'),sort_keys=False)
         
-        print("Configurar la interfaces")
+        print("--------------------Configurar la interfaces-------------------------------")
         opcionInterface = 1
         while opcionInterface != 2:
             self.type = str(input("Digite protocolo de comunicación(wifi - blue - xbee): "))
@@ -166,11 +166,6 @@ class Conf_l:
         #client.connect(host='192.168.0.19', port=1883)
         #topic = "piico_usb"
         #mensaje = self.__datajson
-
-
-
-
-
 def main():
 
     

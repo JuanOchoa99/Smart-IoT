@@ -1,0 +1,12 @@
+{
+    "node-id": "estación 1",
+    "date": "datetime.datetime(2016, 4, 8, 11, 43, 54, 920632)",
+    "request": "info",
+    "information": {
+        "node": "true",
+        "interfaces": "true",
+        "actuators": "true",
+        "sensors": "true",
+        "mqtt": "true"
+    } 
+}
