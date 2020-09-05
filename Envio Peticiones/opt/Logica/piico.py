@@ -9,18 +9,23 @@ import json
 import sys
 import paho.mqtt.client as mqtt
 def on_connect(client, userdata, flags, rc):
-    print('connected (%s)' % client._client_id)
     client.subscribe(topic='conf_l', qos=2)
 def on_message(client, userdata, message=""):
     print('------------------------------')
     print('topic: %s', message.topic)
     print("%s %s" % (message.topic,message.payload))
-    mensaje_str = str(message.payload)
+    mensaje_str = message.payload
+    resultado = mensaje_str.decode('ASCII')
+    print("----", resultado)
     with open("C:\\Envio Peticiones\\etc\\piico\\conf_l.json","r+") as archivo_conf:
             archivo_conf.seek(0)
             archivo_conf.truncate()
             archivo_conf.seek(0)
-            archivo_conf.writelines(mensaje_str)
+            archivo_conf.writelines(resultado)
+    leer_archivo = Archivo()
+    json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
+#def Actualizar_sub(self):
+
     #y = message.payload
     #x = json.loads(y)
     #print(y)
@@ -94,12 +99,15 @@ def main():
     print(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
     json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
     print('--------------------------------------Leer broker------------------------')
+    hostname = json_leer['broker']['broker_address']
+    puerto = int(json_leer['broker']['port'])
     print(json_leer['broker']['broker_address'])
-
     client = mqtt.Client(client_id='Sevin', clean_session=False)
     client.on_connect = on_connect
     client.on_message = on_message
-    client.connect(host='test.mosquitto.org', port=1883)
+    print("hostname= ",hostname,"puerto= ",puerto)
+    client.connect(host=hostname, port=puerto)
+    #client.loop()
     client.loop_forever()
 
     
