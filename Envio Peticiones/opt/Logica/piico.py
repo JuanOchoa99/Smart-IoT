@@ -9,7 +9,7 @@ import json
 import sys
 import paho.mqtt.client as mqtt
 def on_connect(client, userdata, flags, rc):
-    client.subscribe(topic='conf_l', qos=2)
+    client.subscribe([("conf_l", 2),("req_l", 2),("act_l",2)])
 def on_message(client, userdata, message=""):
     print('------------------------------')
     print('topic: %s', message.topic)
