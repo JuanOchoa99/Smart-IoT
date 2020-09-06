@@ -8,32 +8,6 @@ import argparse
 import json
 import sys
 import paho.mqtt.client as mqtt
-def on_connect(client, userdata, flags, rc):
-    client.subscribe([("conf_l", 2),("req_l", 2),("act_l",2)])
-def on_message(client, userdata, message=""):
-    print('------------------------------')
-    print('topic: %s', message.topic)
-    print("%s %s" % (message.topic,message.payload))
-    mensaje_str = message.payload
-    resultado = mensaje_str.decode('ASCII')
-    print("----", resultado)
-    with open("C:\\Envio Peticiones\\etc\\piico\\conf_l.json","r+") as archivo_conf:
-            archivo_conf.seek(0)
-            archivo_conf.truncate()
-            archivo_conf.seek(0)
-            archivo_conf.writelines(resultado)
-    leer_archivo = Archivo()
-    json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
-#def Actualizar_sub(self):
-
-    #y = message.payload
-    #x = json.loads(y)
-    #print(y)
-    #print(message.payload)
-    #print('qos: %d' % message.qos)
-    
-    #guardar_archivo = Archivo()
-    #guardar_archivo.Guardar_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\",message.payload)
 
 class Archivo:
     
@@ -43,15 +17,33 @@ class Archivo:
             self.archivo_json = json.dumps(self.archivo_string)
             return json.loads(self.archivo_json)
 
-    #def Guardar_Archivo(self,nombre,ruta,contenido):
-        #with open(str(ruta)+str(nombre),"r+") as archivo_conf:
-            #archivo_conf.seek(0)
-            #archivo_conf.truncate()
-            #archivo_conf.seek(0)
-            #archivo_conf.writelines(contenido)
+class Sensor:
+
+    def sen_L():
+        nuevo_json = {}
+        nuevo_json['node-id']="estacion 1"
+        nuevo_json['date'] = "2020-01-20"
+        nuevo_json['sensors'] =[]
+        posicion = 0
+        print(json.dumps(data['sensors'][0]['sensor-id']))
+        for sensor in data['sensors']:
+            if sensor['sensor-id'] == "Temperature":
+                nuevo_json['sensors'].append({
+                                "type":"tem",
+                                "sensor-id":""+sensor['sensor-id']+"",
+                                "value":"0.0",
+                                "magnitude":"C" })
+            if sensor['sensor-id'] == "Humidity":
+                nuevo_json['sensors'].append({
+                                "type":"hum",
+                                "sensor-id":""+sensor['sensor-id']+"",
+                                "value":"0",
+                                "magnitude":"%" })
+        print("-------SEN_l---------\n",json.dumps(nuevo_json['sensors']))
+        topic = "sen_l"
+        client.publish(topic, json.dumps(nuevo_json['sensors']))
 
 
-   #def escribir_archivo(self):
 parser = argparse.ArgumentParser(
     prog='Estacion PIICO USB',
     description='Comandos para el inicio de la estacion.',
@@ -80,6 +72,29 @@ parser.add_argument(
     type=str,
     help='Contraseña identificador del actuador a activar'
 )
+
+def on_connect(client, userdata, flags, rc):
+    client.subscribe([("conf_l", 2),("req_l", 2),("act_l",2)])
+def on_message(client, userdata, message=""):
+    print('------------------------------')
+    print('topic: %s', message.topic)
+    print("%s %s" % (message.topic,message.payload))
+    if message.topic == "conf_l":
+        mensaje_str = message.payload
+        resultado = mensaje_str.decode('ASCII')
+        print("----", resultado)
+        with open("C:\\Envio Peticiones\\etc\\piico\\conf_l.json","r+") as archivo_conf:
+                archivo_conf.seek(0)
+                archivo_conf.truncate()
+                archivo_conf.seek(0)
+                archivo_conf.writelines(resultado)
+        leer_archivo = Archivo()
+        json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
+    elif message.topic == "req_l":
+        data = message.payload
+        Sensor.sen_l()
+
+
     
 def main():     
     args = parser.parse_args()
