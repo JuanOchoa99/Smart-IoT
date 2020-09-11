@@ -75,8 +75,10 @@ mensaje = '''{
     }
   ]
 }'''
-
-network_names = ["Piico","piico",]
+with open("C:\\Envio peticiones\\etc\\piico\\redes_wifi.txt","r+") as redes_wifi:
+  
+  
+  network_names = ["Piico","piico",]
 passwords = ["thisismywirelesspassword","nueva","facil123*"]
 
 datajson = json.loads(mensaje)

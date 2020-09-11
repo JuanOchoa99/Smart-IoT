@@ -10,7 +10,6 @@ import sys
 import paho.mqtt.client as mqtt
 
 class Archivo:
-    
     def Leer_Archivo(self,nombre,ruta):
         with open(str(ruta)+str(nombre),"r+") as archivo_conf:
             self.archivo_string = str(archivo_conf.read())
@@ -53,7 +52,7 @@ def on_message(client, userdata, message=""):
     print('topic: %s', message.topic)
     print("%s %s" % (message.topic,message.payload))
     topico = str(message.topic)
-    if topico == "conf_l ":
+    if topico == "conf_l":
         mensaje_str = message.payload
         resultado = mensaje_str.decode('ASCII')
         print("----", resultado)
@@ -64,7 +63,7 @@ def on_message(client, userdata, message=""):
                 archivo_conf.writelines(resultado)
         leer_archivo = Archivo()
         json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
-    elif topico == "req_l ":
+    elif topico == "req_l":
         json_message = message.payload
         data = json.dumps(json_message)
         nuevo_json = {}
@@ -89,9 +88,6 @@ def on_message(client, userdata, message=""):
         print("-------SEN_l---------\n",json.dumps(nuevo_json['sensors']))
         topic = "sen_l"
         client.publish(topic, json.dumps(nuevo_json['sensors']))
-
-
-    
 def main():     
     args = parser.parse_args()
     estacion=args.name
