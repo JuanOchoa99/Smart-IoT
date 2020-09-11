@@ -20,7 +20,7 @@
             ]
         },
         {
-            "sensor-id": "Velocity"​,
+            "sensor-id": "Velocity",
             "network": [
                 "wifi",
                 "blue",
@@ -53,3 +53,8 @@
         }
     ]
 }
+envSensor['sensors'].append({
+    "type":"tem",
+    "sensor-id":""+data['sensors'][posicion]['sensor-id']+"",
+    "value":"0.0",
+    "magnitude":"C°" })

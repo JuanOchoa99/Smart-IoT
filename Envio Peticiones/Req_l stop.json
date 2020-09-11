@@ -20,7 +20,7 @@
             ]
         },
         {
-            "sensor-id": "Velocity"​,
+            "sensor-id": "Velocity",
             "network": [
                 "wifi",
                 "blue",
