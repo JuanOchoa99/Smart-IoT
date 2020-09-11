@@ -48,7 +48,7 @@ parser.add_argument(
 
 def on_connect(client, userdata, flags, rc):
     client.subscribe([("conf_l", 2),("req_l", 2),("act_l",2)])
-def on_message(client, userdata, message=""):
+def on_message(client, userdata, message):
     print('------------------------------')
     print('topic: %s', message.topic)
     print("%s %s" % (message.topic,message.payload))
