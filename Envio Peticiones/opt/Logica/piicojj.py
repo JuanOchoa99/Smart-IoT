@@ -11,7 +11,15 @@ import paho.mqtt.client as mqtt
 import threading
 
 
-            
+hostname = "mqtt.eclipse.org"
+puerto = 1883            
+
+
+
+def json_decode(data):
+    string_data = data.decode('ASCII')
+    json_data = json.loads(string_data)
+    return json_data
 
 class Archivo:
     
@@ -20,11 +28,6 @@ class Archivo:
             self.archivo_string = str(archivo_conf.read())
             self.archivo_json = json.dumps(self.archivo_string)
             return json.loads(self.archivo_json)
-def json_decode(data):
-    string_data = data.decode('ASCII')
-    json_data = json.loads(string_data)
-    return json_data
-
 
 def on_connect(client, userdata, flags, rc):
     client.subscribe([("conf_l", 2),("req_l", 2),("act_l",2)])
@@ -94,28 +97,47 @@ def on_message(client, userdata, message):
                                     "value":"0",
                                     "magnitude":"w/m2" })
             #print("-------SEN_l---------\n",json.dumps(nuevo_json['sensors']))
-        topic = "sen_l"
-        threadPublicador = threading.Thread(name="Publicador", target=broker.publicador, args=(hostname, puerto, topico, nuevo_json))
-        #client.publish(topic, json.dumps(nuevo_json['sensors']))
-        threadPublicador.start()
-        print("chao")
+            print("chao")
+            topic = "sen_l"
+            brokerPub = ConexionMqtt()
+            
+            brokerPub = ConexionPub
+            threadPublicador = threading.Thread(name="Publicador", target=brokerPub.publicadorMas, args=(hostname, puerto, topic, nuevo_json))
+            threadPublicador.start()
+            print("chao")
+        elif data['request'] == "stop":
+            threadPublicador.stop()
+        elif data['request'] == "info":
+            nuevo_json = {}
+            nuevo_json['node-id']= data['node-id']
+            nuevo_json['date'] = data['date']
+            nuevo_json['date'] = data['date']
+        
 
 class ConexionMqtt:
-    def sucriptor(self, hostname, puerto):
+    def sucriptor(self, hostSub, puertoSub):
         client = mqtt.Client(client_id='Sevin', clean_session=False)
         client.on_connect = on_connect
         client.on_message = on_message
-        print("hostname= ",hostname,"puerto= ",puerto)
-        client.connect(host=hostname, port=puerto)
+        print("hostname= ",hostSub,"puerto= ",puertoSub)
+        client.connect(host=hostSub, port=puertoSub)
         #client.loop()
         client.loop_forever()
-    def publicador(self, hostname, puerto, topico, mensaje):
+
+class ConexionPub:
+    def publicadorMas(hostPub, puertoPub, topicoPub, mensajePub):
         while True:
             service = mqtt.Client('piicoPub') # Creación del cliente?Ė
-            service.connect(host= self.hostname, port=self.puerto)
-            topic = self.topico
-            mensaje = self.mensaje
+            service.connect(host= hostPub, port=puertoPub)
+            topic = topicoPub
+            mensaje = mensajePub
             service.publish(topic, json.dumps(mensaje))
+    def publicador(hostPub, puertoPub, topicoPub, mensajePub):
+        service = mqtt.Client('piicoPub') # Creación del cliente?Ė
+        service.connect(host= hostPub, port=puertoPub)
+        topic = topicoPub
+        mensaje = mensajePub
+        service.publish(topic, json.dumps(mensaje))
 
     
 def main():     
@@ -124,13 +146,11 @@ def main():
     #print(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
     #json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
     #print('--------------------------------------Leer broker------------------------')
-    hostname = "mqtt.eclipse.org"
-    puerto = 1883
     #print(json_leer['broker']['broker_address'])
-
     broker = ConexionMqtt()
     threadSuscriptor = threading.Thread(name="Suscriptor", target=broker.sucriptor, args=(hostname, puerto))
     threadSuscriptor.start()
-    
+
+
 if  __name__ ==  '__main__':
     main()

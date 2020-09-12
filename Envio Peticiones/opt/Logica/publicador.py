@@ -11,7 +11,7 @@ def main():
     mensaje = {
         "node-id": "estacion 1",
         "date": "2020-09-07-08-25-42",
-        "request": "send",
+        "request": "stop",
         "sensors": [
             {
                 "sensor-id": "Temperature",
