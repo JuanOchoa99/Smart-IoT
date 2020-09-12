@@ -111,7 +111,10 @@ def on_message(client, userdata, message):
             nuevo_json = {}
             nuevo_json['node-id']= data['node-id']
             nuevo_json['date'] = data['date']
-            nuevo_json['date'] = data['date']
+            nuevo_json['state'] = "listen"
+            if data['information']['broker'] = "true":
+                
+            
         
 
 class ConexionMqtt:
