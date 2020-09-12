@@ -107,13 +107,33 @@ def on_message(client, userdata, message):
             print("chao")
         elif data['request'] == "stop":
             threadPublicador.stop()
-        elif data['request'] == "info":
+    elif topico == "act_l":
+        data = json_decode(message.payload)
+        if data['request'] == "info":
             nuevo_json = {}
             nuevo_json['node-id']= data['node-id']
             nuevo_json['date'] = data['date']
-            nuevo_json['state'] = "listen"
-            if data['information']['broker'] = "true":
+            nuevo_json['actuators'] =[]
+            for actuador in leer_conf['actuators']:
+                    if actuador['type'] == "asp":
+                        nuevo_json['actuators'].append({
+                                    "actuator-id": "Aspersor",
+                                    "state": "active"})
+                    if actuador['type'] == "led":
+                        nuevo_json['actuators'].append({
+                                    "actuator-id": "RGB",
+                                    "state": "active"})
+            topic = "sta_l"
+            brokerPub = ConexionPub
+            threadPublicador = threading.Thread(name="Publicador", target=brokerPub.publicador, args=(hostname, puerto, topic, nuevo_json))
+            threadPublicador.start()
+
+        elif data['request'] == "act":
+            if data['actuators']['actuator-id'] == "Aspersor":
+                aspersor = True #Reemplazar por rutina de aspersor
                 
+
+
             
         
 
@@ -135,6 +155,7 @@ class ConexionPub:
             topic = topicoPub
             mensaje = mensajePub
             service.publish(topic, json.dumps(mensaje))
+            time.sleep(2)
     def publicador(hostPub, puertoPub, topicoPub, mensajePub):
         service = mqtt.Client('piicoPub') # Creación del cliente?Ė
         service.connect(host= hostPub, port=puertoPub)
