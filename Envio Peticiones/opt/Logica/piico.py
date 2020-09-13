@@ -13,7 +13,8 @@ import threading
 import time
 
 hostname = ""
-puerto = 0            
+puerto = 0  
+indPublicador = False          
 class Archivo:
     
     def Leer_Archivo(self,nombre,ruta):
@@ -62,6 +63,7 @@ def on_message(client, userdata, message):
     brokerPub = ConexionPub()
     brokerPubSta = ConexionSta()
     construir_json = EstadoAct()
+    global indPublicador
     #print('topic: %s', message.topic)
     #print("%s %s" % (message.topic,message.payload))
     topico = message.topic
@@ -129,14 +131,13 @@ def on_message(client, userdata, message):
             #print("-------SEN_l---------\n",json.dumps(nuevo_json['sensors']))
             print("chao")
             topic = "sen_l"
+            indPublicador = True
             threadPublicador = threading.Thread(name="Publicador", target=brokerPub.publicadorMas, args=(topic, nuevo_json))
             threadPublicador.start()
             print(threadPublicador.isAlive())
             print("chao")
         elif data['request'] == "stop":
-            print("parar")
-            threadPublicador.stop()
-            print(threadPublicador.isAlive())
+            indPublicador = False
         elif data['request'] == "info":
             print("Comienzo")
             nuevo_json = construir_json.armar_json(data)
@@ -274,7 +275,7 @@ class ConexionPub: #Modo de envio de informacion de los sensores sen_l
         json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
         hostPub = json_leer['broker']['broker_address']
         puertoPub = int(json_leer['broker']['port'])
-        while True:
+        while indPublicador == True:
             service = mqtt.Client('piicoPub') # Creación del cliente?Ė
             service.connect(host= hostPub, port=puertoPub)
             topic = topicoPub
