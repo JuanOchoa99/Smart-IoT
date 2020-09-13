@@ -9,10 +9,12 @@ import json
 import sys
 import paho.mqtt.client as mqtt
 import threading
+import time
 
 
 hostname = "mqtt.eclipse.org"
-puerto = 1883            
+puerto = 1883    
+ind = False        
 
 
 
@@ -32,6 +34,7 @@ class Archivo:
 def on_connect(client, userdata, flags, rc):
     client.subscribe([("conf_l", 2),("req_l", 2),("act_l",2)])
 def on_message(client, userdata, message):
+    global ind
     topico = message.topic
     json_resultado = json_decode(message.payload)
     print(json_resultado['node-id'])
@@ -99,14 +102,14 @@ def on_message(client, userdata, message):
             #print("-------SEN_l---------\n",json.dumps(nuevo_json['sensors']))
             print("chao")
             topic = "sen_l"
+            ind = True
             brokerPub = ConexionMqtt()
-            
             brokerPub = ConexionPub
             threadPublicador = threading.Thread(name="Publicador", target=brokerPub.publicadorMas, args=(hostname, puerto, topic, nuevo_json))
             threadPublicador.start()
             print("chao")
         elif data['request'] == "stop":
-            threadPublicador.stop()
+            ind = False
     elif topico == "act_l":
         data = json_decode(message.payload)
         if data['request'] == "info":
@@ -149,12 +152,13 @@ class ConexionMqtt:
 
 class ConexionPub:
     def publicadorMas(hostPub, puertoPub, topicoPub, mensajePub):
-        while True:
+        while ind == True:
             service = mqtt.Client('piicoPub') # Creación del cliente?Ė
             service.connect(host= hostPub, port=puertoPub)
             topic = topicoPub
             mensaje = mensajePub
             service.publish(topic, json.dumps(mensaje))
+            print (2)
             time.sleep(2)
     def publicador(hostPub, puertoPub, topicoPub, mensajePub):
         service = mqtt.Client('piicoPub') # Creación del cliente?Ė
