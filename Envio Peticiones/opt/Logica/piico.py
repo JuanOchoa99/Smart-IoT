@@ -134,7 +134,9 @@ def on_message(client, userdata, message):
             print(threadPublicador.isAlive())
             print("chao")
         elif data['request'] == "stop":
+            print("parar")
             threadPublicador.stop()
+            print(threadPublicador.isAlive())
         elif data['request'] == "info":
             print("Comienzo")
             nuevo_json = construir_json.armar_json(data)
@@ -256,7 +258,7 @@ class EstadoAct:
                                 "state": "active"})
         return nuevo_json
 
-class ConexionMqtt:
+class ConexionMqtt: #Modo de escucha suscriptor
     def sucriptor(self, hostSub, puertoSub):
         client = mqtt.Client(client_id='Sevin', clean_session=False)
         client.on_connect = on_connect
@@ -266,7 +268,7 @@ class ConexionMqtt:
         #client.loop()
         client.loop_forever()
 
-class ConexionPub:
+class ConexionPub: #Modo de envio de informacion de los sensores sen_l
     def publicadorMas(self, topicoPub, mensajePub):
         leer_archivo = Archivo()
         json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
@@ -280,7 +282,8 @@ class ConexionPub:
             service.publish(topic, json.dumps(mensaje))
             print(json_leer['send-frequency'])
             time.sleep(json_leer['send-frequency'])
-class ConexionSta:
+
+class ConexionSta: #Envio de estado del nodo sta_l
     def publicador(self, topicoPubSta, mensajePubSta):
         leer_archivo = Archivo()
         json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))

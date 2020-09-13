@@ -102,11 +102,15 @@ def on_message(client, userdata, message):
             brokerPub = ConexionMqtt()
             
             brokerPub = ConexionPub
-            threadPublicador = threading.Thread(name="Publicador", target=brokerPub.publicadorMas, args=(hostname, puerto, topic, nuevo_json))
+            threadPublicador = threading.Thread(name="PublicadorMas", target=brokerPub.publicadorMas, args=(hostname, puerto, topic, nuevo_json))
             threadPublicador.start()
             print("chao")
         elif data['request'] == "stop":
-            threadPublicador.stop()
+            detener_hilo = threading.currentThread().getName()
+            print(detener_hilo)
+            threading.currentThread()._stop()
+            threadPublicador.join()
+            print(threading.currentThread().isAlive())
     elif topico == "act_l":
         data = json_decode(message.payload)
         if data['request'] == "info":
