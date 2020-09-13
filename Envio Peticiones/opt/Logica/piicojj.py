@@ -105,7 +105,7 @@ def on_message(client, userdata, message):
             ind = True
             brokerPub = ConexionMqtt()
             brokerPub = ConexionPub
-            threadPublicador = threading.Thread(name="Publicador", target=brokerPub.publicadorMas, args=(hostname, puerto, topic, nuevo_json))
+            threadPublicador = threading.Thread(name="PublicadorMas", target=brokerPub.publicadorMas, args=(hostname, puerto, topic, nuevo_json))
             threadPublicador.start()
             print("chao")
         elif data['request'] == "stop":
