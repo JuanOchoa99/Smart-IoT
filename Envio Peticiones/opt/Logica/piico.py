@@ -15,8 +15,8 @@ import time
 hostname = ""
 puerto = 0  
 indPublicador = False
-
-class EstadoAct: #Creacion del json de estado del nodo sta_l, tanto para req_l info como act_l info
+#Creacion del json de estado del nodo sta_l, tanto para req_l info como act_l info
+class EstadoAct: 
     def armar_json(self,data):
         leer_archivo = Archivo()
         leer_conf = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
@@ -120,8 +120,8 @@ class EstadoAct: #Creacion del json de estado del nodo sta_l, tanto para req_l i
                                 "actuator-id": "RGB",
                                 "state": "active"})
         return nuevo_json
-
-class ConexionMqtt: #Modo de escucha suscriptor
+#Modo de escucha suscriptor
+class ConexionMqtt: 
     def sucriptor(self, hostSub, puertoSub):
         client = mqtt.Client(client_id='Sevin', clean_session=False)
         client.on_connect = on_connect
@@ -130,8 +130,8 @@ class ConexionMqtt: #Modo de escucha suscriptor
         client.connect(host=hostSub, port=puertoSub)
         #client.loop()
         client.loop_forever()
-
-class ConexionPub: #Modo de envio de informacion de los sensores sen_l
+#Modo de envio de informacion de los sensores sen_l
+class ConexionPub: 
     def publicadorMas(self, topicoPub, mensajePub):
         leer_archivo = Archivo()
         json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
@@ -145,8 +145,8 @@ class ConexionPub: #Modo de envio de informacion de los sensores sen_l
             service.publish(topic, json.dumps(mensaje))
             print(json_leer['send-frequency'])
             time.sleep(json_leer['send-frequency'])
-
-class ConexionSta: #Envio de estado del nodo sta_l
+#Envio de estado del nodo sta_l
+class ConexionSta: 
     def publicador(self, topicoPubSta, mensajePubSta):
         leer_archivo = Archivo()
         json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
@@ -158,8 +158,8 @@ class ConexionSta: #Envio de estado del nodo sta_l
         mensaje = mensajePubSta
         print(topic,mensaje,hostPubSta)
         service.publish(topic, json.dumps(mensaje))  
-
-class Archivo: #Clase para leer el archivo
+#Clase para leer el archivo
+class Archivo: 
     def Leer_Archivo(self,nombre,ruta):
         with open(str(ruta)+str(nombre),"r+") as archivo_conf:
             self.archivo_string = str(archivo_conf.read())
@@ -216,12 +216,13 @@ def on_message(client, userdata, message):
     json_resultado = json_decode(message.payload)
     print(json_resultado['node-id'])
     if topico == "conf_l":
+        print("Nuevo archivo de configuración almacenado y sobreescribido")
         #print("----", json_resultado)
         with open("C:\\Envio Peticiones\\etc\\piico\\conf_l.json","r+") as archivo_conf:
                 archivo_conf.seek(0)
                 archivo_conf.truncate()
                 archivo_conf.seek(0)
-                archivo_conf.writelines(json_resultado)
+                archivo_conf.writelines(json.dumps(json_resultado))
         leer_archivo = Archivo()
         json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
     elif topico == "req_l":
