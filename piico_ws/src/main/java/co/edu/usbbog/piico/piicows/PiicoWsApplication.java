@@ -13,6 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import co.edu.usbbog.piico.piicows.model.mongo.Nodo;
 import co.edu.usbbog.piico.piicows.repository.INodoMongoRepository;
@@ -50,9 +52,11 @@ public class PiicoWsApplication {
 				@Override
 				public void messageArrived(String topic, MqttMessage message) throws Exception {
 					String data = new String(message.getPayload());
-					JSONObject jsonObject = new JSONObject(data);
-					System.out.println("imp: " + jsonObject);
-					//Nodo nodo = new Gson().toJson(jsonObject.stringToValue(data),Nodo.class);
+					Gson gson = new Gson();
+					JsonElement element = gson.fromJson (data, JsonElement.class);
+					JsonObject jsonObj = element.getAsJsonObject();
+					System.out.println("imp: " + jsonObj);
+					
 
 				}
 
