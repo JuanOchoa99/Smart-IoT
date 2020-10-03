@@ -26,6 +26,8 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import co.edu.usbbog.piico.piicows.config.MongoConfig;
 import co.edu.usbbog.piico.piicows.model.mongo.GPS;
@@ -194,6 +196,11 @@ public class PiicoWsApplication {
 
 					// Nodo nodo = new Nodo();
 					// nodo.toJson(jsonObject);
+					Gson gson = new Gson();
+					JsonElement element = gson.fromJson (data, JsonElement.class);
+					JsonObject jsonObj = element.getAsJsonObject();
+					System.out.println("imp: " + jsonObj);
+					
 
 				}
 
