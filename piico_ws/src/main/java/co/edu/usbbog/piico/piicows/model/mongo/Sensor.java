@@ -118,7 +118,6 @@ public class Sensor {
 
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
-		json.put("_id", this.getId());
 		json.put("type", this.getType());
 		json.put("sensor_id", this.getSensor_id());
 		json.put("value", this.getValue());

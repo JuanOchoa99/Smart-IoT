@@ -9,7 +9,7 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 
-
+@Configuration
 public class SimpleMongoConfig {
 
     public MongoClient mongo() {

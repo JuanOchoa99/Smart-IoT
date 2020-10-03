@@ -9,35 +9,43 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class GPS {
 	@Id
 	private ObjectId id;
-	
 	private Float lon;
 	private Float lat;
+
 	public GPS() {
 		super();
 	}
+
 	public GPS(Float lon, Float lat) {
 		super();
 		this.lon = lon;
 		this.lat = lat;
 	}
+
 	public ObjectId getId() {
 		return id;
 	}
+
 	public void setId(ObjectId id) {
 		this.id = id;
 	}
+
 	public Float getLon() {
 		return lon;
 	}
+
 	public void setLon(Float lon) {
 		this.lon = lon;
 	}
+
 	public Float getLat() {
 		return lat;
 	}
+
 	public void setLat(Float lat) {
 		this.lat = lat;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -47,6 +55,7 @@ public class GPS {
 		result = prime * result + ((lon == null) ? 0 : lon.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -73,10 +82,9 @@ public class GPS {
 			return false;
 		return true;
 	}
-	
+
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
-		json.put("_id", this.getId());
 		json.put("lon", this.getLon());
 		json.put("lat", this.getLat());
 		return json;
@@ -84,6 +92,6 @@ public class GPS {
 
 	@Override
 	public String toString() {
-		return toJson().toString();
+		return " "+lon+" "+lat+" ";
 	}
 }

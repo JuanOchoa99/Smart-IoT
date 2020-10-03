@@ -1,5 +1,6 @@
 package co.edu.usbbog.piico.piicows.model.mongo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,27 +9,18 @@ import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection="sen_p")
 public class Nodo {
 	@Id
 	private ObjectId id;
 
 	private String node_id;
-	private Date date;
+	private String date;
 	private GPS gps;
-	private List<Sensor> sensors;
+	private ArrayList<Sensor> sensors;
 
-	public Nodo() {
-		super();
-	}
 
-	public Nodo(String node_id, Date date) {
-		super();
-		this.node_id = node_id;
-		this.date = date;
-	}
-
-	public Nodo(String node_id, Date date, GPS gps, List<Sensor> sensors) {
+	public Nodo(String node_id, String date, GPS gps, ArrayList<Sensor> sensors) {
 		super();
 		this.node_id = node_id;
 		this.date = date;
@@ -52,11 +44,11 @@ public class Nodo {
 		this.node_id = node_id;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -72,7 +64,7 @@ public class Nodo {
 		return sensors;
 	}
 
-	public void setSensors(List<Sensor> sensors) {
+	public void setSensors(ArrayList<Sensor> sensors) {
 		this.sensors = sensors;
 	}
 
@@ -127,7 +119,6 @@ public class Nodo {
 
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
-		json.put("_id", this.getId());
 		json.put("node_id", this.getNode_id());
 		json.put("date", this.getDate());
 		json.put("gps", this.getGps().toJson());
@@ -137,7 +128,7 @@ public class Nodo {
 
 	@Override
 	public String toString() {
-		return toJson().toString();
+		return " "+node_id+" "+date+" "+gps+" "+sensors+" ";
 	}
 
 }
