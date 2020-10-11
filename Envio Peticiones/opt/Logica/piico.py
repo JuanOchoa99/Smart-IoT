@@ -11,160 +11,22 @@ import paho.mqtt.client as mqtt
 import datetime
 import threading
 import time
-
+#Variables GLOBALES
 hostname = ""
 puerto = 0  
-indPublicador = False          
-class Archivo:
-    
-    def Leer_Archivo(self,nombre,ruta):
-        with open(str(ruta)+str(nombre),"r+") as archivo_conf:
-            self.archivo_string = str(archivo_conf.read())
-            self.archivo_json = json.dumps(self.archivo_string)
-            return json.loads(self.archivo_json)
-
-parser = argparse.ArgumentParser(
-    prog='Estacion PIICO USB',
-    description='Comandos para el inicio de la estacion.',
-    epilog="mas informacion en https://piico.ingusb.com",
-    add_help=True
-)
-parser.add_argument(
-    '-v','--version',
-    dest='version',
-    action='version',
-    version='%(prog)s 1.0'
-)
-parser.add_argument(
-    '-n','--name', '--nameid',
-    dest='name',
-    required=True,
-    nargs=1,
-    type=str,
-    help='nombre identificador del nodo'
-)
-parser.add_argument(
-    '-p','--pass', '--password',
-    dest='password',
-    required=True,
-    nargs=1,
-    type=str,
-    help='Contraseña identificador del actuador a activar'
-)
-def json_decode(data):
-    string_data = data.decode('ASCII')
-    json_data = json.loads(string_data)
-    return json_data
-
-def on_connect(client, userdata, flags, rc):
-    client.subscribe([("conf_l", 2),("req_l", 2),("act_l",2)])
-def on_message(client, userdata, message):
-    print('------------------------------')
-    brokerPub = ConexionPub()
-    brokerPubSta = ConexionSta()
-    construir_json = EstadoAct()
-    global indPublicador
-    #print('topic: %s', message.topic)
-    #print("%s %s" % (message.topic,message.payload))
-    topico = message.topic
-    json_resultado = json_decode(message.payload)
-    print(json_resultado['node-id'])
-    if topico == "conf_l":
-        #print("----", json_resultado)
-        with open("C:\\Envio Peticiones\\etc\\piico\\conf_l.json","r+") as archivo_conf:
-                archivo_conf.seek(0)
-                archivo_conf.truncate()
-                archivo_conf.seek(0)
-                archivo_conf.writelines(json_resultado)
-        leer_archivo = Archivo()
-        json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
-    elif topico == "req_l":
-        print("hola")
-        topic = "sen_l"
-        #json_message = message.payload
-        data = json_decode(message.payload)
-        if data['request'] == "send":
-            print("hola2")
-            nuevo_json = {}
-            nuevo_json['node-id']= data['node-id']
-            nuevo_json['date'] = data['date']
-            nuevo_json['sensors'] =[]
-            posicion = 0
-            #print(nuevo_json)
-            for sensor in data['sensors']:
-                    if sensor['sensor-id'] == "Temperature":
-                        nuevo_json['sensors'].append({
-                                    "type":"tem",
-                                    "sensor-id":""+sensor['sensor-id']+"",
-                                    "value":"0.0",
-                                    "magnitude":"C" })
-                    if sensor['sensor-id'] == "Humidity":
-                        nuevo_json['sensors'].append({
-                                    "type":"hum",
-                                    "sensor-id":""+sensor['sensor-id']+"",
-                                    "value":"0",
-                                    "magnitude":"%" })
-                    if sensor['sensor-id'] == "Velocity":
-                        nuevo_json['sensors'].append({
-                                    "type":"hum",
-                                    "sensor-id":""+sensor['sensor-id']+"",
-                                    "value":"0",
-                                    "magnitude":"km/h" })
-                    if sensor['sensor-id'] == "Direction":
-                        nuevo_json['sensors'].append({
-                                    "type":"hum",
-                                    "sensor-id":""+sensor['sensor-id']+"",
-                                    "value":"0",
-                                    "magnitude":"grados" })
-                    if sensor['sensor-id'] == "Pluviometer":
-                        nuevo_json['sensors'].append({
-                                    "type":"hum",
-                                    "sensor-id":""+sensor['sensor-id']+"",
-                                    "value":"0",
-                                    "magnitude":"ml" })
-                    if sensor['sensor-id'] == "Radiation":
-                        nuevo_json['sensors'].append({
-                                    "type":"hum",
-                                    "sensor-id":""+sensor['sensor-id']+"",
-                                    "value":"0",
-                                    "magnitude":"w/m2" })
-            #print("-------SEN_l---------\n",json.dumps(nuevo_json['sensors']))
-            print("chao")
-            topic = "sen_l"
-            indPublicador = True
-            threadPublicador = threading.Thread(name="Publicador", target=brokerPub.publicadorMas, args=(topic, nuevo_json))
-            threadPublicador.start()
-            print(threadPublicador.isAlive())
-            print("chao")
-        elif data['request'] == "stop":
-            indPublicador = False
-        elif data['request'] == "info":
-            print("Comienzo")
-            nuevo_json = construir_json.armar_json(data)
-            topic = "sta_l"
-            print("Chao", nuevo_json)
-            print(hostname,puerto)
-            threadPublicadorSta = threading.Thread(name="Publicador", target=brokerPubSta.publicador, args=( topic, nuevo_json))
-            threadPublicadorSta.start()
-    elif topico == "act_l":
-        data = json_decode(message.payload)
-        if data['request'] == "info":
-            nuevo_json = construir_json.armar_json(data)
-            topic = "sta_l"
-            threadPublicadorSta = threading.Thread(name="Publicador", target=brokerPubSta.publicador, args=( topic, nuevo_json))
-            threadPublicadorSta.start()
-        elif data['request'] == "act":
-            if data['actuators']['actuator-id'] == "Aspersor":
-                aspersor = True #Reemplazar por rutina de aspersor
-    
-    
-class EstadoAct:
+indPublicador = False
+#Creacion del json de estado del nodo sta_l, tanto para req_l info como act_l info
+class EstadoAct: 
     def armar_json(self,data):
         leer_archivo = Archivo()
         leer_conf = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
         nuevo_json = {}
         nuevo_json['node-id']= data['node-id']
         nuevo_json['date'] = data['date']
+        if indPublicador == True:
+            nuevo_json['state']  = "send"
+        else:
+            nuevo_json['state'] = "listen"
         nuevo_json['broker'] ={}
         nuevo_json['broker']['publish'] = []
         nuevo_json['broker']['suscribe'] = []
@@ -258,8 +120,8 @@ class EstadoAct:
                                 "actuator-id": "RGB",
                                 "state": "active"})
         return nuevo_json
-
-class ConexionMqtt: #Modo de escucha suscriptor
+#Modo de escucha suscriptor
+class ConexionMqtt: 
     def sucriptor(self, hostSub, puertoSub):
         client = mqtt.Client(client_id='Sevin', clean_session=False)
         client.on_connect = on_connect
@@ -268,8 +130,8 @@ class ConexionMqtt: #Modo de escucha suscriptor
         client.connect(host=hostSub, port=puertoSub)
         #client.loop()
         client.loop_forever()
-
-class ConexionPub: #Modo de envio de informacion de los sensores sen_l
+#Modo de envio de informacion de los sensores sen_l
+class ConexionPub: 
     def publicadorMas(self, topicoPub, mensajePub):
         leer_archivo = Archivo()
         json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
@@ -283,8 +145,8 @@ class ConexionPub: #Modo de envio de informacion de los sensores sen_l
             service.publish(topic, json.dumps(mensaje))
             print(json_leer['send-frequency'])
             time.sleep(json_leer['send-frequency'])
-
-class ConexionSta: #Envio de estado del nodo sta_l
+#Envio de estado del nodo sta_l
+class ConexionSta: 
     def publicador(self, topicoPubSta, mensajePubSta):
         leer_archivo = Archivo()
         json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
@@ -295,9 +157,154 @@ class ConexionSta: #Envio de estado del nodo sta_l
         topic = topicoPubSta
         mensaje = mensajePubSta
         print(topic,mensaje,hostPubSta)
-        service.publish(topic, json.dumps(mensaje))
+        service.publish(topic, json.dumps(mensaje))  
+#Clase para leer el archivo
+class Archivo: 
+    def Leer_Archivo(self,nombre,ruta):
+        with open(str(ruta)+str(nombre),"r+") as archivo_conf:
+            self.archivo_string = str(archivo_conf.read())
+            self.archivo_json = json.dumps(self.archivo_string)
+            return json.loads(self.archivo_json)
 
-    
+#Argumentos de entrada para el programa de PYTHON
+parser = argparse.ArgumentParser(
+    prog='Estacion PIICO USB',
+    description='Comandos para el inicio de la estacion.',
+    epilog="mas informacion en https://piico.ingusb.com",
+    add_help=True
+)
+parser.add_argument(
+    '-v','--version',
+    dest='version',
+    action='version',
+    version='%(prog)s 1.0'
+)
+parser.add_argument(
+    '-n','--name', '--nameid',
+    dest='name',
+    required=True,
+    nargs=1,
+    type=str,
+    help='nombre identificador del nodo'
+)
+parser.add_argument(
+    '-p','--pass', '--password',
+    dest='password',
+    required=True,
+    nargs=1,
+    type=str,
+    help='Contraseña identificador del actuador a activar'
+)
+#Transformacion del mensaje
+def json_decode(data):  
+    string_data = data.decode('ASCII')
+    json_data = json.loads(string_data)
+    return json_data
+#Conexion del suscriptor por medio de cuales topicos
+def on_connect(client, userdata, flags, rc): 
+    client.subscribe([("conf_l", 2),("req_l", 2),("act_l",2)])
+#Analisis del mensaje que recibimos del publicador, segun el topico, el nodo publica la informacion correspondiente
+def on_message(client, userdata, message):
+    print('------------------------------')
+    brokerPub = ConexionPub()
+    brokerPubSta = ConexionSta()
+    construir_json = EstadoAct()
+    global indPublicador
+    #print('topic: %s', message.topic)
+    #print("%s %s" % (message.topic,message.payload))
+    topico = message.topic
+    json_resultado = json_decode(message.payload)
+    print(json_resultado['node-id'])
+    if topico == "conf_l":
+        print("Nuevo archivo de configuración almacenado y sobreescribido")
+        #print("----", json_resultado)
+        with open("C:\\Envio Peticiones\\etc\\piico\\conf_l.json","r+") as archivo_conf:
+                archivo_conf.seek(0)
+                archivo_conf.truncate()
+                archivo_conf.seek(0)
+                archivo_conf.writelines(json.dumps(json_resultado))
+        leer_archivo = Archivo()
+        json_leer = json.loads(leer_archivo.Leer_Archivo("conf_l.json","C:\\Envio Peticiones\\etc\\piico\\"))
+    elif topico == "req_l":
+        print("hola")
+        topic = "sen_l"
+        #json_message = message.payload
+        data = json_decode(message.payload)
+        if data['request'] == "send":
+            print("hola2")
+            nuevo_json = {}
+            nuevo_json['node-id']= data['node-id']
+            nuevo_json['date'] = data['date']
+            nuevo_json['sensors'] =[]
+            posicion = 0
+            #print(nuevo_json)
+            for sensor in data['sensors']:
+                    if sensor['sensor-id'] == "Temperature":
+                        nuevo_json['sensors'].append({
+                                    "type":"tem",
+                                    "sensor-id":""+sensor['sensor-id']+"",
+                                    "value":"0.0",
+                                    "magnitude":"C" })
+                    if sensor['sensor-id'] == "Humidity":
+                        nuevo_json['sensors'].append({
+                                    "type":"hum",
+                                    "sensor-id":""+sensor['sensor-id']+"",
+                                    "value":"0",
+                                    "magnitude":"%" })
+                    if sensor['sensor-id'] == "Velocity":
+                        nuevo_json['sensors'].append({
+                                    "type":"hum",
+                                    "sensor-id":""+sensor['sensor-id']+"",
+                                    "value":"0",
+                                    "magnitude":"km/h" })
+                    if sensor['sensor-id'] == "Direction":
+                        nuevo_json['sensors'].append({
+                                    "type":"hum",
+                                    "sensor-id":""+sensor['sensor-id']+"",
+                                    "value":"0",
+                                    "magnitude":"grados" })
+                    if sensor['sensor-id'] == "Pluviometer":
+                        nuevo_json['sensors'].append({
+                                    "type":"hum",
+                                    "sensor-id":""+sensor['sensor-id']+"",
+                                    "value":"0",
+                                    "magnitude":"ml" })
+                    if sensor['sensor-id'] == "Radiation":
+                        nuevo_json['sensors'].append({
+                                    "type":"hum",
+                                    "sensor-id":""+sensor['sensor-id']+"",
+                                    "value":"0",
+                                    "magnitude":"w/m2" })
+            #print("-------SEN_l---------\n",json.dumps(nuevo_json['sensors']))
+            print("chao")
+            topic = "sen_l"
+            indPublicador = True
+            threadPublicador = threading.Thread(name="Publicador", target=brokerPub.publicadorMas, args=(topic, nuevo_json))
+            threadPublicador.start()
+            print(threadPublicador.isAlive())
+            print("chao")
+        elif data['request'] == "stop":
+            print("Parar publicacion de sensores.")
+            indPublicador = False
+        elif data['request'] == "info":
+            print("Comienzo")
+            nuevo_json = construir_json.armar_json(data)
+            topic = "sta_l"
+            print("Chao", nuevo_json)
+            print(hostname,puerto)
+            threadPublicadorSta = threading.Thread(name="Publicador", target=brokerPubSta.publicador, args=( topic, nuevo_json))
+            threadPublicadorSta.start()
+    elif topico == "act_l":
+        data = json_decode(message.payload)
+        if data['request'] == "info":
+            nuevo_json = construir_json.armar_json(data)
+            topic = "sta_l"
+            threadPublicadorSta = threading.Thread(name="Publicador", target=brokerPubSta.publicador, args=( topic, nuevo_json))
+            threadPublicadorSta.start()
+        elif data['request'] == "act":
+            if data['actuators']['actuator-id'] == "Aspersor":
+                aspersor = True #Reemplazar por rutina de aspersor
+#Metodo principal
 def main():     
     args = parser.parse_args()
     estacion=args.name

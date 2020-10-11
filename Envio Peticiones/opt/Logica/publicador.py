@@ -1,8 +1,6 @@
 import sys
 import json
 import paho.mqtt.client as mqtt
-
-
 def main():
 
     client = mqtt.Client('piicoPub')  # Creación del cliente?Ė
@@ -13,6 +11,7 @@ def main():
                         "id": "1231321",
                         "mensaje": "Prueba del mensaje"
                    }
+
     act_info = {
     "node-id": "estacion",
     
@@ -27,6 +26,42 @@ def main():
         "mqtt": "true"
     }
 }
+    #act_l request act
+    act_l = {
+    "node-id": "estacion",
+    "pass": "sgdfg456rt0fdmvñsfti3q5",
+    "date": "datetime.datetime(2016, 4, 8, 11, 43, 54, 920632)",
+    "request": "info",
+    "actuators": [
+        {
+            "actuator-id": "aspersor",
+            "order": "active"
+        },
+        {
+            "actuator-id": "RGB",
+            "order": {
+                "red": "true",
+                "green": "false",
+                "blue": "true"
+            }
+        }
+    ]
+}
+    #req_l request info
+    req_info = {
+        "node-id": "estacion",
+        "pass": "sgdfg456rt0fdmvñsfti3q5",
+        "date": "(2016, 4, 8, 11, 43, 54, 920632)",
+        "request": "info",
+        "information": {
+            "node": "true",
+            "interfaces": "true",
+            "actuators": "true",
+            "sensors": "true",
+            "mqtt": "true"
+        }
+    }
+    #req_l request send
     req_send = {
         "node-id": "estacion 1",
         "date": "2020-09-07-08-25-42",
@@ -82,7 +117,7 @@ def main():
             }
         ]
     }
-
+    #req_l request stop
     req_stop = {
         "node-id": "estacion 1",
         "date": "2020-09-07-08-25-42",
@@ -138,7 +173,6 @@ def main():
             }
         ]
     }
-
     sen_p = {
                     "node_id": "estacion1",
                     "date": "2020-09-07-08-25-42",
