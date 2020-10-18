@@ -7,29 +7,30 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-public class Nodo {
-
-	private ObjectId id;
-
-	private String node_id;
-	private String date;
-	private GPS gps;
-	private List<Sensor> sensors;
-
+public class Gateway {
 	
-	public Nodo() {
+	private ObjectId id;
+	
+	private String gateway_id ;
+	private String date;
+	private String topico;
+	private GPS gps;
+	private List<Nodo> nodos;
+	
+	
+	public Gateway() {
 		super();
 	}
 
-	public Nodo(String node_id, String date, GPS gps, List<Sensor> sensors) {
+	public Gateway(String gateway_id, String date, GPS gps, List<Nodo> nodos) {
 		super();
-		this.node_id = node_id;
+		this.gateway_id = gateway_id;
 		this.date = date;
 		this.gps = gps;
-		this.sensors = sensors;
+		this.nodos = nodos;
 	}
 
-	public ObjectId  getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
@@ -37,12 +38,12 @@ public class Nodo {
 		this.id = id;
 	}
 
-	public String getNode_id() {
-		return node_id;
+	public String getGateway_id() {
+		return gateway_id;
 	}
 
-	public void setNode_id(String node_id) {
-		this.node_id = node_id;
+	public void setGateway_id(String gateway_id) {
+		this.gateway_id = gateway_id;
 	}
 
 	public String getDate() {
@@ -61,12 +62,20 @@ public class Nodo {
 		this.gps = gps;
 	}
 
-	public List<Sensor> getSensors() {
-		return sensors;
+	public List<Nodo> getNodos() {
+		return nodos;
 	}
 
-	public void setSensors(List<Sensor> sensors) {
-		this.sensors = sensors;
+	public void setNodos(List<Nodo> nodos) {
+		this.nodos = nodos;
+	}
+
+	public String getTopico() {
+		return topico;
+	}
+
+	public void setTopico(String topico) {
+		this.topico = topico;
 	}
 
 	@Override
@@ -74,10 +83,10 @@ public class Nodo {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((gateway_id == null) ? 0 : gateway_id.hashCode());
 		result = prime * result + ((gps == null) ? 0 : gps.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((node_id == null) ? 0 : node_id.hashCode());
-		result = prime * result + ((sensors == null) ? 0 : sensors.hashCode());
+		result = prime * result + ((nodos == null) ? 0 : nodos.hashCode());
 		return result;
 	}
 
@@ -89,11 +98,16 @@ public class Nodo {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Nodo other = (Nodo) obj;
+		Gateway other = (Gateway) obj;
 		if (date == null) {
 			if (other.date != null)
 				return false;
 		} else if (!date.equals(other.date))
+			return false;
+		if (gateway_id == null) {
+			if (other.gateway_id != null)
+				return false;
+		} else if (!gateway_id.equals(other.gateway_id))
 			return false;
 		if (gps == null) {
 			if (other.gps != null)
@@ -105,48 +119,43 @@ public class Nodo {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (node_id == null) {
-			if (other.node_id != null)
+		if (nodos == null) {
+			if (other.nodos != null)
 				return false;
-		} else if (!node_id.equals(other.node_id))
-			return false;
-		if (sensors == null) {
-			if (other.sensors != null)
-				return false;
-		} else if (!sensors.equals(other.sensors))
+		} else if (!nodos.equals(other.nodos))
 			return false;
 		return true;
 	}
-
+	
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
-		json.put("node_id", this.getNode_id());
+		json.put("gateway_id", this.getGateway_id());
 		json.put("date", this.getDate());
 		JSONObject jsonGPS = this.getGps().toJson();
 		json.put("gps", jsonGPS);
-		JSONArray jsonSensores = new JSONArray(this.getSensors());
-		json.put("sensors", jsonSensores);
+		JSONArray jsonNodos = new JSONArray(this.getNodos());
+		json.put("nodes", jsonNodos);
 		return json;
 	}
 	
-	public Nodo fromJson(JSONObject json) {
-		this.setNode_id(json.getString("node_id"));
+	public Gateway fromJson(JSONObject json) {
+		this.setGateway_id(json.getString("Gateway_id"));
 		this.setDate(json.getString("date"));
 		JSONObject jsonGPS = json.getJSONObject("gps");
 		this.setGps(new GPS().fromJson(jsonGPS));
-		JSONArray jsonSensores =json.getJSONArray("sensors");
-		List<Sensor> sensores = new ArrayList<Sensor>();
-		for (int i = 0; i < jsonSensores.length(); i++) {
-			Sensor s = new Sensor().fromJson(jsonSensores.getJSONObject(i));
-			sensores.add(s);
+		JSONArray jsonNodos = json.getJSONArray("nodes");
+		List<Nodo> nodos = new ArrayList<Nodo>();
+		for(int i = 0; i< jsonNodos.length(); i++) {
+			Nodo n = new Nodo().fromJson(jsonNodos.getJSONObject(i));
+			nodos.add(n);
 		}
-		this.setSensors(sensores);		
+		this.setNodos(nodos);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "Nodo "+toJson().toString();
+		return "Gateway"+toJson().toString();
 	}
-
+	
 }

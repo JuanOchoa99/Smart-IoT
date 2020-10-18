@@ -2,12 +2,10 @@ package co.edu.usbbog.piico.piicows.model.mongo;
 
 import org.bson.types.ObjectId;
 import org.json.JSONObject;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+
 public class GPS {
-	@Id
+
 	private ObjectId id;
 	private Float lon;
 	private Float lat;
@@ -22,7 +20,7 @@ public class GPS {
 		this.lat = lat;
 	}
 
-	public ObjectId getId() {
+	public ObjectId  getId() {
 		return id;
 	}
 
@@ -89,9 +87,15 @@ public class GPS {
 		json.put("lat", this.getLat());
 		return json;
 	}
+	
+	public GPS fromJson(JSONObject json) {
+		this.setLon(json.getFloat("lon"));
+		this.setLat(json.getFloat("lat"));
+		return this;
+	}
 
 	@Override
 	public String toString() {
-		return " "+lon+" "+lat+" ";
+		return toJson().toString();
 	}
 }
