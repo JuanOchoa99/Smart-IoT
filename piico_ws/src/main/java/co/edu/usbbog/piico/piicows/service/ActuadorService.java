@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import co.edu.usbbog.piico.piicows.model.mysql.Actuador;
+import co.edu.usbbog.piico.piicows.modelo.mysql.Actuador;
 
 @Service
 public class ActuadorService implements IActuadorService{

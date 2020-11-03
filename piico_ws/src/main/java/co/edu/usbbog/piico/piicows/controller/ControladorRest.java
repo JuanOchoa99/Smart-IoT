@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
+import co.edu.usbbog.piico.piicows.modelo.mysql.Usuario;
 import co.edu.usbbog.piico.piicows.service.UsuarioService;
 
 

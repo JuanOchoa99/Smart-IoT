@@ -2,7 +2,7 @@ package co.edu.usbbog.piico.piicows.service;
 
 import java.util.List;
 
-import co.edu.usbbog.piico.piicows.model.mysql.OrdenActuador;
+import co.edu.usbbog.piico.piicows.modelo.mysql.OrdenActuador;
 
 public interface IOrdenActuadorService {
 	public List<OrdenActuador> findAll();

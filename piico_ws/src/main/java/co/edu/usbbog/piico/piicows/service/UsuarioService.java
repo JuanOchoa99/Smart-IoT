@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
+import co.edu.usbbog.piico.piicows.modelo.mysql.Usuario;
 import co.edu.usbbog.piico.piicows.model.mysql.repository.IUsuario;
 
 @Service

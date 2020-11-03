@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.edu.usbbog.piico.piicows.model.mysql.Sensor;
+import co.edu.usbbog.piico.piicows.modelo.mysql.Sensor;
 import co.edu.usbbog.piico.piicows.model.mysql.repository.ISensor;
 import co.edu.usbbog.piico.piicows.model.mysql.repository.IUsuario;
 

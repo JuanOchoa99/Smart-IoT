@@ -2,7 +2,7 @@ package co.edu.usbbog.piico.piicows.service;
 
 import java.util.List;
 
-import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
+import co.edu.usbbog.piico.piicows.modelo.mysql.Usuario;
 
 public interface IUsuarioService {
 	public List<Usuario> findAll();

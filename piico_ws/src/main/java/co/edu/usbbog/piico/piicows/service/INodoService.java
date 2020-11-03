@@ -2,7 +2,7 @@ package co.edu.usbbog.piico.piicows.service;
 
 import java.util.List;
 
-import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
+import co.edu.usbbog.piico.piicows.modelo.mysql.Nodo;
 
 public interface INodoService {
 	public List<Nodo> findAll();

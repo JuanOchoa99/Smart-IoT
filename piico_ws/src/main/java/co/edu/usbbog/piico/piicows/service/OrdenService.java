@@ -5,10 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.edu.usbbog.piico.piicows.model.mysql.Orden;
+import co.edu.usbbog.piico.piicows.modelo.mysql.Orden;
 import co.edu.usbbog.piico.piicows.model.mysql.repository.IOrden;
-import co.edu.usbbog.piico.piicows.model.mysql.repository.IOrden_Actuador;
-import co.edu.usbbog.piico.piicows.model.mysql.repository.IUsuario;
 
 @Service
 public class OrdenService implements IOrdenService{
