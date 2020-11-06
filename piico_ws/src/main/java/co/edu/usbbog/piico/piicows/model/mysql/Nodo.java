@@ -2,6 +2,10 @@ package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.List;
 
 
@@ -136,6 +140,11 @@ public class Nodo implements Serializable {
 		sensor.setNodoBean(null);
 
 		return sensor;
+	}
+
+	public JSONObject toJson() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -2,6 +2,9 @@ package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.json.JSONObject;
+
 import java.util.List;
 
 
@@ -123,5 +126,25 @@ public class Sensor implements Serializable {
 	public void setNodoBean(Nodo nodoBean) {
 		this.nodoBean = nodoBean;
 	}
+
+	public Sensor(String id) {
+		this.id = id;
+	}
+
+	public Sensor(String id, String descripcion, byte estado, int frecuencia, String magnitud, String tipo) {
+		super();
+		this.id = id;
+		this.descripcion = descripcion;
+		this.estado = estado;
+		this.frecuencia = frecuencia;
+		this.magnitud = magnitud;
+		this.tipo = tipo;
+	}
+	
+	public JSONObject toJson() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 }

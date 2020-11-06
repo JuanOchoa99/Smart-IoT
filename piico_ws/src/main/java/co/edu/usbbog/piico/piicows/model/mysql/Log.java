@@ -1,7 +1,13 @@
 package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import javax.persistence.*;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.Date;
 
 
@@ -20,11 +26,10 @@ public class Log implements Serializable {
 	private String id;
 
 	@Column(nullable=false)
-	private byte estado;
+	private int estado;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable=false)
-	private Date fecha;
+	@Column(name = "fecha", columnDefinition = "TIMESTAMP", nullable=false)
+	private LocalDateTime fecha;
 
 	@Lob
 	@Column(nullable=false)
@@ -49,19 +54,19 @@ public class Log implements Serializable {
 		this.id = id;
 	}
 
-	public byte getEstado() {
+	public int getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(byte estado) {
+	public void setEstado(int estado) {
 		this.estado = estado;
 	}
 
-	public Date getFecha() {
+	public LocalDateTime getFecha() {
 		return this.fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
 
@@ -89,4 +94,97 @@ public class Log implements Serializable {
 		this.puertadeenlace = puertadeenlace;
 	}
 
+	public Log(String id) {
+		this.id = id;
+	}
+	
+
+	public Log(String id, byte estado, LocalDateTime fecha, String mensaje, String tipo) {
+		this.id = id;
+		this.estado = estado;
+		this.fecha = fecha;
+		this.mensaje = mensaje;
+		this.tipo = tipo;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + estado;
+		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((mensaje == null) ? 0 : mensaje.hashCode());
+		result = prime * result + ((puertadeenlace == null) ? 0 : puertadeenlace.hashCode());
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Log other = (Log) obj;
+		if (estado != other.estado)
+			return false;
+		if (fecha == null) {
+			if (other.fecha != null)
+				return false;
+		} else if (!fecha.equals(other.fecha))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (mensaje == null) {
+			if (other.mensaje != null)
+				return false;
+		} else if (!mensaje.equals(other.mensaje))
+			return false;
+		if (puertadeenlace == null) {
+			if (other.puertadeenlace != null)
+				return false;
+		} else if (!puertadeenlace.equals(other.puertadeenlace))
+			return false;
+		if (tipo == null) {
+			if (other.tipo != null)
+				return false;
+		} else if (!tipo.equals(other.tipo))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Puerta de enlace: " + toJson().toString();
+	}
+	
+	public JSONObject toJson() {
+		JSONObject json = new JSONObject();
+		json.put("id", this.getId());
+		json.put("estado", this.getEstado());
+		json.put("fecha", this.getFecha());
+		json.put("mensaje",this.getMensaje());
+		json.put("tipo", this.getTipo());
+		//relaciones
+		Puertadeenlace puertaDeEnlace = this.getPuertadeenlace();
+		json.put("puertaDeEnlace", puertaDeEnlace.toJson().get("id"));
+		return json;
+	}
+	
+	public Log fromJson(JSONObject json) {		
+		this.setId(json.getString("id"));
+		this.setEstado(json.getInt("estado"));
+		this.setFecha(LocalDateTime.parse(json.getString("fecha")));
+		this.setMensaje(json.getString("mensaje"));
+		this.setTipo(json.getString("Tipo"));
+		
+		return this;
+	}
+	
 }
