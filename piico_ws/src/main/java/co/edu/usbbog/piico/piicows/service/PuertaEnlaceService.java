@@ -5,29 +5,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.edu.usbbog.piico.piicows.model.mysql.PuertaDeEnlace;
-import co.edu.usbbog.piico.piicows.repository.mysql.IPuertaDeEnlace;
-import co.edu.usbbog.piico.piicows.repository.mysql.IUsuario;
+import co.edu.usbbog.piico.piicows.model.mysql.Puertadeenlace;
+import co.edu.usbbog.piico.piicows.repository.mysql.IPuertaDeEnlaceRepository;
+import co.edu.usbbog.piico.piicows.repository.mysql.IUsuarioRepository;
 
 @Service
 public class PuertaEnlaceService implements IPuertaEnlaceService{
 	
 	@Autowired
-	private IPuertaDeEnlace gatewayRepo;
+	private IPuertaDeEnlaceRepository gatewayRepo;
 	@Override
-	public List<PuertaDeEnlace> findAll() {
+	public List<Puertadeenlace> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public PuertaDeEnlace findById(String usuario) {
+	public Puertadeenlace findById(String usuario) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Boolean save(PuertaDeEnlace usuario) {
+	public Boolean save(Puertadeenlace usuario) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -45,7 +45,7 @@ public class PuertaEnlaceService implements IPuertaEnlaceService{
 	}
 
 	@Override
-	public Boolean alter(PuertaDeEnlace usuario) {
+	public Boolean alter(Puertadeenlace usuario) {
 		// TODO Auto-generated method stub
 		return null;
 	}

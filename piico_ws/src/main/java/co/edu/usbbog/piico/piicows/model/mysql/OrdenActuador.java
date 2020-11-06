@@ -1,49 +1,44 @@
 package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-
 import javax.persistence.*;
-
+import java.util.Date;
 
 
 /**
- * The persistent class for the orden_actuador database table.
+ * The persistent class for the ordenactuador database table.
  * 
  */
 @Entity
-@Table(name="orden_actuador")
-@NamedQuery(name="OrdenActuador.findAll", query="SELECT o FROM OrdenActuador o")
-public class OrdenActuador implements Serializable {
+@NamedQuery(name="Ordenactuador.findAll", query="SELECT o FROM Ordenactuador o")
+public class Ordenactuador implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private OrdenActuadorPK id;
+	private OrdenactuadorPK id;
 
-	@Column(nullable=false)
 	private byte confirmacion;
 
-	@Column(name = "fecha", columnDefinition = "TIMESTAMP", nullable=false)
-	private LocalDateTime fecha;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fecha;
 
 	//bi-directional many-to-one association to Actuador
 	@ManyToOne
-	@JoinColumn(name="actuador_id", nullable=false, insertable=false, updatable=false)
 	private Actuador actuador;
 
 	//bi-directional many-to-one association to Orden
 	@ManyToOne
-	@JoinColumn(name="orden_id", nullable=false, insertable=false, updatable=false)
+	@JoinColumn(name="id")
 	private Orden orden;
 
-	public OrdenActuador() {
+	public Ordenactuador() {
 	}
 
-	public OrdenActuadorPK getId() {
+	public OrdenactuadorPK getId() {
 		return this.id;
 	}
 
-	public void setId(OrdenActuadorPK id) {
+	public void setId(OrdenactuadorPK id) {
 		this.id = id;
 	}
 
@@ -55,11 +50,11 @@ public class OrdenActuador implements Serializable {
 		this.confirmacion = confirmacion;
 	}
 
-	public LocalDateTime getFecha() {
+	public Date getFecha() {
 		return this.fecha;
 	}
 
-	public void setFecha(LocalDateTime fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 

@@ -4,27 +4,27 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * The primary key class for the orden_actuador database table.
+ * The primary key class for the ordenactuador database table.
  * 
  */
 @Embeddable
-public class OrdenActuadorPK implements Serializable {
+public class OrdenactuadorPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="orden_id", insertable=false, updatable=false, unique=true, nullable=false, length=45)
-	private String ordenId;
+	@Column(insertable=false, updatable=false)
+	private String id;
 
-	@Column(name="actuador_id", insertable=false, updatable=false, unique=true, nullable=false, length=45)
+	@Column(name="actuador_id", insertable=false, updatable=false)
 	private String actuadorId;
 
-	public OrdenActuadorPK() {
+	public OrdenactuadorPK() {
 	}
-	public String getOrdenId() {
-		return this.ordenId;
+	public String getId() {
+		return this.id;
 	}
-	public void setOrdenId(String ordenId) {
-		this.ordenId = ordenId;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getActuadorId() {
 		return this.actuadorId;
@@ -37,19 +37,19 @@ public class OrdenActuadorPK implements Serializable {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof OrdenActuadorPK)) {
+		if (!(other instanceof OrdenactuadorPK)) {
 			return false;
 		}
-		OrdenActuadorPK castOther = (OrdenActuadorPK)other;
+		OrdenactuadorPK castOther = (OrdenactuadorPK)other;
 		return 
-			this.ordenId.equals(castOther.ordenId)
+			this.id.equals(castOther.id)
 			&& this.actuadorId.equals(castOther.actuadorId);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + this.ordenId.hashCode();
+		hash = hash * prime + this.id.hashCode();
 		hash = hash * prime + this.actuadorId.hashCode();
 		
 		return hash;

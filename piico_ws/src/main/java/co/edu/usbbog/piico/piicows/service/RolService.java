@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.usbbog.piico.piicows.model.mysql.Rol;
-import co.edu.usbbog.piico.piicows.repository.mysql.IRol;
+import co.edu.usbbog.piico.piicows.repository.mysql.IRolRepository;
 
 
 @Service
 public class RolService implements IRolService{
 	
 	@Autowired
-	private IRol rolRepo;
+	private IRolRepository rolRepo;
 	@Override
 	public List<Rol> findAll() {
 		List<Rol> listRol= rolRepo.findAll();

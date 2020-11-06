@@ -10,32 +10,41 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="nodo")
 @NamedQuery(name="Nodo.findAll", query="SELECT n FROM Nodo n")
 public class Nodo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(unique=true, nullable=false, length=45)
 	private String id;
 
-	@Column(nullable=false, length=80)
 	private String descripcion;
 
-	@Column(nullable=false)
 	private byte estado;
 
-	@Column(name="protocolo_comunicacion", nullable=false, length=45)
+	@Column(name="protocolo_comunicacion")
 	private String protocoloComunicacion;
 
 	//bi-directional many-to-one association to Actuador
 	@OneToMany(mappedBy="nodoBean")
 	private List<Actuador> actuadors;
 
-	//bi-directional many-to-one association to PuertaDeEnlace
+	//bi-directional many-to-one association to Puertadeenlace
 	@ManyToOne
-	@JoinColumn(name="puerta_de_enlace", nullable=false)
-	private PuertaDeEnlace puertaDeEnlaceBean;
+	@JoinColumn(name="puertaDeEnlace")
+	private Puertadeenlace puertadeenlace;
+
+	//bi-directional many-to-many association to Protocolo
+	@ManyToMany
+	@JoinTable(
+		name="nodoprotodoloprotocolo"
+		, joinColumns={
+			@JoinColumn(name="nodoId")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="ProtocoloId")
+			}
+		)
+	private List<Protocolo> protocolos;
 
 	//bi-directional many-to-one association to Sensor
 	@OneToMany(mappedBy="nodoBean")
@@ -98,12 +107,20 @@ public class Nodo implements Serializable {
 		return actuador;
 	}
 
-	public PuertaDeEnlace getPuertaDeEnlaceBean() {
-		return this.puertaDeEnlaceBean;
+	public Puertadeenlace getPuertadeenlace() {
+		return this.puertadeenlace;
 	}
 
-	public void setPuertaDeEnlaceBean(PuertaDeEnlace puertaDeEnlaceBean) {
-		this.puertaDeEnlaceBean = puertaDeEnlaceBean;
+	public void setPuertadeenlace(Puertadeenlace puertadeenlace) {
+		this.puertadeenlace = puertadeenlace;
+	}
+
+	public List<Protocolo> getProtocolos() {
+		return this.protocolos;
+	}
+
+	public void setProtocolos(List<Protocolo> protocolos) {
+		this.protocolos = protocolos;
 	}
 
 	public List<Sensor> getSensors() {

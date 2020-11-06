@@ -2,60 +2,65 @@ package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.List;
 
 
 /**
- * The persistent class for the puerta_de_enlace database table.
+ * The persistent class for the puertadeenlace database table.
  * 
  */
 @Entity
-@Table(name="puerta_de_enlace")
-@NamedQuery(name="PuertaDeEnlace.findAll", query="SELECT p FROM PuertaDeEnlace p")
-public class PuertaDeEnlace implements Serializable {
+@NamedQuery(name="Puertadeenlace.findAll", query="SELECT p FROM Puertadeenlace p")
+public class Puertadeenlace implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(unique=true, nullable=false, length=45)
 	private String id;
 
-	@Column(nullable=false, length=80)
 	private String descripcion;
 
-	@Column(name="direccion_logica", nullable=false, length=60)
+	@Column(name="direccion_logica")
 	private String direccionLogica;
 
-	@Column(nullable=false)
 	private byte estado;
 
-	@Column(name="prot_comun_ext", nullable=false, length=45)
+	@Column(name="prot_comun_ext")
 	private String protComunExt;
 
-	@Column(name="puerto_de_servicio", nullable=false, length=10)
+	@Column(name="puerto_de_servicio")
 	private String puertoDeServicio;
 
 	//bi-directional many-to-one association to Auth
-	@OneToMany(mappedBy="puertaDeEnlaceBean")
+	@OneToMany(mappedBy="puertadeenlace")
 	private List<Auth> auths;
 
 	//bi-directional many-to-one association to Log
-	@OneToMany(mappedBy="puertaDeEnlaceBean")
+	@OneToMany(mappedBy="puertadeenlace")
 	private List<Log> logs;
 
 	//bi-directional many-to-one association to Nodo
-	@OneToMany(mappedBy="puertaDeEnlaceBean")
+	@OneToMany(mappedBy="puertadeenlace")
 	private List<Nodo> nodos;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
-	@JoinColumn(name="usuario_username", nullable=false)
+	@JoinColumn(name="usuarioId")
 	private Usuario usuario;
 
-	public PuertaDeEnlace() {
+	//bi-directional many-to-many association to Protocolo
+	@ManyToMany
+	@JoinTable(
+		name="puertadeenlaceprotocolo"
+		, joinColumns={
+			@JoinColumn(name="puerta_de_enlace_id")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="Protocolo_id")
+			}
+		)
+	private List<Protocolo> protocolos;
+
+	public Puertadeenlace() {
 	}
 
 	public String getId() {
@@ -116,14 +121,14 @@ public class PuertaDeEnlace implements Serializable {
 
 	public Auth addAuth(Auth auth) {
 		getAuths().add(auth);
-		auth.setPuertaDeEnlaceBean(this);
+		auth.setPuertadeenlace(this);
 
 		return auth;
 	}
 
 	public Auth removeAuth(Auth auth) {
 		getAuths().remove(auth);
-		auth.setPuertaDeEnlaceBean(null);
+		auth.setPuertadeenlace(null);
 
 		return auth;
 	}
@@ -138,14 +143,14 @@ public class PuertaDeEnlace implements Serializable {
 
 	public Log addLog(Log log) {
 		getLogs().add(log);
-		log.setPuertaDeEnlaceBean(this);
+		log.setPuertadeenlace(this);
 
 		return log;
 	}
 
 	public Log removeLog(Log log) {
 		getLogs().remove(log);
-		log.setPuertaDeEnlaceBean(null);
+		log.setPuertadeenlace(null);
 
 		return log;
 	}
@@ -160,14 +165,14 @@ public class PuertaDeEnlace implements Serializable {
 
 	public Nodo addNodo(Nodo nodo) {
 		getNodos().add(nodo);
-		nodo.setPuertaDeEnlaceBean(this);
+		nodo.setPuertadeenlace(this);
 
 		return nodo;
 	}
 
 	public Nodo removeNodo(Nodo nodo) {
 		getNodos().remove(nodo);
-		nodo.setPuertaDeEnlaceBean(null);
+		nodo.setPuertadeenlace(null);
 
 		return nodo;
 	}
@@ -180,9 +185,12 @@ public class PuertaDeEnlace implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public JSONObject toJson() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Protocolo> getProtocolos() {
+		return this.protocolos;
+	}
+
+	public void setProtocolos(List<Protocolo> protocolos) {
+		this.protocolos = protocolos;
 	}
 
 }

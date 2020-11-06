@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
-import co.edu.usbbog.piico.piicows.repository.mysql.INodo;
+import co.edu.usbbog.piico.piicows.repository.mysql.INodoRepository;
 
 @Service
 public class NodoService implements INodoService{
 	
 	@Autowired
-	private INodo nodoRepo;
+	private INodoRepository nodoRepo;
 
 	@Override
 	public List<Nodo> findAll() {

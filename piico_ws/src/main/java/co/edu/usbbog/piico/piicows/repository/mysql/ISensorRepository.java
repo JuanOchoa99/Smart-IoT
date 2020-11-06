@@ -4,9 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
-import co.edu.usbbog.piico.piicows.model.mysql.Rol;
+import co.edu.usbbog.piico.piicows.model.mysql.Sensor;
 
 @Repository
-public interface IRol extends JpaRepository<Rol, String>{
+public interface ISensorRepository extends JpaRepository<Sensor, String> {
 
 }

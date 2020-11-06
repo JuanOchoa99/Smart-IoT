@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.usbbog.piico.piicows.model.mysql.Sensor;
-import co.edu.usbbog.piico.piicows.repository.mysql.ISensor;
-import co.edu.usbbog.piico.piicows.repository.mysql.IUsuario;
+import co.edu.usbbog.piico.piicows.repository.mysql.ISensorRepository;
+import co.edu.usbbog.piico.piicows.repository.mysql.IUsuarioRepository;
 
 @Service
 public class SensorService implements ISensorService{
 	
 	@Autowired
-	private ISensor sensorRepo;
+	private ISensorRepository sensorRepo;
 
 	@Override
 	public List<Sensor> findAll() {

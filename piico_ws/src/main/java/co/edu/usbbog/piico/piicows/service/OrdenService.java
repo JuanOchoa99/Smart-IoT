@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.usbbog.piico.piicows.model.mysql.Orden;
-import co.edu.usbbog.piico.piicows.repository.mysql.IOrden;
+import co.edu.usbbog.piico.piicows.repository.mysql.IOrdenRepository;
 
 @Service
 public class OrdenService implements IOrdenService{
 	
 	@Autowired
-	private IOrden ordenRepo;
+	private IOrdenRepository ordenRepo;
 	@Override
 	public List<Orden> findAll() {
 		// TODO Auto-generated method stub

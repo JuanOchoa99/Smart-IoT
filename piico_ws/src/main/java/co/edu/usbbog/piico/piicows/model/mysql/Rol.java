@@ -2,10 +2,6 @@ package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.List;
 
 
@@ -14,20 +10,17 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="rol")
 @NamedQuery(name="Rol.findAll", query="SELECT r FROM Rol r")
 public class Rol implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(unique=true, nullable=false, length=45)
 	private String nombre;
 
-	@Column(nullable=false, length=45)
 	private String descripcion;
 
 	//bi-directional many-to-many association to Usuario
-	@ManyToMany(mappedBy="roles")
+	@ManyToMany(mappedBy="rols")
 	private List<Usuario> usuarios;
 
 	public Rol() {
@@ -55,11 +48,6 @@ public class Rol implements Serializable {
 
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
-	}
-
-	public JSONObject toJson() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

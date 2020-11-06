@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.usbbog.piico.model.Usuarios;
 
-import co.edu.usbbog.piico.piicows.modelo.mysql.Nodo;
-import co.edu.usbbog.piico.piicows.modelo.mysql.Usuario;
+
+import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
+import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
 import co.edu.usbbog.piico.piicows.service.NodoService;
 import co.edu.usbbog.piico.piicows.model.mysql.Rol;
 import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
@@ -93,10 +93,10 @@ public class ControladorRest {
 		}
 	}
 	
-	@RequestMapping(value = "/listarUsuarios", method = RequestMethod.POST, 
+	@RequestMapping(value = "/listarUsuarios", method = RequestMethod.GET, 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String listarUsuarios(@RequestBody String usuario) {
+	public @ResponseBody String listarUsuarios(String usuario) {
 		String mg = "";
 		mg = usuarioService.findAll().toString();
 		return mg;
@@ -156,6 +156,7 @@ public class ControladorRest {
 	@RequestMapping ("/count")
 	public long Count(){
 		return usuarioService.count();
+	}
 	
 	@RequestMapping(value = "/eliminarRol", method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 

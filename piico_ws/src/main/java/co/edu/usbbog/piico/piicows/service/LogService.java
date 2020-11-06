@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.usbbog.piico.piicows.model.mysql.Log;
-import co.edu.usbbog.piico.piicows.repository.mysql.ILogs;
+import co.edu.usbbog.piico.piicows.repository.mysql.ILogsRepository;
 
 @Service
 public class LogService implements ILogService{
 	
 	@Autowired
-	private ILogs usuarioRepo;
+	private ILogsRepository usuarioRepo;
 
 	@Override
 	public List<Log> findAll() {

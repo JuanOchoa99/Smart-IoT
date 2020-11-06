@@ -9,28 +9,23 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="auth")
 @NamedQuery(name="Auth.findAll", query="SELECT a FROM Auth a")
 public class Auth implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(nullable=false, length=512)
 	private String pass;
 
-	@Column(nullable=false, length=45)
 	private String topic;
 
-	@Column(nullable=false, length=80)
 	private String user;
 
-	//bi-directional many-to-one association to PuertaDeEnlace
+	//bi-directional many-to-one association to Puertadeenlace
 	@ManyToOne
-	@JoinColumn(name="puerta_de_enlace", nullable=false)
-	private PuertaDeEnlace puertaDeEnlaceBean;
+	@JoinColumn(name="puertaDeEnlace")
+	private Puertadeenlace puertadeenlace;
 
 	public Auth() {
 	}
@@ -67,12 +62,12 @@ public class Auth implements Serializable {
 		this.user = user;
 	}
 
-	public PuertaDeEnlace getPuertaDeEnlaceBean() {
-		return this.puertaDeEnlaceBean;
+	public Puertadeenlace getPuertadeenlace() {
+		return this.puertadeenlace;
 	}
 
-	public void setPuertaDeEnlaceBean(PuertaDeEnlace puertaDeEnlaceBean) {
-		this.puertaDeEnlaceBean = puertaDeEnlaceBean;
+	public void setPuertadeenlace(Puertadeenlace puertadeenlace) {
+		this.puertadeenlace = puertadeenlace;
 	}
 
 }
