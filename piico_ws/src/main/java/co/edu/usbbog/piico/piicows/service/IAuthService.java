@@ -2,7 +2,7 @@ package co.edu.usbbog.piico.piicows.service;
 
 import java.util.List;
 
-import co.edu.usbbog.piico.piicows.modelo.mysql.Auth;
+import co.edu.usbbog.piico.piicows.model.mysql.Auth;
 public interface IAuthService {
 	public List<Auth> findAll();
 	public Auth findById(String auth);

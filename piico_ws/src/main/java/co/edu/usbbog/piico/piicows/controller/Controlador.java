@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.usbbog.piico.piicows.config.Mqtt;
-import co.edu.usbbog.piico.piicows.exceptions.ExceptionMessages;
-import co.edu.usbbog.piico.piicows.exceptions.MqttException;
-import co.edu.usbbog.piico.piicows.publishers.Req_p;
+import co.edu.usbbog.piico.piicows.config.exceptions.ExceptionMessages;
+import co.edu.usbbog.piico.piicows.config.exceptions.MqttException;
+import co.edu.usbbog.piico.piicows.model.mqtt.Req_p;
 
 @RestController
 @RequestMapping(value = "/api/mqtt")

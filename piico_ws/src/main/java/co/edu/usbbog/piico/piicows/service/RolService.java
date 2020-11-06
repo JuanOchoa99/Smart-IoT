@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.edu.usbbog.piico.piicows.modelo.mysql.Rol;
-import co.edu.usbbog.piico.piicows.model.mysql.repository.IRol;
-import co.edu.usbbog.piico.piicows.model.mysql.repository.IUsuario;
+import co.edu.usbbog.piico.piicows.model.mysql.Rol;
+import co.edu.usbbog.piico.piicows.repository.mysql.IRol;
 
 
 @Service
@@ -17,38 +16,52 @@ public class RolService implements IRolService{
 	private IRol rolRepo;
 	@Override
 	public List<Rol> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Rol> listRol= rolRepo.findAll();
+		return listRol;
 	}
 
 	@Override
 	public Rol findById(String rol) {
-		// TODO Auto-generated method stub
-		return null;
+		if (findById(rol) != null){
+			return rolRepo.getOne(rol);
+		}else {
+			return null;
+		}
 	}
 
 	@Override
 	public Boolean save(Rol rol) {
-		// TODO Auto-generated method stub
-		return null;
+		if (findById(rol.getNombre()) == null){
+			rolRepo.save(rol);
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	@Override
 	public Boolean deleteById(String rol) {
-		// TODO Auto-generated method stub
-		return null;
+		if (findById(rol) != null){
+			rolRepo.deleteById(rol);
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	@Override
 	public Long count() {
-		// TODO Auto-generated method stub
-		return null;
+		return rolRepo.count();
 	}
 
 	@Override
 	public Boolean alter(Rol rol) {
-		// TODO Auto-generated method stub
-		return null;
+		if (findById(rol.getNombre()) != null){
+			rolRepo.save(rol);
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import co.edu.usbbog.piico.piicows.modelo.mysql.Auth;
+import co.edu.usbbog.piico.piicows.model.mysql.Auth;
 
 @Service
 public class AuthService implements IAuthService{

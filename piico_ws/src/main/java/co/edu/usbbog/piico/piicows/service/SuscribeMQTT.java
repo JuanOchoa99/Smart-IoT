@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import co.edu.usbbog.piico.piicows.model.mongo.Gateway;
 import co.edu.usbbog.piico.piicows.model.mongo.Nodo;
-import co.edu.usbbog.piico.piicows.repository.GatewayDAO;
-import co.edu.usbbog.piico.piicows.repository.NodoDAO;
+import co.edu.usbbog.piico.piicows.repository.mongo.GatewayDAO;
+import co.edu.usbbog.piico.piicows.repository.mongo.NodoDAO;
 
 @Service
 public class SuscribeMQTT implements MqttCallback{
