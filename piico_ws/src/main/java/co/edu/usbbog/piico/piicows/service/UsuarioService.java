@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
 import co.edu.usbbog.piico.piicows.repository.mysql.IUsuarioRepository;
 
@@ -24,12 +25,8 @@ public class UsuarioService implements IUsuarioService {
 	public Usuario findById(String usuario) {
 		try {
 			return (Usuario) usuarioRepo.findById(usuario).get();
-		} catch (java.util.NoSuchElementException e) {
-			if (findById(usuario) != null) {
-				return usuarioRepo.getOne(usuario);
-			} else {
-				return null;
-			}
+		}catch(java.util.NoSuchElementException e) {
+			return null;
 		}
 	}
 

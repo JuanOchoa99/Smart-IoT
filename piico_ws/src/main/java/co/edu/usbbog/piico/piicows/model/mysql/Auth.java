@@ -1,12 +1,7 @@
 package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-
 import javax.persistence.*;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 
 /**
@@ -79,94 +74,5 @@ public class Auth implements Serializable {
 	public void setPuertadeenlace(Puertadeenlace puertadeenlace) {
 		this.puertadeenlace = puertadeenlace;
 	}
-	
-	
-
-	public Auth(int id) {
-		this.id = id;
-	}
-	
-
-	public Auth(int id, String pass, String topic, String user) {
-		this.id = id;
-		this.pass = pass;
-		this.topic = topic;
-		this.user = user;
-	}
-	
-	
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		result = prime * result + ((pass == null) ? 0 : pass.hashCode());
-		result = prime * result + ((puertadeenlace == null) ? 0 : puertadeenlace.hashCode());
-		result = prime * result + ((topic == null) ? 0 : topic.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Auth other = (Auth) obj;
-		if (id != other.id)
-			return false;
-		if (pass == null) {
-			if (other.pass != null)
-				return false;
-		} else if (!pass.equals(other.pass))
-			return false;
-		if (puertadeenlace == null) {
-			if (other.puertadeenlace != null)
-				return false;
-		} else if (!puertadeenlace.equals(other.puertadeenlace))
-			return false;
-		if (topic == null) {
-			if (other.topic != null)
-				return false;
-		} else if (!topic.equals(other.topic))
-			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Puerta de enlace: " + toJson().toString();
-	}
-	
-	public JSONObject toJson() {
-		JSONObject json = new JSONObject();
-		json.put("id", this.getId());
-		json.put("pass", this.getPass());
-		json.put("topic", this.getTopic());
-		json.put("user",this.getUser());
-		//relaciones
-		Puertadeenlace puertaDeEnlace = this.getPuertadeenlace();
-		json.put("puertaDeEnlace", puertaDeEnlace.toJson().get("id"));
-		return json;
-	}
-	
-	public Auth fromJson(JSONObject json) {		
-		this.setId(json.getInt("id"));
-		this.setPass(json.getString("pass"));
-		this.setTopic(json.getString("topic"));
-		this.setUser(json.getString("user"));
-		
-		return this;
-	}
-	
 
 }

@@ -40,7 +40,7 @@ public class Protocolo implements Serializable {
 		super();
 		this.id = id;
 	}
-	public Protocolo(int id, String protocolo, List<Nodo> nodos, List<Puertadeenlace> puertadeenlaces) {
+	public Protocolo(int id, String protocolo) {
 		super();
 		this.id = id;
 		this.protocolo = protocolo;

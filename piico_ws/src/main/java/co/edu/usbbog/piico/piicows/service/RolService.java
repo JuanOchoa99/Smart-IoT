@@ -22,9 +22,9 @@ public class RolService implements IRolService{
 
 	@Override
 	public Rol findById(String rol) {
-		if (findById(rol) != null){
-			return rolRepo.getOne(rol);
-		}else {
+		try {
+			return (Rol) rolRepo.findById(rol).get();
+		}catch(java.util.NoSuchElementException e) {
 			return null;
 		}
 	}

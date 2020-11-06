@@ -27,7 +27,6 @@ public class Ordenactuador implements Serializable {
 	@Column(nullable=false)
 	private int confirmacion;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable=false)
 	private  LocalDateTime fecha;
 
