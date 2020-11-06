@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import co.edu.usbbog.piico.piicows.modelo.mysql.Usuario;
-import co.edu.usbbog.piico.piicows.model.mysql.repository.IUsuario;
+import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
+import co.edu.usbbog.piico.piicows.repository.mysql.IUsuario;
 
 @Service
 public class UsuarioService implements IUsuarioService{
@@ -25,6 +24,9 @@ public class UsuarioService implements IUsuarioService{
 		try {
 			return (Usuario) usuarioRepo.findById(usuario).get();
 		}catch(java.util.NoSuchElementException e) {
+		if (findById(usuario) != null){
+			return usuarioRepo.getOne(usuario);
+		}else {
 			return null;
 		}
 	}

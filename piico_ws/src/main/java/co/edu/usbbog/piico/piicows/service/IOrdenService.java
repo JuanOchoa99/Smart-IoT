@@ -2,7 +2,7 @@ package co.edu.usbbog.piico.piicows.service;
 
 import java.util.List;
 
-import co.edu.usbbog.piico.piicows.modelo.mysql.Orden;
+import co.edu.usbbog.piico.piicows.model.mysql.Orden;
 
 public interface IOrdenService {
 	public List<Orden> findAll();

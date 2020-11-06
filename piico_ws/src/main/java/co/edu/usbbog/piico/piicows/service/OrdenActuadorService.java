@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.edu.usbbog.piico.piicows.modelo.mysql.OrdenActuador;
-import co.edu.usbbog.piico.piicows.model.mysql.repository.IOrden_Actuador;
+import co.edu.usbbog.piico.piicows.model.mysql.OrdenActuador;
+import co.edu.usbbog.piico.piicows.repository.mysql.IOrdenActuador;
 
 @Service
 public class OrdenActuadorService implements IOrdenActuadorService{
 	
 	@Autowired
-	private IOrden_Actuador ordenActRepo;
+	private IOrdenActuador ordenActRepo;
 	@Override
 	public List<OrdenActuador> findAll() {
 		// TODO Auto-generated method stub

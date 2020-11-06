@@ -5,15 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.edu.usbbog.piico.piicows.modelo.mysql.PuertaDeEnlace;
-import co.edu.usbbog.piico.piicows.model.mysql.repository.IPuerta_enlace;
-import co.edu.usbbog.piico.piicows.model.mysql.repository.IUsuario;
+import co.edu.usbbog.piico.piicows.model.mysql.PuertaDeEnlace;
+import co.edu.usbbog.piico.piicows.repository.mysql.IPuertaDeEnlace;
+import co.edu.usbbog.piico.piicows.repository.mysql.IUsuario;
 
 @Service
 public class PuertaEnlaceService implements IPuertaEnlaceService{
 	
 	@Autowired
-	private IPuerta_enlace gatewayRepo;
+	private IPuertaDeEnlace gatewayRepo;
 	@Override
 	public List<PuertaDeEnlace> findAll() {
 		// TODO Auto-generated method stub

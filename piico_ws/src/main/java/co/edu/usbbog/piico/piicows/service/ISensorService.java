@@ -2,7 +2,7 @@ package co.edu.usbbog.piico.piicows.service;
 
 import java.util.List;
 
-import co.edu.usbbog.piico.piicows.modelo.mysql.Sensor;
+import co.edu.usbbog.piico.piicows.model.mysql.Sensor;
 
 public interface ISensorService {
 	public List<Sensor> findAll();
