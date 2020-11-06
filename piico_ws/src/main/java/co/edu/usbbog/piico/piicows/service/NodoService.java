@@ -16,38 +16,53 @@ public class NodoService implements INodoService{
 
 	@Override
 	public List<Nodo> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Nodo> listNodo= nodoRepo.findAll();
+		return listNodo;
 	}
 
 	@Override
 	public Nodo findById(String nodo) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			System.out.println(nodoRepo.findById(nodo).get());
+			return (Nodo) nodoRepo.findById(nodo).get();
+		}catch(java.util.NoSuchElementException e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Boolean save(Nodo nodo) {
-		// TODO Auto-generated method stub
-		return null;
+		if (findById(nodo.getId()) == null){
+			nodoRepo.save(nodo);
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	@Override
 	public Boolean deleteById(String nodo) {
-		// TODO Auto-generated method stub
-		return null;
+		if (findById(nodo) != null){
+			nodoRepo.deleteById(nodo);
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	@Override
 	public Long count() {
-		// TODO Auto-generated method stub
-		return null;
+		return nodoRepo.count();
 	}
 
 	@Override
-	public Boolean alter(Nodo usuario) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean alter(Nodo nodo) {
+		if (findById(nodo.getId()) != null){
+			nodoRepo.save(nodo);
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }

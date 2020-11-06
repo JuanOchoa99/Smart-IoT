@@ -22,8 +22,11 @@ public class UsuarioService implements IUsuarioService{
 
 	@Override
 	public Usuario findById(String usuario) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return (Usuario) usuarioRepo.findById(usuario).get();
+		}catch(java.util.NoSuchElementException e) {
+			return null;
+		}
 	}
 
 	@Override
