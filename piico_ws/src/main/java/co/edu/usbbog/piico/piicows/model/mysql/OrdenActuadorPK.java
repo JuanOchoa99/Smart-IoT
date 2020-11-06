@@ -12,10 +12,10 @@ public class OrdenactuadorPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(insertable=false, updatable=false)
+	@Column(insertable=false, updatable=false, unique=true, nullable=false, length=45)
 	private String id;
 
-	@Column(name="actuador_id", insertable=false, updatable=false)
+	@Column(insertable=false, updatable=false, unique=true, nullable=false, length=45)
 	private String actuadorId;
 
 	public OrdenactuadorPK() {

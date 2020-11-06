@@ -10,19 +10,20 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="nodo")
 @NamedQuery(name="Nodo.findAll", query="SELECT n FROM Nodo n")
 public class Nodo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(unique=true, nullable=false, length=45)
 	private String id;
 
+	@Column(nullable=false, length=80)
 	private String descripcion;
 
+	@Column(nullable=false)
 	private byte estado;
-
-	@Column(name="protocolo_comunicacion")
-	private String protocoloComunicacion;
 
 	//bi-directional many-to-one association to Actuador
 	@OneToMany(mappedBy="nodoBean")
@@ -30,18 +31,18 @@ public class Nodo implements Serializable {
 
 	//bi-directional many-to-one association to Puertadeenlace
 	@ManyToOne
-	@JoinColumn(name="puertaDeEnlace")
+	@JoinColumn(name="puertaDeEnlace", nullable=false)
 	private Puertadeenlace puertadeenlace;
 
 	//bi-directional many-to-many association to Protocolo
 	@ManyToMany
 	@JoinTable(
-		name="nodoprotodoloprotocolo"
+		name="nodoprotocolo"
 		, joinColumns={
-			@JoinColumn(name="nodoId")
+			@JoinColumn(name="nodoId", nullable=false)
 			}
 		, inverseJoinColumns={
-			@JoinColumn(name="ProtocoloId")
+			@JoinColumn(name="ProtocoloId", nullable=false)
 			}
 		)
 	private List<Protocolo> protocolos;
@@ -75,14 +76,6 @@ public class Nodo implements Serializable {
 
 	public void setEstado(byte estado) {
 		this.estado = estado;
-	}
-
-	public String getProtocoloComunicacion() {
-		return this.protocoloComunicacion;
-	}
-
-	public void setProtocoloComunicacion(String protocoloComunicacion) {
-		this.protocoloComunicacion = protocoloComunicacion;
 	}
 
 	public List<Actuador> getActuadors() {

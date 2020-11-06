@@ -10,6 +10,7 @@ import java.util.Date;
  * 
  */
 @Entity
+@Table(name="ordenactuador")
 @NamedQuery(name="Ordenactuador.findAll", query="SELECT o FROM Ordenactuador o")
 public class Ordenactuador implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -17,18 +18,21 @@ public class Ordenactuador implements Serializable {
 	@EmbeddedId
 	private OrdenactuadorPK id;
 
+	@Column(nullable=false)
 	private byte confirmacion;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable=false)
 	private Date fecha;
 
 	//bi-directional many-to-one association to Actuador
 	@ManyToOne
+	@JoinColumn(name="actuadorId", nullable=false, insertable=false, updatable=false)
 	private Actuador actuador;
 
 	//bi-directional many-to-one association to Orden
 	@ManyToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="id", nullable=false, insertable=false, updatable=false)
 	private Orden orden;
 
 	public Ordenactuador() {

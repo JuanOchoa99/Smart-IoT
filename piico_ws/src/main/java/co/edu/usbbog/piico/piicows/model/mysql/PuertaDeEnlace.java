@@ -10,24 +10,25 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="puertadeenlace")
 @NamedQuery(name="Puertadeenlace.findAll", query="SELECT p FROM Puertadeenlace p")
 public class Puertadeenlace implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(unique=true, nullable=false, length=45)
 	private String id;
 
+	@Column(nullable=false, length=80)
 	private String descripcion;
 
-	@Column(name="direccion_logica")
+	@Column(nullable=false, length=60)
 	private String direccionLogica;
 
+	@Column(nullable=false)
 	private byte estado;
 
-	@Column(name="prot_comun_ext")
-	private String protComunExt;
-
-	@Column(name="puerto_de_servicio")
+	@Column(nullable=false, length=10)
 	private String puertoDeServicio;
 
 	//bi-directional many-to-one association to Auth
@@ -44,7 +45,7 @@ public class Puertadeenlace implements Serializable {
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
-	@JoinColumn(name="usuarioId")
+	@JoinColumn(name="usuarioId", nullable=false)
 	private Usuario usuario;
 
 	//bi-directional many-to-many association to Protocolo
@@ -52,10 +53,10 @@ public class Puertadeenlace implements Serializable {
 	@JoinTable(
 		name="puertadeenlaceprotocolo"
 		, joinColumns={
-			@JoinColumn(name="puerta_de_enlace_id")
+			@JoinColumn(name="puertaDeEnlaceId", nullable=false)
 			}
 		, inverseJoinColumns={
-			@JoinColumn(name="Protocolo_id")
+			@JoinColumn(name="Protocoloid", nullable=false)
 			}
 		)
 	private List<Protocolo> protocolos;
@@ -93,14 +94,6 @@ public class Puertadeenlace implements Serializable {
 
 	public void setEstado(byte estado) {
 		this.estado = estado;
-	}
-
-	public String getProtComunExt() {
-		return this.protComunExt;
-	}
-
-	public void setProtComunExt(String protComunExt) {
-		this.protComunExt = protComunExt;
 	}
 
 	public String getPuertoDeServicio() {

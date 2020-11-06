@@ -10,21 +10,28 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="usuario")
 @NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(unique=true, nullable=false, length=45)
 	private String id;
 
+	@Column(nullable=false, length=60)
 	private String apellidos;
 
+	@Column(nullable=false, length=45)
 	private String correo;
 
+	@Column(nullable=false, length=60)
 	private String nombres;
 
+	@Column(nullable=false, length=45)
 	private String pass;
 
+	@Column(nullable=false, length=45)
 	private String username;
 
 	//bi-directional many-to-one association to Puertadeenlace
@@ -34,12 +41,12 @@ public class Usuario implements Serializable {
 	//bi-directional many-to-many association to Rol
 	@ManyToMany
 	@JoinTable(
-		name="rol_has_usuario"
+		name="rolusuario"
 		, joinColumns={
-			@JoinColumn(name="usuarioId")
+			@JoinColumn(name="usuarioId", nullable=false)
 			}
 		, inverseJoinColumns={
-			@JoinColumn(name="rolNombre")
+			@JoinColumn(name="rolNombre", nullable=false)
 			}
 		)
 	private List<Rol> rols;

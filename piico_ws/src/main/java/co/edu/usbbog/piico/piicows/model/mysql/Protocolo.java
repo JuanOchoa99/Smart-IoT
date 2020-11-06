@@ -10,13 +10,16 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="protocolo")
 @NamedQuery(name="Protocolo.findAll", query="SELECT p FROM Protocolo p")
 public class Protocolo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(unique=true, nullable=false)
 	private int id;
 
+	@Column(nullable=false, length=45)
 	private String protocolo;
 
 	//bi-directional many-to-many association to Nodo

@@ -10,21 +10,28 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="sensor")
 @NamedQuery(name="Sensor.findAll", query="SELECT s FROM Sensor s")
 public class Sensor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(unique=true, nullable=false, length=45)
 	private String id;
 
+	@Column(nullable=false, length=80)
 	private String descripcion;
 
+	@Column(nullable=false)
 	private byte estado;
 
+	@Column(nullable=false)
 	private int frecuencia;
 
+	@Column(nullable=false, length=50)
 	private String magnitud;
 
+	@Column(nullable=false, length=80)
 	private String tipo;
 
 	//bi-directional many-to-one association to Actuador
@@ -33,7 +40,7 @@ public class Sensor implements Serializable {
 
 	//bi-directional many-to-one association to Nodo
 	@ManyToOne
-	@JoinColumn(name="nodo")
+	@JoinColumn(name="nodo", nullable=false)
 	private Nodo nodoBean;
 
 	public Sensor() {

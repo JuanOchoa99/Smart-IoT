@@ -10,26 +10,32 @@ import java.util.Date;
  * 
  */
 @Entity
+@Table(name="log")
 @NamedQuery(name="Log.findAll", query="SELECT l FROM Log l")
 public class Log implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(unique=true, nullable=false, length=45)
 	private String id;
 
+	@Column(nullable=false)
 	private byte estado;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable=false)
 	private Date fecha;
 
 	@Lob
+	@Column(nullable=false)
 	private String mensaje;
 
+	@Column(nullable=false, length=45)
 	private String tipo;
 
 	//bi-directional many-to-one association to Puertadeenlace
 	@ManyToOne
-	@JoinColumn(name="puertaDeEnlaceId")
+	@JoinColumn(name="puertaDeEnlaceId", nullable=false)
 	private Puertadeenlace puertadeenlace;
 
 	public Log() {

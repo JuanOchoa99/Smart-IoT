@@ -10,16 +10,20 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="orden")
 @NamedQuery(name="Orden.findAll", query="SELECT o FROM Orden o")
 public class Orden implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(unique=true, nullable=false, length=45)
 	private String id;
 
 	@Lob
+	@Column(nullable=false)
 	private String accion;
 
+	@Column(nullable=false, length=45)
 	private String tipo;
 
 	//bi-directional many-to-one association to Ordenactuador
