@@ -8,73 +8,59 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-
 /**
  * The persistent class for the nodo database table.
  * 
  */
 @Entity
-@Table(name="nodo")
-@NamedQuery(name="Nodo.findAll", query="SELECT n FROM Nodo n")
+@Table(name = "nodo")
+@NamedQuery(name = "Nodo.findAll", query = "SELECT n FROM Nodo n")
 public class Nodo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(unique=true, nullable=false, length=45)
+	@Column(unique = true, nullable = false, length = 45)
 	private String id;
 
-	@Column(nullable=false, length=80)
+	@Column(nullable = false, length = 80)
 	private String descripcion;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private byte estado;
 
-	//bi-directional many-to-one association to Actuador
-	@OneToMany(mappedBy="nodoBean")
+	// bi-directional many-to-one association to Actuador
+	@OneToMany(mappedBy = "nodoBean")
 	private List<Actuador> actuadors;
 
-	//bi-directional many-to-one association to Puertadeenlace
+	// bi-directional many-to-one association to Puertadeenlace
 	@ManyToOne
-	@JoinColumn(name="puertaDeEnlace", nullable=false)
+	@JoinColumn(name = "puertaDeEnlace", nullable = false)
 	private Puertadeenlace puertadeenlace;
 
-	//bi-directional many-to-many association to Protocolo
+	// bi-directional many-to-many association to Protocolo
 	@ManyToMany
-	@JoinTable(
-		name="nodoprotocolo"
-		, joinColumns={
-			@JoinColumn(name="nodoId", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="ProtocoloId", nullable=false)
-			}
-		)
+	@JoinTable(name = "nodoprotocolo", joinColumns = {
+			@JoinColumn(name = "nodoId", nullable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "ProtocoloId", nullable = false) })
 	private List<Protocolo> protocolos;
 
-	//bi-directional many-to-one association to Sensor
-	@OneToMany(mappedBy="nodoBean")
+	// bi-directional many-to-one association to Sensor
+	@OneToMany(mappedBy = "nodoBean")
 	private List<Sensor> sensors;
 
 	public Nodo() {
 	}
-	
+
 	public Nodo(String id) {
 		super();
 		this.id = id;
 	}
 
-	public Nodo(String id, String descripcion, byte estado, List<Actuador> actuadors, Puertadeenlace puertadeenlace,
-			List<Protocolo> protocolos, List<Sensor> sensors) {
-		super();
+	public Nodo(String id, String descripcion, byte estado) {
 		this.id = id;
 		this.descripcion = descripcion;
 		this.estado = estado;
-		this.actuadors = actuadors;
-		this.puertadeenlace = puertadeenlace;
-		this.protocolos = protocolos;
-		this.sensors = sensors;
 	}
-
 
 	public String getId() {
 		return this.id;
@@ -217,11 +203,12 @@ public class Nodo implements Serializable {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Nodo: " + toJson().toString();
 	}
-	
+
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
 		json.put("id", this.getId());
@@ -241,11 +228,11 @@ public class Nodo implements Serializable {
 		json.put("protocolos", protocolos);
 		return json;
 	}
-	
-	public Nodo fromJson(JSONObject json) {		
+
+	public Nodo fromJson(JSONObject json) {
 		this.setId(json.getString("id"));
 		this.setDescripcion(json.getString("descripcion"));
-		this.setEstado((byte)json.getInt("estado"));
+		this.setEstado((byte) json.getInt("estado"));
 		return this;
 	}
 

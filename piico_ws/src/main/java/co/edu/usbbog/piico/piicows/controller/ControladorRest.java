@@ -92,7 +92,7 @@ public class ControladorRest {
 	@RequestMapping(value = "/listarUsuarios", method = RequestMethod.GET, 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String listarUsuarios(@RequestBody String usuario) {
+	public @ResponseBody String listarUsuarios() {
 		String mg = "";
 		mg = usuarioService.findAll().toString();
 		return mg;
@@ -162,60 +162,12 @@ public class ControladorRest {
 	@RequestMapping(value = "/listarUsuarios", method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String listarRol(@RequestBody String rol) {
+	public @ResponseBody String listarRol() {
 		String mg = "";
 		mg = rolService.findAll().toString();
 		return mg;
 	}
 	
-	// CRUD PuertaDeEnlace
 	
-		@RequestMapping(value = "/guardarPuertaDeEnlace", method = RequestMethod.POST, 
-				consumes = MediaType.APPLICATION_JSON_VALUE, 
-				produces = MediaType.APPLICATION_JSON_VALUE)
-		public @ResponseBody String guardarPuertaDeEnlace(@RequestBody Puertadeenlace puertaDeEnlace) {
-			String mg = "";
-			return mg;
-		}
-		
-		@RequestMapping(value = "/eliminarPuertaDeEnlace", method = RequestMethod.POST, 
-				consumes = MediaType.APPLICATION_JSON_VALUE, 
-				produces = MediaType.APPLICATION_JSON_VALUE)
-		public @ResponseBody String eliminarPuertaDeEnlace(@RequestBody String puertaDeEnlace) {
-			String mg = "";
-			return mg;
-		}
-		
-		@RequestMapping(value = "/modificarPuertaDeEnlace", method = RequestMethod.POST, 
-				consumes = MediaType.APPLICATION_JSON_VALUE, 
-				produces = MediaType.APPLICATION_JSON_VALUE)
-		public @ResponseBody String modificarRol(@RequestBody Puertadeenlace puertaDeEnlace) {
-			String mg = "";
-			return mg;
-		}
-		
-		@RequestMapping(value = "/contarPuertaDeEnlace", method = RequestMethod.GET, 
-				consumes = MediaType.APPLICATION_JSON_VALUE, 
-				produces = MediaType.APPLICATION_JSON_VALUE)
-		public @ResponseBody String contarPuertaDeEnlace() {
-			String mg = "";
-			return mg;
-		}
-		
-		@RequestMapping(value = "/buscarPuertaDeEnlace", method = RequestMethod.POST, 
-				consumes = MediaType.APPLICATION_JSON_VALUE, 
-				produces = MediaType.APPLICATION_JSON_VALUE)
-		public @ResponseBody String buscarPuertaDeEnlace(@RequestBody String puertaDeEnlace) {
-			String mg = "";
-			return mg;
-		}
-		
-		@RequestMapping(value = "/listarPuertaDeEnlace", method = RequestMethod.POST, 
-				consumes = MediaType.APPLICATION_JSON_VALUE, 
-				produces = MediaType.APPLICATION_JSON_VALUE)
-		public @ResponseBody String listarPuertaDeEnlace(@RequestBody String puertaDeEnlace) {
-			String mg = "";
-			return mg;
-		}
 
 }

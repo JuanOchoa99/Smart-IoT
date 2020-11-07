@@ -1,43 +1,49 @@
 package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-
 import javax.persistence.*;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
-
 
 /**
  * The persistent class for the auth database table.
  * 
  */
 @Entity
-@Table(name="auth")
-@NamedQuery(name="Auth.findAll", query="SELECT a FROM Auth a")
+@Table(name = "auth")
+@NamedQuery(name = "Auth.findAll", query = "SELECT a FROM Auth a")
 public class Auth implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(unique=true, nullable=false)
+	@Column(unique = true, nullable = false)
 	private int id;
 
-	@Column(nullable=false, length=512)
+	@Column(nullable = false, length = 512)
 	private String pass;
 
-	@Column(nullable=false, length=45)
+	@Column(nullable = false, length = 45)
 	private String topic;
 
-	@Column(nullable=false, length=80)
+	@Column(nullable = false, length = 80)
 	private String user;
 
-	//bi-directional many-to-one association to Puertadeenlace
+	// bi-directional many-to-one association to Puertadeenlace
 	@ManyToOne
-	@JoinColumn(name="puertaDeEnlace", nullable=false)
+	@JoinColumn(name = "puertaDeEnlace", nullable = false)
 	private Puertadeenlace puertadeenlace;
 
 	public Auth() {
+	}
+
+	public Auth(int id) {
+		this.id = id;
+	}
+
+	public Auth(int id, String pass, String topic, String user) {
+		this.id = id;
+		this.pass = pass;
+		this.topic = topic;
+		this.user = user;
 	}
 
 	public int getId() {
@@ -79,22 +85,6 @@ public class Auth implements Serializable {
 	public void setPuertadeenlace(Puertadeenlace puertadeenlace) {
 		this.puertadeenlace = puertadeenlace;
 	}
-	
-	
-
-	public Auth(int id) {
-		this.id = id;
-	}
-	
-
-	public Auth(int id, String pass, String topic, String user) {
-		this.id = id;
-		this.pass = pass;
-		this.topic = topic;
-		this.user = user;
-	}
-	
-	
 
 	@Override
 	public int hashCode() {
@@ -146,27 +136,25 @@ public class Auth implements Serializable {
 	public String toString() {
 		return "Puerta de enlace: " + toJson().toString();
 	}
-	
+
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
 		json.put("id", this.getId());
 		json.put("pass", this.getPass());
 		json.put("topic", this.getTopic());
-		json.put("user",this.getUser());
-		//relaciones
+		json.put("user", this.getUser());
+		// relaciones
 		Puertadeenlace puertaDeEnlace = this.getPuertadeenlace();
 		json.put("puertaDeEnlace", puertaDeEnlace.toJson().get("id"));
 		return json;
 	}
-	
-	public Auth fromJson(JSONObject json) {		
+
+	public Auth fromJson(JSONObject json) {
 		this.setId(json.getInt("id"));
 		this.setPass(json.getString("pass"));
 		this.setTopic(json.getString("topic"));
 		this.setUser(json.getString("user"));
-		
 		return this;
 	}
-	
 
 }
