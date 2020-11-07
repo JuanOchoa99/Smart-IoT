@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
-import co.edu.usbbog.piico.piicows.model.mysql.Puertadeenlace;
+import co.edu.usbbog.piico.piicows.model.mysql.PuertaDeEnlace;
 import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
 import co.edu.usbbog.piico.piicows.service.NodoService;
 import co.edu.usbbog.piico.piicows.service.PuertaEnlaceService;

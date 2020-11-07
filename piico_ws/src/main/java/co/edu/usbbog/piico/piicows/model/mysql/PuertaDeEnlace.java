@@ -10,13 +10,13 @@ import java.util.List;
 
 
 /**
- * The persistent class for the puertadeenlace database table.
+ * The persistent class for the puerta_de_enlace database table.
  * 
  */
 @Entity
-@Table(name="puertadeenlace")
-@NamedQuery(name="Puertadeenlace.findAll", query="SELECT p FROM Puertadeenlace p")
-public class Puertadeenlace implements Serializable {
+@Table(name="puerta_de_enlace")
+@NamedQuery(name="PuertaDeEnlace.findAll", query="SELECT p FROM PuertaDeEnlace p")
+public class PuertaDeEnlace implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,48 +26,69 @@ public class Puertadeenlace implements Serializable {
 	@Column(nullable=false, length=80)
 	private String descripcion;
 
-	@Column(nullable=false, length=60)
+	@Column(name="direccion_logica", nullable=false, length=45)
 	private String direccionLogica;
 
 	@Column(nullable=false)
-	private int estado;
+	private byte estado;
 
-	@Column(nullable=false, length=10)
+	@Column(length=100)
+	private String password;
+
+	@Column(name="puerto_de_servicio", nullable=false, length=10)
 	private String puertoDeServicio;
 
+	@Column(length=45)
+	private String ssid;
+
 	//bi-directional many-to-one association to Auth
-	@OneToMany(mappedBy="puertadeenlace")
+	@OneToMany(mappedBy="puertaDeEnlaceBean")
 	private List<Auth> auths;
 
 	//bi-directional many-to-one association to Log
-	@OneToMany(mappedBy="puertadeenlace")
+	@OneToMany(mappedBy="puertaDeEnlaceBean")
 	private List<Log> logs;
 
 	//bi-directional many-to-one association to Nodo
-	@OneToMany(mappedBy="puertadeenlace")
+	@OneToMany(mappedBy="puertaDeEnlaceBean")
 	private List<Nodo> nodos;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
-	@JoinColumn(name="usuarioId", nullable=false)
-	private Usuario usuario;
+	@JoinColumn(name="usuario", nullable=false)
+	private Usuario usuarioBean;
 
 	//bi-directional many-to-many association to Protocolo
 	@ManyToMany
 	@JoinTable(
-		name="puertadeenlaceprotocolo"
+		name="puerta_de_enlace_protocolo"
 		, joinColumns={
-			@JoinColumn(name="puertaDeEnlaceId", nullable=false)
+			@JoinColumn(name="puerta_de_enlace", nullable=false)
 			}
 		, inverseJoinColumns={
-			@JoinColumn(name="Protocoloid", nullable=false)
+			@JoinColumn(name="protocolo", nullable=false)
 			}
 		)
 	private List<Protocolo> protocolos;
 
-	public Puertadeenlace() {
+	public PuertaDeEnlace() {
 	}
+	public PuertaDeEnlace(String id) {
+		this.id = id;
+	}
+	
 
+	public PuertaDeEnlace(String id, String descripcion, String direccionLogica, byte estado, String password,
+			String puertoDeServicio, String ssid) {
+		super();
+		this.id = id;
+		this.descripcion = descripcion;
+		this.direccionLogica = direccionLogica;
+		this.estado = estado;
+		this.password = password;
+		this.puertoDeServicio = puertoDeServicio;
+		this.ssid = ssid;
+	}
 	public String getId() {
 		return this.id;
 	}
@@ -92,12 +113,20 @@ public class Puertadeenlace implements Serializable {
 		this.direccionLogica = direccionLogica;
 	}
 
-	public int getEstado() {
+	public byte getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(int i) {
-		this.estado = i;
+	public void setEstado(byte estado) {
+		this.estado = estado;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getPuertoDeServicio() {
@@ -106,6 +135,14 @@ public class Puertadeenlace implements Serializable {
 
 	public void setPuertoDeServicio(String puertoDeServicio) {
 		this.puertoDeServicio = puertoDeServicio;
+	}
+
+	public String getSsid() {
+		return this.ssid;
+	}
+
+	public void setSsid(String ssid) {
+		this.ssid = ssid;
 	}
 
 	public List<Auth> getAuths() {
@@ -118,14 +155,14 @@ public class Puertadeenlace implements Serializable {
 
 	public Auth addAuth(Auth auth) {
 		getAuths().add(auth);
-		auth.setPuertadeenlace(this);
+		auth.setPuertaDeEnlaceBean(this);
 
 		return auth;
 	}
 
 	public Auth removeAuth(Auth auth) {
 		getAuths().remove(auth);
-		auth.setPuertadeenlace(null);
+		auth.setPuertaDeEnlaceBean(null);
 
 		return auth;
 	}
@@ -140,14 +177,14 @@ public class Puertadeenlace implements Serializable {
 
 	public Log addLog(Log log) {
 		getLogs().add(log);
-		log.setPuertadeenlace(this);
+		log.setPuertaDeEnlaceBean(this);
 
 		return log;
 	}
 
 	public Log removeLog(Log log) {
 		getLogs().remove(log);
-		log.setPuertadeenlace(null);
+		log.setPuertaDeEnlaceBean(null);
 
 		return log;
 	}
@@ -162,24 +199,24 @@ public class Puertadeenlace implements Serializable {
 
 	public Nodo addNodo(Nodo nodo) {
 		getNodos().add(nodo);
-		nodo.setPuertadeenlace(this);
+		nodo.setPuertaDeEnlaceBean(this);
 
 		return nodo;
 	}
 
 	public Nodo removeNodo(Nodo nodo) {
 		getNodos().remove(nodo);
-		nodo.setPuertadeenlace(null);
+		nodo.setPuertaDeEnlaceBean(null);
 
 		return nodo;
 	}
 
-	public Usuario getUsuario() {
-		return this.usuario;
+	public Usuario getUsuarioBean() {
+		return this.usuarioBean;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setUsuarioBean(Usuario usuarioBean) {
+		this.usuarioBean = usuarioBean;
 	}
 
 	public List<Protocolo> getProtocolos() {
@@ -189,22 +226,6 @@ public class Puertadeenlace implements Serializable {
 	public void setProtocolos(List<Protocolo> protocolos) {
 		this.protocolos = protocolos;
 	}
-	
-	
-
-	public Puertadeenlace(String id) {
-		this.id = id;
-	}
-	
-
-	public Puertadeenlace(String id, String descripcion, String direccionLogica, byte estado, String puertoDeServicio) {
-		this.id = id;
-		this.descripcion = descripcion;
-		this.direccionLogica = direccionLogica;
-		this.estado = estado;
-		this.puertoDeServicio = puertoDeServicio;
-	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -216,12 +237,13 @@ public class Puertadeenlace implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((logs == null) ? 0 : logs.hashCode());
 		result = prime * result + ((nodos == null) ? 0 : nodos.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((protocolos == null) ? 0 : protocolos.hashCode());
 		result = prime * result + ((puertoDeServicio == null) ? 0 : puertoDeServicio.hashCode());
-		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
+		result = prime * result + ((ssid == null) ? 0 : ssid.hashCode());
+		result = prime * result + ((usuarioBean == null) ? 0 : usuarioBean.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -230,7 +252,7 @@ public class Puertadeenlace implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Puertadeenlace other = (Puertadeenlace) obj;
+		PuertaDeEnlace other = (PuertaDeEnlace) obj;
 		if (auths == null) {
 			if (other.auths != null)
 				return false;
@@ -263,6 +285,11 @@ public class Puertadeenlace implements Serializable {
 				return false;
 		} else if (!nodos.equals(other.nodos))
 			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
 		if (protocolos == null) {
 			if (other.protocolos != null)
 				return false;
@@ -273,15 +300,18 @@ public class Puertadeenlace implements Serializable {
 				return false;
 		} else if (!puertoDeServicio.equals(other.puertoDeServicio))
 			return false;
-		if (usuario == null) {
-			if (other.usuario != null)
+		if (ssid == null) {
+			if (other.ssid != null)
 				return false;
-		} else if (!usuario.equals(other.usuario))
+		} else if (!ssid.equals(other.ssid))
+			return false;
+		if (usuarioBean == null) {
+			if (other.usuarioBean != null)
+				return false;
+		} else if (!usuarioBean.equals(other.usuarioBean))
 			return false;
 		return true;
 	}
-	
-
 	@Override
 	public String toString() {
 		return "Puerta de enlace: " + toJson().toString();
@@ -294,6 +324,8 @@ public class Puertadeenlace implements Serializable {
 		json.put("direccionLogica", this.getDireccionLogica());
 		json.put("estado",this.getEstado());
 		json.put("puertoDeServicio", this.getPuertoDeServicio());
+		json.put("ssid",this.getSsid());
+		json.put("password",this.getPassword());
 		//relaciones
 		JSONArray logs = new JSONArray();
 		for (Log log : this.getLogs()) {
@@ -310,14 +342,14 @@ public class Puertadeenlace implements Serializable {
 		return json;
 	}
 	
-	public Puertadeenlace fromJson(JSONObject json) {		
+	public PuertaDeEnlace fromJson(JSONObject json) {		
 		this.setId(json.getString("id"));
 		this.setDescripcion(json.getString("descripcion"));
 		this.setDireccionLogica(json.getString("direccionLogica"));
-		this.setEstado(json.getInt("estado"));
+		this.setEstado((byte)json.getInt("estado"));
 		this.setPuertoDeServicio(json.getString("puertoDeServicio"));
-		
+		this.setSsid(json.getString("ssid"));
+		this.setPassword(json.getString("password"));
 		return this;
 	}
-
 }

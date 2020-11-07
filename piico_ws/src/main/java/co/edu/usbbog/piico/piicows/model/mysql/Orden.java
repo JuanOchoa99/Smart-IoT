@@ -8,36 +8,35 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+
 /**
  * The persistent class for the orden database table.
  * 
  */
 @Entity
-@Table(name = "orden")
-@NamedQuery(name = "Orden.findAll", query = "SELECT o FROM Orden o")
+@Table(name="orden")
+@NamedQuery(name="Orden.findAll", query="SELECT o FROM Orden o")
 public class Orden implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(unique = true, nullable = false, length = 45)
+	@Column(unique=true, nullable=false, length=45)
 	private String id;
 
 	@Lob
-	@Column(nullable = false)
+	@Column(nullable=false)
 	private String accion;
 
-	@Column(nullable = false, length = 45)
+	@Column(nullable=false, length=45)
 	private String tipo;
 
-	// bi-directional many-to-one association to Ordenactuador
-	@OneToMany(mappedBy = "orden")
-	private List<Ordenactuador> ordenactuadors;
+	//bi-directional many-to-one association to OrdenActuador
+	@OneToMany(mappedBy="orden")
+	private List<OrdenActuador> ordenActuadors;
 
 	public Orden() {
 	}
-
 	public Orden(String id) {
-		super();
 		this.id = id;
 	}
 
@@ -47,7 +46,6 @@ public class Orden implements Serializable {
 		this.accion = accion;
 		this.tipo = tipo;
 	}
-
 	public String getId() {
 		return this.id;
 	}
@@ -72,35 +70,35 @@ public class Orden implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public List<Ordenactuador> getOrdenactuadors() {
-		return this.ordenactuadors;
+	public List<OrdenActuador> getOrdenActuadors() {
+		return this.ordenActuadors;
 	}
 
-	public void setOrdenactuadors(List<Ordenactuador> ordenactuadors) {
-		this.ordenactuadors = ordenactuadors;
+	public void setOrdenActuadors(List<OrdenActuador> ordenActuadors) {
+		this.ordenActuadors = ordenActuadors;
 	}
 
-	public Ordenactuador addOrdenactuador(Ordenactuador ordenactuador) {
-		getOrdenactuadors().add(ordenactuador);
-		ordenactuador.setOrden(this);
+	public OrdenActuador addOrdenActuador(OrdenActuador ordenActuador) {
+		getOrdenActuadors().add(ordenActuador);
+		ordenActuador.setOrden(this);
 
-		return ordenactuador;
+		return ordenActuador;
 	}
 
-	public Ordenactuador removeOrdenactuador(Ordenactuador ordenactuador) {
-		getOrdenactuadors().remove(ordenactuador);
-		ordenactuador.setOrden(null);
+	public OrdenActuador removeOrdenActuador(OrdenActuador ordenActuador) {
+		getOrdenActuadors().remove(ordenActuador);
+		ordenActuador.setOrden(null);
 
-		return ordenactuador;
+		return ordenActuador;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((accion == null) ? 0 : accion.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((ordenactuadors == null) ? 0 : ordenactuadors.hashCode());
+		result = prime * result + ((ordenActuadors == null) ? 0 : ordenActuadors.hashCode());
 		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
@@ -124,10 +122,10 @@ public class Orden implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (ordenactuadors == null) {
-			if (other.ordenactuadors != null)
+		if (ordenActuadors == null) {
+			if (other.ordenActuadors != null)
 				return false;
-		} else if (!ordenactuadors.equals(other.ordenactuadors))
+		} else if (!ordenActuadors.equals(other.ordenActuadors))
 			return false;
 		if (tipo == null) {
 			if (other.tipo != null)
@@ -141,21 +139,21 @@ public class Orden implements Serializable {
 	public String toString() {
 		return "Orden: " + toJson().toString();
 	}
-
+	
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
 		json.put("id", this.getId());
 		json.put("accion", this.getAccion());
 		json.put("tipo", this.getTipo());
 		JSONArray ordenActuadors = new JSONArray();
-		for (Ordenactuador ordenActuador : this.getOrdenactuadors()) {
+		for (OrdenActuador ordenActuador : this.getOrdenActuadors()) {
 			ordenActuadors.put(ordenActuador.toJson().getString("id"));
 		}
 		json.put("Ordenactuadors", ordenActuadors);
 		return json;
 	}
-
-	public Orden fromJson(JSONObject json) {
+	
+	public Orden fromJson(JSONObject json) {		
 		this.setId(json.getString("id"));
 		this.setAccion(json.getString("accion"));
 		this.setTipo(json.getString("tipo"));

@@ -2,56 +2,60 @@ package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
 import javax.persistence.*;
+
 import org.json.JSONObject;
+
+import java.util.Date;
+
 
 /**
  * The persistent class for the log database table.
  * 
  */
 @Entity
-@Table(name = "log")
-@NamedQuery(name = "Log.findAll", query = "SELECT l FROM Log l")
+@Table(name="log")
+@NamedQuery(name="Log.findAll", query="SELECT l FROM Log l")
 public class Log implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(unique = true, nullable = false, length = 45)
+	@Column(unique=true, nullable=false, length=45)
 	private String id;
 
-	@Column(nullable = false)
+	@Column(nullable=false)
 	private byte estado;
 
-	@Column(name = "fecha", columnDefinition = "TIMESTAMP", nullable = false)
+	@Column(nullable=false)
 	private LocalDateTime fecha;
 
 	@Lob
-	@Column(nullable = false)
+	@Column(nullable=false)
 	private String mensaje;
 
-	@Column(nullable = false, length = 45)
+	@Column(nullable=false, length=45)
 	private String tipo;
 
-	// bi-directional many-to-one association to Puertadeenlace
+	//bi-directional many-to-one association to PuertaDeEnlace
 	@ManyToOne
-	@JoinColumn(name = "puertaDeEnlaceId", nullable = false)
-	private Puertadeenlace puertadeenlace;
+	@JoinColumn(name="puerta_de_enlace", nullable=false)
+	private PuertaDeEnlace puertaDeEnlaceBean;
 
 	public Log() {
 	}
-
 	public Log(String id) {
 		this.id = id;
 	}
 
 	public Log(String id, byte estado, LocalDateTime fecha, String mensaje, String tipo) {
+		super();
 		this.id = id;
 		this.estado = estado;
 		this.fecha = fecha;
 		this.mensaje = mensaje;
 		this.tipo = tipo;
 	}
-
 	public String getId() {
 		return this.id;
 	}
@@ -92,12 +96,12 @@ public class Log implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public Puertadeenlace getPuertadeenlace() {
-		return this.puertadeenlace;
+	public PuertaDeEnlace getPuertaDeEnlaceBean() {
+		return this.puertaDeEnlaceBean;
 	}
 
-	public void setPuertadeenlace(Puertadeenlace puertadeenlace) {
-		this.puertadeenlace = puertadeenlace;
+	public void setPuertaDeEnlaceBean(PuertaDeEnlace puertaDeEnlaceBean) {
+		this.puertaDeEnlaceBean = puertaDeEnlaceBean;
 	}
 
 	@Override
@@ -108,7 +112,7 @@ public class Log implements Serializable {
 		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((mensaje == null) ? 0 : mensaje.hashCode());
-		result = prime * result + ((puertadeenlace == null) ? 0 : puertadeenlace.hashCode());
+		result = prime * result + ((puertaDeEnlaceBean == null) ? 0 : puertaDeEnlaceBean.hashCode());
 		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
@@ -139,10 +143,10 @@ public class Log implements Serializable {
 				return false;
 		} else if (!mensaje.equals(other.mensaje))
 			return false;
-		if (puertadeenlace == null) {
-			if (other.puertadeenlace != null)
+		if (puertaDeEnlaceBean == null) {
+			if (other.puertaDeEnlaceBean != null)
 				return false;
-		} else if (!puertadeenlace.equals(other.puertadeenlace))
+		} else if (!puertaDeEnlaceBean.equals(other.puertaDeEnlaceBean))
 			return false;
 		if (tipo == null) {
 			if (other.tipo != null)
@@ -151,7 +155,6 @@ public class Log implements Serializable {
 			return false;
 		return true;
 	}
-
 	@Override
 	public String toString() {
 		return "Puerta de enlace: " + toJson().toString();
@@ -165,7 +168,7 @@ public class Log implements Serializable {
 		json.put("mensaje", this.getMensaje());
 		json.put("tipo", this.getTipo());
 		// relaciones
-		Puertadeenlace puertaDeEnlace = this.getPuertadeenlace();
+		PuertaDeEnlace puertaDeEnlace = this.getPuertaDeEnlaceBean();
 		json.put("puertaDeEnlace", puertaDeEnlace.toJson().get("id"));
 		return json;
 	}
@@ -178,5 +181,4 @@ public class Log implements Serializable {
 		this.setTipo(json.getString("Tipo"));
 		return this;
 	}
-
 }

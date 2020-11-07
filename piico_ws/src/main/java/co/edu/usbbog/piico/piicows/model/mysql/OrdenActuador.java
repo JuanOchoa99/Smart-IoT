@@ -1,76 +1,69 @@
 package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import javax.persistence.*;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import co.edu.usbbog.piico.piicows.model.mongo.GPS;
-
-import java.time.LocalDateTime;
+import java.util.Date;
 
 
 /**
- * The persistent class for the ordenactuador database table.
+ * The persistent class for the orden_actuador database table.
  * 
  */
 @Entity
-@Table(name="ordenactuador")
-@NamedQuery(name="Ordenactuador.findAll", query="SELECT o FROM Ordenactuador o")
-public class Ordenactuador implements Serializable {
+@Table(name="orden_actuador")
+@NamedQuery(name="OrdenActuador.findAll", query="SELECT o FROM OrdenActuador o")
+public class OrdenActuador implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private OrdenactuadorPK id;
+	private OrdenActuadorPK id;
 
 	@Column(nullable=false)
-	private int confirmacion;
+	private byte confirmacion;
 
 	@Column(nullable=false)
-	private  LocalDateTime fecha;
+	private LocalDateTime fecha;
 
 	//bi-directional many-to-one association to Actuador
 	@ManyToOne
-	@JoinColumn(name="actuadorId", nullable=false, insertable=false, updatable=false)
-	private Actuador actuador;
+	@JoinColumn(name="actuador", nullable=false, insertable=false, updatable=false)
+	private Actuador actuadorBean;
 
 	//bi-directional many-to-one association to Orden
 	@ManyToOne
 	@JoinColumn(name="id", nullable=false, insertable=false, updatable=false)
 	private Orden orden;
 
-	public Ordenactuador() {
+	public OrdenActuador() {
 	}
-	
-	public Ordenactuador(OrdenactuadorPK id) {
-		super();
+	public OrdenActuador(OrdenActuadorPK id) {
 		this.id = id;
 	}
 
-	public Ordenactuador(OrdenactuadorPK id, int confirmacion, LocalDateTime fecha, Actuador actuador, Orden orden) {
+	public OrdenActuador(OrdenActuadorPK id, byte confirmacion, LocalDateTime fecha) {
 		super();
 		this.id = id;
 		this.confirmacion = confirmacion;
 		this.fecha = fecha;
-		this.actuador = actuador;
-		this.orden = orden;
 	}
-
-
-	public OrdenactuadorPK getId() {
+	public OrdenActuadorPK getId() {
 		return this.id;
 	}
 
-	public void setId(OrdenactuadorPK id) {
+	public void setId(OrdenActuadorPK id) {
 		this.id = id;
 	}
 
-	public int getConfirmacion() {
+	public byte getConfirmacion() {
 		return this.confirmacion;
 	}
 
-	public void setConfirmacion(int confirmacion) {
+	public void setConfirmacion(byte confirmacion) {
 		this.confirmacion = confirmacion;
 	}
 
@@ -82,12 +75,12 @@ public class Ordenactuador implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public Actuador getActuador() {
-		return this.actuador;
+	public Actuador getActuadorBean() {
+		return this.actuadorBean;
 	}
 
-	public void setActuador(Actuador actuador) {
-		this.actuador = actuador;
+	public void setActuadorBean(Actuador actuadorBean) {
+		this.actuadorBean = actuadorBean;
 	}
 
 	public Orden getOrden() {
@@ -97,19 +90,17 @@ public class Ordenactuador implements Serializable {
 	public void setOrden(Orden orden) {
 		this.orden = orden;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((actuador == null) ? 0 : actuador.hashCode());
+		result = prime * result + ((actuadorBean == null) ? 0 : actuadorBean.hashCode());
 		result = prime * result + confirmacion;
 		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((orden == null) ? 0 : orden.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -118,11 +109,11 @@ public class Ordenactuador implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Ordenactuador other = (Ordenactuador) obj;
-		if (actuador == null) {
-			if (other.actuador != null)
+		OrdenActuador other = (OrdenActuador) obj;
+		if (actuadorBean == null) {
+			if (other.actuadorBean != null)
 				return false;
-		} else if (!actuador.equals(other.actuador))
+		} else if (!actuadorBean.equals(other.actuadorBean))
 			return false;
 		if (confirmacion != other.confirmacion)
 			return false;
@@ -152,18 +143,17 @@ public class Ordenactuador implements Serializable {
 		json.put("id", this.getId());
 		json.put("confirmacion", this.getConfirmacion());
 		json.put("fecha", this.getFecha());
-		JSONObject jsonActuador = this.getActuador().toJson();
+		JSONObject jsonActuador = this.getActuadorBean().toJson();
 		json.put("actuador", jsonActuador);
 		JSONObject jsonOrden = this.getOrden().toJson();
 		json.put("orden", jsonOrden);
 		return json;
 	}
-	public Ordenactuador fromJson(JSONObject json) {		
+	public OrdenActuador fromJson(JSONObject json) {		
 		JSONObject jsonOrdenactuadorPK = json.getJSONObject("id");
-		this.setId(new OrdenactuadorPK().fromJson(jsonOrdenactuadorPK));
-		this.setConfirmacion(json.getInt("confirmacion"));
-		JSONObject jsonFecha = json.getJSONObject("fecha");
-		//this.setId(new LocalDateTime());
+		this.setId(new OrdenActuadorPK().fromJson(jsonOrdenactuadorPK));
+		this.setConfirmacion((byte)json.getInt("confirmacion"));
+		this.setFecha(LocalDateTime.parse(json.getString("fecha")));
 		return this;
 	}
 }

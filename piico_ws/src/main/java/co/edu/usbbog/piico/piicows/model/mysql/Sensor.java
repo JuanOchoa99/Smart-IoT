@@ -27,7 +27,7 @@ public class Sensor implements Serializable {
 	private String descripcion;
 
 	@Column(nullable=false)
-	private int estado;
+	private byte estado;
 
 	@Column(nullable=false)
 	private int frecuencia;
@@ -49,15 +49,11 @@ public class Sensor implements Serializable {
 
 	public Sensor() {
 	}
-	
 	public Sensor(String id) {
-		super();
 		this.id = id;
 	}
-	
-	
-	public Sensor(String id, String descripcion, byte estado, int frecuencia, String magnitud, String tipo,
-			List<Actuador> actuadors, Nodo nodoBean) {
+
+	public Sensor(String id, String descripcion, byte estado, int frecuencia, String magnitud, String tipo) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
@@ -65,10 +61,7 @@ public class Sensor implements Serializable {
 		this.frecuencia = frecuencia;
 		this.magnitud = magnitud;
 		this.tipo = tipo;
-		this.actuadors = actuadors;
-		this.nodoBean = nodoBean;
 	}
-
 	public String getId() {
 		return this.id;
 	}
@@ -85,11 +78,11 @@ public class Sensor implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public int getEstado() {
+	public byte getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstado(byte estado) {
 		this.estado = estado;
 	}
 
@@ -146,7 +139,6 @@ public class Sensor implements Serializable {
 	public void setNodoBean(Nodo nodoBean) {
 		this.nodoBean = nodoBean;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -161,7 +153,6 @@ public class Sensor implements Serializable {
 		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -234,7 +225,7 @@ public class Sensor implements Serializable {
 	public Sensor fromJson(JSONObject json) {		
 		this.setId(json.getString("id"));
 		this.setDescripcion(json.getString("descripcion"));
-		this.setEstado(json.getInt("estado"));
+		this.setEstado((byte)json.getInt("estado"));
 		this.setFrecuencia(json.getInt("frecuencia"));
 		this.setMagnitud(json.getString("magnitud"));
 		this.setTipo(json.getString("tipo"));

@@ -24,30 +24,35 @@ public class Protocolo implements Serializable {
 	private int id;
 
 	@Column(nullable=false, length=45)
-	private String protocolo;
+	private String estandar;
+
+	@Column(nullable=false, length=45)
+	private String nombre;
+
+	@Column(nullable=false, length=45)
+	private String tipo;
 
 	//bi-directional many-to-many association to Nodo
 	@ManyToMany(mappedBy="protocolos")
 	private List<Nodo> nodos;
 
-	//bi-directional many-to-many association to Puertadeenlace
+	//bi-directional many-to-many association to PuertaDeEnlace
 	@ManyToMany(mappedBy="protocolos")
-	private List<Puertadeenlace> puertadeenlaces;
+	private List<PuertaDeEnlace> puertaDeEnlaces;
 
 	public Protocolo() {
 	}
-	public Protocolo(int id ) {
-		super();
+	public Protocolo(int id) {
 		this.id = id;
 	}
-	public Protocolo(int id, String protocolo) {
+	
+	public Protocolo(int id, String estandar, String nombre, String tipo) {
 		super();
 		this.id = id;
-		this.protocolo = protocolo;
-		this.nodos = nodos;
-		this.puertadeenlaces = puertadeenlaces;
+		this.estandar = estandar;
+		this.nombre = nombre;
+		this.tipo = tipo;
 	}
-
 	public int getId() {
 		return this.id;
 	}
@@ -56,12 +61,28 @@ public class Protocolo implements Serializable {
 		this.id = id;
 	}
 
-	public String getProtocolo() {
-		return this.protocolo;
+	public String getEstandar() {
+		return this.estandar;
 	}
 
-	public void setProtocolo(String protocolo) {
-		this.protocolo = protocolo;
+	public void setEstandar(String estandar) {
+		this.estandar = estandar;
+	}
+
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getTipo() {
+		return this.tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public List<Nodo> getNodos() {
@@ -72,22 +93,24 @@ public class Protocolo implements Serializable {
 		this.nodos = nodos;
 	}
 
-	public List<Puertadeenlace> getPuertadeenlaces() {
-		return this.puertadeenlaces;
+	public List<PuertaDeEnlace> getPuertaDeEnlaces() {
+		return this.puertaDeEnlaces;
 	}
 
-	public void setPuertadeenlaces(List<Puertadeenlace> puertadeenlaces) {
-		this.puertadeenlaces = puertadeenlaces;
+	public void setPuertaDeEnlaces(List<PuertaDeEnlace> puertaDeEnlaces) {
+		this.puertaDeEnlaces = puertaDeEnlaces;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((estandar == null) ? 0 : estandar.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((nodos == null) ? 0 : nodos.hashCode());
-		result = prime * result + ((protocolo == null) ? 0 : protocolo.hashCode());
-		result = prime * result + ((puertadeenlaces == null) ? 0 : puertadeenlaces.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((puertaDeEnlaces == null) ? 0 : puertaDeEnlaces.hashCode());
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
 
@@ -100,6 +123,11 @@ public class Protocolo implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Protocolo other = (Protocolo) obj;
+		if (estandar == null) {
+			if (other.estandar != null)
+				return false;
+		} else if (!estandar.equals(other.estandar))
+			return false;
 		if (id != other.id)
 			return false;
 		if (nodos == null) {
@@ -107,15 +135,20 @@ public class Protocolo implements Serializable {
 				return false;
 		} else if (!nodos.equals(other.nodos))
 			return false;
-		if (protocolo == null) {
-			if (other.protocolo != null)
+		if (nombre == null) {
+			if (other.nombre != null)
 				return false;
-		} else if (!protocolo.equals(other.protocolo))
+		} else if (!nombre.equals(other.nombre))
 			return false;
-		if (puertadeenlaces == null) {
-			if (other.puertadeenlaces != null)
+		if (puertaDeEnlaces == null) {
+			if (other.puertaDeEnlaces != null)
 				return false;
-		} else if (!puertadeenlaces.equals(other.puertadeenlaces))
+		} else if (!puertaDeEnlaces.equals(other.puertaDeEnlaces))
+			return false;
+		if (tipo == null) {
+			if (other.tipo != null)
+				return false;
+		} else if (!tipo.equals(other.tipo))
 			return false;
 		return true;
 	}
@@ -127,10 +160,12 @@ public class Protocolo implements Serializable {
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
 		json.put("id", this.getId());
-		json.put("protocolo", this.getProtocolo());
+		json.put("nombre", this.getNombre());
+		json.put("tipo", this.getTipo());
+		json.put("estandar", this.getEstandar());
 		//relaciones
 		JSONArray puertasDeEnlace = new JSONArray();
-		for (Puertadeenlace puertaDeEnlace : this.getPuertadeenlaces()) {
+		for (PuertaDeEnlace puertaDeEnlace : this.getPuertaDeEnlaces()) {
 			puertasDeEnlace.put(puertaDeEnlace.toJson().getString("id"));
 		}
 		json.put("puertaDeEnlaces", puertasDeEnlace);
@@ -144,7 +179,7 @@ public class Protocolo implements Serializable {
 	
 	public Protocolo fromJson(JSONObject json) {		
 		this.setId(json.getInt("id"));
-		this.setProtocolo(json.getString("protocolo"));
+		this.setNombre(json.getString("protocolo"));
 		return this;
 	}
 }

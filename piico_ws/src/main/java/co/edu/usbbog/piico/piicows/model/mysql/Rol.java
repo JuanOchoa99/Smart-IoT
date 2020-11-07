@@ -29,19 +29,27 @@ public class Rol implements Serializable {
 	//bi-directional many-to-many association to Usuario
 	@ManyToMany
 	@JoinTable(
-		name="rolusuario"
+		name="rol_usuario"
 		, joinColumns={
-			@JoinColumn(name="usuarioId", nullable=false)
+			@JoinColumn(name="rombre", nullable=false)
 			}
 		, inverseJoinColumns={
-			@JoinColumn(name="rolNombre", nullable=false)
+			@JoinColumn(name="usuario", nullable=false)
 			}
 		)
 	private List<Usuario> usuarios;
 
 	public Rol() {
 	}
+	public Rol(String nombre) {
+		this.nombre = nombre;
+	}
 
+	public Rol(String nombre, String descripcion) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+	}
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -64,17 +72,6 @@ public class Rol implements Serializable {
 
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
-	}
-
-	public Rol(String nombre) {
-		super();
-		this.nombre = nombre;
-	}
-
-	public Rol(String nombre, String descripcion) {
-		super();
-		this.nombre = nombre;
-		this.descripcion = descripcion;
 	}
 
 	@Override
@@ -113,7 +110,6 @@ public class Rol implements Serializable {
 			return false;
 		return true;
 	}
-	
 	@Override
 	public String toString() {
 		return "Rol: " + toJson().toString();
