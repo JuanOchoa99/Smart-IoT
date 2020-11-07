@@ -1,0 +1,570 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>  
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>PIICO - CLoud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="assets/images/icon/icono.ico" />
+    <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/metisMenu.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.min.css">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
+        media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="assets/css/typography.css">
+    <link rel="stylesheet" href="assets/css/default-css.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- modernizr css -->
+    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- page container area start -->
+        <div class="page-container">
+        <!-- sidebar menu area start -->
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <a href="index3.html"><img src="assets/images/icon/iconoPiico.png" alt="logo"></a>
+                    <h3 class="text-white">PIICO</h3>
+                    <h5 class="text-white">Cloud</h5>
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li class="active">
+                                <a href="index3.html" aria-expanded="true"><i
+                                        class="ti-dashboard"></i><span>Dashboard</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i
+                                        class="ti-pie-chart"></i><span>Variables Ambientales</span></a>
+                                <ul class="collapse">
+                                    <li><a href="temperatura.html">Temperatura</a></li>
+                                    <li><a href="humedad.html">Humedad</a></li>
+                                    <li><a href="pluviometro.html">Pluviometró</a></li>
+                                    <li><a href="radiacion.html">Radiación</a></li>
+                                    <li><a href="anemometro.html">Anemómetro</a></li>
+                                    <li><a href="direccionDelViento.html">Dirección del Viento</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i
+                                        class="ti-palette"></i><span>Actuadores</span></a>
+                                <ul class="collapse">
+                                    <li><a href="accordion.html">Aspersor de agua</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i
+                                        class="ti-palette"></i><span>Red</span></a>
+                                <ul class="collapse">
+                                    <li><a href="gateway.html">Gateway</a></li>
+                                    <li><a href="#">Broker</a>
+                                        <ul class="collapse">
+                                            <li><a href="publicador.html">Publicador</a></li>
+                                            <li><a href="suscriptor.html">Suscriptor</a></li>
+                                        </ul> 
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/" aria-expanded="true"><i class="ti-palette"></i><span>Regresar a pagina
+                                        Principal</span></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- sidebar menu area end -->
+        <!-- main content area start -->
+        <div class="main-content">
+            <!-- header area start -->
+            <div class="header-area">
+                <div class="row align-items-center">
+                    <!-- nav and search button -->
+                    <div class="col-md-6 col-sm-8 clearfix">
+                        <div class="nav-btn pull-left">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <!-- profile info & task notification -->
+                    <div class="col-md-6 col-sm-4 clearfix">
+                        <ul class="notification-area pull-right">
+                            <li id="full-view"><i class="ti-fullscreen"></i></li>
+                            <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                            <li class="dropdown">
+                                <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
+                                    <span>2</span>
+                                </i>
+                                <div class="dropdown-menu bell-notify-box notify-box">
+                                    <span class="notify-title">Tiene 3 notificaciones nuevas<a href="#">view
+                                            all</a></span>
+                                    <div class="nofity-list">
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
+                                            <div class="notify-text">
+                                                <p>Inicio de sesión en un dispositivo desconocido.</p>
+                                                <span>Justo ahora</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="notify-item">
+                                            <div class="notify-thumb"><i class="ti-key btn-primary"></i></div>
+                                            <div class="notify-text">
+                                                <p>Cambio de contraseña.</p>
+                                                <span>Just Now</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="settings-btn">
+                                <i class="ti-settings"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- header area end -->
+            <!-- page title area start -->
+            <div class="page-title-area">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="breadcrumbs-area clearfix">
+                            <h4 class="page-title pull-left">Sensores</h4>
+                            <ul class="breadcrumbs pull-left">
+                                <li><a href="index.html">Dirección del viento</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clearfix">
+                        <div class="user-profile pull-right">
+                            <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Usuario <i
+                                    class="fa fa-angle-down"></i></h4>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Cerrar sesión</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- page title area end -->
+            <div class="main-content-inner">
+                <!-- bar chart start -->
+                <div class="row">
+                    <div class="col-lg-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title mb-0">Historial</h4>
+                                <select class="custome-select border-0 pr-3">
+                                        <option selected>Nodo 1</option>
+                                        <option value="0">Nodo 2</option>
+                                        <option value="0">Nodo 3</option>
+                                    </select>
+                                <div id="amlinechart5"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mt-5">
+                        <div class="card">                             
+                            <div class="card-body">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                            Variable
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Año</a>
+                                            <a class="dropdown-item" href="#">Mes</a>
+                                            <a class="dropdown-item" href="#">Dia</a>
+                                        </div>
+                                <select class="custome-select border-0 pr-3">
+                                        <option selected>2020</option>
+                                </select>
+                                <select class="custome-select border-0 pr-3">
+                                        <option selected>Enero</option>
+                                        <option value="0">Febrero</option>
+                                        <option value="0">Marzo</option>
+                                        <option value="0">Abril</option>
+                                        <option value="0">Mayo</option>
+                                        <option value="0">Junio</option>
+                                        <option value="0">Julio</option>
+                                        <option value="0">Agosto</option>
+                                        <option value="0">Septiembre</option>
+                                        <option value="0">Octubre</option>
+                                        <option value="0">Noviembre</option>
+                                        <option value="0">Diciembre</option>
+                                </select>
+                                <select class="custome-select border-0 pr-3">
+                                        <option selected>1</option>
+                                        <option value="0">2</option>
+                                        <option value="0">3</option>
+                                        <option value="0">4</option>
+                                        <option value="0">5</option>
+                                        <option value="0">6</option>
+                                        <option value="0">7</option>
+                                        <option value="0">8</option>
+                                        <option value="0">9</option>
+                                        <option value="0">10</option>
+                                        <option value="0">11</option>
+                                        <option value="0">12</option>
+                                        <option value="0">13</option>
+                                        <option value="0">14</option>
+                                        <option value="0">15</option>
+                                        <option value="0">16</option>
+                                        <option value="0">17</option>
+                                        <option value="0">18</option>
+                                        <option value="0">19</option>
+                                        <option value="0">20</option>
+                                        <option value="0">21</option>
+                                        <option value="0">22</option>
+                                        <option value="0">23</option>
+                                        <option value="0">24</option>
+                                        <option value="0">25</option>
+                                        <option value="0">26</option>
+                                        <option value="0">27</option>
+                                        <option value="0">28</option>
+                                        <option value="0">29</option>
+                                        <option value="0">30</option>
+                                        <option value="0">31</option>
+                                </select>
+                                <div id="ambarchart1"></div>
+                            </div>
+                        </div>   
+                    </div>
+                    <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-sm-flex justify-content-between align-items-center">
+                                <h4 class="header-title mb-0">Buscar valor</h4>
+                                </div>
+                                    <select class="custome-select border-0 pr-3">
+                                        <option selected>2020</option>
+                                        <option value="0">2019</option>
+                                    </select>
+                                    <select class="custome-select border-0 pr-3">
+                                        <option selected>Enero</option>
+                                        <option value="0">Febrero</option>
+                                        <option value="0">Marzo</option>
+                                        <option value="0">Abril</option>
+                                        <option value="0">Mayo</option>
+                                        <option value="0">Junio</option>
+                                        <option value="0">Julio</option>
+                                        <option value="0">Agosto</option>
+                                        <option value="0">Septiembre</option>
+                                        <option value="0">Octubre</option>
+                                        <option value="0">Noviembre</option>
+                                        <option value="0">Diciembre</option>
+                                    </select>
+                                        <select class="custome-select border-0 pr-3">
+                                        <option selected>01</option>
+                                        <option value="0">02</option>
+                                        <option value="0">03</option>
+                                        <option value="0">04</option>
+                                        <option value="0">05</option>
+                                        <option value="0">06</option>
+                                        <option value="0">07</option>
+                                        <option value="0">08</option>
+                                        <option value="0">09</option>
+                                        <option value="0">10</option>
+                                        <option value="0">11</option>
+                                        <option value="0">12</option>
+                                        <option value="0">13</option>
+                                        <option value="0">14</option>
+                                        <option value="0">15</option>
+                                        <option value="0">16</option>
+                                        <option value="0">17</option>
+                                        <option value="0">18</option>
+                                        <option value="0">19</option>
+                                        <option value="0">20</option>
+                                        <option value="0">21</option>
+                                        <option value="0">22</option>
+                                        <option value="0">23</option>
+                                        <option value="0">24</option>
+                                        <option value="0">25</option>
+                                        <option value="0">26</option>
+                                        <option value="0">27</option>
+                                        <option value="0">28</option>
+                                        <option value="0">29</option>
+                                        <option value="0">30</option>
+                                        <option value="0">31</option>
+                                    </select>
+                                
+                                <div class="market-status-table mt-4">
+                                    <div class="table-responsive">
+                                        <table class="dbkit-table">
+                                            <tr class="heading-td">
+                                                <td class="nodo">Nodo</td>
+                                                <td class="estado">Estado</td>
+                                                <td class="valor">Valor</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td class="nodo">Nodo 1</td>
+                                                <td class="estado">Inactivo <img src="assets/images/icon/market-value/triangle-down.png" alt="icon"></td>
+                                                <td class="valor">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="nodo">Nodo 2</td>
+                                                <td class="estado">Activo <img src="assets/images/icon/market-value/triangle-up.png" alt="icon"></td>
+                                                <td class="valor">4°</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="nodo">Nodo 3</td>
+                                                <td class="estado">Activo <img src="assets/images/icon/market-value/triangle-up.png" alt="icon"></td>
+                                                <td class="valor">5°</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title mb-0">Dirección del viento</h4>
+                                <select class="custome-select border-0 pr-3">
+                                        <option selected>Nodo 1</option>
+                                        <option value="0">Nodo 2</option>
+                                        <option value="0">Nodo 3</option>
+                                </select>
+                                <div class="card-body">
+                                <canvas data-type="radial-gauge"
+                                        data-width="300"
+                                        data-height="300"
+                                        data-value="360"
+                                        data-min-value="0"
+                                        data-max-value="360"
+                                        data-major-ticks="N,NE,E,SE,S,SW,W,NW,N"
+                                        data-minor-ticks="22"
+                                        data-ticks-angle="360"
+                                        data-start-angle="180"
+                                        data-stroke-ticks="false"
+                                        data-highlights="false"
+                                        data-color-plate="#33a"
+                                        data-color-major-ticks="#f5f5f5"
+                                        data-color-minor-ticks="#ddd"
+                                        data-color-numbers="#ccc"
+                                        data-color-needle="rgba(240, 128, 128, 1)"
+                                        data-color-needle-end="rgba(255, 160, 122, .9)"
+                                        data-value-box="false"
+                                        data-value-text-shadow="false"
+                                        data-color-circle-inner="#fff"
+                                        data-color-needle-circle-outer="#ccc"
+                                        data-needle-circle-size="15"
+                                        data-needle-circle-outer="false"
+                                        data-animation-rule="linear"
+                                        data-needle-type="line"
+                                        data-needle-start="75"
+                                        data-needle-end="99"
+                                        data-needle-width="3"
+                                        data-borders="true"
+                                        data-border-inner-width="0"
+                                        data-border-middle-width="0"
+                                        data-border-outer-width="10"
+                                        data-color-border-outer="#ccc"
+                                        data-color-border-outer-end="#ccc"
+                                        data-color-needle-shadow-down="#222"
+                                        data-border-shadow-width="0"
+                                        data-animation-target="plate"
+                                        data-units="°"
+                                        data-title="DIRECTION"
+                                        data-font-title-size="19"
+                                        data-color-title="#f5f5f5"
+                                        data-animation-duration="1500"
+                                        data-value="45"
+                                        data-animate-on-init="true"
+                                ></canvas>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- bar chart end -->
+            </div>
+        </div>
+        </div>
+        <!-- main content area end -->
+        <!-- footer area start-->
+        <footer>
+            <div class="footer-area">
+                <p>© Copyright 2020. Todos los derechos reservados. <a href="http://piico.ingusb.com/">PIICO</a>.</p>
+            </div>
+        </footer>
+        <!-- footer area end-->
+    </div>
+    <!-- page container area end -->
+    <!-- offset area start -->
+        <div class="offset-area">
+        <div class="offset-close"><i class="ti-close"></i></div>
+        <ul class="nav offset-menu-tab">
+            <li><a class="active" data-toggle="tab" href="#activity">Actividades</a></li>
+            <li><a data-toggle="tab" href="#settings">Configuración</a></li>
+        </ul>
+        <div class="offset-content tab-content">
+            <div id="activity" class="tab-pane fade in show active">
+                <div class="recent-activity">
+                    <div class="timeline-task">
+                        <div class="icon bg1">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Sensor de Radiación.</h4>
+                            <span class="time"><i class="ti-time"></i>09:35</span>
+                        </div>
+                        <p>El sensor de radiación de la Estación 1 dejo de resivir datos.
+                        </p>
+                    </div>
+                    <div class="timeline-task">
+                        <div class="icon bg2">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Aspersor de agua.</h4>
+                            <span class="time"><i class="ti-time"></i>7 Minutes Ago</span>
+                        </div>
+                        <p>El aspersor de agua de la Estación 3 se encuentra desconectado.
+                        </p>
+                    </div>
+                    <div class="timeline-task">
+                        <div class="icon bg2">
+                            <i class="fa fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Batería Baja</h4>
+                            <span class="time"><i class="ti-time"></i>09:20 Am</span>
+                        </div>
+                        <p>Bateria de la Estación 2 en 10%.
+                        </p>
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="settings" class="tab-pane fade">
+                <div class="offset-settings">
+                    <h4>Configuración General</h4>
+                    <div class="settings-list">
+                        <div class="s-settings">
+                            <div class="s-sw-title">
+                                <h5>Notificaciones</h5>
+                                <div class="s-swtich">
+                                    <input type="checkbox" id="switch1" />
+                                    <label for="switch1">Toggle</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-settings">
+                            <div class="s-sw-title">
+                                <h5>Actividades</h5>
+                                <div class="s-swtich">
+                                    <input type="checkbox" id="switch2" />
+                                    <label for="switch2">Toggle</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+           <script>
+if (!Array.prototype.forEach) {
+    Array.prototype.forEach = function(cb) {
+        var i = 0, s = this.length;
+        for (; i < s; i++) {
+            cb && cb(this[i], i, this);
+        }
+    }
+}
+
+document.fonts && document.fonts.forEach(function(font) {
+    font.loaded.then(function() {
+        if (font.family.match(/Led/)) {
+            document.gauges.forEach(function(gauge) {
+                gauge.update();
+            });
+        }
+    });
+});
+
+var timers = [];
+
+function animateGauges() {
+    document.gauges.forEach(function(gauge) {
+        timers.push(setInterval(function() {
+            gauge.value = Math.random() *
+                (gauge.options.maxValue - gauge.options.minValue) / 4 +
+                gauge.options.minValue / 4;
+        }, gauge.animation.duration + 50));
+    });
+}
+
+function stopGaugesAnimation() {
+    timers.forEach(function(timer) {
+        clearInterval(timer);
+    });
+}
+</script>
+
+    <script src="assets/js/gauge.min.js"></script> 
+    <!-- offset area end -->
+    <!-- jquery latest version -->
+    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- start chart js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <!-- start highcharts js -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <!-- start zingchart js -->
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script>
+        zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
+    </script>
+    <!-- start amchart js -->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/pie.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/animate/animate.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <!-- all line chart activation -->
+    <script src="assets/js/line-chart.js"></script>
+    <!-- all bar chart activation -->
+    <script src="assets/js/bar-chart.js"></script>
+    <!-- all pie chart -->
+    <script src="assets/js/pie-chart.js"></script>
+    <!-- others plugins -->
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/scripts.js"></script>
+</body>
+
+</html>

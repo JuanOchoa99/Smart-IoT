@@ -1,0 +1,42 @@
+{
+    "node-id": "estación 1",
+    "date": "datetime.datetime(2016, 4, 8, 11, 43, 54, 920632)",​
+    "request":["capture","information"],
+    "information":[
+        {​
+            "node" : "False",​
+            "interfaces" : "true",​
+            "actuators" : "true",​
+            "sensors" : "true",​
+            "mqtt" : "true"​
+        }​
+        ],
+    "sensor":[
+        {
+            "label":"tem",
+            "protocol":["wifi","bluetooth","zigbee"]
+        },
+        {
+            "label":"hum",
+            "protocol":["wifi","bluetooth","zigbee"]
+        },
+        {
+            "label":"dir",
+            "protocol":["wifi","bluetooth","zigbee"]
+        },
+        {
+            "label":"vel",
+            "protocol":["wifi","bluetooth","zigbee"]
+        },
+        {
+            "label":"rad",
+            "protocol":["wifi","bluetooth","zigbee"]
+        },
+        {
+            "label":"plu",
+            "protocol":["wifi","bluetooth","zigbee"]
+        }
+
+    ]
+
+}

@@ -2,6 +2,7 @@ package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
 import javax.persistence.*;
+<<<<<<< HEAD
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,17 +12,30 @@ import co.edu.usbbog.piico.piicows.model.mongo.GPS;
 import java.util.List;
 
 
+=======
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.List;
+
+>>>>>>> master
 /**
  * The persistent class for the actuador database table.
  * 
  */
 @Entity
+<<<<<<< HEAD
 @Table(name="actuador")
 @NamedQuery(name="Actuador.findAll", query="SELECT a FROM Actuador a")
+=======
+@Table(name = "actuador")
+@NamedQuery(name = "Actuador.findAll", query = "SELECT a FROM Actuador a")
+>>>>>>> master
 public class Actuador implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+<<<<<<< HEAD
 	@Column(unique=true, nullable=false, length=45)
 	private String id;
 
@@ -46,29 +60,69 @@ public class Actuador implements Serializable {
 
 	//bi-directional many-to-one association to Ordenactuador
 	@OneToMany(mappedBy="actuador")
+=======
+	@Column(unique = true, nullable = false, length = 45)
+	private String id;
+
+	@Column(nullable = false, length = 45)
+	private String descripcion;
+
+	@Column(nullable = false)
+	private int estado;
+
+	@Column(nullable = false, length = 80)
+	private String tipo;
+
+	// bi-directional many-to-one association to Nodo
+	@ManyToOne
+	@JoinColumn(name = "nodo", nullable = false)
+	private Nodo nodoBean;
+
+	// bi-directional many-to-one association to Sensor
+	@ManyToOne
+	@JoinColumn(name = "sensor")
+	private Sensor sensorBean;
+
+	// bi-directional many-to-one association to Ordenactuador
+	@OneToMany(mappedBy = "actuador")
+>>>>>>> master
 	private List<Ordenactuador> ordenactuadors;
 
 	public Actuador() {
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> master
 	public Actuador(String id) {
 		super();
 		this.id = id;
 	}
+<<<<<<< HEAD
 	
 	public Actuador(String id, String descripcion, int estado, String tipo, Nodo nodoBean, Sensor sensorBean,
 			List<Ordenactuador> ordenactuadors) {
+=======
+
+	public Actuador(String id, String descripcion, int estado, String tipo) {
+>>>>>>> master
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
 		this.estado = estado;
 		this.tipo = tipo;
+<<<<<<< HEAD
 		this.nodoBean = nodoBean;
 		this.sensorBean = sensorBean;
 		this.ordenactuadors = ordenactuadors;
 	}
 
 
+=======
+	}
+
+>>>>>>> master
 	public String getId() {
 		return this.id;
 	}
@@ -196,12 +250,20 @@ public class Actuador implements Serializable {
 			return false;
 		return true;
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> master
 	@Override
 	public String toString() {
 		return "Actuador: " + toJson().toString();
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> master
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
 		json.put("id", this.getId());
@@ -212,7 +274,11 @@ public class Actuador implements Serializable {
 		json.put("sensor", jsonSensor);
 		JSONObject jsonNodo = this.getNodoBean().toJson();
 		json.put("nodo", jsonNodo);
+<<<<<<< HEAD
 		//Relaciones
+=======
+		// Relaciones
+>>>>>>> master
 		JSONArray ordenActuadors = new JSONArray();
 		for (Ordenactuador ordenActuador : this.getOrdenactuadors()) {
 			ordenActuadors.put(ordenActuador.toJson().getString("id"));
@@ -220,6 +286,7 @@ public class Actuador implements Serializable {
 		json.put("Ordenactuadors", ordenActuadors);
 		return json;
 	}
+<<<<<<< HEAD
 	
 	public Actuador fromJson(JSONObject json) {		
 		this.setId(json.getString("id"));
@@ -230,6 +297,14 @@ public class Actuador implements Serializable {
 		this.setSensorBean(new Sensor().fromJson(jsonSensor));
 		JSONObject jsonNodo = json.getJSONObject("nodo");
 		this.setNodoBean(new Nodo().fromJson(jsonNodo));
+=======
+
+	public Actuador fromJson(JSONObject json) {
+		this.setId(json.getString("id"));
+		this.setDescripcion(json.getString("descripcion"));
+		this.setEstado(json.getInt("estado"));
+		this.setTipo(json.getString("tipo"));
+>>>>>>> master
 		return this;
 	}
 }

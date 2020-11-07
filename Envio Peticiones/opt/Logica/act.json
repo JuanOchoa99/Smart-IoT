@@ -1,0 +1,20 @@
+{
+    "node-id": "estacion",
+    "pass": "sgdfg456rt0fdmvñsfti3q5",
+    "date": "datetime.datetime(2016, 4, 8, 11, 43, 54, 920632)",
+    "request": "info",
+    "actuators": [
+        {
+            "actuator-id": "aspersor",
+            "order": "active"
+        },
+        {
+            "actuator-id": "RGB",
+            "order": {
+                "red": true,
+                "green": false,
+                "blue": true
+            }
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "node-id": "estación 1",
+    "date": "datetime.datetime(2016, 4, 8, 11, 43, 54, 920632)",
+    "request": "send",
+    "sensors": [
+        {
+            "sensor-id": "Temperature",
+            "network": [
+                "wifi",
+                "blue",
+                "xbee"
+            ]
+        },
+        {
+            "sensor-id": "Humidity",
+            "network": [
+                "wifi",
+                "blue",
+                "xbee"
+            ]
+        },
+        {
+            "sensor-id": "Velocity",
+            "network": [
+                "wifi",
+                "blue",
+                "xbee"
+            ]
+        },
+        {
+            "sensor-id": "Direction",
+            "network": [
+                "wifi",
+                "blue",
+                "xbee"
+            ]
+        },
+        {
+            "sensor-id": "Pluviometer",
+            "network": [
+                "wifi",
+                "blue",
+                "xbee"
+            ]
+        },
+        {
+            "sensor-id": "Radiation",
+            "network": [
+                "wifi",
+                "blue",
+                "xbee"
+            ]
+        }
+    ]
+}
+envSensor['sensors'].append({
+    "type":"tem",
+    "sensor-id":""+data['sensors'][posicion]['sensor-id']+"",
+    "value":"0.0",
+    "magnitude":"C°" })

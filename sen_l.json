@@ -1,0 +1,55 @@
+{
+    "node-id": "estación 1",
+    "date": "datetime.datetime(2016, 4, 8, 11, 43, 54, 920632)",​
+    "gps":[
+        {
+            "latitude":"4°36'35.0''N",
+            "longitude":"74°04'54.3''W"
+        }
+    ],
+    "sensor_data":[
+        {
+            "label":"tem",
+            "type":"temperature",
+            "device":"AM2315-tem",
+            "value":"20.3C",
+            "magnitude":"celsius"
+        },
+        {
+            "label":"hum",
+            "type":"Humidity",
+            "device":"AM2315-hum",
+            "value":"50.3%",
+            "magnitude":"porcentage"
+        },
+        {
+            "label":"rad",
+            "type":"solar-radiation",
+            "device":"davis6450",
+            "value":"820.3",
+            "magnitude":"W/m2"
+        },
+        {
+            "label":"vel",
+            "type":"wind-speed",
+            "device":"SEN-08942-ws",
+            "value":"20.3C",
+            "magnitude":"celsius"
+        },
+        {
+            "label":"dir",
+            "type":"wind-direction",
+            "device":"SEN-08942-wd",
+            "value":"north-west",
+            "magnitude":"cardinal-point"
+        },
+        {
+            "label":"plu",
+            "type":"pluviometer",
+            "device":"SEN-08942-plu",
+            "value":"20.3",
+            "magnitude":"mm3"
+        }
+
+    ]  
+}

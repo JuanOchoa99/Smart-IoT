@@ -1,0 +1,51 @@
+{
+    "req_l": [
+        {
+            "node-id": "estacion-1",
+            "puerto":"9087",
+            "ip":"192.168.25.58",
+            "fecha": "datetime.datetime(2020, 4, 8, 11, 43, 54, 920632)",
+            "interfaces": "['wifi','zigbee','bluetooth']",
+            "variables": "['tem','hum','rad','vel',dir]",
+            "actuator": "['RGB','aspersor']",
+            "orden": "encender"
+        }
+    ]
+}
+
+{
+    "req_s": [
+        {
+            "gateway-id":"gw1",
+            "interfaces":"['wifi','zigbee','bluetooth']",
+            "puerto":"6542",
+            "ip":"192.168.25.14",
+            "date": "datetime.datetime(2016, 4, 8, 11, 43, 54, 920632)",
+            "req_l": [
+                {
+                    "node-id": "estacion-1",
+                    "puerto":"9087",
+                    "ip":"192.168.25.58",
+                    "fecha": "datetime.datetime(2020, 4, 8, 11, 43, 54, 920632)",
+                    "interfaces": "['wifi','zigbee','bluetooth']",
+                    "variables": "['tem','hum','rad','vel',dir]",
+                    "actuator": "['RGB','aspersor']",
+                    "orden": "encender"
+                }
+            ]
+        }
+    ]
+}
+
+
+
+
+{
+    "tipo-broker": "sus",
+    "topico": "xxx",
+    "usuario": "xxx",
+    "contrasenia": "xxx",
+    "puerto": "xxx",
+    "host": "xxx",
+    "qos": "xxx",
+}

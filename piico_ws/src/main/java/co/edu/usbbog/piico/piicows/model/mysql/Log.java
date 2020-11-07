@@ -2,6 +2,7 @@ package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+<<<<<<< HEAD
 
 import javax.persistence.*;
 
@@ -10,17 +11,28 @@ import org.json.JSONObject;
 import java.util.Date;
 
 
+=======
+import javax.persistence.*;
+import org.json.JSONObject;
+
+>>>>>>> master
 /**
  * The persistent class for the log database table.
  * 
  */
 @Entity
+<<<<<<< HEAD
 @Table(name="log")
 @NamedQuery(name="Log.findAll", query="SELECT l FROM Log l")
+=======
+@Table(name = "log")
+@NamedQuery(name = "Log.findAll", query = "SELECT l FROM Log l")
+>>>>>>> master
 public class Log implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+<<<<<<< HEAD
 	@Column(unique=true, nullable=false, length=45)
 	private String id;
 
@@ -40,11 +52,47 @@ public class Log implements Serializable {
 	//bi-directional many-to-one association to Puertadeenlace
 	@ManyToOne
 	@JoinColumn(name="puertaDeEnlaceId", nullable=false)
+=======
+	@Column(unique = true, nullable = false, length = 45)
+	private String id;
+
+	@Column(nullable = false)
+	private byte estado;
+
+	@Column(name = "fecha", columnDefinition = "TIMESTAMP", nullable = false)
+	private LocalDateTime fecha;
+
+	@Lob
+	@Column(nullable = false)
+	private String mensaje;
+
+	@Column(nullable = false, length = 45)
+	private String tipo;
+
+	// bi-directional many-to-one association to Puertadeenlace
+	@ManyToOne
+	@JoinColumn(name = "puertaDeEnlaceId", nullable = false)
+>>>>>>> master
 	private Puertadeenlace puertadeenlace;
 
 	public Log() {
 	}
 
+<<<<<<< HEAD
+=======
+	public Log(String id) {
+		this.id = id;
+	}
+
+	public Log(String id, byte estado, LocalDateTime fecha, String mensaje, String tipo) {
+		this.id = id;
+		this.estado = estado;
+		this.fecha = fecha;
+		this.mensaje = mensaje;
+		this.tipo = tipo;
+	}
+
+>>>>>>> master
 	public String getId() {
 		return this.id;
 	}
@@ -92,6 +140,7 @@ public class Log implements Serializable {
 	public void setPuertadeenlace(Puertadeenlace puertadeenlace) {
 		this.puertadeenlace = puertadeenlace;
 	}
+<<<<<<< HEAD
 	public Log(String id) {
 		this.id = id;
 	}
@@ -104,6 +153,8 @@ public class Log implements Serializable {
 		this.mensaje = mensaje;
 		this.tipo = tipo;
 	}
+=======
+>>>>>>> master
 
 	@Override
 	public int hashCode() {
@@ -167,14 +218,21 @@ public class Log implements Serializable {
 		json.put("id", this.getId());
 		json.put("estado", this.getEstado());
 		json.put("fecha", this.getFecha());
+<<<<<<< HEAD
 		json.put("mensaje",this.getMensaje());
 		json.put("tipo", this.getTipo());
 		//relaciones
+=======
+		json.put("mensaje", this.getMensaje());
+		json.put("tipo", this.getTipo());
+		// relaciones
+>>>>>>> master
 		Puertadeenlace puertaDeEnlace = this.getPuertadeenlace();
 		json.put("puertaDeEnlace", puertaDeEnlace.toJson().get("id"));
 		return json;
 	}
 
+<<<<<<< HEAD
 	public Log fromJson(JSONObject json) {		
 		this.setId(json.getString("id"));
 		this.setEstado((byte)json.getInt("estado"));
@@ -184,4 +242,15 @@ public class Log implements Serializable {
 
 		return this;
 	}
+=======
+	public Log fromJson(JSONObject json) {
+		this.setId(json.getString("id"));
+		this.setEstado((byte) json.getInt("estado"));
+		this.setFecha(LocalDateTime.parse(json.getString("fecha")));
+		this.setMensaje(json.getString("mensaje"));
+		this.setTipo(json.getString("Tipo"));
+		return this;
+	}
+
+>>>>>>> master
 }

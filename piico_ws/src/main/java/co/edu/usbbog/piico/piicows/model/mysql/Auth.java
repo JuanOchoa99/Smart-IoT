@@ -2,21 +2,32 @@ package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
 import javax.persistence.*;
+<<<<<<< HEAD
 
 import org.json.JSONObject;
 
 
+=======
+import org.json.JSONObject;
+
+>>>>>>> master
 /**
  * The persistent class for the auth database table.
  * 
  */
 @Entity
+<<<<<<< HEAD
 @Table(name="auth")
 @NamedQuery(name="Auth.findAll", query="SELECT a FROM Auth a")
+=======
+@Table(name = "auth")
+@NamedQuery(name = "Auth.findAll", query = "SELECT a FROM Auth a")
+>>>>>>> master
 public class Auth implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+<<<<<<< HEAD
 	@Column(unique=true, nullable=false)
 	private int id;
 
@@ -32,11 +43,42 @@ public class Auth implements Serializable {
 	//bi-directional many-to-one association to Puertadeenlace
 	@ManyToOne
 	@JoinColumn(name="puertaDeEnlace", nullable=false)
+=======
+	@Column(unique = true, nullable = false)
+	private int id;
+
+	@Column(nullable = false, length = 512)
+	private String pass;
+
+	@Column(nullable = false, length = 45)
+	private String topic;
+
+	@Column(nullable = false, length = 80)
+	private String user;
+
+	// bi-directional many-to-one association to Puertadeenlace
+	@ManyToOne
+	@JoinColumn(name = "puertaDeEnlace", nullable = false)
+>>>>>>> master
 	private Puertadeenlace puertadeenlace;
 
 	public Auth() {
 	}
 
+<<<<<<< HEAD
+=======
+	public Auth(int id) {
+		this.id = id;
+	}
+
+	public Auth(int id, String pass, String topic, String user) {
+		this.id = id;
+		this.pass = pass;
+		this.topic = topic;
+		this.user = user;
+	}
+
+>>>>>>> master
 	public int getId() {
 		return this.id;
 	}
@@ -76,6 +118,7 @@ public class Auth implements Serializable {
 	public void setPuertadeenlace(Puertadeenlace puertadeenlace) {
 		this.puertadeenlace = puertadeenlace;
 	}
+<<<<<<< HEAD
 	public Auth(int id) {
 		this.id = id;
 	}
@@ -89,6 +132,8 @@ public class Auth implements Serializable {
 	}
 	
 	
+=======
+>>>>>>> master
 
 	@Override
 	public int hashCode() {
@@ -140,25 +185,45 @@ public class Auth implements Serializable {
 	public String toString() {
 		return "Puerta de enlace: " + toJson().toString();
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> master
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
 		json.put("id", this.getId());
 		json.put("pass", this.getPass());
 		json.put("topic", this.getTopic());
+<<<<<<< HEAD
 		json.put("user",this.getUser());
 		//relaciones
+=======
+		json.put("user", this.getUser());
+		// relaciones
+>>>>>>> master
 		Puertadeenlace puertaDeEnlace = this.getPuertadeenlace();
 		json.put("puertaDeEnlace", puertaDeEnlace.toJson().get("id"));
 		return json;
 	}
+<<<<<<< HEAD
 	
 	public Auth fromJson(JSONObject json) {		
+=======
+
+	public Auth fromJson(JSONObject json) {
+>>>>>>> master
 		this.setId(json.getInt("id"));
 		this.setPass(json.getString("pass"));
 		this.setTopic(json.getString("topic"));
 		this.setUser(json.getString("user"));
+<<<<<<< HEAD
 		
 		return this;
 	}
+=======
+		return this;
+	}
+
+>>>>>>> master
 }

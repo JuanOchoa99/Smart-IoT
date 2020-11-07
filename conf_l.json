@@ -1,0 +1,116 @@
+{
+    "node-id": "estación 1",
+    "date": "datetime.datetime(2016, 4, 8, 11, 43, 54, 920632)",​
+    
+
+    "broker":[
+        {​
+            "broker_address" : "192.1168.4.1",​
+            "port" : "1883",​
+            "qos" : "2",​
+            "user" : "gateway",​
+            "pass" : "123"
+        }   ​
+    ],
+    "interfaces":[
+        {
+            "wifi":[
+                {
+                    "ssid":"S-PIICO",
+                    "psk":"PIICO2020*",
+                    "key_mgmt":"WPA-PSK" 
+                }
+            ]
+               
+        },
+        {
+            "bluetooth":[
+                {
+                    "alias":"Gateway_PIICO",​
+                    "mac":"B8:27:EB:65:9D:0C"
+                }
+            ]
+
+        },
+        {
+            "zigbee":[
+                {
+                "type":"zigbee",​
+                "device-id":"XBEE-2SC-2.4Ghz",
+                "pan-id":"1234",​
+                "mac":"0013A2004108211C",
+                "baud-rate":"9600",
+                "parity":"none",
+                "flow-control":"none"
+                }
+            ]
+        }
+    ],
+    "sensors":[
+        {
+            "type":"temperature",
+            "state":"enable",
+            "device":"AM2315-tem",
+            "label":"tem",
+            "sampling-period":"5",
+            "samples":"20"
+        },
+        {
+            "type":"wind-speed",
+            "state":"enable",
+            "device":"SEN-08942-ws",
+            "label":"vel",
+            "sampling-period":"20",
+            "samples":"10"
+        },
+        {
+            "type":"solar-radiation",
+            "state":"disable",
+            "device":"Davis6450",
+            "label":"rad",
+            "sampling-period":"60",
+            "samples":"15"
+        },
+        {
+            "type":"relative-humidity",
+            "state":"enable",
+            "device":"AM2315-hum",
+            "label":"hum",
+            "sampling-period":"10", 
+            "samples":"11"
+        },
+        {
+            "type":"wind-direction",
+            "state":"enable",
+            "device":"SEN-08942-wd",
+            "label":"dir",
+            "sampling-period":"6",
+            "samples":"6"
+        },
+        {
+            "type":"pluviometer",
+            "state":"enable",
+            "device":"SEN-08942-plu",
+            "label":"plu",
+            "sampling-period":"15",
+            "samples":"8"
+        }
+
+    ],
+    "actuators":[
+        {
+            "type":"sprinkler",
+            "device":"lawn-sprinkler",
+            "state":"enable",
+            "actuator-id":"asp"
+
+        },
+        {
+            "type":"led",
+            "state":"enable",
+            "device":"led-rgb",
+            "actuator-id":"led"
+        }
+    ]
+}
+   

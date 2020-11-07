@@ -8,18 +8,27 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 /**
  * The persistent class for the orden database table.
  * 
  */
 @Entity
+<<<<<<< HEAD
 @Table(name="orden")
 @NamedQuery(name="Orden.findAll", query="SELECT o FROM Orden o")
+=======
+@Table(name = "orden")
+@NamedQuery(name = "Orden.findAll", query = "SELECT o FROM Orden o")
+>>>>>>> master
 public class Orden implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+<<<<<<< HEAD
 	@Column(unique=true, nullable=false, length=45)
 	private String id;
 
@@ -32,26 +41,54 @@ public class Orden implements Serializable {
 
 	//bi-directional many-to-one association to Ordenactuador
 	@OneToMany(mappedBy="orden")
+=======
+	@Column(unique = true, nullable = false, length = 45)
+	private String id;
+
+	@Lob
+	@Column(nullable = false)
+	private String accion;
+
+	@Column(nullable = false, length = 45)
+	private String tipo;
+
+	// bi-directional many-to-one association to Ordenactuador
+	@OneToMany(mappedBy = "orden")
+>>>>>>> master
 	private List<Ordenactuador> ordenactuadors;
 
 	public Orden() {
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> master
 	public Orden(String id) {
 		super();
 		this.id = id;
 	}
+<<<<<<< HEAD
 	
 	public Orden(String id, String accion, String tipo, List<Ordenactuador> ordenactuadors) {
+=======
+
+	public Orden(String id, String accion, String tipo) {
+>>>>>>> master
 		super();
 		this.id = id;
 		this.accion = accion;
 		this.tipo = tipo;
+<<<<<<< HEAD
 		this.ordenactuadors = ordenactuadors;
 	}
 
 
 
+=======
+	}
+
+>>>>>>> master
 	public String getId() {
 		return this.id;
 	}
@@ -140,11 +177,19 @@ public class Orden implements Serializable {
 			return false;
 		return true;
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 	@Override
 	public String toString() {
 		return "Orden: " + toJson().toString();
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> master
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
 		json.put("id", this.getId());
@@ -157,8 +202,13 @@ public class Orden implements Serializable {
 		json.put("Ordenactuadors", ordenActuadors);
 		return json;
 	}
+<<<<<<< HEAD
 	
 	public Orden fromJson(JSONObject json) {		
+=======
+
+	public Orden fromJson(JSONObject json) {
+>>>>>>> master
 		this.setId(json.getString("id"));
 		this.setAccion(json.getString("accion"));
 		this.setTipo(json.getString("tipo"));

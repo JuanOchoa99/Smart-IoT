@@ -30,7 +30,11 @@ public class Puertadeenlace implements Serializable {
 	private String direccionLogica;
 
 	@Column(nullable=false)
+<<<<<<< HEAD
 	private byte estado;
+=======
+	private int estado;
+>>>>>>> master
 
 	@Column(nullable=false, length=10)
 	private String puertoDeServicio;
@@ -92,11 +96,19 @@ public class Puertadeenlace implements Serializable {
 		this.direccionLogica = direccionLogica;
 	}
 
+<<<<<<< HEAD
 	public byte getEstado() {
 		return this.estado;
 	}
 
 	public void setEstado(byte i) {
+=======
+	public int getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(int i) {
+>>>>>>> master
 		this.estado = i;
 	}
 
@@ -314,7 +326,11 @@ public class Puertadeenlace implements Serializable {
 		this.setId(json.getString("id"));
 		this.setDescripcion(json.getString("descripcion"));
 		this.setDireccionLogica(json.getString("direccionLogica"));
+<<<<<<< HEAD
 		this.setEstado((byte)json.getInt("estado"));
+=======
+		this.setEstado(json.getInt("estado"));
+>>>>>>> master
 		this.setPuertoDeServicio(json.getString("puertoDeServicio"));
 		
 		return this;

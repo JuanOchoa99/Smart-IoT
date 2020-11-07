@@ -1,0 +1,380 @@
+http://localhost:3500/ingusbbo_piico/
+
+//USUARIO
+
+//guardarUsuario
+{
+    "id":"1",
+    "nombres":"Juan",
+    "apellidos":"Ochoa",
+    "pass":"pass",
+    "correo":"jj",
+    "username":"jj"
+}
+
+//eliminarUsuario
+{
+    "id":"1"
+}
+
+//modificarUsuario
+{
+    "id":"1",
+    "nombres":"Juan",
+    "apellidos":"Ochoa",
+    "pass":"pass",
+    "correo":"jj",
+    "username":"jj"
+}
+
+//contarUsuario
+
+//buscarUsuario
+{
+    "id":"1"
+}
+
+//listarUsuarios
+
+//ROL
+
+//guardarRol
+{
+    "nombre":"Admim",
+    "descripcion":"Administrador"
+}
+
+//eliminarRol
+{
+    "nombre":"Admim"
+}
+
+//modificarRol
+{
+    "nombre":"Admim",
+    "descripcion":"Administrador"
+}
+
+//contarRol
+
+//buscarRol
+{
+    "nombre":"Admim"
+}
+
+//listarRol
+
+//PuertaDeEnlace
+
+//guardarPuertaDeEnlace
+{
+    "id":"1",
+    "descripcion":"Gateway",
+    "estado":"0",
+    "direccionLogica":"127.0.0.1",
+    "puertoDeServicio":"3000",
+    "usuarioId":"1"
+}
+
+//eliminarPuertaDeEnlace
+{
+    "id":"1"
+}
+
+//modificarPuertaDeEnlace
+{
+    "id":"1",
+    "descripcion":"Gateway",
+    "estado":"0",
+    "direccionLogica":"127.0.0.1",
+    "puertoDeServicio":"3000",
+    "usuarioId":"1"
+}
+
+//contarPuertaDeEnlace
+
+//buscarPuertaDeEnlace
+{
+    "id":"1"
+}
+
+//listarPuertaDeEnlace
+
+//Log
+
+//guardarLog
+{
+    "id":"1",
+    "fecha":"2018-11-03T12:45:30",
+    "tipo":"Error",
+    "mensaje":"Sensor desconectado",
+    "estado":"1",
+    "puertaDeEnlaceId":"1"
+}
+
+//eliminarLog
+{
+    "id":"1"
+}
+
+//modificarLog
+{
+    "id":"1",
+    "fecha":"2018-11-03T12:45:30",
+    "tipo":"Error",
+    "mensaje":"Sensor desconectado",
+    "estado":"1",
+    "puertaDeEnlaceId":"1"
+}
+
+//contarLog
+
+//buscarLog
+{
+    "id":"1"
+}
+
+//listarLog
+
+//AUTH
+
+//guardarAuth
+{
+    "id":"1",
+    "user":"jujo",
+    "pass":"password",
+    "topic":"Sen_L",
+    "puertaDeEnlace":"1"
+}
+
+//eliminarAuth
+{
+    "id":"1"
+}
+
+//modificarAuth
+{
+    "id":"1",
+    "user":"jujo",
+    "pass":"password",
+    "topic":"Sen_L",
+    "puertaDeEnlace":"1"
+}
+
+//contarAuth
+
+//buscarAuth
+{
+    "id":"1"
+}
+
+//listarAuth
+
+
+//ACTUADOR
+
+//guardarActuador
+{
+    "id":"1",
+    "descripcion":"aspersor",
+    "estado":"0",
+    "nodo":"1",
+    "tipo":"aspersor",
+    "sensor":"1"
+}
+
+//eliminarActuador
+{
+    "id":"1"
+}
+
+//modificarActuador
+{
+    "id":"1",
+    "descripcion":"aspersor",
+    "estado":"0",
+    "nodo":"1",
+    "tipo":"aspersor",
+    "sensor":"1"
+}
+
+//contarActuador
+
+//buscarActuador
+{
+    "id":"1"
+}
+
+//listarActuador
+
+
+//ORDENACTUADOR
+
+//guardarOrdenActuador
+{
+    "id":"1",
+    "actuadorId":"1",
+    "fecha":"2018-11-03T12:45:30",
+    "confirmacion":"1"
+}
+
+//eliminarOrdenActuador
+{
+    "id":"1"
+}
+
+//modificarOrdenActuador
+{
+    "id":"1",
+    "actuadorId":"1",
+    "fecha":"2018-11-03T12:45:30",
+    "confirmacion":"1"
+}
+
+//contarOrdenActuador
+
+//buscarOrdenActuador
+{
+    "id":"1"
+}
+
+//listarOrdenActuador
+
+
+
+//PROTOCOLO
+
+//guardarProtocolo
+
+{
+    "id": 123456,
+    "protocolo": "wifi"
+}
+
+//eliminarProtocolo
+{
+    "id": 123456
+}
+
+//modificarProtocolo
+{
+    "id": 123456,
+    "protocolo": "wifi"
+}
+
+//contarProtocolo
+
+//buscarProtocolo
+{
+    "id": 123456
+}
+
+//listarProtocolos
+
+
+
+//NODO
+
+//guardarNodo
+
+{
+    "id": "estacion_1",
+    "descripcion": "estacion metereologica",
+    "estado": 1,
+    "puertaDeEnlace":"1"
+}
+
+//eliminarNodo
+
+
+//modificarNodo
+
+{
+    "id": "estacion_1",
+    "descripcion": "estacion metereologica",
+    "estado": 1,
+    "PuertaDeEnlace":"1"
+}
+
+
+//contarNodo
+
+//buscarNodo
+{
+    "id": "estacion_1"
+}
+
+//listaNodos
+
+
+
+//Sensor
+
+//guardarSensor
+{
+    "id":"temperatura",
+    "descripcion":"Sensor de la temperatura",
+    "estado":1,
+    "tipo":"ambiental",
+    "magnitud":"C°",
+    "frecuencia": 25,
+    "nodo":"estacion_1"
+}
+
+
+//eliminarSensor
+
+
+//modificarSensor
+{
+    "id":"temperatura",
+    "descripcion":"Sensor de la temperatura",
+    "estado":1,
+    "tipo":"ambiental",
+    "magnitud":"C°",
+    "frecuencia": 25,
+    "nodo":"estacion_1"
+}
+
+//contarSensor
+
+//buscarSensor
+{
+    "id":"temperatura"
+}
+
+
+//listaSensores
+
+
+
+//ORDEN
+
+//guardarOrden
+{
+    "id":"order_1",
+    "accion":"prenderl el aspersor",
+    "tipo":"swicth"
+}
+
+//eliminarOrden
+
+
+//modificarOrden
+{
+    "id":"order_1",
+    "accion":"prenderl el aspersor",
+    "tipo":"swicth"
+}
+
+
+//contarOrden
+
+
+//buscarOrden
+{
+    "id":"order_1"
+}
+
+//listaOrdenes
+

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+<<<<<<< HEAD
 import co.edu.usbbog.piico.piicows.model.mysql.Actuador;
 import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
 import co.edu.usbbog.piico.piicows.model.mysql.Orden;
@@ -23,6 +24,16 @@ import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
 import co.edu.usbbog.piico.piicows.service.NodoService;
 import co.edu.usbbog.piico.piicows.model.mysql.Rol;
 import co.edu.usbbog.piico.piicows.model.mysql.Sensor;
+=======
+
+
+import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
+import co.edu.usbbog.piico.piicows.model.mysql.Puertadeenlace;
+import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
+import co.edu.usbbog.piico.piicows.service.NodoService;
+import co.edu.usbbog.piico.piicows.service.PuertaEnlaceService;
+import co.edu.usbbog.piico.piicows.model.mysql.Rol;
+>>>>>>> master
 import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
 import co.edu.usbbog.piico.piicows.service.RolService;
 import co.edu.usbbog.piico.piicows.service.UsuarioService;
@@ -33,9 +44,14 @@ import co.edu.usbbog.piico.piicows.service.UsuarioService;
 public class ControladorRest {
 	@Autowired
 	private UsuarioService usuarioService;
+<<<<<<< HEAD
 	private NodoService nodoService;
 	@Autowired
 	private RolService rolService;
+=======
+	private RolService rolService;
+	private PuertaEnlaceService puertaEnlaceService;
+>>>>>>> master
 	
 	@RequestMapping(value = "/guardarUsuario", method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
@@ -48,7 +64,11 @@ public class ControladorRest {
 			return mg = "{\"causa\":\"false\",\"error\":\"Registro ya existe"+"\"}";		
 		}
 	}
+<<<<<<< HEAD
 	@RequestMapping(value = "/eliminarUsuario", method = RequestMethod.DELETE, 
+=======
+	@RequestMapping(value = "/eliminarUsuario", method = RequestMethod.POST, 
+>>>>>>> master
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String eliminarUsuario(@RequestBody String usuario) {
@@ -60,7 +80,11 @@ public class ControladorRest {
 		}
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping(value = "/modificarUsuario", method = RequestMethod.PUT, 
+=======
+	@RequestMapping(value = "/modificarUsuario", method = RequestMethod.POST, 
+>>>>>>> master
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String modificarUsuario(@RequestBody Usuario usuario) {
@@ -79,7 +103,11 @@ public class ControladorRest {
 		return mg;
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping(value = "/buscarUsuario", method = RequestMethod.GET, 
+=======
+	@RequestMapping(value = "/buscarUsuario", method = RequestMethod.POST, 
+>>>>>>> master
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String buscarUsuario(@RequestBody String usuario) {
@@ -94,7 +122,11 @@ public class ControladorRest {
 	@RequestMapping(value = "/listarUsuarios", method = RequestMethod.GET, 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
+<<<<<<< HEAD
 	public @ResponseBody String listarUsuarios(@RequestBody String usuario) {
+=======
+	public @ResponseBody String listarUsuarios() {
+>>>>>>> master
 		String mg = "";
 		mg = usuarioService.findAll().toString();
 		return mg;
@@ -107,6 +139,7 @@ public class ControladorRest {
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String guardarRol(@RequestBody Rol rol) {
+<<<<<<< HEAD
 		return null;
 	}
 	
@@ -122,12 +155,46 @@ public class ControladorRest {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String modificarRol(@RequestBody Rol rol) {
 		return null;
+=======
+		String mg = "";
+		if (rolService.save(rol)){
+			return mg = "{\"causa\":\"true\",\"error\":\"Registro incertado"+"\"}";
+		}else {
+			return mg = "{\"causa\":\"false\",\"error\":\"Registro ya existe"+"\"}";
+		
+		}
+	}
+	
+	@RequestMapping(value = "/eliminarRol", method = RequestMethod.POST, 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String eliminarRol(@RequestBody String rol) {
+		String mg = "";
+		if (rolService.deleteById(rol)){
+			return mg = "{\"causa\":\"true\",\"error\":\"Registro eliminado"+"\"}";
+		}else {
+			return mg = "{\"causa\":\"false\",\"error\":\"Registro no existe"+"\"}";
+		}
+	}
+	
+	@RequestMapping(value = "/modificarRol", method = RequestMethod.POST, 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String modificarRol(@RequestBody Rol rol) {
+		String mg = "";
+		if (rolService.alter(rol)){
+			return mg = "{\"causa\":\"true\",\"error\":\"Registro modificado"+"\"}";
+		}else {
+			return mg = "{\"causa\":\"false\",\"error\":\"Registro no existe"+"\"}";
+		}
+>>>>>>> master
 	}
 	
 	@RequestMapping(value = "/contarRol", method = RequestMethod.GET, 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String contarRol() {
+<<<<<<< HEAD
 		return null;
 	}
 	
@@ -353,4 +420,34 @@ public class ControladorRest {
 		return null;
 	}
 	
+=======
+		String mg = "";
+		mg = rolService.count().toString();
+		return mg;
+	}
+	
+	@RequestMapping(value = "/buscarRol", method = RequestMethod.POST, 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String buscarRol(@RequestBody String rol) {
+		String mg = "";
+		if (rolService.findById(rol) != null){
+			return mg = rolService.findById(rol).toString();
+		}else {
+			return mg = "{\"causa\":\"false\",\"error\":\"Registro no existe"+"\"}";
+		}
+	}
+	
+	@RequestMapping(value = "/listarUsuarios", method = RequestMethod.POST, 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String listarRol() {
+		String mg = "";
+		mg = rolService.findAll().toString();
+		return mg;
+	}
+	
+	
+
+>>>>>>> master
 }
