@@ -21,7 +21,7 @@ public class ChartsController {
 	private static Logger logger = LoggerFactory.getLogger(ControlAreaController.class);
 	
 	@PostMapping(value="/history")
-	public @ResponseBody String save(@RequestBody String nodo) {
+	public @ResponseBody String history(@RequestBody String nodo) {
 		String mg = "";
 		return mg;
 	}
