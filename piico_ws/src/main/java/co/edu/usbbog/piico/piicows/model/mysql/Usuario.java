@@ -26,35 +26,45 @@ public class Usuario implements Serializable {
 	@Column(nullable=false, length=60)
 	private String apellidos;
 
-	@Column(nullable=false, length=45)
+	@Column(nullable=false, length=100)
 	private String correo;
 
 	@Column(nullable=false, length=60)
 	private String nombres;
 
-	@Column(nullable=false, length=45)
+	@Column(nullable=false, length=220)
 	private String pass;
 
 	@Column(nullable=false, length=45)
 	private String username;
 
-	//bi-directional many-to-one association to Puertadeenlace
-	@OneToMany(mappedBy="usuario")
-	private List<Puertadeenlace> puertasdeenlaces;
+	//bi-directional many-to-one association to Historial
+	@OneToMany(mappedBy="usuarioBean")
+	private List<Historial> historials;
+
+	//bi-directional many-to-one association to PuertaDeEnlace
+	@OneToMany(mappedBy="usuarioBean")
+	private List<PuertaDeEnlace> puertaDeEnlaces;
 
 	//bi-directional many-to-many association to Rol
-	@ManyToMany
-	@JoinTable(
-		name="rolusuario"
-		, joinColumns={
-			@JoinColumn(name="usuarioId", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="rolNombre", nullable=false)
-			}
-		)
-	private List<Rol> roles;
+	@ManyToMany(mappedBy="usuarios")
+	private List<Rol> rols;
 
+	public Usuario() {
+	}
+	public Usuario(String id ) {
+		this.id = id;
+	}
+
+	public Usuario(String id, String apellidos, String correo, String nombres, String pass, String username) {
+		super();
+		this.id = id;
+		this.apellidos = apellidos;
+		this.correo = correo;
+		this.nombres = nombres;
+		this.pass = pass;
+		this.username = username;
+	}
 	public String getId() {
 		return this.id;
 	}
@@ -103,73 +113,72 @@ public class Usuario implements Serializable {
 		this.username = username;
 	}
 
-	public List<Puertadeenlace> getPuertasdeenlaces() {
-		return this.puertasdeenlaces;
+	public List<Historial> getHistorials() {
+		return this.historials;
 	}
 
-	public void setPuertadeenlaces(List<Puertadeenlace> puertadeenlaces) {
-		this.puertasdeenlaces = puertadeenlaces;
+	public void setHistorials(List<Historial> historials) {
+		this.historials = historials;
 	}
 
-	public Puertadeenlace addPuertadeenlace(Puertadeenlace puertadeenlace) {
-		getPuertasdeenlaces().add(puertadeenlace);
-		puertadeenlace.setUsuario(this);
+	public Historial addHistorial(Historial historial) {
+		getHistorials().add(historial);
+		historial.setUsuarioBean(this);
 
-		return puertadeenlace;
+		return historial;
 	}
 
-	public Puertadeenlace removePuertadeenlace(Puertadeenlace puertadeenlace) {
-		getPuertasdeenlaces().remove(puertadeenlace);
-		puertadeenlace.setUsuario(null);
+	public Historial removeHistorial(Historial historial) {
+		getHistorials().remove(historial);
+		historial.setUsuarioBean(null);
 
-		return puertadeenlace;
+		return historial;
 	}
 
-	public List<Rol> getRoles() {
-		return this.roles;
+	public List<PuertaDeEnlace> getPuertaDeEnlaces() {
+		return this.puertaDeEnlaces;
 	}
 
-	public void setRoles(List<Rol> roles) {
-		this.roles = roles;
-	}
-	
-	
-	
-	public Usuario() {
+	public void setPuertaDeEnlaces(List<PuertaDeEnlace> puertaDeEnlaces) {
+		this.puertaDeEnlaces = puertaDeEnlaces;
 	}
 
-	public Usuario(String id) {
-		this.id = id;
-	}
-	
+	public PuertaDeEnlace addPuertaDeEnlace(PuertaDeEnlace puertaDeEnlace) {
+		getPuertaDeEnlaces().add(puertaDeEnlace);
+		puertaDeEnlace.setUsuarioBean(this);
 
-	public Usuario(String id, String apellidos, String correo, String nombres, String pass, String username) {
-		super();
-		this.id = id;
-		this.apellidos = apellidos;
-		this.correo = correo;
-		this.nombres = nombres;
-		this.pass = pass;
-		this.username = username;
+		return puertaDeEnlace;
 	}
 
+	public PuertaDeEnlace removePuertaDeEnlace(PuertaDeEnlace puertaDeEnlace) {
+		getPuertaDeEnlaces().remove(puertaDeEnlace);
+		puertaDeEnlace.setUsuarioBean(null);
+
+		return puertaDeEnlace;
+	}
+
+	public List<Rol> getRols() {
+		return this.rols;
+	}
+
+	public void setRols(List<Rol> rols) {
+		this.rols = rols;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((apellidos == null) ? 0 : apellidos.hashCode());
 		result = prime * result + ((correo == null) ? 0 : correo.hashCode());
+		result = prime * result + ((historials == null) ? 0 : historials.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nombres == null) ? 0 : nombres.hashCode());
 		result = prime * result + ((pass == null) ? 0 : pass.hashCode());
-		result = prime * result + ((puertasdeenlaces == null) ? 0 : puertasdeenlaces.hashCode());
-		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
+		result = prime * result + ((puertaDeEnlaces == null) ? 0 : puertaDeEnlaces.hashCode());
+		result = prime * result + ((rols == null) ? 0 : rols.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
-
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -189,6 +198,11 @@ public class Usuario implements Serializable {
 				return false;
 		} else if (!correo.equals(other.correo))
 			return false;
+		if (historials == null) {
+			if (other.historials != null)
+				return false;
+		} else if (!historials.equals(other.historials))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -204,15 +218,15 @@ public class Usuario implements Serializable {
 				return false;
 		} else if (!pass.equals(other.pass))
 			return false;
-		if (puertasdeenlaces == null) {
-			if (other.puertasdeenlaces != null)
+		if (puertaDeEnlaces == null) {
+			if (other.puertaDeEnlaces != null)
 				return false;
-		} else if (!puertasdeenlaces.equals(other.puertasdeenlaces))
+		} else if (!puertaDeEnlaces.equals(other.puertaDeEnlaces))
 			return false;
-		if (roles == null) {
-			if (other.roles != null)
+		if (rols == null) {
+			if (other.rols != null)
 				return false;
-		} else if (!roles.equals(other.roles))
+		} else if (!rols.equals(other.rols))
 			return false;
 		if (username == null) {
 			if (other.username != null)
@@ -221,9 +235,6 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
-
-
-
 	@Override
 	public String toString() {
 		return "Usuario: " + toJson().toString();
@@ -239,13 +250,18 @@ public class Usuario implements Serializable {
 		json.put("username", this.getUsername());
 		//relaciones
 		JSONArray puertasDeEnlace = new JSONArray();
-		for (Puertadeenlace puertaDeEnlace : this.getPuertasdeenlaces()) {
+		for (PuertaDeEnlace puertaDeEnlace : this.getPuertaDeEnlaces()) {
 			puertasDeEnlace.put(puertaDeEnlace.toJson().getString("id"));
 		}
 		json.put("puertaDeEnlaces", puertasDeEnlace);
 		JSONArray roles = new JSONArray();
-		for (Rol rol : this.getRoles()) {
+		for (Rol rol : this.getRols()) {
 			roles.put(rol.toJson().getString("nombre"));
+		}
+		json.put("roles", roles);
+		JSONArray historiales = new JSONArray();
+		for (Historial historial : this.getHistorials()) {
+			historiales.put(historial.toJson().getString("nombre"));
 		}
 		json.put("roles", roles);
 		return json;
@@ -260,5 +276,4 @@ public class Usuario implements Serializable {
 		this.setUsername(json.getString("username") );
 		return this;
 	}
-
 }

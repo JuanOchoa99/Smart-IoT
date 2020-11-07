@@ -3,15 +3,14 @@ package co.edu.usbbog.piico.piicows.model.mysql;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
- * The primary key class for the ordenactuador database table.
+ * The primary key class for the orden_actuador database table.
  * 
  */
 @Embeddable
-public class OrdenactuadorPK implements Serializable {
+public class OrdenActuadorPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
@@ -19,73 +18,67 @@ public class OrdenactuadorPK implements Serializable {
 	private String id;
 
 	@Column(insertable=false, updatable=false, unique=true, nullable=false, length=45)
-	private String actuadorId;
+	private String actuador;
 
-	public OrdenactuadorPK() {
+	public OrdenActuadorPK() {
 	}
-	
-	public OrdenactuadorPK(String id) {
+	public OrdenActuadorPK(String id) {
 		super();
 		this.id = id;
 	}
-	public OrdenactuadorPK(String id, String actuador_id) {
+	public OrdenActuadorPK(String id, String actuador) {
 		super();
-		this.actuadorId =actuador_id;
 		this.id = id;
+		this.actuador = actuador;
 	}
+
 	public String getId() {
 		return this.id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getActuadorId() {
-		return this.actuadorId;
+	public String getActuador() {
+		return this.actuador;
 	}
-	public void setActuadorId(String actuadorId) {
-		this.actuadorId = actuadorId;
+	public void setActuador(String actuador) {
+		this.actuador = actuador;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(Object other) {
+		if (this == other) {
 			return true;
-		if (obj == null)
+		}
+		if (!(other instanceof OrdenActuadorPK)) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		OrdenactuadorPK other = (OrdenactuadorPK) obj;
-		if (actuadorId == null) {
-			if (other.actuadorId != null)
-				return false;
-		} else if (!actuadorId.equals(other.actuadorId))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+		}
+		OrdenActuadorPK castOther = (OrdenActuadorPK)other;
+		return 
+			this.id.equals(castOther.id)
+			&& this.actuador.equals(castOther.actuador);
 	}
 
-	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((actuadorId == null) ? 0 : actuadorId.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+		int hash = 17;
+		hash = hash * prime + this.id.hashCode();
+		hash = hash * prime + this.actuador.hashCode();
+		
+		return hash;
 	}
-	
+	@Override
+	public String toString() {
+		return "OrdenActuadorPK: "+toJson().toString();
+	}
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
 		json.put("id", this.getId());
-		json.put("actuador_id", this.getActuadorId());
+		json.put("actuador_id", this.getActuador());
 		return json;
 	}
-	public OrdenactuadorPK fromJson(JSONObject json) {		
+	public OrdenActuadorPK fromJson(JSONObject json) {		
 		this.setId(json.getString("id"));
-		this.setActuadorId(json.getString("apellidos"));
+		this.setActuador(json.getString("apellidos"));
 		return this;
 	}
 }

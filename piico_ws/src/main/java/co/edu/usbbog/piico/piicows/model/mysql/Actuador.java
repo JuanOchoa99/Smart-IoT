@@ -2,40 +2,27 @@ package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
 import javax.persistence.*;
-<<<<<<< HEAD
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import co.edu.usbbog.piico.piicows.model.mongo.GPS;
+import co.edu.usbbog.piico.piicows.model.mysql.Actuador;
+import co.edu.usbbog.piico.piicows.model.mysql.OrdenActuador;
 
 import java.util.List;
 
 
-=======
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.List;
-
->>>>>>> master
 /**
  * The persistent class for the actuador database table.
  * 
  */
 @Entity
-<<<<<<< HEAD
 @Table(name="actuador")
 @NamedQuery(name="Actuador.findAll", query="SELECT a FROM Actuador a")
-=======
-@Table(name = "actuador")
-@NamedQuery(name = "Actuador.findAll", query = "SELECT a FROM Actuador a")
->>>>>>> master
 public class Actuador implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-<<<<<<< HEAD
 	@Column(unique=true, nullable=false, length=45)
 	private String id;
 
@@ -43,7 +30,7 @@ public class Actuador implements Serializable {
 	private String descripcion;
 
 	@Column(nullable=false)
-	private int estado;
+	private byte estado;
 
 	@Column(nullable=false, length=80)
 	private String tipo;
@@ -58,71 +45,23 @@ public class Actuador implements Serializable {
 	@JoinColumn(name="sensor")
 	private Sensor sensorBean;
 
-	//bi-directional many-to-one association to Ordenactuador
-	@OneToMany(mappedBy="actuador")
-=======
-	@Column(unique = true, nullable = false, length = 45)
-	private String id;
-
-	@Column(nullable = false, length = 45)
-	private String descripcion;
-
-	@Column(nullable = false)
-	private int estado;
-
-	@Column(nullable = false, length = 80)
-	private String tipo;
-
-	// bi-directional many-to-one association to Nodo
-	@ManyToOne
-	@JoinColumn(name = "nodo", nullable = false)
-	private Nodo nodoBean;
-
-	// bi-directional many-to-one association to Sensor
-	@ManyToOne
-	@JoinColumn(name = "sensor")
-	private Sensor sensorBean;
-
-	// bi-directional many-to-one association to Ordenactuador
-	@OneToMany(mappedBy = "actuador")
->>>>>>> master
-	private List<Ordenactuador> ordenactuadors;
+	//bi-directional many-to-one association to OrdenActuador
+	@OneToMany(mappedBy="actuadorBean")
+	private List<OrdenActuador> ordenActuadors;
 
 	public Actuador() {
 	}
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> master
 	public Actuador(String id) {
-		super();
 		this.id = id;
 	}
-<<<<<<< HEAD
 	
-	public Actuador(String id, String descripcion, int estado, String tipo, Nodo nodoBean, Sensor sensorBean,
-			List<Ordenactuador> ordenactuadors) {
-=======
-
-	public Actuador(String id, String descripcion, int estado, String tipo) {
->>>>>>> master
+	public Actuador(String id, String descripcion, byte estado, String tipo) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
 		this.estado = estado;
 		this.tipo = tipo;
-<<<<<<< HEAD
-		this.nodoBean = nodoBean;
-		this.sensorBean = sensorBean;
-		this.ordenactuadors = ordenactuadors;
 	}
-
-
-=======
-	}
-
->>>>>>> master
 	public String getId() {
 		return this.id;
 	}
@@ -139,11 +78,11 @@ public class Actuador implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public int getEstado() {
+	public byte getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstado(byte estado) {
 		this.estado = estado;
 	}
 
@@ -171,26 +110,26 @@ public class Actuador implements Serializable {
 		this.sensorBean = sensorBean;
 	}
 
-	public List<Ordenactuador> getOrdenactuadors() {
-		return this.ordenactuadors;
+	public List<OrdenActuador> getOrdenActuadors() {
+		return this.ordenActuadors;
 	}
 
-	public void setOrdenactuadors(List<Ordenactuador> ordenactuadors) {
-		this.ordenactuadors = ordenactuadors;
+	public void setOrdenActuadors(List<OrdenActuador> ordenActuadors) {
+		this.ordenActuadors = ordenActuadors;
 	}
 
-	public Ordenactuador addOrdenactuador(Ordenactuador ordenactuador) {
-		getOrdenactuadors().add(ordenactuador);
-		ordenactuador.setActuador(this);
+	public OrdenActuador addOrdenActuador(OrdenActuador ordenActuador) {
+		getOrdenActuadors().add(ordenActuador);
+		ordenActuador.setActuadorBean(this);
 
-		return ordenactuador;
+		return ordenActuador;
 	}
 
-	public Ordenactuador removeOrdenactuador(Ordenactuador ordenactuador) {
-		getOrdenactuadors().remove(ordenactuador);
-		ordenactuador.setActuador(null);
+	public OrdenActuador removeOrdenActuador(OrdenActuador ordenActuador) {
+		getOrdenActuadors().remove(ordenActuador);
+		ordenActuador.setActuadorBean(null);
 
-		return ordenactuador;
+		return ordenActuador;
 	}
 
 	@Override
@@ -201,7 +140,7 @@ public class Actuador implements Serializable {
 		result = prime * result + estado;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nodoBean == null) ? 0 : nodoBean.hashCode());
-		result = prime * result + ((ordenactuadors == null) ? 0 : ordenactuadors.hashCode());
+		result = prime * result + ((ordenActuadors == null) ? 0 : ordenActuadors.hashCode());
 		result = prime * result + ((sensorBean == null) ? 0 : sensorBean.hashCode());
 		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
@@ -233,10 +172,10 @@ public class Actuador implements Serializable {
 				return false;
 		} else if (!nodoBean.equals(other.nodoBean))
 			return false;
-		if (ordenactuadors == null) {
-			if (other.ordenactuadors != null)
+		if (ordenActuadors == null) {
+			if (other.ordenActuadors != null)
 				return false;
-		} else if (!ordenactuadors.equals(other.ordenactuadors))
+		} else if (!ordenActuadors.equals(other.ordenActuadors))
 			return false;
 		if (sensorBean == null) {
 			if (other.sensorBean != null)
@@ -250,20 +189,10 @@ public class Actuador implements Serializable {
 			return false;
 		return true;
 	}
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> master
 	@Override
 	public String toString() {
 		return "Actuador: " + toJson().toString();
 	}
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> master
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
 		json.put("id", this.getId());
@@ -274,37 +203,20 @@ public class Actuador implements Serializable {
 		json.put("sensor", jsonSensor);
 		JSONObject jsonNodo = this.getNodoBean().toJson();
 		json.put("nodo", jsonNodo);
-<<<<<<< HEAD
-		//Relaciones
-=======
 		// Relaciones
->>>>>>> master
 		JSONArray ordenActuadors = new JSONArray();
-		for (Ordenactuador ordenActuador : this.getOrdenactuadors()) {
+		for (OrdenActuador ordenActuador : this.getOrdenActuadors()) {
 			ordenActuadors.put(ordenActuador.toJson().getString("id"));
 		}
 		json.put("Ordenactuadors", ordenActuadors);
 		return json;
 	}
-<<<<<<< HEAD
-	
-	public Actuador fromJson(JSONObject json) {		
-		this.setId(json.getString("id"));
-		this.setDescripcion(json.getString("descripcion"));
-		this.setEstado(json.getInt("estado"));
-		this.setTipo(json.getString("tipo") );
-		JSONObject jsonSensor = json.getJSONObject("sensor");
-		this.setSensorBean(new Sensor().fromJson(jsonSensor));
-		JSONObject jsonNodo = json.getJSONObject("nodo");
-		this.setNodoBean(new Nodo().fromJson(jsonNodo));
-=======
 
 	public Actuador fromJson(JSONObject json) {
 		this.setId(json.getString("id"));
 		this.setDescripcion(json.getString("descripcion"));
-		this.setEstado(json.getInt("estado"));
+		this.setEstado((byte)json.getInt("estado"));
 		this.setTipo(json.getString("tipo"));
->>>>>>> master
 		return this;
 	}
 }
