@@ -27,7 +27,7 @@ public class Nodo implements Serializable {
 	private String descripcion;
 
 	@Column(nullable=false)
-	private int estado;
+	private byte estado;
 
 	//bi-directional many-to-one association to Actuador
 	@OneToMany(mappedBy="nodoBean")
@@ -63,7 +63,7 @@ public class Nodo implements Serializable {
 		this.id = id;
 	}
 
-	public Nodo(String id, String descripcion, int estado, List<Actuador> actuadors, Puertadeenlace puertadeenlace,
+	public Nodo(String id, String descripcion, byte estado, List<Actuador> actuadors, Puertadeenlace puertadeenlace,
 			List<Protocolo> protocolos, List<Sensor> sensors) {
 		super();
 		this.id = id;
@@ -96,7 +96,7 @@ public class Nodo implements Serializable {
 		return this.estado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstado(byte estado) {
 		this.estado = estado;
 	}
 
@@ -245,7 +245,7 @@ public class Nodo implements Serializable {
 	public Nodo fromJson(JSONObject json) {		
 		this.setId(json.getString("id"));
 		this.setDescripcion(json.getString("descripcion"));
-		this.setEstado(json.getInt("estado"));
+		this.setEstado((byte)json.getInt("estado"));
 		return this;
 	}
 

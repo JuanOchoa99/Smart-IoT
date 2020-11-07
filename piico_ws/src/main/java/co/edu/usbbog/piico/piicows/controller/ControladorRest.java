@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
+import co.edu.usbbog.piico.piicows.model.mysql.Puertadeenlace;
 import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
 import co.edu.usbbog.piico.piicows.service.NodoService;
+import co.edu.usbbog.piico.piicows.service.PuertaEnlaceService;
 import co.edu.usbbog.piico.piicows.model.mysql.Rol;
 import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
 import co.edu.usbbog.piico.piicows.service.RolService;
@@ -30,9 +32,8 @@ import co.edu.usbbog.piico.piicows.service.UsuarioService;
 public class ControladorRest {
 	@Autowired
 	private UsuarioService usuarioService;
-	private NodoService nodoService;
-	@Autowired
 	private RolService rolService;
+	private PuertaEnlaceService puertaEnlaceService;
 	
 	@RequestMapping(value = "/guardarUsuario", method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
@@ -167,5 +168,54 @@ public class ControladorRest {
 		return mg;
 	}
 	
+	// CRUD PuertaDeEnlace
+	
+		@RequestMapping(value = "/guardarPuertaDeEnlace", method = RequestMethod.POST, 
+				consumes = MediaType.APPLICATION_JSON_VALUE, 
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		public @ResponseBody String guardarPuertaDeEnlace(@RequestBody Puertadeenlace puertaDeEnlace) {
+			String mg = "";
+			return mg;
+		}
+		
+		@RequestMapping(value = "/eliminarPuertaDeEnlace", method = RequestMethod.POST, 
+				consumes = MediaType.APPLICATION_JSON_VALUE, 
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		public @ResponseBody String eliminarPuertaDeEnlace(@RequestBody String puertaDeEnlace) {
+			String mg = "";
+			return mg;
+		}
+		
+		@RequestMapping(value = "/modificarPuertaDeEnlace", method = RequestMethod.POST, 
+				consumes = MediaType.APPLICATION_JSON_VALUE, 
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		public @ResponseBody String modificarRol(@RequestBody Puertadeenlace puertaDeEnlace) {
+			String mg = "";
+			return mg;
+		}
+		
+		@RequestMapping(value = "/contarPuertaDeEnlace", method = RequestMethod.GET, 
+				consumes = MediaType.APPLICATION_JSON_VALUE, 
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		public @ResponseBody String contarPuertaDeEnlace() {
+			String mg = "";
+			return mg;
+		}
+		
+		@RequestMapping(value = "/buscarPuertaDeEnlace", method = RequestMethod.POST, 
+				consumes = MediaType.APPLICATION_JSON_VALUE, 
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		public @ResponseBody String buscarPuertaDeEnlace(@RequestBody String puertaDeEnlace) {
+			String mg = "";
+			return mg;
+		}
+		
+		@RequestMapping(value = "/listarPuertaDeEnlace", method = RequestMethod.POST, 
+				consumes = MediaType.APPLICATION_JSON_VALUE, 
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		public @ResponseBody String listarPuertaDeEnlace(@RequestBody String puertaDeEnlace) {
+			String mg = "";
+			return mg;
+		}
 
 }
