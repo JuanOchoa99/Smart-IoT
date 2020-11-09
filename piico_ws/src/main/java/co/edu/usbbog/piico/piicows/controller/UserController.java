@@ -29,7 +29,7 @@ public class UserController {
 	@PostMapping(value="/save")
 	public @ResponseBody String save(@RequestBody Usuario usuario) {
 		String mg = "";
-		if (usuarioService.save(usuario)){
+		if (usuarioService.registrar(usuario)){
 			return mg = "{\"causa\":\"true\",\"error\":\"Registro incertado"+"\"}";
 		}else {
 			return mg = "{\"causa\":\"false\",\"error\":\"Registro ya existe"+"\"}";		
@@ -55,19 +55,13 @@ public class UserController {
 			return mg = "{\"causa\":\"false\",\"error\":\"Registro no existe"+"\"}";
 		}
 	}
-	
-	@GetMapping(value="/count")
-	public @ResponseBody String contarUsuario() {
-		String mg = "";
-		mg = usuarioService.count().toString();
-		return mg;
-	}
+
 	
 	@PostMapping(value="/find")
 	public @ResponseBody String find(@RequestBody String usuario) {
 		String mg = "";
-		if (usuarioService.findById(usuario) != null){
-			return mg = usuarioService.findById(usuario).toString();
+		if (usuarioService.buscar(usuario) != null){
+			return mg = usuarioService.buscar(usuario).toString();
 		}else {
 			return mg = "{\"causa\":\"false\",\"error\":\"Registro no existe"+"\"}";
 		}
@@ -76,7 +70,7 @@ public class UserController {
 	@GetMapping(value="/list")
 	public @ResponseBody String list() {
 		String mg = "";
-		mg = usuarioService.findAll().toString();
+		mg = usuarioService.usuarios().toString();
 		return mg;
 	}
 }

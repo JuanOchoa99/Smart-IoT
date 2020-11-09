@@ -15,19 +15,19 @@ public class Gateway {
 	private String date;
 	private String topico;
 	private GPS gps;
-	private List<Nodo> nodos;
+	private List<Station> stations;
 	
 	
 	public Gateway() {
 		super();
 	}
 
-	public Gateway(String gateway_id, String date, GPS gps, List<Nodo> nodos) {
+	public Gateway(String gateway_id, String date, GPS gps, List<Station> stations) {
 		super();
 		this.gateway_id = gateway_id;
 		this.date = date;
 		this.gps = gps;
-		this.nodos = nodos;
+		this.stations = stations;
 	}
 
 	public ObjectId getId() {
@@ -62,12 +62,12 @@ public class Gateway {
 		this.gps = gps;
 	}
 
-	public List<Nodo> getNodos() {
-		return nodos;
+	public List<Station> getNodos() {
+		return stations;
 	}
 
-	public void setNodos(List<Nodo> nodos) {
-		this.nodos = nodos;
+	public void setNodos(List<Station> stations) {
+		this.stations = stations;
 	}
 
 	public String getTopico() {
@@ -86,7 +86,7 @@ public class Gateway {
 		result = prime * result + ((gateway_id == null) ? 0 : gateway_id.hashCode());
 		result = prime * result + ((gps == null) ? 0 : gps.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((nodos == null) ? 0 : nodos.hashCode());
+		result = prime * result + ((stations == null) ? 0 : stations.hashCode());
 		return result;
 	}
 
@@ -119,10 +119,10 @@ public class Gateway {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (nodos == null) {
-			if (other.nodos != null)
+		if (stations == null) {
+			if (other.stations != null)
 				return false;
-		} else if (!nodos.equals(other.nodos))
+		} else if (!stations.equals(other.stations))
 			return false;
 		return true;
 	}
@@ -144,12 +144,12 @@ public class Gateway {
 		JSONObject jsonGPS = json.getJSONObject("gps");
 		this.setGps(new GPS().fromJson(jsonGPS));
 		JSONArray jsonNodos = json.getJSONArray("nodes");
-		List<Nodo> nodos = new ArrayList<Nodo>();
+		List<Station> stations = new ArrayList<Station>();
 		for(int i = 0; i< jsonNodos.length(); i++) {
-			Nodo n = new Nodo().fromJson(jsonNodos.getJSONObject(i));
-			nodos.add(n);
+			Station n = new Station().fromJson(jsonNodos.getJSONObject(i));
+			stations.add(n);
 		}
-		this.setNodos(nodos);
+		this.setNodos(stations);
 		return this;
 	}
 

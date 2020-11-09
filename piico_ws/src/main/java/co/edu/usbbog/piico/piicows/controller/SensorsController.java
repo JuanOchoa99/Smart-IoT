@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.usbbog.piico.piicows.model.mongo.Sensor;
+import co.edu.usbbog.piico.piicows.model.mongo.Data;
 import co.edu.usbbog.piico.piicows.service.SensorService;
 import co.edu.usbbog.piico.piicows.service.UsuarioService;
 
@@ -26,7 +26,7 @@ public class SensorsController {
 	private SensorService sensorService;
 	
 	@PostMapping(value="/save")
-	public @ResponseBody String save(@RequestBody Sensor sensor) {
+	public @ResponseBody String save(@RequestBody Data data) {
 		return null;
 	}
 	
@@ -36,7 +36,7 @@ public class SensorsController {
 	}
 	
 	@PostMapping(value="/alter")
-	public @ResponseBody String alter(@RequestBody Sensor sensor) {
+	public @ResponseBody String alter(@RequestBody Data data) {
 		return null;
 	}
 	

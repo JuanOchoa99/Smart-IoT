@@ -20,14 +20,14 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import co.edu.usbbog.piico.piicows.config.ConexionMongo;
-import co.edu.usbbog.piico.piicows.model.mongo.Nodo;
+import co.edu.usbbog.piico.piicows.model.mongo.Station;
 
 
 public class NodoDAO implements INodoDAO {
 	
 	private final ConexionMongo conexion;
     private MongoDatabase mongoDatabase;
-    private MongoCollection<Nodo> mongoCollection;
+    private MongoCollection<Station> mongoCollection;
     private final CodecRegistry pojoCodecRegistry;
     
     
@@ -39,39 +39,39 @@ public class NodoDAO implements INodoDAO {
 	}
 
 	@Override
-	public Nodo create(Nodo nodo) {
+	public Station create(Station station) {
 		try {
 			conexion.conectar();
 			mongoDatabase = conexion.getConnection().getDatabase(conexion.getDatabase());
-			mongoCollection = mongoDatabase.getCollection("sen_p", Nodo.class).withCodecRegistry(pojoCodecRegistry);
-            mongoCollection.insertOne(nodo);
+			mongoCollection = mongoDatabase.getCollection("sen_p", Station.class).withCodecRegistry(pojoCodecRegistry);
+            mongoCollection.insertOne(station);
 			conexion.desconectar();
-			return nodo;
+			return station;
 		} catch (Exception e) {
 			return null;
 		}
 	}
 
 	@Override
-	public Nodo edit(Nodo nodo) {
+	public Station edit(Station station) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Nodo remove(ObjectId objectId) {
+	public Station remove(ObjectId objectId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Nodo findByID(ObjectId objectId) {
+	public Station findByID(ObjectId objectId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Nodo> find() {
+	public List<Station> find() {
 		// TODO Auto-generated method stub
 		return null;
 	}

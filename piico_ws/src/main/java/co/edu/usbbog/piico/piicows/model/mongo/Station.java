@@ -7,26 +7,26 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-public class Nodo {
+public class Station {
 
 	private ObjectId id;
 
 	private String node_id;
 	private String date;
 	private GPS gps;
-	private List<Sensor> sensors;
+	private List<Data> datas;
 
 	
-	public Nodo() {
+	public Station() {
 		super();
 	}
 
-	public Nodo(String node_id, String date, GPS gps, List<Sensor> sensors) {
+	public Station(String node_id, String date, GPS gps, List<Data> datas) {
 		super();
 		this.node_id = node_id;
 		this.date = date;
 		this.gps = gps;
-		this.sensors = sensors;
+		this.datas = datas;
 	}
 
 	public ObjectId  getId() {
@@ -61,12 +61,12 @@ public class Nodo {
 		this.gps = gps;
 	}
 
-	public List<Sensor> getSensors() {
-		return sensors;
+	public List<Data> getSensors() {
+		return datas;
 	}
 
-	public void setSensors(List<Sensor> sensors) {
-		this.sensors = sensors;
+	public void setSensors(List<Data> datas) {
+		this.datas = datas;
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class Nodo {
 		result = prime * result + ((gps == null) ? 0 : gps.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((node_id == null) ? 0 : node_id.hashCode());
-		result = prime * result + ((sensors == null) ? 0 : sensors.hashCode());
+		result = prime * result + ((datas == null) ? 0 : datas.hashCode());
 		return result;
 	}
 
@@ -89,7 +89,7 @@ public class Nodo {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Nodo other = (Nodo) obj;
+		Station other = (Station) obj;
 		if (date == null) {
 			if (other.date != null)
 				return false;
@@ -110,10 +110,10 @@ public class Nodo {
 				return false;
 		} else if (!node_id.equals(other.node_id))
 			return false;
-		if (sensors == null) {
-			if (other.sensors != null)
+		if (datas == null) {
+			if (other.datas != null)
 				return false;
-		} else if (!sensors.equals(other.sensors))
+		} else if (!datas.equals(other.datas))
 			return false;
 		return true;
 	}
@@ -129,15 +129,15 @@ public class Nodo {
 		return json;
 	}
 	
-	public Nodo fromJson(JSONObject json) {
+	public Station fromJson(JSONObject json) {
 		this.setNode_id(json.getString("node_id"));
 		this.setDate(json.getString("date"));
 		JSONObject jsonGPS = json.getJSONObject("gps");
 		this.setGps(new GPS().fromJson(jsonGPS));
 		JSONArray jsonSensores =json.getJSONArray("sensors");
-		List<Sensor> sensores = new ArrayList<Sensor>();
+		List<Data> sensores = new ArrayList<Data>();
 		for (int i = 0; i < jsonSensores.length(); i++) {
-			Sensor s = new Sensor().fromJson(jsonSensores.getJSONObject(i));
+			Data s = new Data().fromJson(jsonSensores.getJSONObject(i));
 			sensores.add(s);
 		}
 		this.setSensors(sensores);		

@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 
-import co.edu.usbbog.piico.piicows.model.mongo.Nodo;
+import co.edu.usbbog.piico.piicows.model.mongo.Station;
 
 public interface INodoDAO {
-	public Nodo create(Nodo nodo);
-	public Nodo edit(Nodo nodo);
-	public Nodo remove(ObjectId objectId);
-	public Nodo findByID(ObjectId objectId);
-	public List<Nodo> find();
+	public Station create(Station station);
+	public Station edit(Station station);
+	public Station remove(ObjectId objectId);
+	public Station findByID(ObjectId objectId);
+	public List<Station> find();
 }

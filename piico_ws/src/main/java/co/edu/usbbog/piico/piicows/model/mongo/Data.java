@@ -2,9 +2,10 @@ package co.edu.usbbog.piico.piicows.model.mongo;
 
 import org.bson.types.ObjectId;
 import org.json.JSONObject;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
-public class Sensor {
+public class Data {
 	private ObjectId id;
 
 	private String type;
@@ -12,11 +13,11 @@ public class Sensor {
 	private String value;
 	private String magnitude;
 
-	public Sensor() {
+	public Data() {
 		super();
 	}
 
-	public Sensor(String type, String sensor_id, String value, String magnitude) {
+	public Data(String type, String sensor_id, String value, String magnitude) {
 		super();
 		this.type = type;
 		this.sensor_id = sensor_id;
@@ -84,7 +85,7 @@ public class Sensor {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Sensor other = (Sensor) obj;
+		Data other = (Data) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -122,7 +123,7 @@ public class Sensor {
 		return json;
 	}
 	
-	public Sensor fromJson(JSONObject json) {
+	public Data fromJson(JSONObject json) {
 		this.setType(json.getString("type"));
 		this.setSensor_id(json.getString("sensor_id"));
 		this.setValue(json.getString("value"));

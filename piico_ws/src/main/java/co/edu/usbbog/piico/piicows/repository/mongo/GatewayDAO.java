@@ -15,7 +15,7 @@ import com.mongodb.client.MongoDatabase;
 
 import co.edu.usbbog.piico.piicows.config.ConexionMongo;
 import co.edu.usbbog.piico.piicows.model.mongo.Gateway;
-import co.edu.usbbog.piico.piicows.model.mongo.Nodo;
+import co.edu.usbbog.piico.piicows.model.mongo.Station;
 
 public class GatewayDAO implements IGatewayDAO{
 	

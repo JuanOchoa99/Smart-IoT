@@ -13,5 +13,5 @@ public interface IPuertaEnlaceService {
 	public Boolean deleteById(String usuario);
 	public Long count();
 	public Boolean alter(PuertaDeEnlace usuario);
-
+	
 }

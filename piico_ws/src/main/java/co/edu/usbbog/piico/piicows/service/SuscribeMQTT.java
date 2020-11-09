@@ -10,7 +10,7 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import co.edu.usbbog.piico.piicows.model.mongo.Gateway;
-import co.edu.usbbog.piico.piicows.model.mongo.Nodo;
+import co.edu.usbbog.piico.piicows.model.mongo.Station;
 import co.edu.usbbog.piico.piicows.repository.mongo.GatewayDAO;
 import co.edu.usbbog.piico.piicows.repository.mongo.NodoDAO;
 
@@ -34,6 +34,7 @@ public class SuscribeMQTT implements MqttCallback{
 	@Override
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		String data = new String(message.getPayload());
+		System.out.println("OBJETO Gateway: " + data);
 		JSONObject jsonObject = new JSONObject(data);
 		Gateway n = new Gateway().fromJson(jsonObject);
 		System.out.println("OBJETO Gateway: " + n.toString());
@@ -49,8 +50,8 @@ public class SuscribeMQTT implements MqttCallback{
 	public void prueba() {
 		MqttClient clienteJava = null;
 		MqttConnectOptions connectOptions;
-		String topic = "sen_p";
-		String broker = "tcp://test.mosquitto.org:1883";
+		String topic = "sen_j";
+		String broker = "tcp://mqtt.eclipse.org:1883";
 		String clientID = MqttClient.generateClientId();
 		Boolean pub = true;
 		Boolean subs = true;
