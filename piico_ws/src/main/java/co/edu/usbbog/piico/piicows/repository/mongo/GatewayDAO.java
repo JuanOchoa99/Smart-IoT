@@ -3,19 +3,25 @@ package co.edu.usbbog.piico.piicows.repository.mongo;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.types.ObjectId;
 
+import com.mongodb.Block;
+import com.mongodb.DBCursor;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 
 import co.edu.usbbog.piico.piicows.config.ConexionMongo;
 import co.edu.usbbog.piico.piicows.model.mongo.Gateway;
 import co.edu.usbbog.piico.piicows.model.mongo.Station;
+import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
 
 public class GatewayDAO implements IGatewayDAO{
 	
@@ -46,14 +52,47 @@ public class GatewayDAO implements IGatewayDAO{
 
 	@Override
 	public Gateway findById(ObjectId objectId) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			conexion.conectar();
+			mongoDatabase = conexion.getConnection().getDatabase(conexion.getDatabase());
+			mongoCollection = mongoDatabase.getCollection("sen_p", Gateway.class).withCodecRegistry(pojoCodecRegistry);
+            System.out.println(objectId);
+			Gateway gateway = mongoCollection.find(Filters.eq("_id", objectId)).first();
+			conexion.desconectar();
+			return gateway;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
 	public List<Gateway> find() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			conexion.conectar();
+			mongoDatabase = conexion.getConnection().getDatabase(conexion.getDatabase());
+			mongoCollection = mongoDatabase.getCollection("sen_p", Gateway.class).withCodecRegistry(pojoCodecRegistry);
+			List<Gateway> gateways = mongoCollection.find().into(new ArrayList<Gateway>());
+			conexion.desconectar();
+			return gateways;
+		} catch (Exception e) {
+			System.out.println("error");
+			return new ArrayList<Gateway>();
+		}
+	}
+	
+	public List<Gateway> findByNodo(String stationID) {
+		try {
+			conexion.conectar();
+			mongoDatabase = conexion.getConnection().getDatabase(conexion.getDatabase());
+			mongoCollection = mongoDatabase.getCollection("sen_p", Gateway.class).withCodecRegistry(pojoCodecRegistry);
+			List<Gateway> gateways = mongoCollection.find(Filters.eq("nodos.node_id", stationID)).into(new ArrayList<Gateway>());
+			conexion.desconectar();
+			System.out.println(""+stationID);
+			return gateways;
+		} catch (Exception e) {
+			System.out.println("error");
+			return new ArrayList<Gateway>();
+		}
 	}
 
 	@Override

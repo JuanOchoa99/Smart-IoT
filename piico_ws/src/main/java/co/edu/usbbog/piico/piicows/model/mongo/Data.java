@@ -2,7 +2,6 @@ package co.edu.usbbog.piico.piicows.model.mongo;
 
 import org.bson.types.ObjectId;
 import org.json.JSONObject;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 
 public class Data {

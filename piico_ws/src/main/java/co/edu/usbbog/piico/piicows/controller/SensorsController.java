@@ -1,5 +1,6 @@
 package co.edu.usbbog.piico.piicows.controller;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.usbbog.piico.piicows.model.mongo.Data;
+import co.edu.usbbog.piico.piicows.model.mongo.Gateway;
+import co.edu.usbbog.piico.piicows.model.mongo.Station;
+import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
+import co.edu.usbbog.piico.piicows.model.mysql.Sensor;
+import co.edu.usbbog.piico.piicows.repository.mongo.GatewayDAO;
 import co.edu.usbbog.piico.piicows.service.SensorService;
 import co.edu.usbbog.piico.piicows.service.UsuarioService;
 
@@ -51,7 +57,18 @@ public class SensorsController {
 	}
 	
 	@PostMapping(value="/list")
-	public @ResponseBody String listarSensor() {
-		return null;
+	public @ResponseBody String listarSensor(@RequestBody String filtro) {
+		
+		JSONObject jsonObject = new JSONObject(filtro);
+		
+		String station = jsonObject.getString("station");
+		String variable = jsonObject.getString("variable");
+		System.out.println("1"+variable);
+		System.out.println("2"+station);
+		return sensorService.history(station, variable).toString();
 	}
+	
+	
+	
+	
 }

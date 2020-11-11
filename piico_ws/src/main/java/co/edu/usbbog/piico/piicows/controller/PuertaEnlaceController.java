@@ -1,5 +1,8 @@
 package co.edu.usbbog.piico.piicows.controller;
 
+import java.util.List;
+
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
 import co.edu.usbbog.piico.piicows.model.mysql.PuertaDeEnlace;
+import co.edu.usbbog.piico.piicows.service.NodoService;
 import co.edu.usbbog.piico.piicows.service.PuertaEnlaceService;
 import co.edu.usbbog.piico.piicows.service.SensorService;
 
@@ -19,10 +24,14 @@ import co.edu.usbbog.piico.piicows.service.SensorService;
 @CrossOrigin
 @RequestMapping("/puertaEnlace")
 public class PuertaEnlaceController {
-	private static Logger logger = LoggerFactory.getLogger(ControlAreaController.class);
+	
+	private static Logger logger = LoggerFactory.getLogger(PuertaEnlaceController.class);
 	
 	@Autowired
 	private PuertaEnlaceService puertaDeEnlaceService;
+	
+	@Autowired
+	private NodoService nodoService;
 	
 	@PostMapping(value="/save")
 	public @ResponseBody String save(@RequestBody PuertaDeEnlace puertaDeEnlace) {
@@ -54,9 +63,10 @@ public class PuertaEnlaceController {
 		return mg;
 	}
 	
-	@GetMapping(value="/list")
-	public @ResponseBody String list() {
-		String mg = "";
-		return mg;
+	@GetMapping(value="/listNodos")
+	public @ResponseBody JSONArray list() {
+		JSONArray nodos = new JSONArray(nodoService.findAll());
+		System.out.println(""+nodos);
+		return nodos;
 	}
 }
