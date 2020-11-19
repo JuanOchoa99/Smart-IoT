@@ -88,6 +88,7 @@ public class GatewayDAO implements IGatewayDAO{
 			List<Gateway> gateways = mongoCollection.find(Filters.eq("nodos.node_id", stationID)).into(new ArrayList<Gateway>());
 			conexion.desconectar();
 			System.out.println(""+stationID);
+			System.out.println(""+gateways);
 			return gateways;
 		} catch (Exception e) {
 			System.out.println("error");

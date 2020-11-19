@@ -65,10 +65,12 @@ public class SensorsController {
 		String variable = jsonObject.getString("variable");
 		System.out.println("1"+variable);
 		System.out.println("2"+station);
+		JSONObject respuesta = new JSONObject();
+		respuesta.put("data", sensorService.history(station, variable));
 		return sensorService.history(station, variable).toString();
 	}
 	
 	
 	
-	
+	 
 }
