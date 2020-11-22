@@ -21,10 +21,17 @@
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
 		<dependency>
+	        <groupId>org.mongodb</groupId>
+	        <artifactId>mongodb-driver-legacy</artifactId>
+	        <version>4.1.1</version>
+	    </dependency>	
+	    <!-- https://mvnrepository.com/artifact/org.mongodb/bson -->
+		<dependency>
 		    <groupId>org.mongodb</groupId>
-		    <artifactId>mongo-java-driver</artifactId>
-		    <version>3.12.7</version>
-		</dependency>		
+		    <artifactId>bson</artifactId>
+		    <version>4.1.1</version>
+		</dependency>
+			    	
 		<!-- https://mvnrepository.com/artifact/org.eclipse.paho/org.eclipse.paho.client.mqttv3 -->
 		<dependency>
 		    <groupId>org.eclipse.paho</groupId>
@@ -66,6 +73,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
 	</dependencies>
 

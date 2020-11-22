@@ -1,7 +1,7 @@
 package co.edu.usbbog.piico.piicows.config;
 
-import com.mongodb.MongoClientURI;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 
 public class ConexionMongo {
     private final String host;
@@ -33,8 +33,8 @@ public class ConexionMongo {
                     + "/?authSource="
                     + database
                     + "&authMechanism=SCRAM-SHA-1";
-            //roboMongoClientURI uri = new MongoClientURI(path);
-            //connection = new MongoClient(uri);
+            //MongoClientURI connectionString = new MongoClientURI(path);
+            //connection = new MongoClient(connectionString);
             connection = new MongoClient(host, port);
             System.out.println("Se conecto");
         } catch (Exception ex) {

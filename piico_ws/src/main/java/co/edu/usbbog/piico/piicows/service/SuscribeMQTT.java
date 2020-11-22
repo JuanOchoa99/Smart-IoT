@@ -12,14 +12,13 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import co.edu.usbbog.piico.piicows.model.mongo.Gateway;
-import co.edu.usbbog.piico.piicows.model.mongo.Nodo;
+import co.edu.usbbog.piico.piicows.model.mongo.Station;
 import co.edu.usbbog.piico.piicows.repository.mongo.GatewayDAO;
-import co.edu.usbbog.piico.piicows.repository.mongo.NodoDAO;
 
 @Service
 public class SuscribeMQTT implements MqttCallback{
 	
-	public NodoDAO nodoDao;
+	
 	public GatewayDAO gatewayDAO;
 
 
@@ -36,6 +35,7 @@ public class SuscribeMQTT implements MqttCallback{
 	@Override
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		String data = new String(message.getPayload());
+		System.out.println("OBJETO Gateway: " + data);
 		JSONObject jsonObject = new JSONObject(data);
 		Gateway n = new Gateway().fromJson(jsonObject);
 		System.out.println("Topico: "+topic);
@@ -50,6 +50,7 @@ public class SuscribeMQTT implements MqttCallback{
 	}
 
 	public void prueba() {
+<<<<<<< HEAD
 		String topic = "sta_j";
         int qos = 2;
         String broker = "tcp://mqtt.eclipse.org:1883";
@@ -79,6 +80,39 @@ public class SuscribeMQTT implements MqttCallback{
             System.out.println("excep " + me);
             me.printStackTrace();
         }
+=======
+		MqttClient clienteJava = null;
+		MqttConnectOptions connectOptions;
+		String topic = "sen_j";
+		String broker = "tcp://mqtt.eclipse.org:1883";
+		String clientID = MqttClient.generateClientId();
+		Boolean pub = true;
+		Boolean subs = true;
+		connectOptions = new MqttConnectOptions();
+		connectOptions.setCleanSession(true);
+		connectOptions.setKeepAliveInterval(50);
+		try {
+			clienteJava = new MqttClient(broker, clientID);
+			clienteJava.setCallback(this);
+			clienteJava.connect(connectOptions);
+
+		} catch (MqttException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+
+		System.out.println("Ha sido conectado al broker " + broker);
+
+		// Preparando un tópico
+		// MqttTopic Topico = clienteJava.getTopic(Topico);
+
+		try {
+			int subQoS = 2;
+			clienteJava.subscribe(topic, subQoS);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+>>>>>>> master
 	}
 	
 	/**

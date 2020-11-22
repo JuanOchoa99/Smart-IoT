@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import co.edu.usbbog.piico.piicows.model.mysql.Rol;
 import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
 import co.edu.usbbog.piico.piicows.repository.mysql.IUsuarioRepository;
 
@@ -15,54 +15,54 @@ public class UsuarioService implements IUsuarioService {
 	@Autowired
 	private IUsuarioRepository usuarioRepo;
 
+
+
 	@Override
-	public List<Usuario> findAll() {
-		List<Usuario> listUsers = usuarioRepo.findAll();
-		return listUsers;
+	public List<Usuario> usuarios() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public Usuario findById(String usuario) {
-		try {
-			return (Usuario) usuarioRepo.findById(usuario).get();
-		}catch(java.util.NoSuchElementException e) {
-			return null;
-		}
+	public Usuario buscar(String usuario) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public Boolean save(Usuario usuario) {
-		if (findById(usuario.getId()) == null) {
-			usuarioRepo.save(usuario);
-			return true;
-		} else {
-			return false;
-		}
+	public Boolean registrar(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean login(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean logout(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean modificarRol(Usuario usuario, List<Rol> roles, String option) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Boolean deleteById(String usuario) {
-		if (findById(usuario) != null) {
-			usuarioRepo.deleteById(usuario);
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	@Override
-	public Long count() {
-		return usuarioRepo.count();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Boolean alter(Usuario usuario) {
-		if (findById(usuario.getId()) != null) {
-			usuarioRepo.save(usuario);
-			return true;
-		} else {
-			return false;
-		}
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

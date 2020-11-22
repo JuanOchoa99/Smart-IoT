@@ -1065,58 +1065,31 @@ if ($('#amlinechart4').length) {
 
 /*-------------- 5 line chart amchart start ------------*/
 if ($('#amlinechart5').length) {
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    var raw = JSON.stringify({"station":"estacion_2","variable":"Temperature"});
+    
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    
+    var data  = fetch("http://localhost:3500/sensor/list", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+
     var chart = AmCharts.makeChart("amlinechart5", {
         "type": "serial",
         "theme": "light",
         "marginRight": 40,
         "marginTop": 17,
         "autoMarginOffset": 20,
-        "dataProvider": [{
-            "date": "2020-03-01",
-            "price": 20
-        }, {
-            "date": "2020-03-02",
-            "price": 75
-        }, {
-            "date": "2020-03-03",
-            "price": 15
-        }, {
-            "date": "2020-03-04",
-            "price": 75
-        }, {
-            "date": "2020-03-05",
-            "price": 158
-        }, {
-            "date": "2020-03-06",
-            "price": 57
-        }, {
-            "date": "2020-03-07",
-            "price": 107
-        }, {
-            "date": "2020-03-08",
-            "price": 89
-        }, {
-            "date": "2020-03-09",
-            "price": 75
-        }, {
-            "date": "2020-03-10",
-            "price": 132
-        }, {
-            "date": "2020-03-11",
-            "price": 158
-        }, {
-            "date": "2020-03-12",
-            "price": 56
-        }, {
-            "date": "2020-03-13",
-            "price": 169
-        }, {
-            "date": "2020-03-14",
-            "price": 24
-        }, {
-            "date": "2020-03-15",
-            "price": 147
-        }],
+        "dataProvider": data,
         "valueAxes": [{
             "logarithmic": true,
             "dashLength": 1,

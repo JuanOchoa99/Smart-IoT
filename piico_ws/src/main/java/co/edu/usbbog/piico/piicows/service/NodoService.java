@@ -16,7 +16,9 @@ public class NodoService implements INodoService{
 
 	@Override
 	public List<Nodo> findAll() {
-		List<Nodo> listNodo= nodoRepo.findAll();
+		List<Nodo> listNodo = nodoRepo.findAll();
+		System.out.println(""+listNodo.toString());
+		System.out.println(""+listNodo);
 		return listNodo;
 	}
 

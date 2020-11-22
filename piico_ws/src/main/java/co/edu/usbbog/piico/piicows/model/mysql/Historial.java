@@ -48,7 +48,10 @@ public class Historial implements Serializable {
 	}
 	
 	public Historial(int id, String descripcion, String evento, LocalDateTime fecha, String tipo) {
+<<<<<<< HEAD
 		super();
+=======
+>>>>>>> master
 		this.id = id;
 		this.descripcion = descripcion;
 		this.evento = evento;
