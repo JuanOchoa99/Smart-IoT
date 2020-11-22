@@ -5,7 +5,7 @@ def main():
 
     client = mqtt.Client('piicoPub')  # Creación del cliente?Ė
     client.connect(host='mqtt.eclipse.org', port=1883)
-    topic = "sen_n"
+    topic = "sen_j"
 
     pruebaMongo = {
                         "id": "1231321",
@@ -63,7 +63,7 @@ def main():
     }
     #req_l request send
     req_send = {
-        "node-id": "estacion 1",
+        "node-id": "estacion 2",
         "date": "2020-09-07-08-25-42",
         "request": "send",
         "sensors": [
@@ -231,7 +231,7 @@ def main():
     },
     "nodes" : [ 
         {
-            "date" : "10/11/2020 21:58:37",
+            "date" : "20/11/2020 21:58:37",
             "gps" : {
                 "lat" : 4.84999990463257,
                 "lon" : -72.8499984741211

@@ -20,5 +20,6 @@ public interface ISensorService {
 	public JSONObject comparativa(Sensor sensor, LocalDateTime inicio, LocalDateTime fin, String escala);
 	public JSONObject estados(Sensor sensor, LocalDateTime fecha, String type);
 	public JSONObject realTime(Sensor sensor, Nodo nodo);
-	public JSONArray history(String stationIn, String variable);
+	public JSONArray history(String stationIn, String variable, String escala);
+	JSONArray comparativa(String Sensor, String variable, String escala);
 }

@@ -63,11 +63,42 @@ public class SensorsController {
 		
 		String station = jsonObject.getString("station");
 		String variable = jsonObject.getString("variable");
+		String escala = jsonObject.getString("escala");
 		System.out.println("1"+variable);
 		System.out.println("2"+station);
 		JSONObject respuesta = new JSONObject();
-		respuesta.put("data", sensorService.history(station, variable));
-		return sensorService.history(station, variable).toString();
+		respuesta.put("data", sensorService.history(station, variable, escala));
+		return sensorService.history(station, variable, escala).toString();
+	}
+	
+	@PostMapping(value="/findByDate")
+	public @ResponseBody String fyndByDate(@RequestBody String filtro) {
+		
+		JSONObject jsonObject = new JSONObject(filtro);
+		
+		String fecha = jsonObject.getString("date");
+		String escala = jsonObject.getString("escala");
+		JSONObject respuesta = new JSONObject();
+		//respuesta.put("data", sensorService.history(station, variable, escala));
+		//return sensorService.history(station, variable, escala).toString();
+		return null;
+	}
+	
+	@PostMapping(value="/balance")
+	public @ResponseBody String balance(@RequestBody String filtro) {
+		
+		JSONObject jsonObject = new JSONObject(filtro);
+		
+		String escala = jsonObject.getString("escala");
+		String sensor = jsonObject.getString("sensor");
+		String variable = jsonObject.getString("sensor");
+		System.out.println(""+escala);
+		System.out.println(""+sensor);
+		System.out.println(""+variable);
+		JSONObject respuesta = new JSONObject();
+		respuesta.put("data", sensorService.comparativa(sensor, escala, variable));
+		//return sensorService.history(station, variable, escala).toString();
+		return null;
 	}
 	
 	

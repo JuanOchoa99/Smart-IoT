@@ -87,11 +87,23 @@ public class GatewayDAO implements IGatewayDAO{
 			mongoCollection = mongoDatabase.getCollection("sen_p", Gateway.class).withCodecRegistry(pojoCodecRegistry);
 			List<Gateway> gateways = mongoCollection.find(Filters.eq("nodos.node_id", stationID)).into(new ArrayList<Gateway>());
 			conexion.desconectar();
-			System.out.println(""+stationID);
+			return gateways;
+		} catch (Exception e) {
+			return new ArrayList<Gateway>();
+		}
+	}
+	
+	public List<Gateway> findBySensor(String sensorID) {
+		try {
+			conexion.conectar();
+			mongoDatabase = conexion.getConnection().getDatabase(conexion.getDatabase());
+			mongoCollection = mongoDatabase.getCollection("sen_p", Gateway.class).withCodecRegistry(pojoCodecRegistry);
+			List<Gateway> gateways = mongoCollection.find(Filters.eq("nodos.sensors.sensor_id", sensorID)).into(new ArrayList<Gateway>());
+			conexion.desconectar();
+			System.out.println(""+sensorID);
 			System.out.println(""+gateways);
 			return gateways;
 		} catch (Exception e) {
-			System.out.println("error");
 			return new ArrayList<Gateway>();
 		}
 	}
