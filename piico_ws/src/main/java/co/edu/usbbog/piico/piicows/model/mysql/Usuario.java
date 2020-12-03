@@ -48,25 +48,14 @@ public class Usuario implements Serializable {
 
 	//bi-directional many-to-many association to Rol
 	@ManyToMany(mappedBy="usuarios")
-<<<<<<< HEAD
-	private List<Rol> rols;
-
-	public Usuario() {
-	}
-	public Usuario(String id ) {
-		this.id = id;
-	}
-
-=======
 	private List<Rol> roles;
 
 	public Usuario() {
+		
 	}
 	public Usuario(String id ) {
 		this.id = id;
 	}
-
->>>>>>> master
 	public Usuario(String id, String apellidos, String correo, String nombres, String pass, String username) {
 		super();
 		this.id = id;
@@ -168,21 +157,12 @@ public class Usuario implements Serializable {
 		return puertaDeEnlace;
 	}
 
-<<<<<<< HEAD
-	public List<Rol> getRols() {
-		return this.rols;
-	}
-
-	public void setRols(List<Rol> rols) {
-		this.rols = rols;
-=======
 	public List<Rol> getRoles() {
 		return this.roles;
 	}
 
 	public void setRoles(List<Rol> roles) {
 		this.roles = roles;
->>>>>>> master
 	}
 	@Override
 	public int hashCode() {
@@ -195,11 +175,7 @@ public class Usuario implements Serializable {
 		result = prime * result + ((nombres == null) ? 0 : nombres.hashCode());
 		result = prime * result + ((pass == null) ? 0 : pass.hashCode());
 		result = prime * result + ((puertaDeEnlaces == null) ? 0 : puertaDeEnlaces.hashCode());
-<<<<<<< HEAD
-		result = prime * result + ((rols == null) ? 0 : rols.hashCode());
-=======
 		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
->>>>>>> master
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -247,10 +223,10 @@ public class Usuario implements Serializable {
 				return false;
 		} else if (!puertaDeEnlaces.equals(other.puertaDeEnlaces))
 			return false;
-		if (rols == null) {
-			if (other.rols != null)
+		if (roles == null) {
+			if (other.roles != null)
 				return false;
-		} else if (!rols.equals(other.rols))
+		} else if (!roles.equals(other.roles))
 			return false;
 		if (username == null) {
 			if (other.username != null)
@@ -279,7 +255,7 @@ public class Usuario implements Serializable {
 		}
 		json.put("puertaDeEnlaces", puertasDeEnlace);
 		JSONArray roles = new JSONArray();
-		for (Rol rol : this.getRols()) {
+		for (Rol rol : this.getRoles()) {
 			roles.put(rol.toJson().getString("nombre"));
 		}
 		json.put("roles", roles);

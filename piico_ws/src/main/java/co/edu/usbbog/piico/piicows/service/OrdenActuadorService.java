@@ -20,21 +20,13 @@ public class OrdenActuadorService implements IOrdenActuadorService{
 	}
 
 	@Override
-<<<<<<< HEAD
-	public OrdenActuador findById(String ordenAct) {
-=======
 	public Boolean deleteById(String ordenAct) {
->>>>>>> master
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-<<<<<<< HEAD
-	public Boolean save(OrdenActuador ordenAct) {
-=======
 	public Long count() {
->>>>>>> master
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -52,11 +44,7 @@ public class OrdenActuadorService implements IOrdenActuadorService{
 	}
 
 	@Override
-<<<<<<< HEAD
-	public Boolean alter(OrdenActuador ordenAct) {
-=======
 	public Boolean save(OrdenActuador ordenAct) {
->>>>>>> master
 		// TODO Auto-generated method stub
 		return null;
 	}

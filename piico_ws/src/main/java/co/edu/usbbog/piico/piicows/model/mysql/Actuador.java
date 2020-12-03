@@ -8,7 +8,6 @@ import org.json.JSONObject;
 
 import co.edu.usbbog.piico.piicows.model.mysql.Actuador;
 import co.edu.usbbog.piico.piicows.model.mysql.OrdenActuador;
-
 import java.util.List;
 
 
@@ -54,7 +53,6 @@ public class Actuador implements Serializable {
 	public Actuador(String id) {
 		this.id = id;
 	}
-	
 	public Actuador(String id, String descripcion, byte estado, String tipo) {
 		super();
 		this.id = id;

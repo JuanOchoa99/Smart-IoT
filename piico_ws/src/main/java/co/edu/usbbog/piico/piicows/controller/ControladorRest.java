@@ -1,13 +1,7 @@
 package co.edu.usbbog.piico.piicows.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,7 +33,7 @@ public class ControladorRest {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String guardarUsuario(@RequestBody Usuario usuario) {
 		String mg = "";
-		if (usuarioService.save(usuario)){
+		if (usuarioService.registrar(usuario)){
 			return mg = "{\"causa\":\"true\",\"error\":\"Registro incertado"+"\"}";
 		}else {
 			return mg = "{\"causa\":\"false\",\"error\":\"Registro ya existe"+"\"}";		
@@ -68,20 +62,13 @@ public class ControladorRest {
 		}
 	}
 	
-	@RequestMapping(value = "/contarUsuario", method = RequestMethod.GET)
-	public @ResponseBody String contarUsuario() {
-		String mg = "";
-		mg = usuarioService.count().toString();
-		return mg;
-	}
-	
 	@RequestMapping(value = "/buscarUsuario", method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String buscarUsuario(@RequestBody String usuario) {
 		String mg = "";
-		if (usuarioService.findById(usuario) != null){
-			return mg = usuarioService.findById(usuario).toString();
+		if (usuarioService.buscar(usuario) != null){
+			return mg = usuarioService.buscar(usuario).toString();
 		}else {
 			return mg = "{\"causa\":\"false\",\"error\":\"Registro no existe"+"\"}";
 		}
@@ -92,7 +79,7 @@ public class ControladorRest {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String listarUsuarios() {
 		String mg = "";
-		mg = usuarioService.findAll().toString();
+		mg = usuarioService.usuarios().toString();
 		return mg;
 	}
 	

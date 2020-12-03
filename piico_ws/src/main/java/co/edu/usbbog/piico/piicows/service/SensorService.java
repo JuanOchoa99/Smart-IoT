@@ -29,7 +29,6 @@ import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
 import co.edu.usbbog.piico.piicows.model.mysql.Sensor;
 import co.edu.usbbog.piico.piicows.repository.mongo.GatewayDAO;
 import co.edu.usbbog.piico.piicows.repository.mysql.ISensorRepository;
-import co.edu.usbbog.piico.piicows.repository.mysql.IUsuarioRepository;
 
 @Service
 public class SensorService implements ISensorService{

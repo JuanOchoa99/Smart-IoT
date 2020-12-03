@@ -12,7 +12,7 @@ import co.edu.usbbog.piico.piicows.repository.mysql.ILogsRepository;
 public class LogService implements ILogService{
 	
 	@Autowired
-	private ILogsRepository usuarioRepo;
+	private ILogsRepository logRepo;
 
 	@Override
 	public List<Log> findAll() {
@@ -28,8 +28,12 @@ public class LogService implements ILogService{
 
 	@Override
 	public Boolean save(Log log) {
-		// TODO Auto-generated method stub
-		return null;
+		if (findById(log.getId()) == null){
+			logRepo.save(log);
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	@Override

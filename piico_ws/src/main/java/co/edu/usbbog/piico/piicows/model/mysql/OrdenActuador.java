@@ -6,8 +6,7 @@ import java.time.LocalDateTime;
 import javax.persistence.*;
 
 import org.json.JSONObject;
-
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 /**
