@@ -85,22 +85,41 @@ public class SensorsController {
 	}
 	
 	@PostMapping(value="/balance")
-	public @ResponseBody String balance(@RequestBody String filtro) {
+	public void balance(@RequestBody String filtro) {
 		
 		JSONObject jsonObject = new JSONObject(filtro);
 		
 		String escala = jsonObject.getString("escala");
 		String sensor = jsonObject.getString("sensor");
-		String variable = jsonObject.getString("sensor");
-		System.out.println(""+escala);
-		System.out.println(""+sensor);
-		System.out.println(""+variable);
+		String variable = jsonObject.getString("variable");
+		
+		System.out.println("Escala"+escala);
+		System.out.println("Sensor"+sensor);
+		System.out.println("variable"+variable);
 		JSONObject respuesta = new JSONObject();
-		respuesta.put("data", sensorService.comparativa(sensor, escala, variable));
-		//return sensorService.history(station, variable, escala).toString();
-		return null;
+		sensorService.comparativa(sensor, escala, variable);
 	}
 	
+	/**
+	 * 
+	 * 	@PostMapping(value="/findLast")
+		public @ResponseBody String findLast(@RequestBody String filtro) {
+			
+			JSONObject jsonObject = new JSONObject(filtro);
+			
+			String station = jsonObject.getString("station");
+			String variable = jsonObject.getString("variable");
+			
+			System.out.println("1"+variable);
+			System.out.println("2"+station);
+			JSONObject respuesta = new JSONObject();
+			respuesta.put("data", sensorService.history(station, variable, escala));
+			return sensorService.history(station, variable, escala).toString();
+		}
+	 * @param filtro
+	 * @return
+	 */
+
 	
 	
 	 

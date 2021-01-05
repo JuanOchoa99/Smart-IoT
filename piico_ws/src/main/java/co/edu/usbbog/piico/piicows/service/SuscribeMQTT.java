@@ -50,7 +50,7 @@ public class SuscribeMQTT implements MqttCallback{
 		MqttClient clienteJava = null;
 		MqttConnectOptions connectOptions;
 		String topic = "sen_j";
-		String broker = "tcp://mqtt.eclipse.org:1883";
+		String broker = "tcp://broker.hivemq.com:1883";
 		String clientID = MqttClient.generateClientId();
 		Boolean pub = true;
 		Boolean subs = true;

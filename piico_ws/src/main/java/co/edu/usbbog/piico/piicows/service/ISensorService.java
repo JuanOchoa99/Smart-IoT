@@ -22,4 +22,5 @@ public interface ISensorService {
 	public JSONObject realTime(Sensor sensor, Nodo nodo);
 	public JSONArray history(String stationIn, String variable, String escala);
 	JSONArray comparativa(String Sensor, String variable, String escala);
+	JSONArray valorActual(String stationIn, String variable);
 }
