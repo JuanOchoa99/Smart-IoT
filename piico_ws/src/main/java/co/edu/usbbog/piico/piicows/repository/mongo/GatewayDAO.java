@@ -3,6 +3,7 @@ package co.edu.usbbog.piico.piicows.repository.mongo;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -87,6 +88,19 @@ public class GatewayDAO implements IGatewayDAO{
 			mongoDatabase = conexion.getConnection().getDatabase(conexion.getDatabase());
 			mongoCollection = mongoDatabase.getCollection("sen_p", Gateway.class).withCodecRegistry(pojoCodecRegistry);
 			List<Gateway> gateways = mongoCollection.find(Filters.eq("nodos.node_id", stationID)).sort(new BasicDBObject("nodos.node_id",-1)).into(new ArrayList<Gateway>());
+			//List<Gateway> gateways = mongoCollection.find(Filters.eq("nodos.node_id", stationID)).into(new ArrayList<Gateway>());
+			conexion.desconectar();
+			return gateways;
+		} catch (Exception e) {
+			return new ArrayList<Gateway>();
+		}
+	}
+	public List<Gateway> findByNodoDate(LocalDate fecha) {
+		try {
+			conexion.conectar();
+			mongoDatabase = conexion.getConnection().getDatabase(conexion.getDatabase());
+			mongoCollection = mongoDatabase.getCollection("sen_p", Gateway.class).withCodecRegistry(pojoCodecRegistry);
+			List<Gateway> gateways = mongoCollection.find(Filters.eq("nodos.date",fecha)).sort(new BasicDBObject("nodos.date",-1)).into(new ArrayList<Gateway>());
 			//List<Gateway> gateways = mongoCollection.find(Filters.eq("nodos.node_id", stationID)).into(new ArrayList<Gateway>());
 			conexion.desconectar();
 			return gateways;

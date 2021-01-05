@@ -181,7 +181,6 @@ public class SensorService implements ISensorService{
 		Boolean agregado = false;
 		System.out.println("Fecha: "+dia);
 		System.out.println("Estacion: "+estacion);
-
 		List<ComparativeDataDTO> datosDia = new ArrayList();
 		List<List <ComparativeDataDTO>> listas = new ArrayList();
 		JSONObject json = new JSONObject();
@@ -434,6 +433,15 @@ public class SensorService implements ISensorService{
 
 	public JSONObject realTime(Sensor sensor, Nodo nodo) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public JSONArray buscarValor(LocalDate fecha, String variable, String escala) {
+		List<Gateway> gateways = gatewayDAO.findByNodoDate(fecha);
+		gateways.stream().forEach((p)-> {
+			System.out.println(p);
+		});
 		return null;
 	}
 

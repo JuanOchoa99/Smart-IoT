@@ -72,7 +72,7 @@ public class SensorsController {
 	}
 	
 	@PostMapping(value="/findByDate")
-	public @ResponseBody String fyndByDate(@RequestBody String filtro) {
+	public @ResponseBody String findByDate(@RequestBody String filtro) {
 		
 		JSONObject jsonObject = new JSONObject(filtro);
 		
