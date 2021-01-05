@@ -33,8 +33,6 @@ import co.edu.usbbog.piico.piicows.repository.mysql.ISensorRepository;
 @Service
 public class SensorService implements ISensorService{
 	
-	@Autowired
-	private ISensorRepository sensorRepo;
 	
 	
 	private GatewayDAO gatewayDAO = new GatewayDAO();

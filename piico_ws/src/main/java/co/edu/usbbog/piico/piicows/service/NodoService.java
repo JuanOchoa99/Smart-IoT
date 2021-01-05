@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
 import co.edu.usbbog.piico.piicows.repository.mysql.INodoRepository;
 
@@ -16,10 +15,8 @@ public class NodoService implements INodoService{
 
 	@Override
 	public List<Nodo> findAll() {
-		List<Nodo> listNodo = nodoRepo.findAll();
-		System.out.println(""+listNodo.toString());
-		System.out.println(""+listNodo);
-		return listNodo;
+		List<Nodo> listNodos= nodoRepo.findAll();
+		return listNodos;
 	}
 
 	@Override

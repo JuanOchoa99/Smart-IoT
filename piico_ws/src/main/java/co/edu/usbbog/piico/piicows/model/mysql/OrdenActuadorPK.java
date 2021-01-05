@@ -10,7 +10,7 @@ import org.json.JSONObject;
  * 
  */
 @Embeddable
-public class OrdenActuadorPK implements Serializable {
+public class OrdenactuadorPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
@@ -20,13 +20,13 @@ public class OrdenActuadorPK implements Serializable {
 	@Column(insertable=false, updatable=false, unique=true, nullable=false, length=45)
 	private String actuador;
 
-	public OrdenActuadorPK() {
+	public OrdenactuadorPK() {
 	}
-	public OrdenActuadorPK(String id) {
+	public OrdenactuadorPK(String id) {
 		super();
 		this.id = id;
 	}
-	public OrdenActuadorPK(String id, String actuador) {
+	public OrdenactuadorPK(String id, String actuador) {
 		super();
 		this.id = id;
 		this.actuador = actuador;
@@ -49,10 +49,10 @@ public class OrdenActuadorPK implements Serializable {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof OrdenActuadorPK)) {
+		if (!(other instanceof OrdenactuadorPK)) {
 			return false;
 		}
-		OrdenActuadorPK castOther = (OrdenActuadorPK)other;
+		OrdenactuadorPK castOther = (OrdenactuadorPK)other;
 		return 
 			this.id.equals(castOther.id)
 			&& this.actuador.equals(castOther.actuador);
@@ -76,7 +76,7 @@ public class OrdenActuadorPK implements Serializable {
 		json.put("actuador_id", this.getActuador());
 		return json;
 	}
-	public OrdenActuadorPK fromJson(JSONObject json) {		
+	public OrdenactuadorPK fromJson(JSONObject json) {		
 		this.setId(json.getString("id"));
 		this.setActuador(json.getString("apellidos"));
 		return this;

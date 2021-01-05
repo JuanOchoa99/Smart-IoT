@@ -64,7 +64,7 @@ public class SuscribeMQTT implements MqttCallback {
 	public void prueba() {
 		String topic = "sta_j";
 		int qos = 2;
-		String broker = "tcp://mqtt.eclipse.org:1883";
+		String broker = "tcp://broker.hivemq.com:1883";
 		String clientId = "AsyncPIICO";
 		MemoryPersistence persistence = new MemoryPersistence();
 
