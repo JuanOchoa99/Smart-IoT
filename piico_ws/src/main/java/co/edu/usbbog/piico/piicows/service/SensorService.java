@@ -90,6 +90,7 @@ public class SensorService implements ISensorService{
 						JSONObject json = new JSONObject();
 						LocalDateTime dateTime = LocalDateTime.parse(gateway.getDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 						LocalDate date = dateTime.toLocalDate();
+						
 						//System.out.println(date);
 						json.put("date", date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 						Float numero = Float.parseFloat(dato.getValue());
@@ -193,6 +194,7 @@ public class SensorService implements ISensorService{
 				System.out.println("Estacion1: "+hd.getEstacion());
 				if(hd.getEstacion().equals(estacion)) {
 					datosDia.add(hd);
+					System.out.println("Lo agrego aca");
 				}else {
 					System.out.println("Fecha2: "+hd.getDate());
 					System.out.println("Estacion2: "+hd.getEstacion());
@@ -200,30 +202,58 @@ public class SensorService implements ISensorService{
 					listas.add(datosDia);
 					Double valor = maximoComparativa(listas);
 					json.put(estacion, valor);
+					if (estacion.equals("estacion_1")){
+						json.put("color", "#bfbffd");
+					}else if (estacion.equals("estacion_2")){
+						json.put("color2", "#7474F0");
+					}else {
+						json.put("color3", "#952FFE");
+					}
 					estacion = hd.getEstacion();
 					datosDia = new ArrayList();
 					datosDia.add(hd);
+					System.out.println("Lo agrego aca 2");
 					System.out.println("json: "+json);
 				}
-			}else {
-				if (agregado = false){
+			}else{
+				System.out.println("---------------------------------------------------------");
 					listas.add(datosDia);
-					Double valor = maximoComparativa(listas);
-					json.put(estacion, valor);
-					datosDia = new ArrayList();
-					json.put("date", fecha);
+				Double valor = maximoComparativa(listas);
+				json.put(estacion, valor);
+				if (estacion.equals("estacion_1")){
+					json.put("color", "#bfbffd");
+				}else if (estacion.equals("estacion_2")){
+					json.put("color2", "#7474F0");
+				}else {
+					json.put("color3", "#952FFE");
 				}
-				
+				datosDia = new ArrayList();
 				datosDia.add(hd);
 				agregado = false;
-				fecha = hd.getDate();
 				dia = hd.getDate();
 				estacion = hd.getEstacion();
+				json.put("date", fecha);
+				System.out.println("Json Resultado: "+json);
 				resultado.put(json);
+				
+				fecha = hd.getDate();
 				json = new JSONObject();
 				
 			}
 		}
+		listas.add(datosDia);
+		Double valor = maximoComparativa(listas);
+		json.put(estacion, valor);
+		datosDia = new ArrayList();
+		if (estacion.equals("estacion_1")){
+			json.put("color", "#bfbffd");
+		}else if (estacion.equals("estacion_2")){
+			json.put("color2", "#7474F0");
+		}else {
+			json.put("color3", "#952FFE");
+		}
+		json.put("date", fecha);
+		resultado.put(json);
 		System.out.println("Resultado: "+resultado);
 		return resultado;
 	}

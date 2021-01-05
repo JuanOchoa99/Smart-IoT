@@ -85,7 +85,7 @@ public class SensorsController {
 	}
 	
 	@PostMapping(value="/balance")
-	public void balance(@RequestBody String filtro) {
+	public @ResponseBody String balance(@RequestBody String filtro) {
 		
 		JSONObject jsonObject = new JSONObject(filtro);
 		
@@ -97,7 +97,7 @@ public class SensorsController {
 		System.out.println("Sensor"+sensor);
 		System.out.println("variable"+variable);
 		JSONObject respuesta = new JSONObject();
-		sensorService.comparativa(sensor, escala, variable);
+		return sensorService.comparativa(sensor, escala, variable).toString();
 	}
 	
 	/**
