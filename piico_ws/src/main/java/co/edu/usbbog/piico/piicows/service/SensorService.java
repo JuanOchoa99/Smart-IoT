@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.edu.usbbog.piico.piicows.model.ComparativeDataDTO;
 import co.edu.usbbog.piico.piicows.model.HistoryDataDTO;
+import co.edu.usbbog.piico.piicows.model.MapDataDTO;
 import co.edu.usbbog.piico.piicows.model.mongo.Data;
+import co.edu.usbbog.piico.piicows.model.mongo.GPS;
 import co.edu.usbbog.piico.piicows.model.mongo.Gateway;
 import co.edu.usbbog.piico.piicows.model.mongo.Station;
 import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
@@ -109,7 +111,7 @@ public class SensorService implements ISensorService{
 
 	
 	@Override
-	public JSONArray comparativa(String sensor, String escala, String variable) {
+	public JSONArray comparativa(String sensor, String escala, String variable, LocalDate fechaIni, LocalDate fechaFin) {
 		List<Gateway> gateways = gatewayDAO.find();
 		//gateways.stream().forEach(System.out::println);
 		JSONArray array = new JSONArray();
@@ -122,12 +124,15 @@ public class SensorService implements ISensorService{
 						JSONObject json = new JSONObject();
 						LocalDateTime dateTime = LocalDateTime.parse(gateway.getDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 						LocalDate date = dateTime.toLocalDate();
-						json.put("date", date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-						//System.out.println(dato.getValue());
-						Float numero = Float.parseFloat(dato.getValue());
-						json.put("price",numero);
-						json.put("estacion", station.getNode_id());
-						array.put(json);					
+						if ((date.equals(fechaIni) || date.isAfter(fechaIni)) && (date.equals(fechaFin) || date.isBefore(fechaFin))) {
+							json.put("date", date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+							//System.out.println(dato.getValue());
+							Float numero = Float.parseFloat(dato.getValue());
+							json.put("price",numero);
+							json.put("estacion", station.getNode_id());
+							array.put(json);
+						}
+					
 					}
 				}
 			}
@@ -199,7 +204,15 @@ public class SensorService implements ISensorService{
 					System.out.println("Estacion2: "+hd.getEstacion());
 					agregado = true;
 					listas.add(datosDia);
-					Double valor = maximoComparativa(listas);
+					Double valor = null;
+					if(escala.equals("Max")) {
+						valor = maximoComparativa(listas);
+					}else if(escala.equals("Min")) {
+						valor = minimoComparativa(listas);
+					}else if(escala.equals("Pro")){
+						valor = promedioComparativa(listas);
+					}
+					 
 					json.put(estacion, valor);
 					if (estacion.equals("estacion_1")){
 						json.put("color", "#bfbffd");
@@ -231,7 +244,7 @@ public class SensorService implements ISensorService{
 				agregado = false;
 				dia = hd.getDate();
 				estacion = hd.getEstacion();
-				json.put("date", fecha);
+				json.put("fecha", fecha);
 				System.out.println("Json Resultado: "+json);
 				resultado.put(json);
 				
@@ -251,7 +264,7 @@ public class SensorService implements ISensorService{
 		}else {
 			json.put("color3", "#952FFE");
 		}
-		json.put("date", fecha);
+		json.put("fecha", fecha);
 		resultado.put(json);
 		System.out.println("Resultado: "+resultado);
 		return resultado;
@@ -276,6 +289,56 @@ public class SensorService implements ISensorService{
 
 		return max;
 	}
+	public Double minimoComparativa(List<List<ComparativeDataDTO>> listas) {
+		double min = 0;
+		for (int i = 0; i < listas.size(); i++) {
+			List<ComparativeDataDTO> listaDia = listas.get(i);
+			List<Double> t = new ArrayList<Double>();
+			for (ComparativeDataDTO valor : listaDia) {
+				t.add(valor.getPrice());
+			}
+			if (t.size() > 0) {
+	         	   JSONObject json = new JSONObject();
+	         	   double max = 0;
+	                for (int w = 0; w < t.size(); w++) {
+	                    if (t.get(w) > max) {
+	                        max = t.get(w);
+	                    }
+	                }
+	                min = max;
+	                for (int w = 0; w < t.size(); w++) {
+	                    if (t.get(w) < min) {
+	                        min = t.get(w);
+	                    }
+	                }
+				}
+		}
+
+		return min;
+	}
+	
+	public Double promedioComparativa(List<List<ComparativeDataDTO>> listas) {
+  	    double promedio = 0;
+		double min = 0;
+		for (int i = 0; i < listas.size(); i++) {
+			List<ComparativeDataDTO> listaDia = listas.get(i);
+			List<Double> t = new ArrayList<Double>();
+			for (ComparativeDataDTO valor : listaDia) {
+				t.add(valor.getPrice());
+			}
+			if (t.size() > 0) {
+	         	   JSONObject json = new JSONObject();
+
+	                for (int w = 0; w < t.size(); w++) {
+	             	   promedio += t.get(w);
+	                }
+	                promedio = promedio/t.size();
+				}
+		}
+
+		return promedio;
+	}
+	
 	public JSONArray organizarData(JSONArray valores, String escala) {
 		
 		System.out.println("Valores: "+valores.toString());
@@ -418,7 +481,13 @@ public class SensorService implements ISensorService{
 		}		
 		return datos;
 	}
-
+	private List<MapDataDTO> convertJsonArrayMap(JSONArray valores) {
+		List<MapDataDTO> datos = new ArrayList();
+		for (int i = 0; i < valores.length() ; i++) {
+			datos.add(new MapDataDTO().fromJson(valores.getJSONObject(i)));
+		}		
+		return datos;
+	}
 	@Override
 	public JSONObject comparativa(Sensor sensor, LocalDateTime inicio, LocalDateTime fin, String escala) {
 		// TODO Auto-generated method stub
@@ -443,6 +512,81 @@ public class SensorService implements ISensorService{
 			System.out.println(p);
 		});
 		return null;
+	}
+	
+	@Override
+	public JSONArray mapa(){
+		List<Gateway> gateways = gatewayDAO.find();
+		//gateways.stream().forEach(System.out::println);
+		JSONArray array = new JSONArray();
+		for (Gateway gateway : gateways) {
+			List<Station> stations = gateway.getNodos();
+			for (Station station : stations) {
+				GPS datos = station.getGps();
+				JSONObject json = new JSONObject();
+				LocalDateTime dateTime = LocalDateTime.parse(gateway.getDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+				LocalDate date = dateTime.toLocalDate();
+				json.put("date", date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+				//System.out.println(dato.getValue());
+				Float lat = datos.getLat();
+				Float lon = datos.getLon();
+				json.put("lan",lat);
+				json.put("lon",lon);
+				json.put("estacion", station.getNode_id());
+				array.put(json);
+			}
+		}
+		array = organizarDataMapa(array);
+		return array;
+		
+	}
+
+	private JSONArray organizarDataMapa(JSONArray valores) {
+		System.out.println("Valores: "+valores.toString());
+		
+		List<MapDataDTO> datos1 = convertJsonArrayMap(valores);
+		datos1.sort(Comparator.comparing(MapDataDTO::getDate));
+		List<MapDataDTO> datos = datos1;
+		datos.sort(Comparator.comparing(MapDataDTO::getEstacion));
+		System.out.println("Datos: "+datos.toString());
+		JSONArray resultado = new JSONArray();
+		LocalDate dia = datos.get(0).getDate();
+		String estacion = datos.get(0).getEstacion();
+		Double lat = datos.get(0).getLan();
+		Double lon = datos.get(0).getLon(); 
+		System.out.println("Fecha: "+dia);
+		System.out.println("Estacion: "+estacion);
+		List<ComparativeDataDTO> datosDia = new ArrayList();
+		List<List <ComparativeDataDTO>> listas = new ArrayList();
+		JSONObject json = new JSONObject();
+		for (MapDataDTO hd : datos) {
+			System.out.println("Fecha: "+hd.getDate());
+			System.out.println("Estacion: "+hd.getEstacion());
+			if ((hd.getEstacion().equals(estacion))){
+				System.out.println("Fecha1: "+hd.getDate());
+				System.out.println("Estacion1: "+hd.getEstacion());
+				if(hd.getDate().isAfter(dia)) {
+					lat = hd.getLan();
+					lon = hd.getLon();
+				}
+			}else{
+				json.put("title", estacion);
+				json.put("latitude", lat);
+				json.put("longitude", lon);
+				dia = hd.getDate();
+				estacion = hd.getEstacion();
+				System.out.println("Json Resultado: "+json);
+				resultado.put(json);
+				json = new JSONObject();
+				
+			}
+		}
+		json.put("title", estacion);
+		json.put("latitude", lat);
+		json.put("longitude", lon);
+		System.out.println("Json Resultado: "+json);
+		resultado.put(json);
+		return resultado;
 	}
 
 	

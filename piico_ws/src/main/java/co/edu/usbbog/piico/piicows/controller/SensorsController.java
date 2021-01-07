@@ -1,5 +1,7 @@
 package co.edu.usbbog.piico.piicows.controller;
 
+import java.time.LocalDate;
+
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,12 +94,20 @@ public class SensorsController {
 		String escala = jsonObject.getString("escala");
 		String sensor = jsonObject.getString("sensor");
 		String variable = jsonObject.getString("variable");
+		LocalDate fechaIni = LocalDate.parse(jsonObject.getString("fechaIni"));
+		LocalDate fechaFin = LocalDate.parse(jsonObject.getString("fechaFin"));
 		
 		System.out.println("Escala"+escala);
 		System.out.println("Sensor"+sensor);
 		System.out.println("variable"+variable);
 		JSONObject respuesta = new JSONObject();
-		return sensorService.comparativa(sensor, escala, variable).toString();
+		return sensorService.comparativa(sensor, escala, variable, fechaIni, fechaFin).toString();
+	}
+	
+	@GetMapping(value="/map")
+	public @ResponseBody String map() {
+		
+		return sensorService.mapa().toString();
 	}
 	
 	/**

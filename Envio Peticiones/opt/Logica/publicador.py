@@ -4,7 +4,7 @@ import paho.mqtt.client as mqtt
 def main():
 
     client = mqtt.Client('piicoPub')  # Creación del cliente?Ė
-    client.connect(host='mqtt.eclipse.org', port=1883)
+    client.connect(host='broker.hivemq.com', port=1883)
     topic = "sen_j"
 
     pruebaMongo = {
