@@ -1,0 +1,184 @@
+{% extends "Dashboard.html" %}
+{% load static %}
+{% block content %}
+<div class="page-title-area">
+    <div class="row align-items-center">
+        <div class="col-sm-6">
+            <div class="breadcrumbs-area clearfix">
+                <h4 class="page-title pull-left">Variables Ambientales</h4>
+                <ul class="breadcrumbs pull-left">
+                    <li><a href="index3.html">Variables Ambientales</a></li>
+                    <li><span>Temperatura</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-6 clearfix">
+            <div class="user-profile pull-right">
+                <img class="avatar user-thumb" src="{% static 'assets/images/author/avatar.png' %}" alt="avatar">
+                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Usuario <i class="fa fa-angle-down"></i>
+                </h4>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- page title area end -->
+<div class="main-content-inner">
+    <!-- bar chart start -->
+    <div class="row">
+        <div class="col-lg-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-0">Historial</h4>
+                    <select id="nodo" class="custome-select border-0 pr-3" onclick="actualizaHistory('Temperature')">
+                        <option value="estacion_1" selected>Nodo 1</option>
+                        <option value="estacion_2">Nodo 2</option>
+                        <option value="estacion_3">Nodo 3</option>
+                    </select>
+                    <select id="escala" class="custome-select border-0 pr-3" onclick="actualizaHistory('Temperature')">
+                        <option value="max" selected>Máximo</option>
+                        <option value="min">Mínimo</option>
+                        <option value="pro">Promedio</option>
+                    </select>
+                    <div id="amlinechart5"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <select id="escala" class="custome-select border-0 pr-3"
+                        onclick="actualizaBalance('Solar_radiation')">
+                        <option value="max" selected>Máximo</option>
+                        <option value="min">Mínimo</option>
+                        <option value="pro">Promedio</option>
+                    </select>
+                    <select id="variable" class="custome-select border-0 pr-3"
+                        onclick="actualizaBalance('Solar_radiation')">
+                        <option value="ano" selected>Año</option>
+                        <option value="mes">mes</option>
+                        <option value="dia">Dia</option>
+                    </select>
+                    <div id="ambarchart1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mt-5">
+            <div class="card">
+                <div class="card-body" id="cargarTabla">
+                    <div class="d-sm-flex justify-content-between align-items-center">
+                        <h4 class="header-title mb-0">Buscar valor</h4>
+                    </div>
+                    <select id="year" class="custome-select border-0 pr-3">
+                        <option selected>2020</option>
+                        <option value="0">2019</option>
+                    </select>
+                    <select id="month" class="custome-select border-0 pr-3">
+                        <option selected value="01">Enero</option>
+                        <option value="02">Febrero</option>
+                        <option value="03">Marzo</option>
+                        <option value="04">Abril</option>
+                        <option value="05">Mayo</option>
+                        <option value="06">Junio</option>
+                        <option value="07">Julio</option>
+                        <option value="08">Agosto</option>
+                        <option value="09">Septiembre</option>
+                        <option value="10">Octubre</option>
+                        <option value="11">Noviembre</option>
+                        <option value="12">Diciembre</option>
+                    </select>
+                    <select id="day" class="custome-select border-0 pr-3">
+                        <option selected value="01">01</option>
+                        <option data-value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                    <select id="escalaNodo" class="custome-select border-0 pr-3">
+                        <option value="max" selected>Máximo</option>
+                        <option value="min">Mínimo</option>
+                        <option value="pro">Promedio</option>
+                    </select>
+                    <button class="btn btn-xs btn-primary pr-3 cargarTabla" data-role="button"
+                        onclick="cargarTabla('Temperature')">Buscar valores</button>
+                    <div class="market-status-table mt-4">
+                        <div class="table-responsive">
+                            <table class="dbkit-table">
+                                <thead class="heading-td">
+                                    <tr>
+                                        <td class="nodo">Nodo</td>
+                                        <td class="estado">Estado</td>
+                                        <td class="valor">Valor</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="buscarValor">
+
+                                </tbody>
+                                <!--<tr>
+                                    <td class="nodo">Nodo 1</td>
+                                    <td class="estado">Inactivo <img src="{% static 'assets/images/icon/market-value/triangle-down.png' %}"
+                                            alt="icon"></td>
+                                    <td class="valor" id="valor1">{{ nodos.estacion_1 }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="nodo">Nodo 2</td>
+                                    <td class="estado">Activo <img src="{% static 'assets/images/icon/market-value/triangle-up.png' %}"
+                                            alt="icon"></td>
+                                    <td class="valor" id="valor2">{{ nodos.estacion_2 }}</td>
+                                </tr>-->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="header-title mb-0">Termometro
+                        <select id="valorNodo" class="custome-select border-0 pr-3">
+                            <option value="01">Nodo 1</option>
+                            <option selected value="02">Nodo 2</option>
+                            <option value="03">Nodo 3</option>
+                        </select>
+                        <button class="btn btn-xs btn-primary pr-3 cargarTabla" data-role="button"
+                            onclick="buscarValorActual('Temperature')">Buscar valor actual</button>
+                    </h2>
+                    <div id="valorActual" onload="buscarValorActualIni()" value="Temperature">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- bar chart end -->
+    </div>
+</div>
+{% endblock %}

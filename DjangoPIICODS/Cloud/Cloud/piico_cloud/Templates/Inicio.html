@@ -1,0 +1,244 @@
+{% extends "Dashboard.html" %}
+{% load static %}
+{% block content %}
+<div class="main-content-inner">
+    <div class="row">
+        <div class="col-lg-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Ubicación de la estación</h4>
+                    <div id="ambarchart7"></div>
+                </div>
+            </div>
+        </div>                 
+        <div class="col-lg-6 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Estaciones</h4>
+                    <div class="single-table">
+                        <div class="table-responsive">
+                            <table class="table text-center">
+                                <h6 class="header-title">Estación 1</h6>
+                                <thead class="text-uppercase">
+                                    <tr class="table-active">
+                                        <th scope="col">Variable</th>
+                                        <th scope="col">Valor actual</th>
+                                        <th scope="col">Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-primary">
+                                        <td>Temperatura</td>
+                                        <td>27°</td>
+                                        <td>On</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <td>Humedad</td>
+                                        <td>15%</td>
+                                        <td>On</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <td>Pluviometró</td>
+                                        <td>100ml</td>
+                                        <td>On</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <td>Radiación</td>
+                                        <td>1W/m2</td>
+                                        <td>On</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <td>Anemómetro</td>
+                                        <td>80Km/h</td>
+                                        <td>On</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <td>Dirección del viento</td>
+                                        <td>Norte</td>
+                                        <td>On</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table text-center">    
+                                <h6 class="header-title">Estación 2</h6>           
+                                <thead class="text-uppercase">
+                                    <tr class="table-active">
+                                        <th scope="col">Variable</th>
+                                        <th scope="col">Valor actual</th>
+                                        <th scope="col">Estado</th>
+                                    </tr>
+                                </thead>
+                                    <tbody>
+                                    <tr class="table-success">
+                                        <td>Temperatura</td>
+                                        <td>27°</td>
+                                        <td>On</td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <td>Humedad</td>
+                                        <td>15%</td>
+                                        <td>On</td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <td>Pluviometró</td>
+                                        <td>100ml</td>
+                                        <td>On</td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <td>Radiación</td>
+                                        <td>2W/m2</td>
+                                        <td>Off</td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <td>Anemómetro</td>
+                                        <td></td>
+                                        <td>Off</td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <td>Dirección del viento</td>
+                                        <td></td>
+                                        <td>Off</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table text-center">    
+                                <h6 class="header-title">Estación 3</h6>           
+                                <thead class="text-uppercase">
+                                    <tr class="table-active">
+                                        <th scope="col">Variable</th>
+                                        <th scope="col">Valor actual</th>
+                                        <th scope="col">Estado</th>
+                                    </tr>
+                                </thead>
+                                    <tr class="table-danger">
+                                        <td>Temperatura</td>
+                                        <td></td>
+                                        <td>Off</td>
+                                    </tr>
+                                    <tr class="table-danger">
+                                        <td>Humedad</td>
+                                        <td>15%</td>
+                                        <td>On</td>
+                                    </tr>
+                                    <tr class="table-danger">
+                                        <td>Pluviometró</td>
+                                        <td>100ml</td>
+                                        <td>On</td>
+                                    </tr>
+                                    <tr class="table-danger">
+                                        <td>Radiación</td>
+                                        <td>1W/m2</td>
+                                        <td>On</td>
+                                    </tr>
+                                    <tr class="table-danger">
+                                        <td>Anemómetro</td>
+                                        <td>80Km/h</td>
+                                        <td>On</td>
+                                    </tr>
+                                    <tr class="table-danger">
+                                        <td>Dirección del viento</td>
+                                        <td>Norte</td>
+                                        <td>On</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Broker</h4>
+                    <div class="single-table">
+                        <div class="table-responsive">
+                            <table class="table text-center">
+                                <h6 class="header-title"  title="Destinatario de los datos">Suscriptores activos</h6>
+                                <thead class="text-uppercase">
+                                    <tr class="table-active">
+                                        <th scope="col">Topico</th>
+                                        <th scope="col">Usuario</th>
+                                        <th scope="col">Contraseña</th>
+                                        <th scope="col">Puerto</th>
+                                        <th scope="col">Host</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-primary">
+                                        <th>PIICO</th>
+                                        <td>Admin</td>
+                                        <td>Pjsfdhf67</td>
+                                        <td>1883</td>
+                                        <td>192.168.0.22</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <th>PIICO/SB</th>
+                                        <td>User</td>
+                                        <td>Hjhgjhg5</td>
+                                        <td>1883</td>
+                                        <td>192.168.0.25</td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table text-center">
+                                <h6 class="header-title"  title="Origen de los datos">Publicadores activos</h6>
+                                <thead class="text-uppercase">
+                                    <tr class="table-active">
+                                        <th scope="col">Topico</th>
+                                        <th scope="col">Usuario</th>
+                                        <th scope="col">Contraseña</th>
+                                        <th scope="col">Puerto</th>
+                                        <th scope="col">Host</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-danger">
+                                        <th>PIICO</th>
+                                        <td>Admin</td>
+                                        <td>Pjsfdhf67</td>
+                                        <td>1883</td>
+                                        <td>192.168.0.22</td>
+                                    </tr>
+                                    <tr class="table-danger">
+                                        <th>PIICO/SB</th>
+                                        <td>User</td>
+                                        <td>Hjhgjhg5</td>
+                                        <td>1883</td>
+                                        <td>192.168.0.25</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- seo fact area start -->
+        <div class="col-lg-6 mt-5">
+            <div id="chart-container"></div>
+        </div>
+        <!-- testimonial area end -->
+    </div>
+</div>
+
+{% endblock %}
