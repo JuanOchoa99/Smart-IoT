@@ -1,5 +1,6 @@
 package co.edu.usbbog.piico.piicows.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public interface ISensorService {
 	public JSONObject estados(Sensor sensor, LocalDateTime fecha, String type);
 	public JSONObject realTime(Sensor sensor, Nodo nodo);
 	public JSONArray history(String stationIn, String variable, String escala);
-	public JSONArray buscar(LocalDateTime fecha, String variable, String escala);
+	public JSONArray buscarValor(LocalDate fecha, String variable, String escala);
+	public JSONArray buscarValorActual(String estacion, String variable);
 	JSONArray comparativa(String Sensor, String variable, String escala);
 }

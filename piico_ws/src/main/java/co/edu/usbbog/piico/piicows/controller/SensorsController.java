@@ -1,5 +1,6 @@
 package co.edu.usbbog.piico.piicows.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -54,9 +55,17 @@ public class SensorsController {
 		return null;
 	}
 	
-	@PostMapping(value="/find")
-	public @ResponseBody String find(@RequestBody String sensor) {
-		return null;
+	@PostMapping(value="/findValue")
+	public @ResponseBody String find(@RequestBody String filtro) {
+		
+		JSONObject jsonObject = new JSONObject(filtro);
+		String estacion = jsonObject.getString("estacion");
+		String variable = jsonObject.getString("variable");
+		System.out.println("estacion: "+estacion);
+		System.out.println("variable: "+variable);
+		JSONObject respuesta = new JSONObject();
+		respuesta.put("data", sensorService.buscarValorActual(estacion, variable));
+		return sensorService.buscarValorActual(estacion, variable).toString();
 	}
 	
 	@PostMapping(value="/list")
@@ -78,13 +87,14 @@ public class SensorsController {
 	public @ResponseBody String fyndByDate(@RequestBody String filtro) {
 		
 		JSONObject jsonObject = new JSONObject(filtro);
-		
-		String fecha = jsonObject.getString("date");
+		System.out.println("Request: "+filtro);
+		LocalDate fecha = LocalDate.parse(jsonObject.getString("date"));
 		String escala = jsonObject.getString("escala");
+		String variable = jsonObject.getString("variable");
 		JSONObject respuesta = new JSONObject();
-		//respuesta.put("data", sensorService.history(station, variable, escala));
+		respuesta.put("data", sensorService.buscarValor(fecha, variable, escala));
 		//return sensorService.history(station, variable, escala).toString();
-		return null;
+		return sensorService.buscarValor(fecha, variable, escala).toString();
 	}
 	
 	@PostMapping(value="/balance")
@@ -102,9 +112,4 @@ public class SensorsController {
 		//return sensorService.history(station, variable, escala).toString();
 		return null;
 	}
-	
-	
-	
-	
-	 
 }

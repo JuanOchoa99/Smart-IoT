@@ -3,6 +3,7 @@ package co.edu.usbbog.piico.piicows.repository.mongo;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -11,6 +12,7 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.types.ObjectId;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.Block;
 import com.mongodb.DBCursor;
 import com.mongodb.MongoClientSettings;
@@ -85,7 +87,20 @@ public class GatewayDAO implements IGatewayDAO{
 			conexion.conectar();
 			mongoDatabase = conexion.getConnection().getDatabase(conexion.getDatabase());
 			mongoCollection = mongoDatabase.getCollection("sen_p", Gateway.class).withCodecRegistry(pojoCodecRegistry);
-			List<Gateway> gateways = mongoCollection.find(Filters.eq("nodos.node_id", stationID)).into(new ArrayList<Gateway>());
+			List<Gateway> gateways = mongoCollection.find(Filters.eq("nodos.node_id", stationID)).sort(new BasicDBObject("nodos.node_id",-1)).into(new ArrayList<Gateway>());
+			//List<Gateway> gateways = mongoCollection.find(Filters.eq("nodos.node_id", stationID)).into(new ArrayList<Gateway>());
+			conexion.desconectar();
+			return gateways;
+		} catch (Exception e) {
+			return new ArrayList<Gateway>();
+		}
+	}
+	public List<Gateway> findByNodoDate(LocalDate fecha) {
+		try {
+			conexion.conectar();
+			mongoDatabase = conexion.getConnection().getDatabase(conexion.getDatabase());
+			mongoCollection = mongoDatabase.getCollection("sen_p", Gateway.class).withCodecRegistry(pojoCodecRegistry);
+			List<Gateway> gateways = mongoCollection.find(Filters.eq("nodos.date",fecha)).sort(new BasicDBObject("nodos.date",-1)).into(new ArrayList<Gateway>());
 			conexion.desconectar();
 			return gateways;
 		} catch (Exception e) {
@@ -100,8 +115,7 @@ public class GatewayDAO implements IGatewayDAO{
 			mongoCollection = mongoDatabase.getCollection("sen_p", Gateway.class).withCodecRegistry(pojoCodecRegistry);
 			List<Gateway> gateways = mongoCollection.find(Filters.eq("nodos.sensors.sensor_id", sensorID)).into(new ArrayList<Gateway>());
 			conexion.desconectar();
-			System.out.println(""+sensorID);
-			System.out.println(""+gateways);
+			System.out.println(gateways);
 			return gateways;
 		} catch (Exception e) {
 			return new ArrayList<Gateway>();
@@ -120,5 +134,4 @@ public class GatewayDAO implements IGatewayDAO{
 		return null;
 	}
     
-
 }

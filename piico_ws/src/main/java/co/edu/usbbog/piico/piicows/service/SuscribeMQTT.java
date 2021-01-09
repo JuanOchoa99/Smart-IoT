@@ -47,13 +47,9 @@ public class SuscribeMQTT implements MqttCallback {
 		String data = new String(message.getPayload());
 		System.out.println("Topico: "+topic);
 		JSONObject jsonObject = new JSONObject(data);
-		if(topic.equals("sta_j")) {
-			
-		}else if(topic.equals("sen_j")) {
-			Gateway n = new Gateway().fromJson(jsonObject);
-			System.out.println("OBJETO Gateway: " + n.toString());
-			gatewayDAO.create(n);
-		}
+		Gateway n = new Gateway().fromJson(jsonObject);
+		System.out.println("OBJETO Gateway: " + n.toString());
+		gatewayDAO.create(n);
 		
 	}
 

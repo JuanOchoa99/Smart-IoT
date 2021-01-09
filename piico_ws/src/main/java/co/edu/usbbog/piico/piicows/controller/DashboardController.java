@@ -26,6 +26,7 @@ public class DashboardController {
 	
 	@GetMapping(value="/getStations")
 	public String getStations() {
+		return "";
 	}
 	
 	@GetMapping(value="/getPublishres")
