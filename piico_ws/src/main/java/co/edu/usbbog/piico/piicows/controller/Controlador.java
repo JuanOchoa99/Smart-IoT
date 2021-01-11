@@ -2,6 +2,9 @@ package co.edu.usbbog.piico.piicows.controller;
 
 
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,23 +15,26 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.usbbog.piico.piicows.config.Mqtt;
 import co.edu.usbbog.piico.piicows.config.exceptions.ExceptionMessages;
 import co.edu.usbbog.piico.piicows.config.exceptions.MqttException;
-import co.edu.usbbog.piico.piicows.model.mqtt.Req_p;
+import co.edu.usbbog.piico.piicows.model.mqtt.Act_p;
+import co.edu.usbbog.piico.piicows.service.ActuadorService;
 
 @RestController
-@RequestMapping(value = "/api/mqtt")
+@RequestMapping(value = "/api/mqtt/publish")
 public class Controlador {
-	
-	@PostMapping("publish")
-    public void publishMessage(@RequestBody @Validated Req_p messagePublishModel,
+	@Autowired
+	private ActuadorService actuadorService;
+	@PostMapping("act_p")
+    public void publishMessage(@RequestBody @Validated String filtro,
                                BindingResult bindingResult) throws org.eclipse.paho.client.mqttv3.MqttException {
         if (bindingResult.hasErrors()) {
             throw new MqttException(ExceptionMessages.SOME_PARAMETERS_INVALID);
         }
-        String mensaje = "{\"node_id\": \"Prueba de confifuracion 5454\", \"date\": \"2020-08-30 21:57:36.608547\", \"sampling_frequency\": 5, \"send_frequency\": 7, \"broker\": {\"broker_address\": \"mqtt.eclipse.org\", \"port\": \"1883\", \"qos\": \"2\", \"user\": \"gateway\", \"pass\": \"123456\"}, \"interfaces\": [{\"type\": \"wifi\", \"ssid\": \"Piico\", \"psk\": \"thisismywirelesspassword\"}, {\"type\": \"blue\", \"alias\": \"Gateway_PIICO\", \"mac\": \"A3545ETR456D\"}, {\"type\": \"xbee\", \"state\": \"active\", \"pan_id\": \"154\", \"mac\": \"A3545ETR456D\"}], \"sensors\": [{\"type\": \"tem\", \"state\": \"active\", \"sensor_id\": \"AM2315-temperature\"}, {\"type\": \"hum\", \"state\": \"active\", \"sensor_id\": \"AM2315-humidity\"}, {\"type\": \"vel\", \"state\": \"active\", \"sensor_id\": \"Wind-speed\"}, {\"type\": \"dir\", \"state\": \"active\", \"sensor_id\": \"Wind-direction\"}, {\"type\": \"plu\", \"state\": \"active\", \"sensor_id\": \"Pluviometer\"}, {\"type\": \"rad\", \"state\": \"active\", \"sensor_id\": \"Solar-radiation\"}], \"actuators\": [{\"type\": \"asp\", \"state\": \"active\", \"actuator_id\": \"Lawn-sprinkler\"}, {\"type\": \"led\", \"state\": \"active\", \"actuator_id\": \"RGB\"}]}";
+        JSONArray nodos = new JSONArray(filtro);
+        JSONObject act_p = actuadorService.construirAct_p(nodos); 
+        String mensaje = act_p.toString();
         MqttMessage mqttMessage = new MqttMessage(mensaje.getBytes());
-        mqttMessage.setQos(messagePublishModel.getQos());
-        mqttMessage.setRetained(messagePublishModel.getRetained());
-
-        Mqtt.getInstance().publish(messagePublishModel.getTopic(), mqttMessage);
+        mqttMessage.setQos(2);
+        mqttMessage.setRetained(false);
+        Mqtt.getInstance().publish("act_p", mqttMessage);
     }
 }

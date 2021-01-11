@@ -1,5 +1,7 @@
 package co.edu.usbbog.piico.piicows.service;
 
+
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -32,10 +34,15 @@ import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
 import co.edu.usbbog.piico.piicows.model.mysql.Sensor;
 import co.edu.usbbog.piico.piicows.repository.mongo.GatewayDAO;
 import co.edu.usbbog.piico.piicows.repository.mysql.ISensorRepository;
+import co.edu.usbbog.piico.piicows.repository.mysql.IUsuarioRepository;
 
 @Service
-public class SensorService implements ISensorService {
-
+public class SensorService implements ISensorService{
+	
+	@Autowired
+	private ISensorRepository sensorRepo;
+	
+	
 	private GatewayDAO gatewayDAO = new GatewayDAO();
 
 	@Override
@@ -85,21 +92,20 @@ public class SensorService implements ISensorService {
 				for (Data dato : datos) {
 					if (dato.getSensor_id().equals(variable)) {
 						JSONObject json = new JSONObject();
-						LocalDateTime dateTime = LocalDateTime.parse(gateway.getDate(),
-								DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+						LocalDateTime dateTime = LocalDateTime.parse(gateway.getDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 						LocalDate date = dateTime.toLocalDate();
 						
 						//System.out.println(date);
 						json.put("date", date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 						Float numero = Float.parseFloat(dato.getValue());
-						json.put("price", numero);
-						array.put(json);
-
+						json.put("price",numero);
+						array.put(json);		
+						
 					}
 				}
 			}
 		}
-		// System.out.println(array.toString());
+		//System.out.println(array.toString());
 		array = organizarData(array, escala);
 		return array;
 
@@ -336,21 +342,22 @@ public class SensorService implements ISensorService {
 	}
 	
 	public JSONArray organizarData(JSONArray valores, String escala) {
-
-		System.out.println("Valores: " + valores.toString());
+		
+		System.out.println("Valores: "+valores.toString());
 		List<HistoryDataDTO> datos = convertJsonArray(valores);
 		datos.sort(Comparator.comparing(HistoryDataDTO::getDate));
 		JSONArray resultado = new JSONArray();
 		LocalDate dia = datos.get(0).getDate();
 		JSONArray valores2 = valores;
+		
 
 		List<HistoryDataDTO> datosDia = new ArrayList();
-		List<List<HistoryDataDTO>> listas = new ArrayList();
+		List<List <HistoryDataDTO>> listas = new ArrayList();
 		for (HistoryDataDTO hd : datos) {
 			if (hd.getDate().isEqual(dia)){
 				datosDia.add(hd);
 				System.out.println(hd.toString());
-			} else {
+			}else {
 				dia = hd.getDate();
 				listas.add(datosDia);
 				datosDia = new ArrayList();
@@ -358,18 +365,18 @@ public class SensorService implements ISensorService {
 			}
 		}
 		listas.add(datosDia);
-		if (escala.equals("max")) {
+		if (escala.equals("max")){
 			resultado = maximo(listas);
-		} else if (escala.equals("min")) {
+		}else if(escala.equals("min")){
 			resultado = minimo(listas);
-		} else if (escala.equals("pro")) {
+		}else if(escala.equals("pro")){
 			resultado = promedio(listas);
 		}
 		return resultado;
 	}
-
-	public JSONArray maximo(List<List<HistoryDataDTO>> listas) {
-
+	
+	public JSONArray maximo(List<List <HistoryDataDTO>> listas) {
+		
 		JSONArray resultado = new JSONArray();
 
 		for (int i = 0; i < listas.size(); i++) {
@@ -381,25 +388,25 @@ public class SensorService implements ISensorService {
 				t.add(valor.getPrice());
 			}
 			if (t.size() > 0) {
-				JSONObject json = new JSONObject();
-				double max = 0;
-				for (int w = 0; w < t.size(); w++) {
-					if (t.get(w) > max) {
-						max = t.get(w);
-					}
-				}
-				// System.out.println("Máximo: " + max);
-				json.put("date", fecha);
-				json.put("price", max);
-				resultado.put(json);
-			}
+         	   JSONObject json = new JSONObject();
+         	   double max = 0;
+               for (int w = 0; w < t.size(); w++) {
+                   if (t.get(w) > max) {
+                       max = t.get(w);
+                   }
+               }
+               //System.out.println("Máximo: " + max);
+               json.put("date", fecha);
+               json.put("price",max);
+               resultado.put(json);	
+            }
 			System.out.println(resultado);
 		}
 		return resultado;
 	}
-
-	public JSONArray minimo(List<List<HistoryDataDTO>> listas) {
-
+	
+	public JSONArray minimo(List<List <HistoryDataDTO>> listas) {
+		
 		JSONArray resultado = new JSONArray();
 
 		for (int i = 0; i < listas.size(); i++) {
@@ -411,31 +418,30 @@ public class SensorService implements ISensorService {
 				t.add(valor.getPrice());
 			}
 			if (t.size() > 0) {
-				JSONObject json = new JSONObject();
-				double max = 0;
-				for (int w = 0; w < t.size(); w++) {
-					if (t.get(w) > max) {
-						max = t.get(w);
-					}
-				}
-				double min = max;
-				for (int w = 0; w < t.size(); w++) {
-					if (t.get(w) < min) {
-						min = t.get(w);
-					}
-				}
-				System.out.println("Minimo: " + min);
-				json.put("date", fecha);
-				json.put("price", min);
-				resultado.put(json);
+         	   JSONObject json = new JSONObject();
+         	   double max = 0;
+                for (int w = 0; w < t.size(); w++) {
+                    if (t.get(w) > max) {
+                        max = t.get(w);
+                    }
+                }
+                double min = max;
+                for (int w = 0; w < t.size(); w++) {
+                    if (t.get(w) < min) {
+                        min = t.get(w);
+                    }
+                }
+                System.out.println("Minimo: " + min);
+                json.put("date", fecha);
+                json.put("price",min);
+                resultado.put(json);	
 			}
 			System.out.println(resultado);
 		}
 		return resultado;
 	}
-
-	public JSONArray promedio(List<List<HistoryDataDTO>> listas) {
-
+	public JSONArray promedio(List<List <HistoryDataDTO>> listas) {
+		
 		JSONArray resultado = new JSONArray();
 
 		for (int i = 0; i < listas.size(); i++) {
@@ -447,39 +453,28 @@ public class SensorService implements ISensorService {
 				t.add(valor.getPrice());
 			}
 			if (t.size() > 0) {
-				JSONObject json = new JSONObject();
-				double promedio = 0;
-				for (int w = 0; w < t.size(); w++) {
-					promedio += t.get(w);
-				}
-				promedio = promedio / t.size();
-				json.put("date", fecha);
-				json.put("price", promedio);
-				System.out.println("Promedio: " + promedio);
-				resultado.put(json);
+         	   JSONObject json = new JSONObject();
+         	   double promedio = 0;
+                for (int w = 0; w < t.size(); w++) {
+             	   promedio += t.get(w);
+                }
+                promedio = promedio/t.size();
+                json.put("date", fecha);
+                json.put("price",promedio);
+                resultado.put(json);	
 			}
-
 			System.out.println(resultado);
 		}
 		return resultado;
 	}
-
+	
 	private List<HistoryDataDTO> convertJsonArray(JSONArray valores) {
 		List<HistoryDataDTO> datos = new ArrayList();
-		for (int i = 0; i < valores.length(); i++) {
+		for (int i = 0; i < valores.length() ; i++) {
 			datos.add(new HistoryDataDTO().fromJson(valores.getJSONObject(i)));
-		}
+		}		
 		return datos;
 	}
-
-	private List<TablaBuscaValor> convertJsonArrayTabla(JSONArray valores) {
-		List<TablaBuscaValor> datos = new ArrayList();
-		for (int i = 0; i < valores.length(); i++) {
-			datos.add(new TablaBuscaValor().fromJson(valores.getJSONObject(i)));
-		}
-		return datos;
-	}
-
 	
 	private List<ComparativeDataDTO> convertJsonArrayComparative(JSONArray valores) {
 		List<ComparativeDataDTO> datos = new ArrayList();
@@ -512,10 +507,6 @@ public class SensorService implements ISensorService {
 		return null;
 	}
 
-	@Override
-	public JSONArray buscarValor(LocalDate fecha, String variable, String escala) {
-		List<Gateway> gateways = gatewayDAO.findBySensor(variable);
-	}
 	
 	@Override
 	public JSONArray mapa(){
@@ -525,97 +516,6 @@ public class SensorService implements ISensorService {
 		for (Gateway gateway : gateways) {
 			List<Station> stations = gateway.getNodos();
 			for (Station station : stations) {
-				List<Data> datos = station.getSensors();
-				for (Data dato : datos) {
-					if (dato.getSensor_id().equals(variable)) {
-						JSONObject json = new JSONObject();
-						LocalDateTime dateTime = LocalDateTime.parse(gateway.getDate(),
-								DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
-						LocalDate date = dateTime.toLocalDate();
-						// System.out.println(date);
-						if (date.equals(fecha)) {
-							json.put("node_id", station.getNode_id());
-							json.put("date", date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-							Float numero = Float.parseFloat(dato.getValue());
-							json.put("price", numero);
-							array.put(json);
-							System.out.println("JSON " + json);
-						}
-					}
-				}
-			}
-		}
-		// System.out.println(array.toString()); Creo que no es necesario utilizar el de
-		// organizar porque no requerimos un JSON especifico para la tabla
-		array = organizarDataTabla(array, escala);
-		return array;
-	}
-
-	public Double maximoComparativaTabla(List<List<TablaBuscaValor>> listas) {
-		double max = 0;
-		for (int i = 0; i < listas.size(); i++) {
-			List<TablaBuscaValor> listaDia = listas.get(i);
-			List<Double> t = new ArrayList<Double>();
-			for (TablaBuscaValor valor : listaDia) {
-				t.add(valor.getPrice());
-			}
-			if (t.size() > 0) {
-				for (int w = 0; w < t.size(); w++) {
-					if (t.get(w) > max) {
-						max = t.get(w);
-					}
-				}
-			}
-		}
-
-		return max;
-	}
-
-	public JSONArray organizarDataTabla(JSONArray valores, String escala) {
-
-		System.out.println("Valores: " + valores.toString());
-		List<TablaBuscaValor> datos1 = convertJsonArrayTabla(valores);
-		datos1.sort(Comparator.comparing(TablaBuscaValor::getNode_id));
-		System.out.println("Datos: " + datos1.toString());
-		JSONArray resultado = new JSONArray();
-		String estacion = datos1.get(0).getNode_id();
-		Boolean agregado = false;
-		System.out.println("Estacion: " + estacion);
-		List<TablaBuscaValor> datosDia = new ArrayList();
-		List<List<TablaBuscaValor>> listas = new ArrayList();
-		JSONObject json = new JSONObject();
-		for (TablaBuscaValor hd : datos1) {
-			System.out.println("Estacion: " + hd.getNode_id());
-			if (hd.getNode_id().equals(estacion)) {
-				datosDia.add(hd);
-				System.out.println("Lo agrego aca");
-			} else {
-				System.out.println("Estacion2: " + hd.getNode_id());
-				agregado = true;
-				listas.add(datosDia);
-				Double valor = maximoComparativaTabla(listas);
-				json.put(estacion, valor);
-				estacion = hd.getNode_id();
-				datosDia = new ArrayList();
-				datosDia.add(hd);
-				System.out.println("Lo agrego aca 2");
-				System.out.println("json: " + json);
-				System.out.println("Resultado: " + resultado);
-
-			}
-		}
-		listas.add(datosDia);
-		Double valor = maximoComparativaTabla(listas);
-		json.put(estacion, valor);
-		resultado.put(json);
-		System.out.println("Resultado: " + resultado);
-		return resultado;
-	}
-
-	@Override
-	public JSONArray buscarValorActual(String estacion, String variable) {
-		List<Gateway> gateways = gatewayDAO.findByNodo(estacion);
-		// gateways.stream().forEach(System.out::println);
 				GPS datos = station.getGps();
 				JSONObject json = new JSONObject();
 				LocalDateTime dateTime = LocalDateTime.parse(gateway.getDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
@@ -798,11 +698,10 @@ public class SensorService implements ISensorService {
 				for (Data dato : datos) {
 					if (dato.getSensor_id().equals(variable)) {
 						JSONObject json = new JSONObject();
-						LocalDateTime dateTime = LocalDateTime.parse(gateway.getDate(),
+						LocalDateTime date = LocalDateTime.parse(gateway.getDate(),
 								DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
-						LocalDate date = dateTime.toLocalDate();
 						json.put("estacion", station.getNode_id());
-						json.put("date", date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+						json.put("date", date);
 						Float numero = Float.parseFloat(dato.getValue());
 						json.put("price", numero);
 						array.put(json);
@@ -864,25 +763,6 @@ public class SensorService implements ISensorService {
 			datos.add(new Estacion().fromJson(valores.getJSONObject(i)));
 		}
 		return datos;
-	}
-	public Double maximoComparativaValorActual(List<List<Estacion>> listas) {
-		double max = 0;
-		for (int i = 0; i < listas.size(); i++) {
-			List<Estacion> listaDia = listas.get(i);
-			List<Double> t = new ArrayList<Double>();
-			for (Estacion valor : listaDia) {
-				t.add(valor.getPrice());
-			}
-			if (t.size() > 0) {
-				for (int w = 0; w < t.size(); w++) {
-					if (t.get(w) > max) {
-						max = t.get(w);
-					}
-				}
-			}
-		}
-
-		return max;
 	}
 	
 }

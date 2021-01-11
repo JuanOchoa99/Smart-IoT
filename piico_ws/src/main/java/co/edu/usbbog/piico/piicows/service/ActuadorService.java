@@ -1,13 +1,31 @@
 package co.edu.usbbog.piico.piicows.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.codecs.jsr310.LocalDateTimeCodec;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.edu.usbbog.piico.piicows.model.Estacion;
+import co.edu.usbbog.piico.piicows.model.mongo.ActuadorAct_p;
+import co.edu.usbbog.piico.piicows.model.mongo.Gateway;
+import co.edu.usbbog.piico.piicows.model.mongo.NodoAct_p;
+import co.edu.usbbog.piico.piicows.model.mongo.Station;
 import co.edu.usbbog.piico.piicows.model.mysql.Actuador;
+import co.edu.usbbog.piico.piicows.repository.mongo.GatewayDAO;
+import co.edu.usbbog.piico.piicows.repository.mysql.ISensorRepository;
 
 @Service
-public class ActuadorService implements IActuadorService{
+public class ActuadorService implements IActuadorService {
+	@Autowired
+	private ISensorRepository sensorRepo;
+	private GatewayDAO gatewayDAO = new GatewayDAO();
 
 	@Override
 	public List<Actuador> findAll() {
@@ -43,6 +61,47 @@ public class ActuadorService implements IActuadorService{
 	public Boolean alter(Actuador actuador) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public JSONObject construirAct_p(JSONArray nodos) {
+		System.out.println("JSON request: "+nodos);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("Gateway_id", "Gateway_1");
+		LocalDateTime dateTime = LocalDateTime.now();
+		LocalDate date = dateTime.toLocalDate();
+		System.out.println("Fecha: " + date);
+		jsonObject.put("date", date);
+		List<NodoAct_p> lista = new ArrayList<NodoAct_p>();
+		for (int i = 0; i < nodos.length(); i++) {
+			NodoAct_p nodo = new NodoAct_p();
+			nodo.setNode_id(nodos.getJSONObject(i).getString("node_id"));
+			nodo.setDate(date);
+			nodo.setRequest("send");
+			ActuadorAct_p aspersor = new ActuadorAct_p();
+			aspersor.setActuadorId("aspersor");
+			aspersor.setOrder("active");
+			ActuadorAct_p rgb = new ActuadorAct_p();
+			rgb.setActuadorId("RGB");
+			rgb.setOrder("active");
+			List<ActuadorAct_p> actuadores = new ArrayList<ActuadorAct_p>();
+			actuadores.add(aspersor);
+			actuadores.add(rgb);
+			System.out.println("ACtuadores: "+actuadores);
+			nodo.setActuadores(actuadores);
+			System.out.println("Nodo: "+nodo.toString());
+			lista.add(nodo);
+		}
+		jsonObject.put("nodos", lista);
+		System.out.println("ACT_p: "+jsonObject);
+		return jsonObject;
+	}
+
+	private List<NodoAct_p> convertJsonArrayEstacion(JSONArray valores) {
+		List<NodoAct_p> datos = new ArrayList();
+		for (int i = 0; i < valores.length(); i++) {
+			datos.add(new NodoAct_p().fromJson(valores.getJSONObject(i)));
+		}
+		return datos;
 	}
 
 }
