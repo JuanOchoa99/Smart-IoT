@@ -85,17 +85,19 @@ public class SensorService implements ISensorService{
 	public JSONArray history(String stationIn, String variable, String escala) {
 		List<Gateway> gateways = gatewayDAO.findByNodo(stationIn);
 		JSONArray array = new JSONArray();
+		System.out.println(variable);
 		for (Gateway gateway : gateways) {
 			List<Station> stations = gateway.getNodos();
 			for (Station station : stations) {
 				List<Data> datos = station.getSensors();
 				for (Data dato : datos) {
+					System.out.println(dato.getSensor_id());
 					if (dato.getSensor_id().equals(variable)) {
 						JSONObject json = new JSONObject();
 						LocalDateTime dateTime = LocalDateTime.parse(gateway.getDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 						LocalDate date = dateTime.toLocalDate();
 						
-						//System.out.println(date);
+						System.out.println(date);
 						json.put("date", date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 						Float numero = Float.parseFloat(dato.getValue());
 						json.put("price",numero);
@@ -579,6 +581,9 @@ public class SensorService implements ISensorService{
 		json.put("title", estacion);
 		json.put("latitude", lat);
 		json.put("longitude", lon);
+		json.put("svgPath", "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S1…,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z");
+		json.put("zoomLevel", 5);
+		json.put("scale", 0.5);
 		System.out.println("Json Resultado: "+json);
 		resultado.put(json);
 		return resultado;
@@ -698,9 +703,8 @@ public class SensorService implements ISensorService{
 				for (Data dato : datos) {
 					if (dato.getSensor_id().equals(variable)) {
 						JSONObject json = new JSONObject();
-						LocalDateTime dateTime = LocalDateTime.parse(gateway.getDate(),
+						LocalDateTime date = LocalDateTime.parse(gateway.getDate(),
 								DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
-						LocalDate date = dateTime.toLocalDate();
 						json.put("estacion", station.getNode_id());
 						json.put("date", date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 						Float numero = Float.parseFloat(dato.getValue());
@@ -765,24 +769,6 @@ public class SensorService implements ISensorService{
 		}
 		return datos;
 	}
-	public Double maximoComparativaValorActual(List<List<Estacion>> listas) {
-		double max = 0;
-		for (int i = 0; i < listas.size(); i++) {
-			List<Estacion> listaDia = listas.get(i);
-			List<Double> t = new ArrayList<Double>();
-			for (Estacion valor : listaDia) {
-				t.add(valor.getPrice());
-			}
-			if (t.size() > 0) {
-				for (int w = 0; w < t.size(); w++) {
-					if (t.get(w) > max) {
-						max = t.get(w);
-					}
-				}
-			}
-		}
 
-		return max;
-	}
 	
 }
