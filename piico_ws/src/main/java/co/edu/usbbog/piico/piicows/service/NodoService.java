@@ -137,7 +137,7 @@ public class NodoService implements INodoService{
 	public Nodo findById(String nodo) {
 		try {
 			System.out.println(nodoRepo.findById(nodo).get());
-			return (Nodo) nodoRepo.findById(nodo).get();
+			return nodoRepo.findById(nodo).get();
 		}catch(java.util.NoSuchElementException e) {
 			return null;
 		}

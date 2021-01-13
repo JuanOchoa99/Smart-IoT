@@ -51,11 +51,11 @@ public class Usuario implements Serializable {
 	private List<Rol> roles;
 
 	public Usuario() {
+		
 	}
 	public Usuario(String id ) {
 		this.id = id;
 	}
-
 	public Usuario(String id, String apellidos, String correo, String nombres, String pass, String username) {
 		super();
 		this.id = id;

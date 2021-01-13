@@ -1,6 +1,7 @@
 package co.edu.usbbog.piico.piicows.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ import co.edu.usbbog.piico.piicows.model.mongo.Station;
 import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
 import co.edu.usbbog.piico.piicows.model.mysql.Sensor;
 import co.edu.usbbog.piico.piicows.repository.mongo.GatewayDAO;
+import co.edu.usbbog.piico.piicows.service.NodoService;
 import co.edu.usbbog.piico.piicows.service.SensorService;
 import co.edu.usbbog.piico.piicows.service.UsuarioService;
 
@@ -99,7 +101,6 @@ public class SensorsController {
 	public @ResponseBody String balance(@RequestBody String filtro) {
 		
 		JSONObject jsonObject = new JSONObject(filtro);
-		
 		String escala = jsonObject.getString("escala");
 		String sensor = jsonObject.getString("sensor");
 		String variable = jsonObject.getString("variable");

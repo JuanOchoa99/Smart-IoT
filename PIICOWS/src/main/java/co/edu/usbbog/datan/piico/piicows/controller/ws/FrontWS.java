@@ -161,8 +161,8 @@ public class FrontWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/insertarSensor")
-    public String insertarSensor(@WebParam(name = "id") String id) {
-        Sensor s = new Gson().fromJson(id, Sensor.class);
+    public String insertarSensor(@WebParam(name = "sensor") String sensor) {
+        Sensor s = new Gson().fromJson(sensor, Sensor.class);
         sensorFacade.create(s);
         return new Gson().toJson(s);    
     }
@@ -279,8 +279,8 @@ public class FrontWS {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/modificarUsuario  ")
-    public String modificarUsuario  (@WebParam(name = "userName") String userName) {
-        Usuario   a = new Gson().fromJson(userName, Usuario.class);
+    public String modificarUsuario  (@WebParam(name = "usuario") String usuario) {
+        Usuario   a = new Gson().fromJson(usuario, Usuario.class);
         usuarioFacade.edit(a);
         return new Gson().toJson(a);
     }

@@ -172,7 +172,7 @@ public class Auth implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Puerta de enlace: " + toJson().toString();
+		return this.toJson().toString();
 	}
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
@@ -180,9 +180,8 @@ public class Auth implements Serializable {
 		json.put("pass", this.getPass());
 		json.put("topic", this.getTopic());
 		json.put("user", this.getUser());
-		// relaciones
-		PuertaDeEnlace puertaDeEnlace = this.getPuertaDeEnlaceBean();
-		json.put("puertaDeEnlace", puertaDeEnlace.toJson().get("id"));
+		json.put("qos", this.getQos());
+		json.put("puerto", this.getPuerto());
 		return json;
 	}
 

@@ -8,10 +8,9 @@ import co.edu.usbbog.piico.piicows.model.mysql.PuertaDeEnlace;
 
 public interface IPuertaEnlaceService {
 	public List<PuertaDeEnlace> findAll();
-	public PuertaDeEnlace findById(String usuario);
-	public Boolean save(PuertaDeEnlace usuario);
-	public Boolean deleteById(String usuario);
+	public PuertaDeEnlace findById(String idPuerta);
+	public Boolean save(PuertaDeEnlace puerta);
+	public Boolean deleteById(String idPuerta);
 	public Long count();
-	public Boolean alter(PuertaDeEnlace usuario);
-	
+	public Boolean alter(PuertaDeEnlace puerta);
 }

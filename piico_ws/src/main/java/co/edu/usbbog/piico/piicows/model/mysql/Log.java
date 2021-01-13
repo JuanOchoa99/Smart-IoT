@@ -7,8 +7,6 @@ import javax.persistence.*;
 
 import org.json.JSONObject;
 
-import java.util.Date;
-
 
 /**
  * The persistent class for the log database table.

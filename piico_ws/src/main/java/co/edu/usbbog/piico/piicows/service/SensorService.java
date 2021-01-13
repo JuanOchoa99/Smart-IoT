@@ -706,7 +706,7 @@ public class SensorService implements ISensorService{
 						LocalDateTime date = LocalDateTime.parse(gateway.getDate(),
 								DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 						json.put("estacion", station.getNode_id());
-						json.put("date", date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+						json.put("date", date);
 						Float numero = Float.parseFloat(dato.getValue());
 						json.put("price", numero);
 						array.put(json);
@@ -769,6 +769,5 @@ public class SensorService implements ISensorService{
 		}
 		return datos;
 	}
-
 	
 }

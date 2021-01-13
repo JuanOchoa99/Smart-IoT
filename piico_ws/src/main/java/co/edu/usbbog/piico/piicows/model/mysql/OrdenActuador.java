@@ -6,8 +6,7 @@ import java.time.LocalDateTime;
 import javax.persistence.*;
 
 import org.json.JSONObject;
-
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 /**
@@ -21,7 +20,7 @@ public class OrdenActuador implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private OrdenActuadorPK id;
+	private OrdenactuadorPK id;
 
 	@Column(nullable=false)
 	private byte confirmacion;
@@ -41,21 +40,21 @@ public class OrdenActuador implements Serializable {
 
 	public OrdenActuador() {
 	}
-	public OrdenActuador(OrdenActuadorPK id) {
+	public OrdenActuador(OrdenactuadorPK id) {
 		this.id = id;
 	}
 
-	public OrdenActuador(OrdenActuadorPK id, byte confirmacion, LocalDateTime fecha) {
+	public OrdenActuador(OrdenactuadorPK id, byte confirmacion, LocalDateTime fecha) {
 		super();
 		this.id = id;
 		this.confirmacion = confirmacion;
 		this.fecha = fecha;
 	}
-	public OrdenActuadorPK getId() {
+	public OrdenactuadorPK getId() {
 		return this.id;
 	}
 
-	public void setId(OrdenActuadorPK id) {
+	public void setId(OrdenactuadorPK id) {
 		this.id = id;
 	}
 
@@ -151,7 +150,7 @@ public class OrdenActuador implements Serializable {
 	}
 	public OrdenActuador fromJson(JSONObject json) {		
 		JSONObject jsonOrdenactuadorPK = json.getJSONObject("id");
-		this.setId(new OrdenActuadorPK().fromJson(jsonOrdenactuadorPK));
+		this.setId(new OrdenactuadorPK().fromJson(jsonOrdenactuadorPK));
 		this.setConfirmacion((byte)json.getInt("confirmacion"));
 		this.setFecha(LocalDateTime.parse(json.getString("fecha")));
 		return this;
