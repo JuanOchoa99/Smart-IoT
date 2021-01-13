@@ -16,8 +16,20 @@ public class AuthService implements IAuthService{
 	private IAuthRepository authRepo;
 
 	@Override
-	public List<Auth> findAll() {
+	public List<Auth> findAll(String tipo) {
 		List<Auth> auths = authRepo.findAll();
+		for (int i = 0; i < auths.size(); i++) {
+			if(tipo.equals("pub")) {
+				if(auths.get(i).getTopic().equals("sen_p") || auths.get(i).getTopic().equals("sta_p")){
+					auths.remove(i);
+				}
+			}if(tipo.equals("sub")) {
+				if(auths.get(i).getTopic().equals("req_p") || auths.get(i).getTopic().equals("act_p") || auths.get(i).getTopic().equals("conf_p")){
+					auths.remove(i);
+				}
+			}
+		}
+		System.out.println("Lista: "+auths);
 		return auths;
 	}
 

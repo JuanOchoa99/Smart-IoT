@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import co.edu.usbbog.piico.piicows.model.mqtt.Act_p;
 import co.edu.usbbog.piico.piicows.service.ActuadorService;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/mqtt/publish")
 public class Controlador {
 	@Autowired

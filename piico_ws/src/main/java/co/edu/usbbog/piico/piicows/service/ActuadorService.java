@@ -78,11 +78,18 @@ public class ActuadorService implements IActuadorService {
 			nodo.setDate(date);
 			nodo.setRequest("send");
 			ActuadorAct_p aspersor = new ActuadorAct_p();
-			aspersor.setActuadorId("aspersor");
-			aspersor.setOrder("active");
 			ActuadorAct_p rgb = new ActuadorAct_p();
-			rgb.setActuadorId("RGB");
-			rgb.setOrder("active");
+			if(nodos.getJSONObject(i).getBoolean("activate")) {
+				aspersor.setActuadorId("aspersor");
+				aspersor.setOrder("active");
+				rgb.setActuadorId("RGB");
+				rgb.setOrder("active");
+			}else {
+				aspersor.setActuadorId("aspersor");
+				aspersor.setOrder("disable");
+				rgb.setActuadorId("RGB");
+				rgb.setOrder("disable");
+			}
 			List<ActuadorAct_p> actuadores = new ArrayList<ActuadorAct_p>();
 			actuadores.add(aspersor);
 			actuadores.add(rgb);
