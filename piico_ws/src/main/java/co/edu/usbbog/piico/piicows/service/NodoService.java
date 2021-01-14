@@ -185,5 +185,10 @@ public class NodoService implements INodoService{
 			return false;
 		}
 	}
+	@Override
+	public List<Nodo> find() {
+		List<Nodo> nodos = nodoRepo.findAll();
+		return nodos;
+	}
 
 }

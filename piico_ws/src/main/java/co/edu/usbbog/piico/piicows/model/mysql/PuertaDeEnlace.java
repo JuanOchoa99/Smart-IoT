@@ -314,7 +314,7 @@ public class PuertaDeEnlace implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Puerta de enlace: " + toJson().toString();
+		return toJson().toString();
 	}
 	
 	public JSONObject toJson() {
@@ -327,18 +327,7 @@ public class PuertaDeEnlace implements Serializable {
 		json.put("ssid",this.getSsid());
 		json.put("password",this.getPassword());
 		//relaciones
-		JSONArray logs = new JSONArray();
-		for (Log log : this.getLogs()) {
-			logs.put(log.toJson().getString("id"));
-		}
-		JSONArray auths = new JSONArray();
-		for (Auth auth : this.getAuths()) {
-			auths.put(auth.toJson().getString("id"));
-		}
-		JSONArray nodos = new JSONArray();
-		for (Nodo nodo : this.getNodos()) {
-			nodos.put(nodo.toJson().getString("id"));
-		}
+		
 		return json;
 	}
 	

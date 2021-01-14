@@ -221,7 +221,7 @@ public class Nodo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Nodo: " + toJson().toString();
+		return toJson().toString();
 	}
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();

@@ -3,6 +3,7 @@ package co.edu.usbbog.piico.piicows.controller;
 import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,10 +58,11 @@ public class PuertaEnlaceController {
 		return mg;
 	}
 	
-	@PostMapping(value="/find")
-	public @ResponseBody String find(@RequestBody String puertaDeEnlace) {
-		String mg = "";
-		return mg;
+	@GetMapping(value="/find")
+	public @ResponseBody String find() {
+		JSONObject json = new JSONObject();
+		System.out.println(puertaDeEnlaceService.findAll().toString());
+		return puertaDeEnlaceService.findAll().toString();
 	}
 	
 	@GetMapping(value="/listNodos")

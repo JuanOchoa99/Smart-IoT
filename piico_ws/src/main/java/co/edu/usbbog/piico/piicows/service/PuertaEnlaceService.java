@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.edu.usbbog.piico.piicows.model.mysql.Auth;
 import co.edu.usbbog.piico.piicows.model.mysql.PuertaDeEnlace;
 import co.edu.usbbog.piico.piicows.repository.mysql.IPuertaDeEnlaceRepository;
 
@@ -16,8 +17,8 @@ public class PuertaEnlaceService implements IPuertaEnlaceService{
 
 	@Override
 	public List<PuertaDeEnlace> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<PuertaDeEnlace> puertaDeEnlace = gatewayRepo.findAll();
+		return puertaDeEnlace;
 	}
 
 	@Override

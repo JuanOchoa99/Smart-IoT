@@ -8,6 +8,7 @@ import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
 
 public interface INodoService {
 	public JSONArray findAll();
+	public List<Nodo> find();
 	public Nodo findById(String nodo);
 	public Boolean save(Nodo nodo);
 	public Boolean deleteById(String nodo);

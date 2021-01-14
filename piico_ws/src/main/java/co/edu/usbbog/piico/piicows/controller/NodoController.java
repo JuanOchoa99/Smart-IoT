@@ -61,6 +61,11 @@ public class NodoController {
 		respuesta.put("data", nodoService.findAll());
 		return nodoService.findAll().toString();
 	}
+	@GetMapping(value="/find")
+	public @ResponseBody String listarNodos() {
+	
+		return nodoService.find().toString();
+	}
 
 
 	

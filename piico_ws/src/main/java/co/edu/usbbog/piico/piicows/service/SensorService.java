@@ -706,7 +706,7 @@ public class SensorService implements ISensorService{
 						LocalDateTime date = LocalDateTime.parse(gateway.getDate(),
 								DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 						json.put("estacion", station.getNode_id());
-						json.put("date", date);
+						json.put("date", date.toString());
 						Float numero = Float.parseFloat(dato.getValue());
 						json.put("price", numero);
 						array.put(json);
@@ -726,7 +726,7 @@ public class SensorService implements ISensorService{
 		datos.sort(Comparator.comparing(Estacion::getNode_id));
 		System.out.println("Datos: " + datos.toString());
 		JSONArray resultado = new JSONArray();
-		LocalDate dia = datos.get(0).getDate();
+		LocalDateTime dia = datos.get(0).getDate();
 		String estacion = datos.get(0).getNode_id();
 		System.out.println("Fecha: " + dia);
 		System.out.println("Estacion: " + estacion);
