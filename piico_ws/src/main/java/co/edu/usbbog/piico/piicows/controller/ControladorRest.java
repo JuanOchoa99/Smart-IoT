@@ -2,6 +2,9 @@ package co.edu.usbbog.piico.piicows.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +16,7 @@ import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
 import co.edu.usbbog.piico.piicows.model.mysql.PuertaDeEnlace;
 import co.edu.usbbog.piico.piicows.model.mysql.Rol;
 import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
+import co.edu.usbbog.piico.piicows.repository.mysql.IUsuarioRepository;
 import co.edu.usbbog.piico.piicows.service.NodoService;
 import co.edu.usbbog.piico.piicows.service.PuertaEnlaceService;
 import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
@@ -21,135 +25,21 @@ import co.edu.usbbog.piico.piicows.service.UsuarioService;
 
 
 @RestController
-@RequestMapping(path = "/ingusbbo_piico")
+@RequestMapping("/seguridad")
 public class ControladorRest {
 	@Autowired
-	private UsuarioService usuarioService;
+	private IUsuarioRepository userRepo;
 	private RolService rolService;
-	private PuertaEnlaceService puertaEnlaceService;
-	
-	@RequestMapping(value = "/guardarUsuario", method = RequestMethod.POST, 
-			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String guardarUsuario(@RequestBody Usuario usuario) {
-		String mg = "";
-		if (usuarioService.registrar(usuario)){
-			return mg = "{\"causa\":\"true\",\"error\":\"Registro incertado"+"\"}";
-		}else {
-			return mg = "{\"causa\":\"false\",\"error\":\"Registro ya existe"+"\"}";		
-		}
-	}
-	@RequestMapping(value = "/eliminarUsuario", method = RequestMethod.POST, 
-			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String eliminarUsuario(@RequestBody String usuario) {
-		String mg = "";
-		if (usuarioService.deleteById(usuario)){
-			return mg = "{\"causa\":\"true\",\"error\":\"Registro eliminado"+"\"}";
-		}else {
-			return mg = "{\"causa\":\"false\",\"error\":\"Registro no existe"+"\"}";
-		}
-	}
-	@RequestMapping(value = "/modificarUsuario", method = RequestMethod.POST, 
-			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String modificarUsuario(@RequestBody Usuario usuario) {
-		String mg = "";
-		if (usuarioService.alter(usuario)){
-			return mg = "{\"causa\":\"true\",\"error\":\"Registro modificado"+"\"}";
-		}else {
-			return mg = "{\"causa\":\"false\",\"error\":\"Registro no existe"+"\"}";
-		}
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PostMapping("/admin/add")
+	public String addUserByAdmin(@RequestBody Usuario user) {
+		String pass = user.getPass();
+		String encryptPassword = passwordEncoder.encode(pass);
+		user.setPass(encryptPassword);
+		userRepo.save(user);
+		return "Se ha agregado el usuario admin";
 	}
 	
-	@RequestMapping(value = "/buscarUsuario", method = RequestMethod.POST, 
-			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String buscarUsuario(@RequestBody String usuario) {
-		String mg = "";
-		if (usuarioService.buscar(usuario) != null){
-			return mg = usuarioService.buscar(usuario).toString();
-		}else {
-			return mg = "{\"causa\":\"false\",\"error\":\"Registro no existe"+"\"}";
-		}
-	}
-	
-	@RequestMapping(value = "/listarUsuarios", method = RequestMethod.GET, 
-			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String listarUsuarios() {
-		String mg = "";
-		mg = usuarioService.usuarios().toString();
-		return mg;
-	}
-	
-	
-	// CRUD Rol
-	
-	@RequestMapping(value = "/guardarRol", method = RequestMethod.POST, 
-			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String guardarRol(@RequestBody Rol rol) {
-		String mg = "";
-		if (rolService.save(rol)){
-			return mg = "{\"causa\":\"true\",\"error\":\"Registro incertado"+"\"}";
-		}else {
-			return mg = "{\"causa\":\"false\",\"error\":\"Registro ya existe"+"\"}";
-		
-		}
-	}
-	
-	@RequestMapping(value = "/eliminarRol", method = RequestMethod.POST, 
-			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String eliminarRol(@RequestBody String rol) {
-		String mg = "";
-		if (rolService.deleteById(rol)){
-			return mg = "{\"causa\":\"true\",\"error\":\"Registro eliminado"+"\"}";
-		}else {
-			return mg = "{\"causa\":\"false\",\"error\":\"Registro no existe"+"\"}";
-		}
-	}
-	
-	@RequestMapping(value = "/modificarRol", method = RequestMethod.POST, 
-			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String modificarRol(@RequestBody Rol rol) {
-		String mg = "";
-		if (rolService.alter(rol)){
-			return mg = "{\"causa\":\"true\",\"error\":\"Registro modificado"+"\"}";
-		}else {
-			return mg = "{\"causa\":\"false\",\"error\":\"Registro no existe"+"\"}";
-		}
-	}
-	
-	@RequestMapping(value = "/contarRol", method = RequestMethod.GET, 
-			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String contarRol() {
-		String mg = "";
-		mg = rolService.count().toString();
-		return mg;
-	}
-	
-	@RequestMapping(value = "/buscarRol", method = RequestMethod.POST, 
-			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String buscarRol(@RequestBody String rol) {
-		String mg = "";
-		if (rolService.findById(rol) != null){
-			return mg = rolService.findById(rol).toString();
-		}else {
-			return mg = "{\"causa\":\"false\",\"error\":\"Registro no existe"+"\"}";
-		}
-	}
-	
-	@RequestMapping(value = "/listarUsuarios", method = RequestMethod.POST, 
-			consumes = MediaType.APPLICATION_JSON_VALUE, 
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String listarRol() {
-		String mg = "";
-		mg = rolService.findAll().toString();
-		return mg;
-	}
 }

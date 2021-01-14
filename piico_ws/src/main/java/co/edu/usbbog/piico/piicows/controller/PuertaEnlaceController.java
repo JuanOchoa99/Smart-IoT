@@ -22,7 +22,7 @@ import co.edu.usbbog.piico.piicows.service.SensorService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/puertaEnlace")
+@RequestMapping("/piico/puertaEnlace")
 public class PuertaEnlaceController {
 	
 	private static Logger logger = LoggerFactory.getLogger(PuertaEnlaceController.class);

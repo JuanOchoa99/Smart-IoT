@@ -14,7 +14,7 @@ import co.edu.usbbog.piico.piicows.service.AuthService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/actuators")
+@RequestMapping("/piico/actuators")
 public class ActuatorsController {
 	
 	@Autowired

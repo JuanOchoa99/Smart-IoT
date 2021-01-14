@@ -31,7 +31,7 @@ public class Rol implements Serializable {
 	@JoinTable(
 		name="rol_usuario"
 		, joinColumns={
-			@JoinColumn(name="rombre", nullable=false)
+			@JoinColumn(name="nombre", nullable=false)
 			}
 		, inverseJoinColumns={
 			@JoinColumn(name="usuario", nullable=false)

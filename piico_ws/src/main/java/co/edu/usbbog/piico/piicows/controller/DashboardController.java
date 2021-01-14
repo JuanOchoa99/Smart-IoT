@@ -11,7 +11,7 @@ import co.edu.usbbog.piico.piicows.service.NodoService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/dashboard")
+@RequestMapping("/piico/dashboard")
 public class DashboardController {
 	
 	private static Logger logger = LoggerFactory.getLogger(DashboardController.class);

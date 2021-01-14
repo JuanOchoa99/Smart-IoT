@@ -21,7 +21,7 @@ import co.edu.usbbog.piico.piicows.service.ActuadorService;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/api/mqtt/publish")
+@RequestMapping(value = "/piico/api/mqtt/publish")
 public class Controlador {
 	@Autowired
 	private ActuadorService actuadorService;

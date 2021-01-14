@@ -27,7 +27,7 @@ import co.edu.usbbog.piico.piicows.service.UsuarioService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/sensor")
+@RequestMapping("/piico/sensor")
 public class SensorsController {
 	
 	private static Logger logger = LoggerFactory.getLogger(ControlAreaController.class);
