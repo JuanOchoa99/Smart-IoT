@@ -4,7 +4,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +18,6 @@ public class ControlAreaController {
 
 	private static Logger logger = LoggerFactory.getLogger(ControlAreaController.class);
 	
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
 	
 	@GetMapping(value="/getNotifications")
 	public String getNotifications() {

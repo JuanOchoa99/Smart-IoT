@@ -10,7 +10,7 @@ import net.bytebuddy.asm.Advice.This;
 public class Estacion {
 
 	private String node_id;
-	private LocalDate date;
+	private LocalDateTime date;
 	private Double price;
 	
 	
@@ -25,11 +25,11 @@ public class Estacion {
 		this.node_id = node_id;
 	}
 
-	public LocalDate getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
@@ -94,7 +94,7 @@ public class Estacion {
 	
 	public Estacion fromJson(JSONObject json) {		
 		this.setNode_id(json.getString("estacion"));
-		this.setDate(LocalDate.parse(json.getString("date")));
+		this.setDate(LocalDateTime.parse(json.getString("date")));
 		this.setPrice(json.getDouble("price"));
 		return this;
 	}

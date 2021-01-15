@@ -17,7 +17,7 @@ import co.edu.usbbog.piico.piicows.service.PuertaEnlaceService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/piico/auth")
+@RequestMapping("/auth")
 public class AuthController {
 private static Logger logger = LoggerFactory.getLogger(ControlAreaController.class);
 	

@@ -18,13 +18,16 @@ import co.edu.usbbog.piico.piicows.config.exceptions.ExceptionMessages;
 import co.edu.usbbog.piico.piicows.config.exceptions.MqttException;
 import co.edu.usbbog.piico.piicows.model.mqtt.Act_p;
 import co.edu.usbbog.piico.piicows.service.ActuadorService;
+import co.edu.usbbog.piico.piicows.service.PuertaEnlaceService;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/piico/api/mqtt/publish")
+@RequestMapping(value = "/api/mqtt/publish")
 public class Controlador {
 	@Autowired
 	private ActuadorService actuadorService;
+	@Autowired
+	private PuertaEnlaceService puertaService;
 	@PostMapping("act_p")
     public void publishMessage(@RequestBody @Validated String filtro,
                                BindingResult bindingResult) throws org.eclipse.paho.client.mqttv3.MqttException {
@@ -39,4 +42,12 @@ public class Controlador {
         mqttMessage.setRetained(false);
         Mqtt.getInstance().publish("act_p", mqttMessage);
     }
+	
+	@PostMapping("/crearConfig")
+	public void guardarCrearConfig(@RequestBody @Validated String filtro) {
+		
+		JSONObject config = new JSONObject(filtro);
+		JSONObject json = puertaService.crearConfiguracion(config);
+		System.out.println("JSON a enviar publicador con_p: "+json.toString());
+	}
 }

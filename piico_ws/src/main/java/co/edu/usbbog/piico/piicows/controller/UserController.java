@@ -19,7 +19,7 @@ import co.edu.usbbog.piico.piicows.service.RolService;
 import co.edu.usbbog.piico.piicows.service.UsuarioService;
 @RestController
 @CrossOrigin
-@RequestMapping("/piico/user")
+@RequestMapping("/user")
 public class UserController {
 	private static Logger logger = LoggerFactory.getLogger(DashboardController.class);
 	

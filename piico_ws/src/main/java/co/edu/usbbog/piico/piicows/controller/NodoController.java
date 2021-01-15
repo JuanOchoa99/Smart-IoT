@@ -26,7 +26,7 @@ import co.edu.usbbog.piico.piicows.service.UsuarioService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/piico/nodo")
+@RequestMapping("/nodo")
 public class NodoController {
 	
 	private static Logger logger = LoggerFactory.getLogger(ControlAreaController.class);
