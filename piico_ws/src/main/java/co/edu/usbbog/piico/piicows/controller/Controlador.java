@@ -28,7 +28,7 @@ public class Controlador {
 	private ActuadorService actuadorService;
 	@Autowired
 	private PuertaEnlaceService puertaService;
-	@PostMapping("act_p")
+	@PostMapping("/act_p")
     public void publishMessage(@RequestBody @Validated String filtro,
                                BindingResult bindingResult) throws org.eclipse.paho.client.mqttv3.MqttException {
         if (bindingResult.hasErrors()) {
@@ -44,10 +44,18 @@ public class Controlador {
     }
 	
 	@PostMapping("/crearConfig")
-	public void guardarCrearConfig(@RequestBody @Validated String filtro) {
-		
+	public String guardarCrearConfig(@RequestBody @Validated String filtro, BindingResult bindingResult) throws org.eclipse.paho.client.mqttv3.MqttException {
+        if (bindingResult.hasErrors()) {
+            throw new MqttException(ExceptionMessages.SOME_PARAMETERS_INVALID);
+        } 
 		JSONObject config = new JSONObject(filtro);
 		JSONObject json = puertaService.crearConfiguracion(config);
+		String mensaje = json.toString();
+		MqttMessage mqttMessage = new MqttMessage(mensaje.getBytes());
+        mqttMessage.setQos(2);
+        mqttMessage.setRetained(false);
+        Mqtt.getInstance().publish("conf_p", mqttMessage);
 		System.out.println("JSON a enviar publicador con_p: "+json.toString());
+		return json.toString();
 	}
 }
