@@ -1,7 +1,9 @@
 package co.edu.usbbog.piico.piicows.controller;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ControlAreaController {
 
 	private static Logger logger = LoggerFactory.getLogger(ControlAreaController.class);
+	
 	
 	@GetMapping(value="/getNotifications")
 	public String getNotifications() {
@@ -33,8 +36,10 @@ public class ControlAreaController {
 	
 	
 	@PostMapping(value="/login")
-	public String login(@RequestBody String userAndPass) {
-		return "";
+	public Boolean login(@RequestBody String userAndPass) {
+		
+		
+		return null;
 	}
 	
 	@PostMapping(value="/logout")

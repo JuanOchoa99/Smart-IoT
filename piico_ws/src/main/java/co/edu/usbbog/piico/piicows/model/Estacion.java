@@ -94,7 +94,6 @@ public class Estacion {
 	
 	public Estacion fromJson(JSONObject json) {		
 		this.setNode_id(json.getString("estacion"));
-		System.out.println(json.get("date").toString());
 		this.setDate(LocalDateTime.parse(json.getString("date")));
 		this.setPrice(json.getDouble("price"));
 		return this;

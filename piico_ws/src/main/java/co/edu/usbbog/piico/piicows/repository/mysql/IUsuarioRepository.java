@@ -7,5 +7,5 @@ import co.edu.usbbog.piico.piicows.model.mysql.Usuario;
 
 @Repository
 public interface IUsuarioRepository extends  JpaRepository<Usuario, String> {
-
+	public Usuario findByUsername(String username);	
 }

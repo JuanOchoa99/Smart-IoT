@@ -211,22 +211,13 @@ public class Sensor implements Serializable {
 		json.put("frecuencia", this.getFrecuencia());
 		json.put("magnitud", this.getMagnitud());
 		json.put("tipo", this.getTipo());
-		//relaciones
-		JSONArray Actuadores = new JSONArray();
-		for (Actuador actuador : this.getActuadors()) {
-			Actuadores.put(actuador.toJson().getString("id"));
-		}
-		json.put("actuadores", Actuadores);
-		JSONObject jsonNodo = this.getNodoBean().toJson();
-		json.put("nodo", jsonNodo);
 		return json;
 	}
 	
 	public Sensor fromJson(JSONObject json) {		
-		this.setId(json.getString("id"));
+		this.setId(json.getString("sensor_id"));
 		this.setDescripcion(json.getString("descripcion"));
 		this.setEstado((byte)json.getInt("estado"));
-		this.setFrecuencia(json.getInt("frecuencia"));
 		this.setMagnitud(json.getString("magnitud"));
 		this.setTipo(json.getString("tipo"));
 		return this;

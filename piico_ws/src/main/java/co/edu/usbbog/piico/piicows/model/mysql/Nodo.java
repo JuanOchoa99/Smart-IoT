@@ -1,4 +1,4 @@
-package co.edu.usbbog.piico.piicows.model.mysql;
+	package co.edu.usbbog.piico.piicows.model.mysql;
 
 import java.io.Serializable;
 import javax.persistence.*;

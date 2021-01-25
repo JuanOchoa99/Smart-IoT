@@ -18,6 +18,7 @@ import co.edu.usbbog.piico.piicows.config.exceptions.ExceptionMessages;
 import co.edu.usbbog.piico.piicows.config.exceptions.MqttException;
 import co.edu.usbbog.piico.piicows.model.mqtt.Act_p;
 import co.edu.usbbog.piico.piicows.service.ActuadorService;
+import co.edu.usbbog.piico.piicows.service.PuertaEnlaceService;
 
 @RestController
 @CrossOrigin
@@ -25,7 +26,9 @@ import co.edu.usbbog.piico.piicows.service.ActuadorService;
 public class Controlador {
 	@Autowired
 	private ActuadorService actuadorService;
-	@PostMapping("act_p")
+	@Autowired
+	private PuertaEnlaceService puertaService;
+	@PostMapping("/act_p")
     public void publishMessage(@RequestBody @Validated String filtro,
                                BindingResult bindingResult) throws org.eclipse.paho.client.mqttv3.MqttException {
         if (bindingResult.hasErrors()) {
@@ -39,4 +42,20 @@ public class Controlador {
         mqttMessage.setRetained(false);
         Mqtt.getInstance().publish("act_p", mqttMessage);
     }
+	
+	@PostMapping("/crearConfig")
+	public String guardarCrearConfig(@RequestBody @Validated String filtro, BindingResult bindingResult) throws org.eclipse.paho.client.mqttv3.MqttException {
+        if (bindingResult.hasErrors()) {
+            throw new MqttException(ExceptionMessages.SOME_PARAMETERS_INVALID);
+        } 
+		JSONObject config = new JSONObject(filtro);
+		JSONObject json = puertaService.crearConfiguracion(config);
+		String mensaje = json.toString();
+		MqttMessage mqttMessage = new MqttMessage(mensaje.getBytes());
+        mqttMessage.setQos(2);
+        mqttMessage.setRetained(false);
+        Mqtt.getInstance().publish("conf_p", mqttMessage);
+		System.out.println("JSON a enviar publicador con_p: "+json.toString());
+		return json.toString();
+	}
 }

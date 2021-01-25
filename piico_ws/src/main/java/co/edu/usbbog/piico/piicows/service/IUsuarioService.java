@@ -15,4 +15,5 @@ public interface IUsuarioService {
 	public Boolean login(String username, String password);
 	public Boolean logout(String username);
 	public Boolean modificarRol(Usuario usuario, List<Rol> roles, String option);
+	public Usuario findByUsername(String username);
 }

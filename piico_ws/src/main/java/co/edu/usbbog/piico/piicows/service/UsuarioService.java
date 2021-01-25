@@ -16,8 +16,6 @@ public class UsuarioService implements IUsuarioService {
 	@Autowired
 	private IUsuarioRepository usuarioRepo;
 
-
-
 	@Override
 	public List<Usuario> usuarios() {
 		// TODO Auto-generated method stub
@@ -69,6 +67,18 @@ public class UsuarioService implements IUsuarioService {
 	}
 
 	@Override
+	public Boolean alter(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean login(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public Boolean logout(String username) {
 		// TODO Auto-generated method stub
 		return null;
@@ -81,15 +91,10 @@ public class UsuarioService implements IUsuarioService {
 	}
 
 	@Override
-	public Boolean deleteById(String usuario) {
-		// TODO Auto-generated method stub
-		return null;
+	public Usuario findByUsername(String username) {
+		Usuario user = usuarioRepo.findByUsername(username);
+		return user;
 	}
 
-	@Override
-	public Boolean alter(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

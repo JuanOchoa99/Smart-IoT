@@ -197,21 +197,11 @@ public class Actuador implements Serializable {
 		json.put("descripcion", this.getDescripcion());
 		json.put("estado", this.getEstado());
 		json.put("tipo", this.getTipo());
-		JSONObject jsonSensor = this.getSensorBean().toJson();
-		json.put("sensor", jsonSensor);
-		JSONObject jsonNodo = this.getNodoBean().toJson();
-		json.put("nodo", jsonNodo);
-		// Relaciones
-		JSONArray ordenActuadors = new JSONArray();
-		for (OrdenActuador ordenActuador : this.getOrdenActuadors()) {
-			ordenActuadors.put(ordenActuador.toJson().getString("id"));
-		}
-		json.put("Ordenactuadors", ordenActuadors);
 		return json;
 	}
 
 	public Actuador fromJson(JSONObject json) {
-		this.setId(json.getString("id"));
+		this.setId(json.getString("actuator_id"));
 		this.setDescripcion(json.getString("descripcion"));
 		this.setEstado((byte)json.getInt("estado"));
 		this.setTipo(json.getString("tipo"));

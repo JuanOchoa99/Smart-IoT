@@ -326,8 +326,6 @@ public class PuertaDeEnlace implements Serializable {
 		json.put("puertoDeServicio", this.getPuertoDeServicio());
 		json.put("ssid",this.getSsid());
 		json.put("password",this.getPassword());
-		//relaciones
-		
 		return json;
 	}
 	

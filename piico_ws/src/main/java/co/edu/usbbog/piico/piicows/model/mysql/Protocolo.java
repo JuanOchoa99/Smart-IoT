@@ -162,24 +162,15 @@ public class Protocolo implements Serializable {
 		json.put("id", this.getId());
 		json.put("nombre", this.getNombre());
 		json.put("tipo", this.getTipo());
-		json.put("estandar", this.getEstandar());
-		//relaciones
-		JSONArray puertasDeEnlace = new JSONArray();
-		for (PuertaDeEnlace puertaDeEnlace : this.getPuertaDeEnlaces()) {
-			puertasDeEnlace.put(puertaDeEnlace.toJson().getString("id"));
-		}
-		json.put("puertaDeEnlaces", puertasDeEnlace);
-		JSONArray Nodos = new JSONArray();
-		for (Nodo nodo : this.getNodos()) {
-			Nodos.put(nodo.toJson().getString("id"));
-		}
-		json.put("puertaDeEnlaces", puertasDeEnlace);
+		json.put("estandar", this.getEstandar());	
 		return json;
 	}
 	
 	public Protocolo fromJson(JSONObject json) {		
 		this.setId(json.getInt("id"));
-		this.setNombre(json.getString("protocolo"));
+		this.setNombre(json.getString("nombre"));
+		this.setTipo(json.getString("tipo"));
+		this.setEstandar(json.getString("estandar"));
 		return this;
 	}
 }
