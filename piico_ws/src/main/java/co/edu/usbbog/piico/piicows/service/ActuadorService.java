@@ -64,7 +64,6 @@ public class ActuadorService implements IActuadorService {
 	}
 
 	public JSONObject construirAct_p(JSONArray nodos) {
-		System.out.println("JSON request: "+nodos);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("Gateway_id", "Gateway_1");
 		LocalDateTime dateTime = LocalDateTime.now();
@@ -93,13 +92,10 @@ public class ActuadorService implements IActuadorService {
 			List<ActuadorAct_p> actuadores = new ArrayList<ActuadorAct_p>();
 			actuadores.add(aspersor);
 			actuadores.add(rgb);
-			System.out.println("ACtuadores: "+actuadores);
 			nodo.setActuadores(actuadores);
-			System.out.println("Nodo: "+nodo.toString());
 			lista.add(nodo);
 		}
 		jsonObject.put("nodos", lista);
-		System.out.println("ACT_p: "+jsonObject);
 		return jsonObject;
 	}
 

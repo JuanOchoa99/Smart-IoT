@@ -120,26 +120,14 @@ public class SensorsController {
 		return sensorService.mapa().toString();
 	}
 	
-	/**
-	 * 
-	 * 	@PostMapping(value="/findLast")
-		public @ResponseBody String findLast(@RequestBody String filtro) {
-			
-			JSONObject jsonObject = new JSONObject(filtro);
-			
-			String station = jsonObject.getString("station");
-			String variable = jsonObject.getString("variable");
-			
-			System.out.println("1"+variable);
-			System.out.println("2"+station);
-			JSONObject respuesta = new JSONObject();
-			respuesta.put("data", sensorService.history(station, variable, escala));
-			return sensorService.history(station, variable, escala).toString();
-		}
-	 * @param filtro
-	 * @return
-	 */
-
+	@PostMapping(value="/radial")
+	public @ResponseBody String radial(@RequestBody String filtro) {
+		
+		JSONObject jsonObject = new JSONObject(filtro);
+		LocalDate fecha = LocalDate.parse(jsonObject.getString("fecha"));
+		JSONObject respuesta = new JSONObject();
+		return sensorService.direccionRadial(fecha).toString();
+	}
 	
 	
 	 

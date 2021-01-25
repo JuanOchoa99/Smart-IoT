@@ -38,10 +38,8 @@ public class NodoService implements INodoService{
 			for (Station station : stations) {
 				List<Data> datos = station.getSensors();
 				for (Data dato : datos) {
-					System.out.println(dato.getSensor_id());
 					JSONObject json = new JSONObject();
 					LocalDateTime date = LocalDateTime.parse(gateway.getDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
-					System.out.println(date);
 					json.put("date", date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 					String numero = dato.getValue();
 					json.put("price",numero);
@@ -57,17 +55,13 @@ public class NodoService implements INodoService{
 		return array;
 	}
 	private JSONArray organizarData(JSONArray valores) {
-		System.out.println("Valores: " + valores.toString());
 		List<EstacionDashboard> datos1 = convertJsonArrayEstacion(valores);
 		datos1.sort(Comparator.comparing(EstacionDashboard::getDate));
 		List<EstacionDashboard> datos = datos1;
 		datos.sort(Comparator.comparing(EstacionDashboard::getNode_id));
-		System.out.println("Datos: " + datos.toString());
 		JSONArray resultado = new JSONArray();
 		LocalDate dia = datos.get(0).getDate();
 		String estacion = datos.get(0).getNode_id();
-		System.out.println("Fecha: " + dia);
-		System.out.println("Estacion: " + estacion);
 		String valorTem = null, valorHum = null, valorVel = null, valorDir = null, valorPlu = null, valorSol = null;
 		JSONObject json = new JSONObject();
 		for (EstacionDashboard hd : datos) {
@@ -75,10 +69,8 @@ public class NodoService implements INodoService{
 				if (hd.getDate().isAfter(dia)) {
 					if(hd.getSensor_id().equals("Temperature")){
 						valorTem = hd.getPrice();
-						System.out.println(valorTem);
 					}else if(hd.getSensor_id().equals("Humidity")) {
 						valorHum = hd.getPrice();
-						System.out.println(valorHum);
 					}else if(hd.getSensor_id().equals("wind_speed")) {
 						valorVel = hd.getPrice();
 					}else if(hd.getSensor_id().equals("Wind_direction")) {
@@ -114,7 +106,6 @@ public class NodoService implements INodoService{
 				}else if(hd.getSensor_id().equals("Solar_radiation")) {
 					valorSol = hd.getPrice();
 				}
-				System.out.println("Json Resultado: " + json);
 				resultado.put(json);
 				json = new JSONObject();
 
@@ -127,7 +118,6 @@ public class NodoService implements INodoService{
 		json.put("Wind_direction", valorDir);
 		json.put("Pluviometer", valorPlu);
 		json.put("Solar_radiation", valorSol);
-		System.out.println("Json Resultado: " + json);
 		resultado.put(json);
 		json = new JSONObject();
 		return resultado;

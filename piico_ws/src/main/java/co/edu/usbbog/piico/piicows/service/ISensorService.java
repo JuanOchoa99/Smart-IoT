@@ -24,7 +24,8 @@ public interface ISensorService {
 	public JSONArray history(String stationIn, String variable, String escala);
 	public JSONArray comparativa(String Sensor, String variable, String escala, LocalDate fechaIni, LocalDate fechaFin);
 	public JSONArray mapa();
-	JSONArray valorActual(String stationIn, String variable);
+	public JSONArray valorActual(String stationIn, String variable);
 	public JSONArray buscarValor(LocalDate fecha, String variable, String escala);
 	public JSONArray buscarValorActual(String estacion, String variable);
+	public JSONArray direccionRadial(LocalDate fecha);
 }

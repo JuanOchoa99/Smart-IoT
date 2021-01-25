@@ -1,5 +1,6 @@
 package co.edu.usbbog.piico.piicows.controller;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,12 +59,27 @@ public class UserController {
 
 	
 	@PostMapping(value="/find")
-	public @ResponseBody String find(@RequestBody String usuario) {
+	public @ResponseBody String find(@RequestBody String filtro) {
+		JSONObject jsonObject = new JSONObject(filtro);
+		String usuario = jsonObject.getString("usuario");
 		String mg = "";
 		if (usuarioService.buscar(usuario) != null){
 			return mg = usuarioService.buscar(usuario).toString();
 		}else {
 			return mg = "{\"causa\":\"false\",\"error\":\"Registro no existe"+"\"}";
+		}
+	}
+	
+	@PostMapping(value="/login")
+	public @ResponseBody Boolean login(@RequestBody String filtro) {
+		JSONObject jsonObject = new JSONObject(filtro);
+		String usuario = jsonObject.getString("usuario");
+		String contrasena = jsonObject.getString("contrasena");
+		String mg = "";
+		if (usuarioService.login(usuario, contrasena)){
+			return true;
+		}else {
+			return false;
 		}
 	}
 	

@@ -1,6 +1,7 @@
 package co.edu.usbbog.piico.piicows.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,18 @@ public class UsuarioService implements IUsuarioService {
 
 	@Override
 	public Usuario buscar(String usuario) {
-		// TODO Auto-generated method stub
-		return null;
+		Usuario user;
+		try {
+			if(usuarioRepo.existsById(usuario)) {
+				user = usuarioRepo.getOne(usuario);
+			}else {
+				user = null;
+			}
+			
+		}catch (Exception e) {
+			user = null;
+		}
+		return user;
 	}
 
 	@Override
@@ -37,8 +48,24 @@ public class UsuarioService implements IUsuarioService {
 
 	@Override
 	public Boolean login(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		Usuario user;
+		Boolean respuesta;
+		try {
+			if(usuarioRepo.existsById(username)) {
+				user = usuarioRepo.getOne(username);
+				if (user.getPass().equals(password)){
+					respuesta = true;
+				}else {
+					respuesta = false;
+				}
+			}else {
+				respuesta = false;
+			}
+			
+		}catch (Exception e) {
+			respuesta = false;
+		}
+		return respuesta;
 	}
 
 	@Override
