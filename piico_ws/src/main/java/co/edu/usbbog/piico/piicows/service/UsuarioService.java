@@ -72,11 +72,6 @@ public class UsuarioService implements IUsuarioService {
 		return null;
 	}
 
-	@Override
-	public Boolean login(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Boolean logout(String username) {
@@ -94,6 +89,12 @@ public class UsuarioService implements IUsuarioService {
 	public Usuario findByUsername(String username) {
 		Usuario user = usuarioRepo.findByUsername(username);
 		return user;
+	}
+
+	@Override
+	public Boolean deleteById(String usuario) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
