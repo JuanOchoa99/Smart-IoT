@@ -10,7 +10,10 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.edu.usbbog.piico.piicows.model.mysql.Actuador;
 import co.edu.usbbog.piico.piicows.model.mysql.Auth;
+import co.edu.usbbog.piico.piicows.model.mysql.Nodo;
+import co.edu.usbbog.piico.piicows.model.mysql.Protocolo;
 import co.edu.usbbog.piico.piicows.model.mysql.PuertaDeEnlace;
 import co.edu.usbbog.piico.piicows.model.mysql.Sensor;
 import co.edu.usbbog.piico.piicows.repository.mysql.IActuadorRepository;
